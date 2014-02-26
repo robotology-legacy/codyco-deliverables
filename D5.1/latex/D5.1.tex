@@ -268,13 +268,13 @@ $$
 The definition of these desired trajectories is discussed in Section \ref{sec:refTrajectories}. In this section we discuss how task references are constructed given the task trajectories.
 
 Let's first discuss how the center of mass reference acceleration $\ddot {\bm x}_{com}^*$ is generated at each instant of time. Given the desired trajectory ${\bm x}_{com}^d (t)$ trajectory we define:
-$$
+\begin{equation} \label{eq:accRef}
 \ddot {\bm x}_{com}^* (t) = \ddot {\bm x}_{com}^d (t) + K_d^{com} \left( \dot {\bm x}_{com}^d (t) - \dot {\bm x}_{com}\right) + K_p^{com} \left( {\bm x}_{com}^d (t) - {\bm x}_{com}\right),
-$$
+\end{equation}
 where $K_p^{com}$ and $K_d^{com}$ are arbitrary positive definite matrices. Similarly, the force reference trajectories ${\bm f}^*_{\cdot} (t)$ are obtained from a desired force trajectory ${\bm f}^d_{\cdot} (t)$:
-$$
+\begin{equation} \label{eq:fRef}
 {\bm f}_{\cdot}^* (t) = {\bm f}_{\cdot}^d (t) + K_i^f \int_0^t \left( {\bm f}_{\cdot}^d (\tau) - {\bm f}_{\cdot} (\tau) \right) d \tau,
-$$
+\end{equation}
 where again $K_i^f$ is an arbitrary positive definite matrix. It is slightly more complicated to define the hands acceleration reference trajectories  ${\ddot {\bm x}}^*_w(t)$, ${\dot {\bm \omega}}_w^* (t)$. The linear acceleration trajectory ${\ddot {\bm x}}^*_w(t)$ can be handled exactly as it was done for the center of mass position exploiting a suitable desired trajectory ${{\bm x}}^d_w(t)$. Angular acceleration trajectories ${\dot {\bm \omega}}_w^* (t)$ are slightly more complicated in considerations of the fact that they are derived from a reference rotation matrix $R^d_w(t) \in SO(3)$. Within this context, we follow the definition in \cite{siciliano2009} and define an orientation error $\bm e_O$ between the desired pose $R^d_w(t) \in SO(3)$ and the current pose $R_w \in SO(3)$ as:
 $$
 \bm e_O = \sin(\theta) \bm r,
@@ -346,7 +346,7 @@ C_{S_5} & = & \begin{bmatrix} C_{S_3} & 0_{3\times3} & I_{3\times3}\end{bmatrix}
 \end{eqnarray*}
 In the TSID formalism, tasks $T^{rf}_{\bm f}$, $T^{lf}_{\bm f}$, $T^{rh}_{\bm f}$, $T^{lh}_{\bm f}$ can be solved solving \eqref{eq:torquesTSID}-\eqref{eq:dynTSID}-\eqref{eq:contactTSID} at the first stage of the hierarchy (i.e. with maximum priority). However, it is worth observing that the solution of \eqref{eq:torquesTSID}-\eqref{eq:dynTSID}-\eqref{eq:contactTSID} might be in conflict with the center of mass task $T^{com}_{\bm X}$ if it is specified in \eqref{eq:motionTSID} with lower priority with respect to the force task. Therefore, in order to enforce the compatibility of the tasks $T^{rf}_{\bm f}$, $T^{lf}_{\bm f}$, $T^{rh}_{\bm f}$, $T^{lh}_{\bm f}$ and $T^{com}_{\bm X}$, we pre-compute a  reference force $\bm f^*$ compatible with the reference center of mass acceleration $\bm x_{com}^*$. Even if we impose the above constraints on $\bm f^*$, we do not identify a unique solution. Additional constraints or requirements needs to be imposed in order to properly define $\bm f^*$. In order to simplify this ambiguity, the following problem can be solved when at state $S_i$:
 \begin{equation} \label{eq:minF}
-\bm f^* = \mbox{arg } \min_{\bm f} \| \bm f - \bm f_0 \|^2_W  \mbox{ s.t. } C_{S_i} \bm f^*= m \ddot {{\bm x}}^*_{com},
+\bm f^* = \mbox{arg } \min_{\bm f} \| \bm f - \bm f_0 \|^2_W  \mbox{ s.t. } C_{S_i} \bm f= m \ddot {{\bm x}}^*_{com},
 \end{equation}
 where $\| \cdot \|_W$ denotes a norm weighted with the matrix $W = W^\top >0$. The solution of this optimization is given by:
 \begin{equation} 
@@ -370,8 +370,13 @@ s.t. \quad M \ddot{\bm q} + h - J_c^T \bm f & = S^T \bm \tau \\
 \end{subequations}
 The solution of \eqref{eq:TSID2} has strong analogies with the solution of \eqref{eq:minF} and \eqref{eq:torquesTSID}-\eqref{eq:dynTSID}-\eqref{eq:contactTSID} but a complete analysis of the underlying similarities is out of the scope of the present report. 
 
-In order to avoid discontinuities in the desired forces to be tracked by the controller we should chose the trajectories ${{\bm f}}_{rh}^*(t)$, ${{\bm f}}_{lh}^*(t)$, ${{\bm f}}_{rf}^*(t)$, ${{\bm f}}_{lf}^*(t)$ so that at the moment of task switching the desired force equal the current one. In order to do so, we simply exploit the fact that at any time, measurements $\bm f$, $ \ddot {\bm x}_{com}$ should satisfy the equilibrium condition $C_{S_i} \bm f = m \ddot {\bm x}_{com}$. Therefore, at the switching instant $t_s$ we can simply solve \eqref{eq:minF} with $\bm f_0 = C_{S_i} \bm f (t_s) $ and $\ddot {\bm x}^*_{com} = \ddot {\bm x}_{com}(t_s)$ to obtain a solution $\bm f^* = \bm f (t_s)$. The values of $\ddot {\bm x}^*_{com}$ and $\bm f_0$ are then interpolated with a minimum jerk trajectory of arbitrary duration to the final desired value for the center of mass acceleration $\ddot {\bm x}^*_{com}$ and interaction forces ${{\bm f}}_{rh}^*$, ${{\bm f}}_{lh}^*$, ${{\bm f}}_{rf}^*$, ${{\bm f}}_{lf}^*$.
-
+In order to avoid discontinuities in the desired forces to be tracked by the controller we should chose the trajectories ${{\bm f}}_{rh}^*(t)$, ${{\bm f}}_{lh}^*(t)$, ${{\bm f}}_{rf}^*(t)$, ${{\bm f}}_{lf}^*(t)$ so that at the moment of task switching the desired force equal the current one. In order to do so, we simply exploit the fact that at any time, measurements $\bm f$, $ \ddot {\bm x}_{com}$ should satisfy the equilibrium condition $C_{S_i} \bm f = m \ddot {\bm x}_{com}$. Therefore, at the switching instant $t_s$ we can simply solve \eqref{eq:minF} with $\bm f_0 = C_{S_i} \bm f (t_s) $ and $\ddot {\bm x}^*_{com} = \ddot {\bm x}_{com}(t_s)$ to obtain a solution $\bm f^* = \bm f (t_s)$. The values of $\ddot {\bm x}^*_{com}$ and $\bm f_0$ are then obtained as described in Section \ref{sec:taskReferences} as the output of a $PID$ filter on the difference between desired trajecotires $\ddot {\bm x}^d_{com} (t)$, $\bm f^d(t)$ and current values $\ddot {\bm x}_{com}$, $\bm f$. In particular, according the definitions that we gave in \eqref{eq:accRef} and \eqref{eq:fRef} the final reference for forces and accelerations will be:
+\begin{eqnarray*} 
+\ddot {\bm x}_{com}^* (t) &=& \ddot {\bm x}_{com}^d (t) + K_d^{com} \left( \dot {\bm x}_{com}^d (t) - \dot {\bm x}_{com}\right) + K_p^{com} \left( {\bm x}_{com}^d (t) - {\bm x}_{com}\right), \\
+{\bm f}_0 (t) & = & {\bm f}^d (t) + K_i^f \int_{t_s}^t \left( {\bm f}^d (\tau) - {\bm f} (\tau) \right) d \tau,\\
+\bm f^* & =&  m  C_{S_i, W}^\dagger \ddot {{\bm x}}_{com}^*+ (I - C_{S_i, W}^\dagger C_{S_i}) \bm f_0.
+\end{eqnarray*}
+At the switching instant $t_s$ we choose $\bm f^d = \bm f $, $\ddot {\bm x}^d_{com} = \ddot {\bm x}_{com}$, $\dot {\bm x}^d_{com} = \dot {\bm x}_{com}$, $ {\bm x}^d_{com} = {\bm x}_{com}$ so as to obtain $\bm f^* = \bm f$ (remeber that $\bm f$, $ \ddot {\bm x}_{com}$ are always compatible). Then we can choose $\bm f^d (t)$ and $\ddot {\bm x}^d_{com}(t)$ abitrarily with the guarantee that the resulting $\bm f^*$ and $\ddot {\bm x}_{com}^*$ will always be dynamically consistent.
 
 \subsection{Task prioritization} \label{sec:taskPrioritization}
 
