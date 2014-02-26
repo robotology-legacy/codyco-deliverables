@@ -74,19 +74,26 @@ int main(int argc, char *argv[])
     int hip = 0, knee = 3;
 
     if (isSimulator) {
+        printf("Setting torque\n");
+        controlMode->setTorqueMode(hip);
+        controlMode->setTorqueMode(knee);
+
+        torque->setRefTorque(hip, 0);
+        torque->setRefTorque(knee, 0);
+    }
+    else {
+        printf("Setting pwm\n");
         controlMode->setOpenLoopMode(hip);
         controlMode->setOpenLoopMode(knee);
 
         pwm->setOutput(hip, 0);
         pwm->setOutput(knee, 0);
     }
-    else {
-        controlMode->setTorqueMode(hip);
-        controlMode->setTorqueMode(knee);
-
-        pwm->setRefTorque(hip, 0);
-        pwm->setRefTorque(knee, 0);
-    }
+    
+    
+    /*while(1) {
+        sleep(1);
+    }*/
     robotDevice.close();
     
     return 0;

@@ -19,8 +19,8 @@ set(SOURCES
 
 SOURCE_GROUP("Source Files" FILES ${SOURCES})
 
-include(iCubHelpers)
-include(iCubOptions)
+# include(iCubHelpers)
+# include(iCubOptions)
 
 SET(CMAKE_EXE_LINKER_FLAGS "${CMAKE_EXE_LINKER_FLAGS} ${ICUB_LINK_FLAGS}")
 
