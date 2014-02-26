@@ -1,0 +1,178 @@
+%% Template for EU deliverable, using the deliverable.sty style file
+
+\documentclass[12pt,a4paper,twoside]{article}
+
+%% common package
+\usepackage[headers]{deliverable}
+\usepackage{xspace}
+\usepackage{verbatim}
+\usepackage[usenames]{color}
+\usepackage[usenames,dvipsnames]{xcolor}
+\usepackage{graphicx}
+\usepackage{url}
+\usepackage{array}
+\usepackage{multirow}
+%%
+
+%%insert here other packages needed by sections
+
+%%
+
+%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
+%%% Titlepage
+%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
+
+% declaration of variables used in style
+\deliverableDocnumber{D7.2}
+\deliverableTitle{Standard database with support materials.}
+
+\deliverableAuthor{Francesco Nori}
+\deliverableResponsiblePartner{IIT}
+\deliverableAffiliation{% Insert here authors affiliations
+ $^1$ IIT
+}
+
+\deliverableReviewer{}
+\deliverableCoordinator{IIT}
+\deliverableActivityNumber{1} %% n=1,..,10
+\deliverableActivity{RTD}
+\deliverableDoctype{Deliverable} %% or Prototype
+\deliverableClassification{Public} % or Consortium
+\deliverableDistribution{Consortium} %
+\deliverableStatus{Draft} % Draft or Final
+\deliverableDeliveryDate{28/2/2014}
+\deliverableFile{D7.2.pdf} % please do not use "-" in the name
+\deliverableVersion{1.0}
+\deliverableDate{Feb.~28, 2014}
+\deliverableYear{2014}
+\deliverablePages{\pageref{LastPage}}
+\deliverableChangelog{v.1.0 & Feb 17, 2013 & First draft %%\\\hline
+%%              v.2.0 & Feb 20, 2007 & Final version
+}
+\deliverableProjectStartingDate{1st March 2013}
+\deliverableProjectEndDate{28th February 2017}
+\deliverableProjectAcronym{CoDyCo}
+\deliverableProjectTitle{Whole-Body Compliant Dynamical Contacts in Cognitive Humanoids}
+ \deliverableContractNumber{600716}
+ \deliverableProjectCoordinator{Istituto Italiano di Tecnologia}
+ \deliverableProjectUrl{www.codyco.eu}
+ \deliverableFrameworkProgramme{FP7}
+ 
+ \deliverableWorkpackage{deliv WP7}
+ \deliverableEditors{Francesco Nori}
+ \deliverableContributors{Francesco Nori, Federico Bozzini, Alessandro Bruchi}
+ \deliverableReviewers{}
+\deliverableAbstract{The scope of the current deliverable is to present the results of the activities conducted within task 7.3 concerning the design, realization and implementation of a database of human motion with contacts. The database has been thought in such a way that both human and robot data can be inserted since it was observed that minor modification of the database could obtain this desirable feature. }
+\deliverableReviewers{}
+\deliverableKeywordList{Database, human, robot, motion, mutiple, contacts.}
+
+%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
+%%% Sections
+%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
+
+%% constants
+\newcommand{\botegoCaps}{BOTEGO}
+\newcommand{\certhCaps}{CERTH}
+\newcommand{\cybionCaps}{CYBION}
+\newcommand{\nuigCaps}{NUIG}
+\newcommand{\ubitechCaps}{UBITECH}
+
+%%
+%%%%%%%%%%%%%%%%%%%%%%%%%%%%%% BEGIN DOCUMENT
+\begin{document}
+
+\deliverableMaketitle
+
+%%TODO move to style
+\newcolumntype{L}[1]{>{\raggedright\let\newline\\\arraybackslash\hspace{0pt}}m{#1}}
+\newcolumntype{C}[1]{>{\centering\let\newline\\\arraybackslash\hspace{0pt}}m{#1}}
+\newcolumntype{R}[1]{>{\raggedleft\let\newline\\\arraybackslash\hspace{0pt}}m{#1}}
+
+\textbf{Document Revision History}
+\begin{center}
+\begin{tabular}{|C{2cm}|C{3cm}|p{5cm}|C{4cm}|}
+\hline
+\textbf{Version}&\textbf{Date}&\textbf{Description}&\textbf{Author}\\\hline
+First draft & 17 Feb 2014 & Mainly a porting of the Word document written by Federico Bozzini. & Francesco Nori\\\hline
+\end{tabular}
+\end{center}
+ 
+ \clearpage
+
+\newpage
+\renewcommand*\contentsname{Table of Contents}
+\renewcommand*\listfigurename{Index of Figures}
+\tableofcontents
+\newpage
+\listoffigures
+\newpage
+
+%%%%%%%%%%%%%%%%%%%%%%%% Start deliverable content here.
+
+\section{Introduction}
+
+In this brief document we describe the structure of the CoDyCo data base. The data base is thought to store data from experiments conducted on the iCub or on humans. Each experiment is described with a set of tags. A crucial set of tags is represented by couples measurement-body part: in practice each measurement (e.g. position, velocities, accelerations, forces, torques) is associated with its position on the body (e.g. left arm, right arm, torso, legs).  
+
+\section{Executive Summary}
+The project goal is to create an application that manages an open repository of experimental data. The main goal of the application is to allow researchers of the CoDyCo project to store experimental data and to allow external researchers to search and retrieve these data. The application should be public accessible as a regular website.
+
+\section{Integrated Technical Architecture}
+
+\subsection{Application roles}
+The application users can be accessed with 3 different roles:
+\begin{itemize}
+\item Administrator: the \texttt{administrator} role allows the user to manage \texttt{categories}, \texttt{measurement tags} and the \texttt{experiment} structures. Other data (like research institutions) are managed by the \texttt{administrator}.
+\item Uploader: the \texttt{uploader} role allows the user to manage the \texttt{experiments}.
+\item Consumer: the \texttt{consumer} role (not logged on the system) allows the user to browse the \texttt{experiments} and download the relevant data.
+\end{itemize}
+
+\subsection{Data requirement: \texttt{experiments}}
+The experimental data stored by the application are represented as data records called \texttt{experiments}.
+The basic \texttt{experiment} structure is described in the following.
+
+\begin{center}
+\begin{tabular}{ |C{0.5cm}|C{0.5cm}|C{0.5cm}|C{0.5cm}|C{0.5cm}|C{0.5cm}|C{0.5cm}|C{0.5cm}|C{0.5cm}|C{0.5cm}|C{0.5cm}|C{0.5cm}|C{0.5cm}| }
+\hline
+\multicolumn{13}{ |c| }{\texttt{experiments}} \\
+\hline
+\rotatebox{90}{\texttt{Name}} & \rotatebox{90}{\texttt{Description}} &\rotatebox{90}{\texttt{Date of acquisition}} & \rotatebox{90}{\texttt{Research institution}} & \rotatebox{90}{\texttt{Uploader}}& \rotatebox{90}{\texttt{Experimental data}} & \rotatebox{90}{\texttt{External link}} & \rotatebox{90}{\texttt{Category}} & \rotatebox{90}{$\left( \texttt{Measurement tag} - \texttt{body part} \right)_1$} & $\dots$ & \rotatebox{90}{$\left( \texttt{Measurement tag} - \texttt{body part} \right)_N$} & \rotatebox{90}{\texttt{Model}} & \rotatebox{90}{\texttt{Other fields}}\\
+\hline
+\end{tabular}
+\end{center}
+
+\begin{enumerate}
+\item \texttt{Name} –- an unique name of the \texttt{experiment}.
+\item \texttt{Description} –- a descriptive text.
+\item \texttt{Date of acquisition} –- date of acquisition of the experimental data.
+\item\texttt{Research institution} –- the research institution that performed the \texttt{experiment}.
+\item \texttt{Uploader} –- the user who uploaded the \texttt{experiment}.
+\item \texttt{Experimental data} –- an archive (zip,tar, $\dots$) containing the data of the \texttt{experiment}.
+\item \texttt{External link} –- the url of a relevant resource (publication, same data published elsewhere, $\dots$).
+\item \texttt{Category} –- the category of the \texttt{experiment}.
+\item $N$ couples \texttt{measurement tag}, \texttt{body part} -- the type of available measurements and the associated body parts.
+\item \texttt{Model} –- an archive containing all the information about the robot model when applicable.
+\item Other fields, depending on the category.
+\end{enumerate}
+
+\subsection{Data requirement: \texttt{categories}}
+Categories (human, iCub, COMAN, $\dots$) are logical groups of \texttt{experiments}, defining their structure and the associable \texttt{measurement tags}. \texttt{Categories} are managed by the system \texttt{administrator}. An \texttt{experiment} is always associated with one and only one \texttt{category}.
+
+\subsection{Data requirement: \texttt{measurement tags}}
+A \texttt{measurement tag} (eg: accelerometer, skin, $\dots$) is a tag needed to communicate what kinds of “measurements” are featured by the \texttt{experiment}. \texttt{Measurement tags} are also used in order to make the \texttt{experiments} more easily searchable by the \texttt{consumers}. The \texttt{measurement tags} that can be associated to an \texttt{experiment} are limited by the associated \texttt{category}. The \texttt{measurement tags} are coupled with one or more \texttt{body parts}.
+
+
+\subsection{Data requirement: \texttt{body parts}}
+A body part represents a part of a humanoid robot (head, torso, L/R Arm, L/R Hand, L/R Leg, L/R Foot, not applicable) and is necessary in order to better identify the scope of the \texttt{experiment}. \texttt{Categories}, \texttt{measurement tags} and \texttt{body parts} are the three elements that can be used by a \texttt{consumer} to better filter and analyze the \texttt{experiments} managed by the application.
+
+
+
+%%\bibliographystyle{alpha}
+%%\bibliography{main-bib}
+
+\end{document}
+
+%%% Local Variables:
+%%% mode: latex
+%%% TeX-master: t
+%%% save-place: t
+%%% End:
