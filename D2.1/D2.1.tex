@@ -1,0 +1,399 @@
+%\documentclass[10pt,twocolumn]{article}
+\documentclass[12pt,a4paper,twoside]{article}
+
+%% common package
+\usepackage[headers]{deliverable}
+\usepackage{xspace}
+\usepackage{verbatim}
+\usepackage[usenames]{color}
+\usepackage[usenames,dvipsnames]{xcolor}
+\usepackage[dvips]{graphicx}
+\usepackage{url}
+\usepackage{array}
+%%
+
+%\usepackage[cp1250]{inputenc}
+\usepackage[utf8]{inputenc}
+%\usepackage{times,mathptm}
+\usepackage{bm}
+%\usepackage[a4paper,width=160mm,height=252mm,left=25mm,right=25mm,top=25mm,bottom=20mm,nohead,nofoot]{geometry}
+\bibliographystyle{apalike}
+%\bibliographystyle{alpha}
+
+%\usepackage{epsfig}
+%\usepackage{calc}
+\usepackage{amssymb}
+\usepackage{amstext}
+\usepackage{amsmath}
+%\usepackage{psfrag}
+%\usepackage{cite}
+
+
+%\def\@date{}
+
+
+\newcommand{\pmt}{Planar Manipulators Toolbox }
+\renewcommand\floatpagefraction{.99}
+\renewcommand\textfraction{.0}
+
+ \parindent 0cm
+ \parskip 0.5\baselineskip
+
+\newenvironment{mylist}
+  {\begin{list}{--}%
+           {%
+            \settowidth\labelwidth{-- --}%
+            \setlength{\topsep}{0cm}
+            \setlength{\parskip}{0cm}
+            \setlength{\parsep}{0cm}
+            \setlength{\itemindent}{0cm}
+            \setlength{\itemsep}{0cm}
+            \setlength{\leftmargin}{1.2em}
+           }%
+  }%
+  {\end{list}}
+
+
+%%MY definitions %%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
+\newcommand{\mat}[1]{\mathbf{#1}}
+\makeatletter
+\newcommand{\vv}[1]{{\bm{#1}}\@ifnextchar_{\hspace{-0.3ex}}{}}
+\newcommand{\vvc}[1]{{\bm{#1}}}
+\makeatother
+
+\def\d{\,\mathrm{d}}
+
+\newcommand{\p}{\vvc{p}}
+
+%\newcommand{\gbf}[1]{{\bm{#1}}}
+%\newcommand{\gbfl}[1]{{\bm{#1}}}
+
+%\newcommand{\tq}{\gbfl{\tau}}
+
+%\newcommand{\J}{{\mat{J}}}
+%\newcommand{\F}{\vv{F}}
+%\newcommand{\HH}{\mat{H}}
+%\newcommand{\g}{{\bm{g}}}
+%\newcommand{\f}{\vv{f}}
+% \newcommand{\C}{\mat{C}}
+
+%\newcommand{\ee}{{\bm{e}}}
+%\newcommand{\eed}{{\bm{\dot e}}}
+%\newcommand{\eedd}{{\bm{\ddot e}}}
+
+%\newcommand{\q}{{\bm{q}}}
+%\newcommand{\qd}{{\bm{\dot q}}}
+%\newcommand{\qdd}{{\bm{\ddot q}}}
+%\newcommand{\qq}[1]{{\bm{#1}(\q ,\qd)}}
+
+
+%\renewcommand{\baselinestretch}{1.5}
+
+%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
+%%% Titlepage
+%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
+
+% declaration of variables used in style
+\deliverableDocnumber{D2.1}
+\deliverableTitle{Review of human postural control and whole body motion in contact with environment}
+
+\deliverableAuthor{Luka Peternel$^1$, Tadej Petri\v{c}$^1$, Michael Mistry$^2$, Jan Babi\v{c}$^1$}
+\deliverableResponsiblePartner{Jo\v zef Stefan Institute}
+\deliverableAffiliation{% Insert here authors affiliations
+ $^1$ Department for Automation, Biocybernetics and Robotics, Jo\v zef Stefan Institute, Ljubljana, Slovenia
+ $^2$ School of Computer Science, University of Birmingham, Birmingham, UK
+}
+
+\deliverableReviewer{Name of internal reviewer}
+\deliverableCoordinator{Name of the coordinator of the Activity}
+\deliverableActivityNumber{n} %% n=1,..,10
+\deliverableActivity{Activity Name}
+\deliverableDoctype{Deliverable} %% or Prototype
+\deliverableClassification{Public} % or Consortium
+\deliverableDistribution{Consortium} %
+\deliverableStatus{Draft} % Draft or Final
+\deliverableDeliveryDate{28/2/2014}
+\deliverableFile{D2.1\_review.pdf} % please do not use "-" in the name
+\deliverableVersion{1.0}
+\deliverableDate{Feb. 27, 2014}
+\deliverableYear{2014}
+\deliverablePages{\pageref{LastPage}}
+\deliverableChangelog{v.1.0 & Feb 13, 2013 & First draft %%\\\hline
+%%              v.2.0 & Feb 20, 2007 & Final version
+}
+\deliverableProjectStartingDate{1st March 2013}
+\deliverableProjectEndDate{28th February 2017}
+\deliverableProjectAcronym{CoDyCo}
+\deliverableProjectTitle{Whole-Body Compliant Dynamical Contacts in Cognitive Humanoids}
+ \deliverableContractNumber{600716}
+ \deliverableProjectCoordinator{Istituto Italiano di Tecnologia}
+ \deliverableProjectUrl{www.codyco.eu}
+ \deliverableFrameworkProgramme{FP7}
+ 
+ \deliverableWorkpackage{WP2}
+ \deliverableEditors{Luka Peternel, Tadej Petri\v{c}, Michael Mistry, Jan Babi\v{c}}
+ \deliverableContributors{Luka Peternel, Tadej Petri\v{c}, Michael Mistry, Jan Babi\v{c}}
+ \deliverableReviewers{reviewers}
+\deliverableAbstract{The aim of the deliverable is to provide a solid multidisciplinary base for future research work within CoDyCo. It provides a thorough review and summary of the recent relevant literature on human postural control and whole body motion in contact with environment. It includes relevant publications up to date. To provide a bridge in methodologies and terminologies used by the project partners from multidisciplinary backgrounds, the deliverable also reviews the methods for evaluation of postural stability of bipedal systems.}
+\deliverableReviewers{reviewers}
+\deliverableKeywordList{Postural Stability, Balance Recovery, Postural Perturbation, Stability Measures, Non-planar Contacts}
+
+%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
+%%% Sections
+%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
+
+%% constants
+\newcommand{\botegoCaps}{BOTEGO}
+\newcommand{\certhCaps}{CERTH}
+\newcommand{\cybionCaps}{CYBION}
+\newcommand{\nuigCaps}{NUIG}
+\newcommand{\ubitechCaps}{UBITECH}
+
+%\section*{Abstract}
+
+
+
+
+
+\begin{document}
+
+\deliverableMaketitle
+
+%%TODO move to style
+\newcolumntype{L}[1]{>{\raggedright\let\newline\\\arraybackslash\hspace{0pt}}m{#1}}
+\newcolumntype{C}[1]{>{\centering\let\newline\\\arraybackslash\hspace{0pt}}m{#1}}
+\newcolumntype{R}[1]{>{\raggedleft\let\newline\\\arraybackslash\hspace{0pt}}m{#1}}
+
+\textbf{Document Revision History}
+\begin{center}
+\begin{tabular}{|C{2cm}|C{3cm}|C{5cm}|C{4cm}|}
+\hline
+\textbf{Version}&\textbf{Date}&\textbf{Description}&\textbf{Author}\\\hline
+First draft & date & description & author\\\hline
+\end{tabular}
+\end{center}
+ 
+ \clearpage
+
+\newpage
+\renewcommand*\contentsname{Table of Contents}
+\renewcommand*\listfigurename{Index of Figures}
+\tableofcontents
+%\newpage
+%\listoffigures
+\newpage
+
+\begin{abstract}
+The bipedal stance and walking are one of the distinctive features of humans as well as human-inspired humanoid robots. Relatively unstable nature of bipedal systems poses a challenge to its postural control. Many researchers were intrigued by the functioning of central nervous system during the control the human posture in presence of various perturbations. The aim of these studies was mainly to improve our understanding of human postural control, which can be beneficial in fields such as rehabilitation and injury prevention, and could even be applied in control of humanoid robots. This report consists of an review of human postural control studies and methods for evaluation of postural stability of bipedal systems. The review should provide a solid base for future studies of both human and humanoid robot postural control.
+\end{abstract}
+
+\section{{Introduction}}
+\label{sec:introduction}
+Humans evolved the ability of bipedal terrestrial locomotion which brought some important benefits. When the legs alone became the primary way of moving in the environment, the arms could be devoted to other purposes such as manipulation of objects in the environment and tools use. However, the transition from quadrupedalism to bipedalism came at a cost of decreased postural stability. The unpredictable and unstructured nature of the human environment presents many instances that can destabilise the human body balance. The reduced support polygon requires the central nervous system to develop adequate control mechanisms and strategies to adapt to the new condition and maintain the balance.
+
+This interested many researchers and there have been numerous studies in the past decades that aimed to decipher the functioning and behaviour of the human central nervous system regarding to postural control. The studies of postural control have been performed both in the case of walking and stance. This review mainly focuses on postural control studies of bipedal stance. These were predominantly conducted by observing the human motor behaviour as a result of unpredictable external postural perturbations. The observed connection between motor reactions to the given perturbation and the nature of perturbation itself was then used to identify certain patterns of central nervous system (CNS) functioning.
+
+The results of such studies can be applied to improve human rehabilitation techniques, treatment of various postural control disorders or to produce more efficient support aids such as crutches and handrails. On the other hand, the same studies can potentially provide solutions to robot control as well. The emergence of service robotics was aimed to build robots to assist humans in various tasks in human environment. In attempt for the robots to best fit into such environment, researchers emulated human body structure to build humanoid robots. The similar structure of humanoid robots offers both practical and social benefits. Yet the bipedal nature brings the same drawbacks as with humans. The intrinsically unstable balance of such robots require proficient control mechanisms and strategies dedicated to postural control. Findings from human postural control studies could provide a short-cut for achieving adequate humanoid robot control algorithms.
+
+In this review we first examine the types of postural perturbations that were employed in the studies of bipedal stance. We continue with a scan of the previous studies on human postural control strategies. These studies include postural control in standing, necessity of stepping reaction for larger perturbations, use of firm hand contacts and use of additional sensory information in a form of light touch to improve the stability. We then examine most notable methods utilised for evaluation of the stability of bipedal systems such as Centre of Pressure, Zero Moment Point and Capture Point, and indicate potential problems with the use of these methods when additional hand contacts are established. In the last section we conclude with an overview of the stability methods that go beyond contacts on a flat surface and without additional hand contacts. We review methods that generalize planar metrics to non-planar, stability metrics in wrench space and finally stability metrics that are based on energy.
+
+\section{{Types of postural perturbations}}
+\subsection{{Support surface perturbations}}
+A common technique used to induce postural perturbations was by moving the platform on which the human subjects were standing. These platform motions can be divided into translational and rotational motions. In both cases, the researchers usually specify the motion of the platform by the displacement from the original position/orientation, maximum velocity and maximum acceleration and deceleration. The displacement can also be defined by a fixed duration of the predefined motion of the platform.
+
+\subsubsection{{Translational perturbations}}
+It was observed that the intensity of motor responses to the postural perturbation are scaled with the amount of displacement of the platform \cite{Horak1989}. The important phases of translational perturbations are the acceleration and deceleration, which yield motor responses to compensate the inertial forces. MacIlroy and Maki \cite{McIlroy1994} studied the effects of platform acceleration and deceleration on human postural control. They were particularly interested in the effects of the declaration phase and investigated the predictability of the deceleration by replacing the deceleration phase with re-acceleration. Studies performed by Runge et al. \cite{Runge1999} provided the evidence that deceleration phase actually assists in the recovery of balance. The acceleration in the initial phase produces destabilising forces on the human body that consequently move the centre of mass (COM). Yet the deceleration that stops the platform produces forces in the opposite direction which help the human in balancing the body posture by reversing the motion of COM back towards the equilibrium position. Bothner et al. \cite{Bothner2001} showed that the velocity of platform has an important stabilisation effect of deceleration. Their studies indicated that the stabilisation is increased with the increased platform velocity.
+% nerazumljivo gor
+
+Brown et al. \cite{Brown2001} tested the postural control responses for different platform motion profiles. They showed that different acceleration/deceleration profiles produce different reactions even if the peak velocity and displacement are the same. On this basis they stressed the importance of providing a detailed description of the perturbation for the purpose of comparison between the studies. Carpetner et al. \cite{Carpenter2005} used different intervals between the acceleration and deceleration phase to further study the stabilisation effects of deceleration phase. They showed that the stabilisation effect as a result of reversed trunk movement is smaller for shorter intervals between the two phases. In addition they provided evidence of CNS being able to adapt the motor response to acceleration phase based on the expected deceleration phase. Van Asseldonk et al. \cite{VanAsseldonk2007} upgraded these studies by investigating the causes of body motion in response to acceleration/deceleration of the platform.
+
+\subsubsection{{Rotational perturbations}}
+Some studies of postural control used support surface rotation rather than translation to induce perturbation. It has been shown that the responses to the rotational perturbations are different to translational perturbations in the equivalent directions \cite{Nardone1990}. Therefore the two types of perturbations provide different insights into CNS functioning during postural control. Carpenter et al. \cite{Carpenter1999} compared the reactions between pitch and roll perturbation. The results suggested that the lateral perturbations induced by pitch movement of support surface may be more destabilising compared to antero-posterior perturbations because they required more complex muscle coordination. In a study conducted by Allum et al. \cite{Allum2002}, the researchers were interested in reaction differences between young and elderly subjects to platform pitch and roll change. The results suggested different trunk roll movement and different arm roll movement between the two groups. In addition, balance-control muscle responses of elderly group were changed in respect to time, amplitude and coordination.
+
+\subsection{{Waist-pull perturbations}}
+Another type of postural perturbation used in several postural control studies is waist-pull perturbation. In this case the researchers used different mechanisms to pull the human waist from different directions \cite{Luchies1994,Pidcoe1998}. For example Mansfield et al. \cite{Mansfield2009} compared support surface translation perturbation and weight-drop waist-pull perturbation in a study of age related balance reaction impairments. They used cables to pull human at the waist in anterior, posterior and both lateral directions. Their findings showed that the surface translation is more destabilising than waist-pull and could potentially be more effective in revealing age-related deficiencies of postural control. Recently, Mille et al. \cite{Mille2013a} used a motor-driven waist-pull mechanism with 6 cables attached to human waist; 3 located at on side and 3 on the other side in respect to medial plane. With the different orientation of the belt the subjects could be perturbed either in antero-posterior or lateral directions. In the study they investigated stepping response to external postural perturbation for two different age groups. The results showed that the younger subjects were mostly able to recover their balance with a single step, while older subjects required multi-step recovery (particularly in case lateral direction of perturbation). A similar motor-driven pulling mechanism \cite{Peternel2013a} was employed in a study of how to transfer human postural control skill to the humanoid robot \cite{Peternel2013b}. The mechanism was used to allow the human to perceive the postural perturbation experienced by robot and extract the appropriate reactions.
+% kaj je to balance reaction impairments
+
+\section{{Human postural control strategies}}
+\subsection{{Stance}}
+Nasher and McCollum \cite{Nashner1985} hypothesised that CNS uses distinctive postural control strategies for counteracting antero-posterior support surface translations during standing. Horak and Nasher \cite{Horak1986} later described the ankle strategy and hip strategy, where the ankle strategy primarily uses ankle torque to position body COM and the hip strategy uses a combination of ankle and hip torques. It has been suggested that CNS employs ankle strategy if the perturbation can be compensated solely by the ankle torque. In case of bigger perturbations hip strategy is required. However a study by Scholtz et al. \cite{Scholz2007} suggested that CNS makes use of multi-joint redundancy and performs postural control by a single strategy that considers all degrees of freedom.
+% to bi lahko bilo daljše in malo bolj poglobljeno
+
+\subsection{{Stepping and contact with environments}}
+If the intensity of the perturbation exceeds the limits when they can be compensated by either or the stance strategies, a stepping strategy may be required \cite{Lee2014, Horak1986, Mcllroy1995}. During the step human moves the leg to shift the base of support (BOS)\footnote{Base of support is an area that includes the contact surfaces of feet, and area in-between them, in case human stands on both feet.} under the COM gravity vector and prevents the fall \cite{Maki1997}. In addition to using the legs, human can also employ arms to help stabilising the body. Several studies suggested that arm movement can provide inertial or gravitational balancing aid \cite{Romick-Allen1988,Allum2002}. Alternatively, human can use arms to make a hand contact with the environment to help retaining the balance \cite{Mcllroy1995b,Maki1997,Jeka1997}. Compared to using the inertia of arms for counter-balancing reactions, contact with the surrounding objects offers better stabilising potential \cite{Maki2003}. Several studies showed that even a light contact with environment can improve postural control by providing CNS with additional sensory information \cite{Jeka1997,Riley1997,Clapp1999}. However a more reliable strategy to counteract the external perturbation is a reach-to-grasp action\cite{Mcllroy1995b,Maki1997}. In this case the human makes a firm hand contact with the environment that increases the BOS.
+% kaj je pa stabilizing potential
+% tu bi lahko bilo malo več na temo light touch
+
+In their study, McIlroy and Maki et al. \cite{Mcllroy1995b} were interested in initial muscle activation patterns of human arm reaching as a reaction to translational perturbations of support surface. They observed that the shoulder muscles activated even when the arm reaction provided no immediate stabilisation effect. However they concluded that this action is not merely a startle reaction since it scaled with the magnitude of perturbation. A study from Maki and McIlroy \cite{Maki1997} suggested that stepping and grasping strategies are not used just in last resort, but are commonly employed by CNS even when perturbations are relatively small. Their results showed that both strategies can be initiated well before the COM gravity vector reaches the limit of the BOS. Cheng et al. \cite{Cheng2012} investigated the importance of visiospatial information (VSI) in reach-to-grasp reactions. They found that subjects were able to successfully grasp the handrail using either online or stored VSI. They simulated both VSI conditions by blocking the subject's eyes either before or after the onset of the perturbation. The results however suggested that stored VSI has predominant effect on initial reaching reactions, while online VSI affects the final stages of reaching.
+% found ni isto kot found out
+% affect ni isto kot effect
+% et al. se piše s piko
+
+Recently, some studies investigted the effects of handle locations on the postural control. Sarraf et al. \cite{Sarraf2014} replicated the accelerating/decelerating conditions experienced by humans on public transports. They compared responses to 4 different surface translations (antero-posterior and lateral) at 2 different position of hand contact (shoulder height and overhead height). Based on the results they concluded that grasping the handrail at shoulder height yield smaller centre-of-pressure (COP) excursion, while grasping at overhead produces smaller forces between hand and handrail. Moreover Babič et al. \cite{Babic2014} studied postural control responses to translational perturbations in antero-posterior directions for 4 different locations of hand contact. Contrary to Sarraf et al. \cite{Sarraf2014}, the handle was not fixed to the platform and did not move together with the perturbation. Their experimental setup emulated situations when balance of an individual is challenged either due to intrinsic or extrinsic causes. They found that an additional supportive hand contact significantly reduced the COP displacement regardless of the position of the handle, direction of the perturbation and its intensity. Interestingly, they showed that the position of the handle had no effects on the maximal COP displacement which supports the idea that maintaining postural stability is the task of the highest priority and that the CNS does whatever necessary to keep the body balanced. However, they found significant effects of perturbation direction, intensity and handle position on the maximal force in the handle. An interesting practical implication of their work is that the handles should be positioned to approximately shoulder height to efficiently provide balance support.
+
+\section{{Stability evaluation methods for bipedal systems}}
+
+Stability evaluation methods for the bipedal systems were mainly investigated by researches from the two different fields, namely biomehanics and robotics. In human postural control studies, some researchers used center of mass (COM) position as a measure of postural stability \cite{Maki2003}. Its gravity vector must be pointing within the base of support (BOS) for a stable pose. However just observing COM position only gives information about body stability in static conditions. In case of dynamic stability one must also consider inertial forces and moments acting on the body. Centre of pressure (COP), on the other hand, includes also inertial factors and can provide a suitable measure for dynamical stability of the human body. Other measures for assessing the stability in the filed of biomehanics are Equilibrium Score (ES) and Posture Stability Index (PSI), which were discussed in details along with their pros and cones in \cite{Chaudhry2011}.
+
+In robotics the researchers were mainly interested in developing algorithms for preserving stability of humanoid robots. The most commonly used approach for more than four decades was the use of Zero Moment Point (ZMP) \cite{Vukobratovic1969,Kemp2008,Kajita2008,Hirai1998,Huang2001}. ZMP is the point at the contact of the foot with the ground, where the total vertical inertia and gravity forces equals to zero. This methodology was used for maintaining stability of humanoids while performing tasks like walking \cite{Li1993,Arakawa1997,Harada2003}, suffering external perturbations \cite{Hyon2007} or even skiing \cite{petrivc2013reflexive}. The other stability evaluation methods used in robotics were also Centre of Pressure (COP), which is closely related to the ZMP and it is widely used in the field of physiology, Foot Rotation Indicator (FRI) \cite{Goswami1999}, which is an extension of the ZMP, Controidal Moment Pivot (CMP) \cite{Popovic2004}, which determines the rotational balance of the body, and Capture Point (CP) \cite{Pratt2006}, which determines the point on the ground where the supportive contact would stabilise the biped without requiring another step. The main advantage of this approach compared to the others, is the knowledge where the supportive contact should be made in order to preserve the postural stability.
+
+\subsection{{Centre of Pressure (COP)}}
+
+The location of the COP is determined on the base of support by the resulting vertical ground reaction vector that would act if it could be considered to have a single point of application. Because this can be easily measured by the force plate or with force sensors on the feet of humanoids \cite{Winter1995,Goswami1999,Popovic2005}, it is the most commonly used stability measure in biomehanics for studying human walking and stability \cite{Winter1995}. 
+
+On the flat surface when all horizontal forces are compensated by the friction force the COP point is calculated as
+\begin{equation}
+\p_{COP} = \frac{\int_A \p \rho \d A}{\int_A \rho \d A}
+\label{e0}
+\end{equation}
+where $A$ is the surface area of the contact (support polygon), $\p$ is the location and $\rho$ is the pressure of the infinitesimal calculus of the supportive surface area $\mathrm{d}A$.
+
+\subsection{Zero Moment Point (ZMP)}
+
+ZMP is defined as a point on the surface, where the sum of the horizontal torques due to the angular momentum and gravity equals zero \cite{Vukobratovic2004, Huang2001}. A dynamical model of a biped is required for calculation, therefore this measure is mainly used in robotics community. Note that unless a correct and exhaustive dynamic model is available, the error in the ZMP calculation may be substantial.
+
+For the $i$-th link we denote the mass $m_i$, the mass center point $\vv{r}_i =\left[x_i, y_i, z_i \right]^T$ relative to the inertial frame, the inertial tensor $\vvc{I}_i$, and the angular velocity $\vvc{\omega}_i$. The external torques and forces are denoted as $\vvc{M}_{i,j}$ and $\vvc{F}_{i,k}$, where index $j$ tracks all torques and index $k$ tracks all forces acting on the $i$-th link. The overall equation of the system at an arbitrary point $\vvc{p} = \left[ x_p, y_p, 0 \right]^T$ on the plane $z=0$ (on flat ground this equals the ground) is
+\begin{equation}
+\sum\limits_i \left\{ m_i \left( \vvc r_i - \vvc p \right) \times \left( \ddot{\vvc  r_i} + \vvc g \right) + \vvc \iota_i  \right\} + \vvc \xi
+ =\vvc M_p,
+\label{eq:zmporiginal}
+\end{equation}
+where
+\begin{equation}
+\vvc \iota_i = \vvc I_i \dot{\vvc \omega_i} + \vvc \omega_i \times \vvc I_i \vvc \omega_i ,
+\end{equation}
+\begin{equation}
+ \vvc \xi = -\sum\limits_j \vvc M_j -\sum\limits_k \left(\vvc s_k - \vvc p \right) \times \vvc  F_k.
+\end{equation}
+Here $\vvc s_k$ is the vector that points towards the position, where the external force $\vvc F_k$ is acting on the robot, $\vvc g$ is the gravity acceleration vector and $\vvc M_p$ is the resulting torque at the observed point $\vvc p$.
+
+In accordance to the ZMP definition, only the moment $\vvc M_p = \left[0, 0, M_z \right]^T$ acts at the point $\vvc p_{ZMP} = \left[ x_{ZMP} , y_{ZMP} , 0 \right]^T$. When no external forces are acting on the robot, the components of $p_{ZMP}$ are
+\begin{equation}
+x_{ZMP} = \frac{\sum\limits_i m_i \left\{ x_i \left(\ddot{z_i} +g_z\right) - z_i \left( \ddot{x_i} + g_x \right) - I_{yi}\dot{\omega}_{yi} \right\}  }{ \sum\limits_i m_i \left(\ddot{z_i} +g_z\right) } ,
+\label{eq:x_zmp}
+\end{equation}
+and
+\begin{equation}
+y_{ZMP} = \frac{\sum\limits_i m_i \left\{ y_i \left(\ddot{z_i} +g_z\right) - z_i \left( \ddot{y_i} + g_y \right) - I_{xi}\dot{\omega}_{xi} \right\} }{ \sum\limits_i m_i \left(\ddot{z_i} +g_z\right) }  .
+\label{eq:yzmp}
+\end{equation}
+
+If a biped is standing on a flat surface, then the horizontal torque components of the ZMP point are zero $\vvc M(\bm{r}_{ZMP}) = \left[0, 0, M_z \right]^T$. In this case, if all horizontal forces are compensated by the friction force, the resultant reaction force $F_{z}$ acts perpendicularly to the supportive surface at the COP point. Consequently the horizontal torque lever-arm is zero
+\begin{equation}
+\bm{M}(\bm{p}_{COP})= \frac{\int_A (\bm{p} - \bm{p_{COP}}) \rho \mathrm{d}A}{\int_A \rho \mathrm{d}A} \times \int_A \mathrm{d}\bm{F_{z}} = [0 \quad 0 \quad M_{z}]^{T}
+\label{e11}
+\end{equation}
+In this case the COP and ZMP are equal \cite{Goswami1999,Popovic2005}. If the ZMP or COP are inside the support polygon or at the edge and if the external forces are zero the biped is dynamically stable \cite{Vukobratovic1969,Huang2001,Arakawa1997}.
+
+
+\subsection{Foot Rotational Indicator (FRI)}
+If the ZMP or COP is at the very edge of the support polygon and additional rotational acceleration is acting on the biped, then neither ZMP nor COP are not applicable as a stability measure. ZMP and COP are only defined under the supportive polygon, since reaction force can only act on the foot. Even though the COP is at the very edge of the supportive polygon the horizontal components are not equal to zero because of the additional rotational acceleration of the foot. To describe this dynamics a Foot Rotational Indicator (FRI) or also known as Fictitious Zero Moment Point (FZMP) was defined \cite{Vukobratovic2004}. It is defined as a point on a flat surface, where the resultant force should act such that the horizontal torque components are zero. Unlike the ZMP and COP, the FRI is defined also outside the supportive polygon. The FRI is equal to the ZMP and COP when the foot is stationary. It is calculated by
+\begin{equation}
+x_{FRI} = \frac{x_{s}\dot{G}_{sz} - z_{s}\dot{G}_{sx} - x_{ZMP}F_{Rz} - \dot{\Gamma}_{sy}^{(s)}} {\dot{G}_{sz} - F_{Rz}}
+\label{e12}
+\end{equation}
+\begin{equation}
+y_{FRI} = \frac{y_{s}\dot{G}_{sz} - z_{s}\dot{G}_{sy} - y_{ZMP}F_{Rz} + \dot{\Gamma}_{sx}^{(s)}} {\dot{G}_{sz} - F_{Rz}}
+\label{e13}
+\end{equation}
+where $x_s$, $y_s$ in $z_s$ are positions of mass centre of gravity, $G_s$ is foot momentum, and $\Gamma_s^{(s)}$ the angular momentum of the foot in the foot coordinate system. 
+
+\subsection{Centroidal Moment Point (CMP)}
+
+CMP comes form the biomechanics and it is used to determine the rotational stability of the bipedal systems. It is defined as a point on the surface through which a straight line goes, which is parallel to the ground reaction forces and intersects the body centre of mass point \cite{Goswami2004,Popovic2005}. It is defend with
+\begin{equation}
+(\bm{p_{CMP}} - \bm{p_{COM}}) \times \bm{F_{R}} = 0
+\label{e14}
+\end{equation}
+where $\bm{p_{CMP}}$ is the vector from the base coordinate system that points towards the CMP.
+
+If CMP is equal to ZMP, then the torque around COM is zero. If CMP is outside the supportive polygon, then the body loses the rotational stability. This does not necessary mean losing also the postural stability. 
+
+% the CMP ni isto kot zgolj CMP
+
+\subsection{{Capture Point (CP)}}
+
+CP defines a point where the biped should step in order to keep or to re-establish its postural stability \cite{Pratt2006, Koolen2012}. Unlike the stability measures like ZMP or COP, which may lead to a situation in which there is no longer possible to maintain stability, the CP stability measure includes dynamic predictions. Lets assume that we have a simple 2D cart-table model with constant height $h$ of the COM. For such case ZMP derives into
+\begin{equation}
+x_{ZMP} = x - \frac{h}{g_y}\ddot{x}, 
+\end{equation}  
+where $g_y$ is the gravity acceleration and $x$ is the position of the cart, which is equal to the position of the COM ($x\equiv x_{COM}$). The error between the desired ZMP trajectory $x_{zmp,d}$ and the actual ZMP $x_{ZMP}$ is given by
+\begin{equation}
+\tilde{x}_{ZMP} = x_{ZMP,d} - x_{ZMP},
+\end{equation}
+and the error dynamics can be written as
+\begin{equation}
+\ddot{x} = - \frac{g_y}{h} (x_{ZMP,d} - x).
+\label{eq:zmp_error2}
+\end{equation}
+By assuming that $x_{ZMP,d} < x$, than $x_{ZMP,d} - x < 0$ and according to Eq.~\ref{eq:zmp_error2} the acceleration $\ddot{x} > 0$. This further means that $x_{ZMP,d}  < x(t) < x(t+1)$, where $t+1$ denotes the next time step. This implies that $\ddot{x}(t) < \ddot{x}(t+1) < \ddot{x}(t+\infty)$, which shows that a direct control of $x_{ZMP}$ over time is only possible if the $x$ is diverging from the desired ZMP position $x_{ZMP,d}$ (note that this also implies that the accelerations go towards the infinity).
+
+To efficiently control the stability of such system, we have to consider also the CP. For a simple card-table model the CP is given by
+\begin{equation}
+x_{CP} = x + \dot{x} \sqrt{\frac{h}{g_y}}. 
+\end{equation}
+If both ZMP and CP are inside the supportive polygon, the system will remain postural stability. The detailed description of the CP is in \cite{Pratt2006,Koolen2012}. 
+
+\section{Stability metrics with non-planar contacts}
+
+Up to now,  methods for the stability measure have considered contact only on a flat surface and without any hand contacts. However, most everyday tasks that humans do, and which humanoid robots are to perform as well, must include non-planar contacts over multiple parts of the body. Understanding stability in such a situation becomes less intuitive, as simple geometric concepts like zero moment point are no longer valid.  Thus these issues are still an open topic of research in both the robotic and biomechanical communities. 
+
+\subsection{Generalizing planar metrics to non-planar}
+
+Earliest works in this domain have attempted to extend the traditional concepts of COP and ZMP to handle non-planar contact. In the case that the two feet do not coincide on the same plane, the ZMP (or COP) of each foot can be linearly combined into a single virtual ZMP\cite{takenaka1999gait}: 
+\begin{equation}
+\p_\text{VZMP} = (1-h)\p_\text{ZMP1}+h\p_\text{ZMP2},
+\end{equation}
+with the weighting factor chosen, for example, to aid transition from a double support to single support phase: $h = (t-t_\text{start})/(t_\text{end} - t_\text{start})$. The virtual ZMP will exist on a virtual surface defined by  the surface normal that results from the linear combination of the two real surface normals:
+\begin{equation}
+\vvc{n} = (1-h)\vvc{n}_1 + h\vvc{n}_2.
+\end{equation} 
+While this blending of ZMPs may serve as an adequate heuristic for the control of bipedal locomotion, it turns out that the sum moment of all contact forces may not be directed purely along this virtual surface normal. Thus the so-called virtual zero moment point may not have an actual ``zero moment" (in direction perpendicular to the surface normal).  Instead, \cite{Sardain2004} create a different virtual surface such that the sum moment of contact forces will be perpendicular to it. This virtual surface passes through the intersection line of the two real surfaces, with normal defined as:
+\begin{equation}
+\vvc{n} = \frac{R_1^p\vvc{n}_1 + R_2^p\vvc{n}_2}{\|R_1^p\vvc{n}_1 + R_2^p\vvc{n}_2\|},
+\end{equation}
+where $R_1^p$ and $R_2^p$ are the local pressure contact forces at the feet. Then the authors define the pseudo COP-ZMP point $C$ to be the point on the virtual surface where the contact moment is parallel to the surface normal (and thus remains consistent with the definition of ZMP):
+\begin{equation}
+C=\frac{\vvc{n} \times \vvc{M}^C}{\vvc{R}^C \cdot \vvc{n}},
+\end{equation}
+where $\vvc{R}^C$ and $\vvc{M}^C$ are the resultant contact force and moment, combining the local contact forces and moments at each foot. While the authors succeed at generalizing the concept of ZMP to non-planar contacts, they admit that their method is not able to define a pseudo-support-polygon, i.e.\ the set of all possible pseudo-ZMP points that define the region of dynamic stability.  In order to define such a support polygon, the work of \cite{Harada2003} defines a \emph{generalized ZMP} which takes into account the forces and moments created by hand contact. However, this ZMP is still projected onto the floor where the feet stand.  The edges of the convex hull of the contact points are projected onto the floor as well, creating an expanded region of dynamic stability that considers hand contacts. 
+
+\subsection{Stability metrics in wrench space}
+Inspired by work in grasping, several have considered stability metrics in the space of forces and moments (or wrench space \cite{Takao}), rather than as positions of a point in Cartesian space. An advantage of these works, are that they can also explicitly  consider contact force limitations (e.g.\ due to friction). If we approximate friction cones as $L$-sided polyhedrals, than the set of possible contact forces created by $K$ contacts will be given by:
+\begin{equation}
+\vvc{f}_C = \sum\limits_{k=1}^{K}\sum\limits_{l=1}^{L}\epsilon_k^l (\eta_k + \mu_k \vvc{t}_k^l),
+\end{equation}
+where $\vvc{t}_k^l$ is the unit tangent along the $l$th edge of the polyhedron. Likewise, the set of possible moments is:
+\begin{equation}
+\vvc{\tau}_C = \sum\limits_{k=1}^{K}\sum\limits_{l=1}^{L}\epsilon_k^l\vvc{p}_k \times (\eta_k + \mu_k \vvc{t}_k^l),
+\end{equation}
+where $\vvc{p}_k$ is the position of the $k$th contact. The set of $(\vvc{f}_C,\vvc{\tau}_C)$ form a polyhedral convex cone in the space of contact forces and moments, and is called a \emph{polyhedral convex cone of the contact wrench} \cite{Hirukawa}. When the set of gravity and inertial forces and moments acting on the robot $(\vvc{f}_G,\vvc{\tau}_G)$ are within this polyhedral convex cone, the robot is said to be dynamical stable.  In order to quantify the quality of stability, \cite{barth2008} borrow the concept of \emph{residual radius} from grasping literature \cite{Kirkpatrick1992}. For a given wrench $w$ the largest hypersphere centered at $w$ and fully contained within the polyhedron defined by $(\vvc{f}_C,\vvc{\tau}_C)$ is called the \emph{residual ball}. The residual radius is the radius of that ball. Computing the largest hypersphere can be formulated as a linear program. 
+
+\subsection{Energy Metrics}
+Works in multi-legged locomotion have considered stability metrics based on energy. A robot with multiple contact points will tumble if the sum of all moments about any edge of the support polygon induces a rotation about that edge. Thus a robot will be dynamically stable only if every moment $M_i$, about the $i$th-edge of the support polygon is positive (where positive is defined to be in the stabilizing direction): 
+\begin{equation}
+M_i = \left((\vvc{F}_\vvc{I}+\vvc{F}_{g}) \times \vvc{R} + \vvc{M}_\vvc{I} \right) \cdot \vvc{e}_i > 0.
+\end{equation}
+Here $\vvc{F}_\vvc{I}$ and $ \vvc{M}_\vvc{I}$ are the sums of the inertial, manipulation, and perturbation forces and moments (respectively), $\vvc{F}_{g}$ is the gravity force, $\vvc{e}_i$ is the unit vector along the edge of rotation, and $\vvc{R}$ is the shortest displacement between the edge and the center of mass. The smallest of all such moments, normalized by total weight, is defined to be the \emph{Dynamic Stability Margin} (DSM) \cite{Lin2001}:
+\begin{equation}
+S_\text{DSM} = \min_i\left(\frac{ M_i}{ W_g} \right).
+\end{equation}
+
+Garcia et al.\ show that DSM can become discontinuous at the time of instability \cite{Garcia2005} and thus rather derive the energy required to topple the robot about edge $i$:
+\begin{equation}
+E_i = mg\|\vvc{R}\|(\cos \phi - \cos \varphi)\cos \psi + \left((\vvc{F}_\vvc{I} \cdot \vvc{t}) \|\vvc{R}\|+\vvc{M}_\vvc{I}\cdot\vvc{e}_i\right)\theta - \frac{1}{2}I_i\omega^2_i.
+\end{equation}
+Here $\vvc{t}$ is the unit vector tangental to the rotation, $I_i$ is the moment of inertia about the rotation edge, $\omega_i$ is the angular velocity, and the various angles are defined by geometry. In this energy equation, the first term represents the potential energy required to overcome gravity, the second term is the potential energy required to overcome inertial and perturbation forces, and the last term is kinetic energy. Subsequently the \emph{Normalized Dynamic Energy Stability Margin} (NDESM) \cite{Garcia2006} is defined as the smallest such energy required to topple the robot, normalized by mass:
+\begin{equation}
+S_\text{NDESM} = \min_i \left( \frac{E_i}{mg} \right)
+\end{equation}
+The authors show that NDESM represents the maximal impact energy that the robot can absorb, and compared to other energy stability metrics such as \cite{Messuri1985,Papadopoulos1996, Hirose2001}, NDESM is the only stability margin that takes into account dynamics and perturbations while remaining continuous during the transition to instability.  
+
+%\section{{Conclusions}}
+%\noindent
+
+
+
+\bibliography{D2.1_review}
+
+\end{document}
