@@ -62,7 +62,7 @@
  
  \deliverableWorkpackage{deliv WP5}
  \deliverableEditors{Francesco Nori}
- \deliverableContributors{Francesco Nori, Andrea Del Prete, Daniele Pucci, Serena Ivaldi}
+ \deliverableContributors{Francesco Nori, Andrea Del Prete, Daniele Pucci, Serena Ivaldi, Vincent Padois}
  \deliverableReviewers{}
 \deliverableAbstract{In the present deliverable we discuss the technical details and choices for the implementation of on the year-1 validation scenario of the CoDyCo project. This validation scenario consists on balancing with multiple rigid contact points. Contact and trajectory planning is not part of the scenario. The final validation consists in controlling the iCub across the following sequence of control tasks. Multiple (force and position) tasks will be handled with strict priorities by adopting the theoretical framework known as stack of tasks \cite{delPrete2013}. First the robot is standing on two feet and, in order to maintain this posture, a controller takes care of controlling the left and right foot position and forces exchanged with the ground. Second, the robot start moving both hands towards a table with the intend of establishing two additional support contacts: in this phase the robot starts controlling also the hands Cartesian position. As soon as the artificial skin detects the contact between the hands and the table the controllers starts including hands force regulation among the control tasks.}
 \deliverableReviewers{}
@@ -370,13 +370,13 @@ s.t. \quad M \ddot{\bm q} + h - J_c^T \bm f & = S^T \bm \tau \\
 \end{subequations}
 The solution of \eqref{eq:TSID2} has strong analogies with the solution of \eqref{eq:minF} and \eqref{eq:torquesTSID}-\eqref{eq:dynTSID}-\eqref{eq:contactTSID} but a complete analysis of the underlying similarities is out of the scope of the present report. 
 
-In order to avoid discontinuities in the desired forces to be tracked by the controller we should chose the trajectories ${{\bm f}}_{rh}^*(t)$, ${{\bm f}}_{lh}^*(t)$, ${{\bm f}}_{rf}^*(t)$, ${{\bm f}}_{lf}^*(t)$ so that at the moment of task switching the desired force equal the current one. In order to do so, we simply exploit the fact that at any time, measurements $\bm f$, $ \ddot {\bm x}_{com}$ should satisfy the equilibrium condition $C_{S_i} \bm f = m \ddot {\bm x}_{com}$. Therefore, at the switching instant $t_s$ we can simply solve \eqref{eq:minF} with $\bm f_0 = C_{S_i} \bm f (t_s) $ and $\ddot {\bm x}^*_{com} = \ddot {\bm x}_{com}(t_s)$ to obtain a solution $\bm f^* = \bm f (t_s)$. The values of $\ddot {\bm x}^*_{com}$ and $\bm f_0$ are then obtained as described in Section \ref{sec:taskReferences} as the output of a $PID$ filter on the difference between desired trajecotires $\ddot {\bm x}^d_{com} (t)$, $\bm f^d(t)$ and current values $\ddot {\bm x}_{com}$, $\bm f$. In particular, according the definitions that we gave in \eqref{eq:accRef} and \eqref{eq:fRef} the final reference for forces and accelerations will be:
+In order to avoid discontinuities in the desired forces to be tracked by the controller we should chose the trajectories ${{\bm f}}_{rh}^*(t)$, ${{\bm f}}_{lh}^*(t)$, ${{\bm f}}_{rf}^*(t)$, ${{\bm f}}_{lf}^*(t)$ so that at the moment of task switching the desired force equal the current one. In order to do so, we simply exploit the fact that at any time, measurements $\bm f$, $ \ddot {\bm x}_{com}$ should satisfy the equilibrium condition $C_{S_i} \bm f = m \ddot {\bm x}_{com}$. Therefore, at the switching instant $t_s$ we can simply solve \eqref{eq:minF} with $\bm f_0 = C_{S_i} \bm f (t_s) $ and $\ddot {\bm x}^*_{com} = \ddot {\bm x}_{com}(t_s)$ to obtain a solution $\bm f^* = \bm f (t_s)$. The values of $\ddot {\bm x}^*_{com}$ and $\bm f_0$ are then obtained as described in Section \ref{sec:taskReferences} as the output of a $PID$ filter on the difference between desired trajectories $\ddot {\bm x}^d_{com} (t)$, $\bm f^d(t)$ and current values $\ddot {\bm x}_{com}$, $\bm f$. In particular, according the definitions that we gave in \eqref{eq:accRef} and \eqref{eq:fRef} the final reference for forces and accelerations will be:
 \begin{eqnarray*} 
 \ddot {\bm x}_{com}^* (t) &=& \ddot {\bm x}_{com}^d (t) + K_d^{com} \left( \dot {\bm x}_{com}^d (t) - \dot {\bm x}_{com}\right) + K_p^{com} \left( {\bm x}_{com}^d (t) - {\bm x}_{com}\right), \\
 {\bm f}_0 (t) & = & {\bm f}^d (t) + K_i^f \int_{t_s}^t \left( {\bm f}^d (\tau) - {\bm f} (\tau) \right) d \tau,\\
 \bm f^* & =&  m  C_{S_i, W}^\dagger \ddot {{\bm x}}_{com}^*+ (I - C_{S_i, W}^\dagger C_{S_i}) \bm f_0.
 \end{eqnarray*}
-At the switching instant $t_s$ we choose $\bm f^d = \bm f $, $\ddot {\bm x}^d_{com} = \ddot {\bm x}_{com}$, $\dot {\bm x}^d_{com} = \dot {\bm x}_{com}$, $ {\bm x}^d_{com} = {\bm x}_{com}$ so as to obtain $\bm f^* = \bm f$ (remeber that $\bm f$, $ \ddot {\bm x}_{com}$ are always compatible). Then we can choose $\bm f^d (t)$ and $\ddot {\bm x}^d_{com}(t)$ abitrarily with the guarantee that the resulting $\bm f^*$ and $\ddot {\bm x}_{com}^*$ will always be dynamically consistent.
+At the switching instant $t_s$ we choose $\bm f^d = \bm f $, $\ddot {\bm x}^d_{com} = \ddot {\bm x}_{com}$, $\dot {\bm x}^d_{com} = \dot {\bm x}_{com}$, $ {\bm x}^d_{com} = {\bm x}_{com}$ so as to obtain $\bm f^* = \bm f$ (remeber that $\bm f$, $ \ddot {\bm x}_{com}$ are always compatible). Then we can choose $\bm f^d (t)$ and $\ddot {\bm x}^d_{com}(t)$ arbitrarily with the guarantee that the resulting $\bm f^*$ and $\ddot {\bm x}_{com}^*$ will always be dynamically consistent.
 
 \subsection{Task prioritization} \label{sec:taskPrioritization}
 
@@ -389,6 +389,51 @@ In the TSID framework, control tasks are executed with a lexicographic priority,
 \item $S_4$: $T^q \prec T^{rh}_{\bm X}  \prec T^{com}_{\bm f} $.
 \item $S_5$: $T^q \prec T^{com}_{\bm f} $.
 \end{itemize}
+
+\subsection{Alternative controller formulation}
+The Task Space Inverse Dynamics (TSID) can be formulated in a fashion where the ordering of the tasks priorities can be based on soft priorities rather than on a strict lexicographic order. The control problem can still be written as an optimization problem under constraints and its resolution only requires one optimization level, independently from the number of tasks to be achieved. The work of Joseph Salini \cite{salini2012} at UPMC lays the foundation of this alternative formulation paradigm. Figure~1 illustrates the principles of this formulation where a weight is associated to each task accordingly to its importance and can be modulated using a rule-based high level decision making process.\\
+
+\begin{figure*}[h]
+\begin{center}
+\centering
+\includegraphics[width=0.8\textwidth]{images/global_architecture.pdf} 
+
+\caption{Global architecture of the soft hierarchy Task Space Inverse Dynamics control scheme developed at UPMC.}
+\end{center}
+\label{fig:joseph}
+\end{figure*}
+
+While appealing, the work of J. Salini can not guarantee strict priorities between tasks. On the other hand, control approaches based on strict hierarchies induce discontinuities in the control input when modifying the ordering of the hierarchy and require to solve as many optimization problems as the number of tasks. In order to solve these issues and as a contribution to WP3, UPMC recently developed a controller named Generalized Smooth Hierarchical Control (GSHC) bridging the gap between strict and soft hierarchy Task Space Inverse Dynamics controllers. The GHSC algorithm, submitted to the IEEE Transaction on Robotics journal \cite{liu2013}, provides with a control framework such that:
+\begin{itemize}
+	\item it can handle multiple tasks with strict and soft priorities;
+	\item smooth and simultaneous rearrangements of multiple task priorities can be achieved easily (by the smooth variations of relevant bounded scalar values);
+	\item smooth insertion and deletion of tasks can be performed;
+	\item various constraints imposed by the robot body (joint limits, actuation capabilities...) and the environment (contacts to maintain, obstacles to avoid...) can be respected.
+\end{itemize}
+
+The first year demo described in this delievrable thus also benefits from this alternative controller. It is being intensively tested on a simulated iCub in the XDE simulator at UPMC before being transfered to IIT for an implementation on the real robot. The validation scenario is also being investigated (see Figure~\ref{fig:xde}) . For example, UPMC is testing how to smoothly sequence force and position tasks when contact is detected. UPMC also has developed a set of tools to rapidly prototype and test different behaviors of the robot by acting on tasks priority parameters (see Figure~\ref{fig:params}).
+
+\begin{figure*}[h]
+\begin{center}
+\includegraphics[width=0.3\hsize]{images/s5.png}
+\includegraphics[width=0.3\hsize]{images/s6.png}
+\includegraphics[width=0.3\hsize]{images/s4.png}
+
+\includegraphics[width=0.3\hsize]{images/s3.png}
+\includegraphics[width=0.3\hsize]{images/s2.png}
+\includegraphics[width=0.3\hsize]{images/s1.png}
+\end{center}
+\caption{Screenshots of the validation scenario simulated in XDE.}
+\label{fig:xde}
+\end{figure*}
+
+\begin{figure*}[h]
+\begin{center}
+\includegraphics[width=0.9\hsize]{images/s12.png}
+\end{center}
+\caption{Tuning of the task priority parameters in XDE.}
+\label{fig:params}
+\end{figure*}
 
 \bibliographystyle{alpha}
 \bibliography{D5.1}
@@ -441,34 +486,6 @@ If the foot is at equilibrium ($\dot {\boldsymbol \omega}_f = \bm a_f = 0$) then
 Vice-versa, let's prove that if $cZMP$ is outside the support polygon then necessarily either $\dot {\boldsymbol \omega}_f \neq 0$ or $\bm a_f \neq 0$ and therefore the foot is not in equilibrium. Suppose by contradiction that $\dot {\boldsymbol \omega}_f = \bm a_f = 0$. As previously pointed out $CoP$ and $cZMP$ coincide and since the $CoP$ is necessarily within the support polygon we conclude that the $cZMP$ is also within the support polygon thus leading to the contradiction. 
 
 Finally, we would like to give sufficient conditions for the foot stability. In particular, can we conclude that if the $cZMP$ is within the support polygon then the foot is at equilibrium? Unfortunately this conclusion cannot be drawn stated as it is. The main motivation resides in the fact that the $cZMP$ might be associated with a force/torque couple $\boldsymbol f^b, \boldsymbol\mu^b$ whose tangential force components ($\boldsymbol f_t$) are outside the friction cones. Remarkably, this might always be the case since the zero moment point condition does not involve the tangential forces. Similarly,  the $cZMP$ might be associated with a force/torque couple $\boldsymbol f^b, \boldsymbol\mu^b$ whose normal torque component ($\boldsymbol \mu_t$) is outside the friction cones. Again, this might always be the case since the zero moment point condition does not involve the torque component normal to the contact plane. What it can be proven (but the complete proof is outside the scope of the current deliverable) is that if the $cZMP$ is inside the support polygon and if the the associated force/torque couple $\boldsymbol f^b, \boldsymbol\mu^b$ have tangential force components ($\boldsymbol f^b_t$) and normal torque components ($\boldsymbol \mu^b_t$) compatible with the friction cone, then the foot is at equilibrium.
-
-
-\section{Simulation preview in XDE}
-
-The validation scenario has been investigated also in simulation in XDE by the UPMC team (see Figure~\ref{fig:xde}). UPMC is testing how to smoothly sequence force and position tasks when the contact is detected. The team has developed a set of tools to rapidly prototype and test different behaviors of the robot by acting on tasks parameters (see Figure~\ref{fig:params}).
-
-\begin{figure}
-\begin{center}
-\includegraphics[width=0.3\hsize]{images/s5.png}
-\includegraphics[width=0.3\hsize]{images/s6.png}
-\includegraphics[width=0.3\hsize]{images/s4.png}
-
-\includegraphics[width=0.3\hsize]{images/s3.png}
-\includegraphics[width=0.3\hsize]{images/s2.png}
-\includegraphics[width=0.3\hsize]{images/s1.png}
-\end{center}
-\caption{Screenshots of the validation scenario simulated in XDE.}
-\label{fig:xde}
-\end{figure}
-
-\begin{figure}
-\begin{center}
-\includegraphics[width=0.9\hsize]{images/s12.png}
-\end{center}
-\caption{Tuning of the task parameters in XDE.}
-\label{fig:params}
-\end{figure}
-
 
 \end{document}
 
