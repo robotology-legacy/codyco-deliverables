@@ -344,7 +344,7 @@ Two models have been identified: one including both viscous and Coulomb friction
 \end{center}	
 \end{table*}
 
-Based on these models and on the real robot experiment, different tests have been performed in both the Gazebo and XDE simulators. It has to be noticed that, both in XDE and Gazebo, viscous friction is intriniscally part of the description of a joint and can thus be integrated implicitly. It is not the case of Coulomb friction. Also, the viscous + Coulomb model exhibits extremely low frictions and thus the retained experiments only compares the real robot motion to the simulated one using the adapted friction model in both simulators.\\
+Based on these models and on the real robot experiment, different tests have been performed in both the Gazebo and XDE simulators. It has to be noticed that, both in XDE and Gazebo, viscous friction is intriniscally part of the description of a joint and can thus be integrated implicitly by the physics engine. It is not the case of Coulomb friction and accounting for it requires to add it as a control torque in the simulator. Given, the highly non-linear nature of this term, this results in non realistic oscillatory behaviours of the joints. Moreover, the identified viscous + Coulomb model exhibits extremely low frictions. For these two reasons, the retained experiments only compare the real robot motion to the simulated one using the adapted friction model in both simulators.\\
 
 \begin{table*}[h]
 \begin{center}
