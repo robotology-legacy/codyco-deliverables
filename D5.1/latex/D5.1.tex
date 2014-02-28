@@ -62,7 +62,7 @@
  
  \deliverableWorkpackage{deliv WP5}
  \deliverableEditors{Francesco Nori}
- \deliverableContributors{Francesco Nori, Andrea Del Prete, Daniele Pucci}
+ \deliverableContributors{Francesco Nori, Andrea Del Prete, Daniele Pucci, Serena Ivaldi}
  \deliverableReviewers{}
 \deliverableAbstract{In the present deliverable we discuss the technical details and choices for the implementation of on the year-1 validation scenario of the CoDyCo project. This validation scenario consists on balancing with multiple rigid contact points. Contact and trajectory planning is not part of the scenario. The final validation consists in controlling the iCub across the following sequence of control tasks. Multiple (force and position) tasks will be handled with strict priorities by adopting the theoretical framework known as stack of tasks \cite{delPrete2013}. First the robot is standing on two feet and, in order to maintain this posture, a controller takes care of controlling the left and right foot position and forces exchanged with the ground. Second, the robot start moving both hands towards a table with the intend of establishing two additional support contacts: in this phase the robot starts controlling also the hands Cartesian position. As soon as the artificial skin detects the contact between the hands and the table the controllers starts including hands force regulation among the control tasks.}
 \deliverableReviewers{}
@@ -441,6 +441,34 @@ If the foot is at equilibrium ($\dot {\boldsymbol \omega}_f = \bm a_f = 0$) then
 Vice-versa, let's prove that if $cZMP$ is outside the support polygon then necessarily either $\dot {\boldsymbol \omega}_f \neq 0$ or $\bm a_f \neq 0$ and therefore the foot is not in equilibrium. Suppose by contradiction that $\dot {\boldsymbol \omega}_f = \bm a_f = 0$. As previously pointed out $CoP$ and $cZMP$ coincide and since the $CoP$ is necessarily within the support polygon we conclude that the $cZMP$ is also within the support polygon thus leading to the contradiction. 
 
 Finally, we would like to give sufficient conditions for the foot stability. In particular, can we conclude that if the $cZMP$ is within the support polygon then the foot is at equilibrium? Unfortunately this conclusion cannot be drawn stated as it is. The main motivation resides in the fact that the $cZMP$ might be associated with a force/torque couple $\boldsymbol f^b, \boldsymbol\mu^b$ whose tangential force components ($\boldsymbol f_t$) are outside the friction cones. Remarkably, this might always be the case since the zero moment point condition does not involve the tangential forces. Similarly,  the $cZMP$ might be associated with a force/torque couple $\boldsymbol f^b, \boldsymbol\mu^b$ whose normal torque component ($\boldsymbol \mu_t$) is outside the friction cones. Again, this might always be the case since the zero moment point condition does not involve the torque component normal to the contact plane. What it can be proven (but the complete proof is outside the scope of the current deliverable) is that if the $cZMP$ is inside the support polygon and if the the associated force/torque couple $\boldsymbol f^b, \boldsymbol\mu^b$ have tangential force components ($\boldsymbol f^b_t$) and normal torque components ($\boldsymbol \mu^b_t$) compatible with the friction cone, then the foot is at equilibrium.
+
+
+\section{Simulation preview in XDE}
+
+The validation scenario has been investigated also in simulation in XDE by the UPMC team (see Figure~\ref{fig:xde}). UPMC is testing how to smoothly sequence force and position tasks when the contact is detected. The team has developed a set of tools to rapidly prototype and test different behaviors of the robot by acting on tasks parameters (see Figure~\ref{fig:params}).
+
+\begin{figure}
+\begin{center}
+\includegraphics[width=0.3\hsize]{images/s5.png}
+\includegraphics[width=0.3\hsize]{images/s6.png}
+\includegraphics[width=0.3\hsize]{images/s4.png}
+
+\includegraphics[width=0.3\hsize]{images/s3.png}
+\includegraphics[width=0.3\hsize]{images/s2.png}
+\includegraphics[width=0.3\hsize]{images/s1.png}
+\end{center}
+\caption{Screenshots of the validation scenario simulated in XDE.}
+\label{fig:xde}
+\end{figure}
+
+\begin{figure}
+\begin{center}
+\includegraphics[width=0.9\hsize]{images/s12.png}
+\end{center}
+\caption{Tuning of the task parameters in XDE.}
+\label{fig:params}
+\end{figure}
+
 
 \end{document}
 
