@@ -404,17 +404,8 @@ The Task Space Inverse Dynamics (TSID) can be formulated in a fashion where the 
 \end{center}
 \end{figure*}
 
-While appealing, the work of J. Salini can not guarantee strict priorities between tasks. On the other hand, control approaches based on strict hierarchies induce discontinuities in the control input when modifying the ordering of the hierarchy and require to solve as many optimization problems as the number of tasks. In order to solve these issues and as a contribution to WP3, UPMC recently developed a controller named Generalized Smooth Hierarchical Control (GSHC) bridging the gap between strict and soft hierarchy Task Space Inverse Dynamics controllers. The GHSC algorithm, submitted to the IEEE Transaction on Robotics journal \cite{liu2013}, provides with a control framework such that:
-\begin{itemize}
-	\item it can handle multiple tasks with strict and soft priorities;
-	\item smooth and simultaneous rearrangements of multiple task priorities can be achieved easily (by the smooth variations of relevant bounded scalar values);
-	\item smooth insertion and deletion of tasks can be performed;
-	\item various constraints imposed by the robot body (joint limits, actuation capabilities...) and the environment (contacts to maintain, obstacles to avoid...) can be respected.
-\end{itemize}
 
-The first year demo described in this delievrable thus also benefits from this alternative controller. It is being intensively tested on a simulated iCub in the XDE simulator at UPMC before being transfered to IIT for an implementation on the real robot. The validation scenario is also being investigated (see Figure~\ref{fig:xde}) . For example, UPMC is testing how to smoothly sequence force and position tasks when contact is detected. UPMC also has developed a set of tools to rapidly prototype and test different behaviors of the robot by acting on tasks priority parameters (see Figure~\ref{fig:params}).
-
-\begin{figure*}[h]
+\begin{figure*}[!ht]
 \begin{center}
 \includegraphics[width=0.3\hsize]{images/s5.png}
 \includegraphics[width=0.3\hsize]{images/s6.png}
@@ -428,13 +419,24 @@ The first year demo described in this delievrable thus also benefits from this a
 \label{fig:xde}
 \end{figure*}
 
-\begin{figure*}
+\begin{figure*} [!ht]
 \begin{center}
 \includegraphics[width=0.9\hsize]{images/s12.png}
 \end{center}
 \caption{Tuning of the task priority parameters in XDE.}
 \label{fig:params}
 \end{figure*}
+
+
+While appealing, the work of J. Salini can not guarantee strict priorities between tasks. On the other hand, control approaches based on strict hierarchies induce discontinuities in the control input when modifying the ordering of the hierarchy and require to solve as many optimization problems as the number of tasks. In order to solve these issues and as a contribution to WP3, UPMC recently developed a controller named Generalized Smooth Hierarchical Control (GSHC) bridging the gap between strict and soft hierarchy Task Space Inverse Dynamics controllers. The GHSC algorithm, submitted to the IEEE Transaction on Robotics journal \cite{liu2013}, provides with a control framework such that:
+\begin{itemize}
+	\item it can handle multiple tasks with strict and soft priorities;
+	\item smooth and simultaneous rearrangements of multiple task priorities can be achieved easily (by the smooth variations of relevant bounded scalar values);
+	\item smooth insertion and deletion of tasks can be performed;
+	\item various constraints imposed by the robot body (joint limits, actuation capabilities...) and the environment (contacts to maintain, obstacles to avoid...) can be respected.
+\end{itemize}
+
+The first year demo described in this delievrable thus also benefits from this alternative controller. It is being intensively tested on a simulated iCub in the XDE simulator at UPMC before being transfered to IIT for an implementation on the real robot. The validation scenario is also being investigated (see Figure~\ref{fig:xde}) . For example, UPMC is testing how to smoothly sequence force and position tasks when contact is detected. UPMC also has developed a set of tools to rapidly prototype and test different behaviors of the robot by acting on tasks priority parameters (see Figure~\ref{fig:params}).
 
 \bibliographystyle{apalike}
 \bibliography{D5.1}
