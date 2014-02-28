@@ -393,16 +393,15 @@ In the TSID framework, control tasks are executed with a lexicographic priority,
 \end{itemize}
 
 \subsection{Alternative controller formulation}
-The Task Space Inverse Dynamics (TSID) can be formulated in a fashion where the ordering of the tasks priorities can be based on soft priorities rather than on a strict lexicographic order. The control problem can still be written as an optimization problem under constraints and its resolution only requires one optimization level, independently from the number of tasks to be achieved. The work of Joseph Salini \cite{salini2012} at UPMC lays the foundation of this alternative formulation paradigm. Figure~1 illustrates the principles of this formulation where a weight is associated to each task accordingly to its importance and can be modulated using a rule-based high level decision making process.\\
+The Task Space Inverse Dynamics (TSID) can be formulated in a fashion where the ordering of the tasks priorities can be based on soft priorities rather than on a strict lexicographic order. The control problem can still be written as an optimization problem under constraints and its resolution only requires one optimization level, independently from the number of tasks to be achieved. The work of Joseph Salini \cite{salini2012} at UPMC lays the foundation of this alternative formulation paradigm. Figure~\ref{fig:joseph} illustrates the principles of this formulation where a weight is associated to each task accordingly to its importance and can be modulated using a rule-based high level decision making process.\\
 
 \begin{figure*}
 \begin{center}
 \centering
 \includegraphics[width=0.8\textwidth]{images/global_architecture.pdf} 
-
 \caption{Global architecture of the soft hierarchy Task Space Inverse Dynamics control scheme developed at UPMC.}
-\end{center}
 \label{fig:joseph}
+\end{center}
 \end{figure*}
 
 While appealing, the work of J. Salini can not guarantee strict priorities between tasks. On the other hand, control approaches based on strict hierarchies induce discontinuities in the control input when modifying the ordering of the hierarchy and require to solve as many optimization problems as the number of tasks. In order to solve these issues and as a contribution to WP3, UPMC recently developed a controller named Generalized Smooth Hierarchical Control (GSHC) bridging the gap between strict and soft hierarchy Task Space Inverse Dynamics controllers. The GHSC algorithm, submitted to the IEEE Transaction on Robotics journal \cite{liu2013}, provides with a control framework such that:
