@@ -344,6 +344,8 @@ C_{S_3} & = & \begin{bmatrix}  C_{S_1} & 0_{3\times3} & I_{3\times3}\end{bmatrix
 C_{S_4} & = & \begin{bmatrix} C_{S_1} & 0_{3\times3} & I_{3\times3}\end{bmatrix}, \\
 C_{S_5} & = & \begin{bmatrix} C_{S_3} & 0_{3\times3} & I_{3\times3}\end{bmatrix}. 
 \end{eqnarray*}
+In general these constraints (deriving from the Newton equation) can be completed with additional constraints which derive from the angular momentum equilibrium, but we left this complete formulation out to simplify the notation. The interested reader should refer to \cite{orin2013}. Similarly to simplify the notation we neglected the effect of gravitational forces, which should be taken into account when balancing forces. Correct computations can be simply obtained by modifying all equations to include a term $m \bm g$ being $\bm g$ the gravitational acceleration. Otherwise all equations still hold referring to the system ``proper acceleration''. 
+
 In the TSID formalism, tasks $T^{rf}_{\bm f}$, $T^{lf}_{\bm f}$, $T^{rh}_{\bm f}$, $T^{lh}_{\bm f}$ can be solved solving \eqref{eq:torquesTSID}-\eqref{eq:dynTSID}-\eqref{eq:contactTSID} at the first stage of the hierarchy (i.e. with maximum priority). However, it is worth observing that the solution of \eqref{eq:torquesTSID}-\eqref{eq:dynTSID}-\eqref{eq:contactTSID} might be in conflict with the center of mass task $T^{com}_{\bm X}$ if it is specified in \eqref{eq:motionTSID} with lower priority with respect to the force task. Therefore, in order to enforce the compatibility of the tasks $T^{rf}_{\bm f}$, $T^{lf}_{\bm f}$, $T^{rh}_{\bm f}$, $T^{lh}_{\bm f}$ and $T^{com}_{\bm X}$, we pre-compute a  reference force $\bm f^*$ compatible with the reference center of mass acceleration $\bm x_{com}^*$. Even if we impose the above constraints on $\bm f^*$, we do not identify a unique solution. Additional constraints or requirements needs to be imposed in order to properly define $\bm f^*$. In order to simplify this ambiguity, the following problem can be solved when at state $S_i$:
 \begin{equation} \label{eq:minF}
 \bm f^* = \mbox{arg } \min_{\bm f} \| \bm f - \bm f_0 \|^2_W  \mbox{ s.t. } C_{S_i} \bm f= m \ddot {{\bm x}}^*_{com},
@@ -393,7 +395,7 @@ In the TSID framework, control tasks are executed with a lexicographic priority,
 \subsection{Alternative controller formulation}
 The Task Space Inverse Dynamics (TSID) can be formulated in a fashion where the ordering of the tasks priorities can be based on soft priorities rather than on a strict lexicographic order. The control problem can still be written as an optimization problem under constraints and its resolution only requires one optimization level, independently from the number of tasks to be achieved. The work of Joseph Salini \cite{salini2012} at UPMC lays the foundation of this alternative formulation paradigm. Figure~1 illustrates the principles of this formulation where a weight is associated to each task accordingly to its importance and can be modulated using a rule-based high level decision making process.\\
 
-\begin{figure*}[h]
+\begin{figure*}
 \begin{center}
 \centering
 \includegraphics[width=0.8\textwidth]{images/global_architecture.pdf} 
@@ -427,7 +429,7 @@ The first year demo described in this delievrable thus also benefits from this a
 \label{fig:xde}
 \end{figure*}
 
-\begin{figure*}[h]
+\begin{figure*}
 \begin{center}
 \includegraphics[width=0.9\hsize]{images/s12.png}
 \end{center}
