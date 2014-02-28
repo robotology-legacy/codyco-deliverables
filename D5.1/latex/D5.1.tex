@@ -440,7 +440,11 @@ The first year demo described in this delievrable thus also benefits from this a
 
 \newpage \appendix
 
-\section{Center of pressure}
+\section{Center of pressure: $\bm {CoP}$}
+
+In this Appendix we recall some concepts that have been extensively discussed in the CoDyCo deliverable D2.1, where the main focus is on human motion analysis. Remarkably, concepts like center of pressure and (fictitious) zero moment point apply to both humans and robots thus representing a strong modeling analogy between the two fields of research. In general, all dynamic principles (Newton-Euler equation, energy, work, forces, torques, etc.) represent a abstraction layer that allows the CoDyCo consortium to have a common set of tools which can be independently applied to both humans and robots. 
+
+\subsection{$\bm{CoP}$ definition}
 
 In order to define the center of pressure it is first necessary to define the pressure. Pressure is a scalar quantity, defined as the amount of force acting perpendicularly per unit area. Let's assume that a set of distributed forces acts on a surface $\mathcal S$ and let $\bm s$ be a point on the surface, i.e. $\mathbf s \in \mathcal S$. Let's denote with $f_n(\mathbf s)$ the component of $f(\mathbf s)$ orthogonal to $\mathcal S$ in $\mathbf s$. Given $\mathbf s \in \mathcal S$, assuming an element $\Delta S(\mathbf s)$ of infinitesimal area centered in $\mathbf s$, let $f_n(\Delta S,\mathbf s)$ be the orthogonal force acting on $\Delta S(\mathbf s)$. The pressure $p$ in $\mathbf s$ is defined as:
 $$
@@ -471,7 +475,7 @@ $$
 \boldsymbol\mu_{n,CoP} = \left( \int_{\mathcal S} p(\mathbf s) \mathbf s_1 dS \right) \times \mathbf n  + \int_{\mathcal S} p(\mathbf s) \cdot \mathbf n dS \times \frac{\int_{\mathcal S} \mathbf s_1 \cdot p(\mathbf s) dS}{\int_{\mathcal S} p(\mathbf s) dS} = 0.
 $$}. Equivalently, we can say that the $CoP$ is the unique point $C \in \mathcal S$ on which  $\boldsymbol\mu_{C} = \boldsymbol\mu_{t,C}$, i.e. the total torque $\boldsymbol\mu_{C}$ is orthogonal to $\mathcal S$. It is here worth noticing that on flat surfaces the torque due to normal forces $\boldsymbol\mu_{t}$ is parallel to the plane normal $\mathbf n$ while the torque due to tangential forces $\boldsymbol\mu_{n}$ lies on the plane. 
 
-\subsection{Dynamic equilibrium and center of pressure}
+\subsection{$\bm {CoP}$ and dynamic equilibrium}
 
 The concept of center of pressure is often related to the concept of dynamic equilibrium for a free floating articulated body. Within the multiple point of views proposed in literature we primarily follow the one in \cite{sardain2004}. Therefore, we do not make any formal distinction between the concept of $CoP$ (center of pressure) and the concept of $ZMP$ (zero moment point) because, as it is clearly stated in \cite{sardain2004}, ``$CoP$ and the $ZMP$ are the same point. [$\dots$] This fact does not admit any discussion, it is true whatever the stability of the balance is, and in particular it is true when the walker is falling down, as long as a contact exists with the ground''. What might generate confusion is that Vukobratovi\'c, the author that introduced the concept of $ZMP$, also introduced the concept of fictitious $ZMP$ lately renamed computed zero moment point ($cZMP$, see chapter sixteen of the handbook of robotics \cite{handbook2008}). 
 
