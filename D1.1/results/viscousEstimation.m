@@ -10,17 +10,17 @@ hip_dq_max = 6.5; %[deg/s]
 hip_dq_max_rad = hip_dq_max / 180 * pi; %[rad/s]
 
 knee_dq_max = 6; %[deg/s]
-knee_dq_max_rad = knee_dq_max / 180 * pi;
+knee_dq_max_rad = knee_dq_max / 180 * pi; %[rad/s]
 
 %% hip joint
 
 coulomb = (9.89676 / 5.53061); %[Nm]
-viscous_rad = (3.80569 / 5.53061); %[Nm/(rad/s)]
-viscous_deg = viscous_rad *180/pi; %[Nm/(deg/s)]
+viscous_deg = (3.80569 / 5.53061); %[Nm/(deg/s)]
+viscous_rad = viscous_deg /180*pi; %[Nm/(rad/s)]
 
 %equal friction power
-hipEstimatedViscousCoefficient_deg = coulomb / hip_dq_max + viscous_deg;
-hipEstimatedViscousCoefficient_rad = coulomb / hip_dq_max_rad  + viscous_rad;
+hipEstimatedViscousCoefficient_deg = coulomb / hip_dq_max + viscous_deg; %[Nm/(deg/s)]
+hipEstimatedViscousCoefficient_rad = coulomb / hip_dq_max_rad  + viscous_rad; %[Nm/(rad/s)]
 
 % fprintf('Estimated viscous friction coefficient at %s:\n\t%f[Nm/(deg/s)]\n\t%f[Nm/(rad/s)]\n', 'hip', ...
 %     hipEstimatedViscousCoefficient_deg, hipEstimatedViscousCoefficient_rad);
@@ -32,8 +32,8 @@ checkPowerHip_deg = hipEstimatedViscousCoefficient_deg * hip_dq_max^2 - (coulomb
 
 
 coulomb = (-8.96247 / -4.46536); %[Nm]
-viscous_rad = (-2.54755 / -4.46536); %[Nm/(rad/s)]
-viscous_deg = viscous_rad *180/pi; %[Nm/(deg/s)]
+viscous_deg = (-2.54755 / -4.46536); %[Nm/(deg/s)]
+viscous_rad = viscous_deg /180*pi; %[Nm/(rad/s)]
 
 %equal friction power
 kneeEstimatedViscousCoefficient_deg = coulomb / knee_dq_max + viscous_deg;
