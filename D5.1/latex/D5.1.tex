@@ -62,7 +62,7 @@
  
  \deliverableWorkpackage{deliv WP5}
  \deliverableEditors{Francesco Nori}
- \deliverableContributors{Francesco Nori, Andrea Del Prete, Daniele Pucci}
+ \deliverableContributors{Francesco Nori, Andrea Del Prete, Daniele Pucci, Serena Ivaldi, Vincent Padois}
  \deliverableReviewers{}
 \deliverableAbstract{In the present deliverable we discuss the technical details and choices for the implementation of on the year-1 validation scenario of the CoDyCo project. This validation scenario consists on balancing with multiple rigid contact points. Contact and trajectory planning is not part of the scenario. The final validation consists in controlling the iCub across the following sequence of control tasks. Multiple (force and position) tasks will be handled with strict priorities by adopting the theoretical framework known as stack of tasks \cite{delPrete2013}. First the robot is standing on two feet and, in order to maintain this posture, a controller takes care of controlling the left and right foot position and forces exchanged with the ground. Second, the robot start moving both hands towards a table with the intend of establishing two additional support contacts: in this phase the robot starts controlling also the hands Cartesian position. As soon as the artificial skin detects the contact between the hands and the table the controllers starts including hands force regulation among the control tasks.}
 \deliverableReviewers{}
@@ -172,7 +172,7 @@ J_i &:& \qquad J_{rh};
 
 \item $T^{lh}_{\bm X}$ : right hand linear and angular accelerations. 
 \begin{eqnarray*}
-\ddot {\bm x}^*_{i} &:& \qquad ^{lh}{\ddot {\bm a}}_w = ^{lh}{\ddot {\bm x}}^*_w, \qquad {}^{lh}{\dot {\bm \omega}}_w = {}^{lh}{\dot {\bm \omega}}_w^* ;\\
+\ddot {\bm x}^*_{i} &:& \qquad ^{lh}{\ddot {\bm x}}_w = ^{lh}{\ddot {\bm x}}^*_w, \qquad {}^{lh}{\dot {\bm \omega}}_w = {}^{lh}{\dot {\bm \omega}}_w^* ;\\
 J_i &:& \qquad J_{lh};
 \end{eqnarray*}
 
@@ -268,13 +268,13 @@ $$
 The definition of these desired trajectories is discussed in Section \ref{sec:refTrajectories}. In this section we discuss how task references are constructed given the task trajectories.
 
 Let's first discuss how the center of mass reference acceleration $\ddot {\bm x}_{com}^*$ is generated at each instant of time. Given the desired trajectory ${\bm x}_{com}^d (t)$ trajectory we define:
-$$
+\begin{equation} \label{eq:accRef}
 \ddot {\bm x}_{com}^* (t) = \ddot {\bm x}_{com}^d (t) + K_d^{com} \left( \dot {\bm x}_{com}^d (t) - \dot {\bm x}_{com}\right) + K_p^{com} \left( {\bm x}_{com}^d (t) - {\bm x}_{com}\right),
-$$
+\end{equation}
 where $K_p^{com}$ and $K_d^{com}$ are arbitrary positive definite matrices. Similarly, the force reference trajectories ${\bm f}^*_{\cdot} (t)$ are obtained from a desired force trajectory ${\bm f}^d_{\cdot} (t)$:
-$$
+\begin{equation} \label{eq:fRef}
 {\bm f}_{\cdot}^* (t) = {\bm f}_{\cdot}^d (t) + K_i^f \int_0^t \left( {\bm f}_{\cdot}^d (\tau) - {\bm f}_{\cdot} (\tau) \right) d \tau,
-$$
+\end{equation}
 where again $K_i^f$ is an arbitrary positive definite matrix. It is slightly more complicated to define the hands acceleration reference trajectories  ${\ddot {\bm x}}^*_w(t)$, ${\dot {\bm \omega}}_w^* (t)$. The linear acceleration trajectory ${\ddot {\bm x}}^*_w(t)$ can be handled exactly as it was done for the center of mass position exploiting a suitable desired trajectory ${{\bm x}}^d_w(t)$. Angular acceleration trajectories ${\dot {\bm \omega}}_w^* (t)$ are slightly more complicated in considerations of the fact that they are derived from a reference rotation matrix $R^d_w(t) \in SO(3)$. Within this context, we follow the definition in \cite{siciliano2009} and define an orientation error $\bm e_O$ between the desired pose $R^d_w(t) \in SO(3)$ and the current pose $R_w \in SO(3)$ as:
 $$
 \bm e_O = \sin(\theta) \bm r,
@@ -344,9 +344,11 @@ C_{S_3} & = & \begin{bmatrix}  C_{S_1} & 0_{3\times3} & I_{3\times3}\end{bmatrix
 C_{S_4} & = & \begin{bmatrix} C_{S_1} & 0_{3\times3} & I_{3\times3}\end{bmatrix}, \\
 C_{S_5} & = & \begin{bmatrix} C_{S_3} & 0_{3\times3} & I_{3\times3}\end{bmatrix}. 
 \end{eqnarray*}
+In general these constraints (deriving from the Newton equation) can be completed with additional constraints which derive from the angular momentum equilibrium, but we left this complete formulation out to simplify the notation. The interested reader should refer to \cite{orin2013}. Similarly to simplify the notation we neglected the effect of gravitational forces, which should be taken into account when balancing forces. Correct computations can be simply obtained by modifying all equations to include a term $m \bm g$ being $\bm g$ the gravitational acceleration. Otherwise all equations still hold referring to the system ``proper acceleration''. 
+
 In the TSID formalism, tasks $T^{rf}_{\bm f}$, $T^{lf}_{\bm f}$, $T^{rh}_{\bm f}$, $T^{lh}_{\bm f}$ can be solved solving \eqref{eq:torquesTSID}-\eqref{eq:dynTSID}-\eqref{eq:contactTSID} at the first stage of the hierarchy (i.e. with maximum priority). However, it is worth observing that the solution of \eqref{eq:torquesTSID}-\eqref{eq:dynTSID}-\eqref{eq:contactTSID} might be in conflict with the center of mass task $T^{com}_{\bm X}$ if it is specified in \eqref{eq:motionTSID} with lower priority with respect to the force task. Therefore, in order to enforce the compatibility of the tasks $T^{rf}_{\bm f}$, $T^{lf}_{\bm f}$, $T^{rh}_{\bm f}$, $T^{lh}_{\bm f}$ and $T^{com}_{\bm X}$, we pre-compute a  reference force $\bm f^*$ compatible with the reference center of mass acceleration $\bm x_{com}^*$. Even if we impose the above constraints on $\bm f^*$, we do not identify a unique solution. Additional constraints or requirements needs to be imposed in order to properly define $\bm f^*$. In order to simplify this ambiguity, the following problem can be solved when at state $S_i$:
 \begin{equation} \label{eq:minF}
-\bm f^* = \mbox{arg } \min_{\bm f} \| \bm f - \bm f_0 \|^2_W  \mbox{ s.t. } C_{S_i} \bm f^*= m \ddot {{\bm x}}^*_{com},
+\bm f^* = \mbox{arg } \min_{\bm f} \| \bm f - \bm f_0 \|^2_W  \mbox{ s.t. } C_{S_i} \bm f= m \ddot {{\bm x}}^*_{com},
 \end{equation}
 where $\| \cdot \|_W$ denotes a norm weighted with the matrix $W = W^\top >0$. The solution of this optimization is given by:
 \begin{equation} 
@@ -370,8 +372,13 @@ s.t. \quad M \ddot{\bm q} + h - J_c^T \bm f & = S^T \bm \tau \\
 \end{subequations}
 The solution of \eqref{eq:TSID2} has strong analogies with the solution of \eqref{eq:minF} and \eqref{eq:torquesTSID}-\eqref{eq:dynTSID}-\eqref{eq:contactTSID} but a complete analysis of the underlying similarities is out of the scope of the present report. 
 
-In order to avoid discontinuities in the desired forces to be tracked by the controller we should chose the trajectories ${{\bm f}}_{rh}^*(t)$, ${{\bm f}}_{lh}^*(t)$, ${{\bm f}}_{rf}^*(t)$, ${{\bm f}}_{lf}^*(t)$ so that at the moment of task switching the desired force equal the current one. In order to do so, we simply exploit the fact that at any time, measurements $\bm f$, $ \ddot {\bm x}_{com}$ should satisfy the equilibrium condition $C_{S_i} \bm f = m \ddot {\bm x}_{com}$. Therefore, at the switching instant $t_s$ we can simply solve \eqref{eq:minF} with $\bm f_0 = C_{S_i} \bm f (t_s) $ and $\ddot {\bm x}^*_{com} = \ddot {\bm x}_{com}(t_s)$ to obtain a solution $\bm f^* = \bm f (t_s)$. The values of $\ddot {\bm x}^*_{com}$ and $\bm f_0$ are then interpolated with a minimum jerk trajectory of arbitrary duration to the final desired value for the center of mass acceleration $\ddot {\bm x}^*_{com}$ and interaction forces ${{\bm f}}_{rh}^*$, ${{\bm f}}_{lh}^*$, ${{\bm f}}_{rf}^*$, ${{\bm f}}_{lf}^*$.
-
+In order to avoid discontinuities in the desired forces to be tracked by the controller we should chose the trajectories ${{\bm f}}_{rh}^*(t)$, ${{\bm f}}_{lh}^*(t)$, ${{\bm f}}_{rf}^*(t)$, ${{\bm f}}_{lf}^*(t)$ so that at the moment of task switching the desired force equal the current one. In order to do so, we simply exploit the fact that at any time, measurements $\bm f$, $ \ddot {\bm x}_{com}$ should satisfy the equilibrium condition $C_{S_i} \bm f = m \ddot {\bm x}_{com}$. Therefore, at the switching instant $t_s$ we can simply solve \eqref{eq:minF} with $\bm f_0 = C_{S_i} \bm f (t_s) $ and $\ddot {\bm x}^*_{com} = \ddot {\bm x}_{com}(t_s)$ to obtain a solution $\bm f^* = \bm f (t_s)$. The values of $\ddot {\bm x}^*_{com}$ and $\bm f_0$ are then obtained as described in Section \ref{sec:taskReferences} as the output of a $PID$ filter on the difference between desired trajectories $\ddot {\bm x}^d_{com} (t)$, $\bm f^d(t)$ and current values $\ddot {\bm x}_{com}$, $\bm f$. In particular, according the definitions that we gave in \eqref{eq:accRef} and \eqref{eq:fRef} the final reference for forces and accelerations will be:
+\begin{eqnarray*} 
+\ddot {\bm x}_{com}^* (t) &=& \ddot {\bm x}_{com}^d (t) + K_d^{com} \left( \dot {\bm x}_{com}^d (t) - \dot {\bm x}_{com}\right) + K_p^{com} \left( {\bm x}_{com}^d (t) - {\bm x}_{com}\right), \\
+{\bm f}_0 (t) & = & {\bm f}^d (t) + K_i^f \int_{t_s}^t \left( {\bm f}^d (\tau) - {\bm f} (\tau) \right) d \tau,\\
+\bm f^* & =&  m  C_{S_i, W}^\dagger \ddot {{\bm x}}_{com}^*+ (I - C_{S_i, W}^\dagger C_{S_i}) \bm f_0.
+\end{eqnarray*}
+At the switching instant $t_s$ we choose $\bm f^d = \bm f $, $\ddot {\bm x}^d_{com} = \ddot {\bm x}_{com}$, $\dot {\bm x}^d_{com} = \dot {\bm x}_{com}$, $ {\bm x}^d_{com} = {\bm x}_{com}$ so as to obtain $\bm f^* = \bm f$ (remeber that $\bm f$, $ \ddot {\bm x}_{com}$ are always compatible). Then we can choose $\bm f^d (t)$ and $\ddot {\bm x}^d_{com}(t)$ arbitrarily with the guarantee that the resulting $\bm f^*$ and $\ddot {\bm x}_{com}^*$ will always be dynamically consistent.
 
 \subsection{Task prioritization} \label{sec:taskPrioritization}
 
@@ -385,12 +392,62 @@ In the TSID framework, control tasks are executed with a lexicographic priority,
 \item $S_5$: $T^q \prec T^{com}_{\bm f} $.
 \end{itemize}
 
-\bibliographystyle{alpha}
+\subsection{Alternative controller formulation}
+The Task Space Inverse Dynamics (TSID) can be formulated in a fashion where the ordering of the tasks priorities can be based on soft priorities rather than on a strict lexicographic order. The control problem can still be written as an optimization problem under constraints and its resolution only requires one optimization level, independently from the number of tasks to be achieved. The work of Joseph Salini \cite{salini2012} at UPMC lays the foundation of this alternative formulation paradigm. Figure~\ref{fig:joseph} illustrates the principles of this formulation where a weight is associated to each task accordingly to its importance and can be modulated using a rule-based high level decision making process.\\
+
+\begin{figure*}
+\begin{center}
+\centering
+\includegraphics[width=0.8\textwidth]{images/global_architecture.pdf} 
+\caption{Global architecture of the soft hierarchy Task Space Inverse Dynamics control scheme developed at UPMC.}
+\label{fig:joseph}
+\end{center}
+\end{figure*}
+
+
+\begin{figure*}[!ht]
+\begin{center}
+\includegraphics[width=0.3\hsize]{images/s5.png}
+\includegraphics[width=0.3\hsize]{images/s6.png}
+\includegraphics[width=0.3\hsize]{images/s4.png}
+
+\includegraphics[width=0.3\hsize]{images/s3.png}
+\includegraphics[width=0.3\hsize]{images/s2.png}
+\includegraphics[width=0.3\hsize]{images/s1.png}
+\end{center}
+\caption{Screenshots of the validation scenario simulated in XDE.}
+\label{fig:xde}
+\end{figure*}
+
+\begin{figure*} [!ht]
+\begin{center}
+\includegraphics[width=0.9\hsize]{images/s12.png}
+\end{center}
+\caption{Tuning of the task priority parameters in XDE.}
+\label{fig:params}
+\end{figure*}
+
+
+While appealing, the work of J. Salini can not guarantee strict priorities between tasks. On the other hand, control approaches based on strict hierarchies induce discontinuities in the control input when modifying the ordering of the hierarchy and require to solve as many optimization problems as the number of tasks. In order to solve these issues and as a contribution to WP3, UPMC recently developed a controller named Generalized Smooth Hierarchical Control (GSHC) bridging the gap between strict and soft hierarchy Task Space Inverse Dynamics controllers. The GHSC algorithm, submitted to the IEEE Transaction on Robotics journal \cite{liu2013}, provides with a control framework such that:
+\begin{itemize}
+	\item it can handle multiple tasks with strict and soft priorities;
+	\item smooth and simultaneous rearrangements of multiple task priorities can be achieved easily (by the smooth variations of relevant bounded scalar values);
+	\item smooth insertion and deletion of tasks can be performed;
+	\item various constraints imposed by the robot body (joint limits, actuation capabilities...) and the environment (contacts to maintain, obstacles to avoid...) can be respected.
+\end{itemize}
+
+The first year demo described in this delievrable thus also benefits from this alternative controller. It is being intensively tested on a simulated iCub in the XDE simulator at UPMC before being transfered to IIT for an implementation on the real robot. The validation scenario is also being investigated (see Figure~\ref{fig:xde}) . For example, UPMC is testing how to smoothly sequence force and position tasks when contact is detected. UPMC also has developed a set of tools to rapidly prototype and test different behaviors of the robot by acting on tasks priority parameters (see Figure~\ref{fig:params}).
+
+\bibliographystyle{apalike}
 \bibliography{D5.1}
 
 \newpage \appendix
 
-\section{Center of pressure}
+\section{Center of pressure: $\bm {CoP}$}
+
+In this Appendix we recall some concepts that have been extensively discussed in the CoDyCo deliverable D2.1, where the main focus is on human motion analysis. Remarkably, concepts like center of pressure and (fictitious) zero moment point apply to both humans and robots thus representing a strong modeling analogy between the two fields of research. In general, all dynamic principles (Newton-Euler equation, energy, work, forces, torques, etc.) represent a abstraction layer that allows the CoDyCo consortium to have a common set of tools which can be independently applied to both humans and robots. 
+
+\subsection{$\bm{CoP}$ definition}
 
 In order to define the center of pressure it is first necessary to define the pressure. Pressure is a scalar quantity, defined as the amount of force acting perpendicularly per unit area. Let's assume that a set of distributed forces acts on a surface $\mathcal S$ and let $\bm s$ be a point on the surface, i.e. $\mathbf s \in \mathcal S$. Let's denote with $f_n(\mathbf s)$ the component of $f(\mathbf s)$ orthogonal to $\mathcal S$ in $\mathbf s$. Given $\mathbf s \in \mathcal S$, assuming an element $\Delta S(\mathbf s)$ of infinitesimal area centered in $\mathbf s$, let $f_n(\Delta S,\mathbf s)$ be the orthogonal force acting on $\Delta S(\mathbf s)$. The pressure $p$ in $\mathbf s$ is defined as:
 $$
@@ -421,7 +478,7 @@ $$
 \boldsymbol\mu_{n,CoP} = \left( \int_{\mathcal S} p(\mathbf s) \mathbf s_1 dS \right) \times \mathbf n  + \int_{\mathcal S} p(\mathbf s) \cdot \mathbf n dS \times \frac{\int_{\mathcal S} \mathbf s_1 \cdot p(\mathbf s) dS}{\int_{\mathcal S} p(\mathbf s) dS} = 0.
 $$}. Equivalently, we can say that the $CoP$ is the unique point $C \in \mathcal S$ on which  $\boldsymbol\mu_{C} = \boldsymbol\mu_{t,C}$, i.e. the total torque $\boldsymbol\mu_{C}$ is orthogonal to $\mathcal S$. It is here worth noticing that on flat surfaces the torque due to normal forces $\boldsymbol\mu_{t}$ is parallel to the plane normal $\mathbf n$ while the torque due to tangential forces $\boldsymbol\mu_{n}$ lies on the plane. 
 
-\subsection{Dynamic equilibrium and center of pressure}
+\subsection{$\bm {CoP}$ and dynamic equilibrium}
 
 The concept of center of pressure is often related to the concept of dynamic equilibrium for a free floating articulated body. Within the multiple point of views proposed in literature we primarily follow the one in \cite{sardain2004}. Therefore, we do not make any formal distinction between the concept of $CoP$ (center of pressure) and the concept of $ZMP$ (zero moment point) because, as it is clearly stated in \cite{sardain2004}, ``$CoP$ and the $ZMP$ are the same point. [$\dots$] This fact does not admit any discussion, it is true whatever the stability of the balance is, and in particular it is true when the walker is falling down, as long as a contact exists with the ground''. What might generate confusion is that Vukobratovi\'c, the author that introduced the concept of $ZMP$, also introduced the concept of fictitious $ZMP$ lately renamed computed zero moment point ($cZMP$, see chapter sixteen of the handbook of robotics \cite{handbook2008}). 
 
