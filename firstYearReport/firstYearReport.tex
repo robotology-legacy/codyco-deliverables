@@ -11,6 +11,7 @@
 \usepackage{url}
 \usepackage{array}
 \usepackage{color}
+\usepackage{longtable}
 %%
 
 %%insert here other packages needed by sections
@@ -143,13 +144,26 @@ First draft & date & description & author\\\hline
 
 \emph{\color{red}[Please provide a short overview of the project objectives for the reporting period in question, as included in Annex I of the Grant Agreement. These objectives are required so that this report is a stand-alone document.]}
 
+\begin{longtable}{|C{1.5cm}|C{1.5cm}|C{1.5cm}|C{2cm}|C{2cm}|C{2cm}|C{2cm}|}
+\cline{1-6}
+\footnotesize \textbf{Task}& \footnotesize \textbf{IIT}&\footnotesize \textbf{TUD}&\footnotesize \textbf{UPMC}& \footnotesize \textbf{JSI} &\footnotesize \textbf{UB} & \multicolumn{1}{l}{} \\ \hline
+\footnotesize WP1 &  8.5    &  1    &  3     & -   & -     & \textbf{7}  \\  \hline
+\footnotesize WP2 &  -        &  -     &  -       & 18 & 2.5 & \textbf{8}\\ \hline
+\footnotesize WP3 &  6.58 & 4.6  &  22    & -    & -     & \textbf{13}\\ \hline
+\footnotesize WP4 & -         & 8     &  3      & -   & -     & \textbf{12}\\ \hline
+\footnotesize WP5 & -         & -      &  0.3   & -    & -     & \textbf{12}\\ \hline
+\footnotesize WP6 & 2        & -      &  -        & -    & -     & \textbf{21}\\ \hline
+\footnotesize WP7 & 1        & -      &  -        & -    & -     & \textbf{21}\\ \hline
+\multicolumn{1}{l|}{}  & \textbf{26} & \textbf{26} & \textbf{26} & \textbf{23} & \textbf{24}  & \textbf{73} \\  \cline{2-7}
+\end{longtable}
+
 \subsubsection{WP1: toolbox for computing and controlling dynamics of whole-body movements with contacts (UB)}
 
 \emph{\color{red}[Please provide a short overview of the work package 1 objectives for the reporting period in question, as included in Annex I of the Grant Agreement. These objectives are required so that this report is a stand-alone document.]}
 
 \subsubsection{WP2: understanding and modelling human whole-body behaviours in physical interaction (JSI)}
 
-\emph{\color{red}[Please provide a short overview of the work package 2 objectives for the reporting period in question, as included in Annex I of the Grant Agreement. These objectives are required so that this report is a stand-alone document.]}
+There were three main objectives within WP2 for the first year of the project: (i) to thoroughly review and summarise the recent relevant literature on human postural control and whole body motion in contact with environment and/or human, and to define the protocols for experimental procedures, including obtaining ethics committee approval (Task 2.2), (ii) to work on designing of models for human whole body motion in contact where the aim was to form simplified models or high-level understanding of how additional supportive contacts affect human motor control strategies involved in balancing (Task 2.3), and (iii) to study the factors involved in human choice of contact utilization and to investigate how interaction through contacts can contribute to learning of whole body motor control (Task 2.3).
 
 \subsubsection{WP3: control and optimization of whole-body motion in contact (UPMC)}
 
@@ -157,7 +171,29 @@ The objectives of WP3 for the first year of the project are threefold. The first
 
 \subsubsection{WP4: adaptation, Generalization and Improvement of Compliant Control and Tasks with Contacts (TUD)}
 
-\emph{\color{red}[Please provide a short overview of the work package 4 objectives for the reporting period in question, as included in Annex I of the Grant Agreement. These objectives are required so that this report is a stand-alone document.]}
+The goal of WP4 is to endow the CoDyCo humanoid robot control architecture with the core abilities for the
+adaptation, generalization and self-improvement of both control laws and tasks that involve physical interaction
+with humans, and the environment. In this context, we propose learning approaches that work in conjunction
+with the control architecture devised in WP3 and rather complement analytical robotic approaches with on-policy
+learning than starting from scratch. A core idea behind this work package is that Learning should complement
+classical approaches and not supersede them.
+
+The first year objectives of WP4 include:
+\begin{itemize}
+ \item Fast regression methods that can deal with well structured input noise, such that physical models can
+be learned and adapted for tasks that involve many uncertain contacts. A particular focus will be given to
+prediction-based switching model.
+% \item Approaches for immediate reward-based control model learning with uncertain state will be devised to ensure
+% robust execution with online adaptation. Such approaches allow for learning operational space control laws with
+% multiple compliant contacts.
+% \item Novel methods for imitation and reinforcement learning of skills with contact will be devised and tested. These
+% methods are based on hierarchical relative entropy policy search approaches (Daniel et al., 2012) and will be
+% used both for learning tasks the local controllers of WP3.
+\item Learning how to combine elementary tasks by imitation and reinforcement learning. The combinations involved
+include the learned simultaneous use of elementary tasks, the sequential use as well as the co-articulation of
+tasks.
+\end{itemize}
+
 
 \subsubsection{WP5: systems integration, standardization and evaluation on the iCub robot (IIT)}
 
@@ -173,10 +209,6 @@ The first year management was primarily dedicated to the project starting. Among
 
 The main dissemination objectives for the CoDyCo first year were the creation of a CoDyCo database infrastructure, a CoDyCo project website and participation to dissemination events towards academia and industry. 
 
-\subsection{Follow-up of previous review (if applicable)}
-
-\emph{\color{red}[Please include a summary of the recommendations from the previous reviews (if any) and indicate how these have been taken into account.]}
-
 \section{Work progress and achievements during the period}
 
 \subsection{Progress overview and contribution to the research field}
@@ -189,11 +221,16 @@ The main dissemination objectives for the CoDyCo first year were the creation of
 
 \subsubsection{WP2: understanding and modelling human whole-body behaviours in physical interaction (JSI)}
 
-\emph{\color{red}[Please provide a concise overview of the progress of the work and situate the main achievements in the context of the research field, including a comparative assessment with the current state of the art.]}
+After the first year of project, all planed objectives have been reached and one experimental modification has been implemented.
+
+A thorough review was created with summary of the recent literature on human postural control and whole body motion in contact with environment. It includes relevant publications up to date and reviews the methods for evaluation of postural stability of bipedal systems beyond available reviews \cite{Mergner2007, Azevedo2007}. The review provides a solid bridge in methodologies and terminologies used by the project partners from multi-disciplinary backgrounds. Based on the overall objectives of the project and the specific objectives of WP2, experimental setup was created and procedures were defined. We obtained ethics committee approval for all project related human experiments (approved by National Medical Ethics Committee of Republic of Slovenia, reference number 112/06/13).
+
+We performed an experimental study and examined functional role of supportive hand contact at different locations where balance of an individual was perturbed by translational perturbations of the support surface. We examined the effects of handle location, perturbation direction and perturbation intensity on the postural control and the forces generated in the handle. We found that an additional supportive hand contact significantly reduced the maximal displacement of the subject's centre of pressure (CoP) regardless of the position of the handle, direction of the perturbation and its intensity. This is in agreement with the accepted belief that an additional hand contact with support in general reduces the destabilizing effect of balance perturbation \cite{Maki1997, Bateni2005, Maki2006, Wing2011}. On the other hand, the position of the handle had no effects on the maximal CoP displacement. This supports the idea that maintaining postural stability is the task of the highest priority and that the central nervous system does whatever necessary to keep the body balanced \cite{Winter1995}. Our findings are in contrast with the recent findings of Sarraf et al. \cite{Sarraf2014}. We submitted a manuscript explaining the results of our study to Gait \& Posture Journal. The manuscript is under review after minor revision and is expected to be published by the end of 2014 \cite{Babic2014}.
+
+Most of the human studies that examine postural control \cite{Horak1986, Henry1998, Dimitrova2004} (including our above mentioned study) utilize one-time support perturbations that unpredictably perturb the balance of an individual. During our experiments we noticed that human subjects reacted to all such perturbations regardless of how small or slow the perturbation was or what was the initial acceleration of the perturbation. Our conclusion was that these reactions are essentially protective reactions that do not necessarily have counterbalancing effects \cite{McIlroy1995, Corbeil2013}. Such reactions mask the real factors involved in human choice of contact utilization. We therefore altered the perturbation methods for our further experiments and designed continuous perturbations in a frequency band that corresponds with typical human motion during postural control \cite{Nawayseh2006}.
+
 
 \subsubsection{WP3: control and optimization of whole-body motion in contact (UPMC)}
-
-\emph{\color{red}[Please provide a concise overview of the progress of the work and situate the main achievements in the context of the research field, including a comparative assessment with the current state of the art.]}
 
 After one year of project, the level of achievement of the objectives in WP3 meets the expectations.
 
@@ -205,7 +242,17 @@ Regarding the exploration of the potential ways of coupling the local, reactive 
 
 \subsubsection{WP4: adaptation, generalization and improvement of compliant control and tasks with contacts (TUD)}
 
-\emph{\color{red}[Please provide a concise overview of the progress of the work and situate the main achievements in the context of the research field, including a comparative assessment with the current state of the art.]}
+The goal of WP4 is to endow the CoDyCo
+humanoid robot control architecture with the
+core abilities for the adaptation, generalization
+and self-improvement of both control laws and
+tasks that involve physical interaction with
+humans, and the environment.
+During the first year, developed a novel 
+probabilistic movement primitive representation that
+can be used for imitation learning and for superimposing multiple motor tasks. 
+TUD also started to investigate to predict the partner's behavior in 
+human robot interaction scenarios. 
 
 \subsubsection{WP5: systems integration, standardization and evaluation on the iCub robot (IIT)}
 
@@ -220,6 +267,35 @@ The CoDyCo project started successfully. Management activities included the defi
 Within WP7, CoDyCo first year achievement include: dissemination at relevant academic and industrial events; realization of a CoDyCo experiment database to disseminate robot and humans datasets. 
 
 \subsection{Work package 1 progress}
+
+\subsubsection{System dynamics estimation software. Extension to
+environmental compliance estimation (T1.4)}
+
+During year one, TUD started to investigate the learning of dynamic models with
+discontinuities. A new Gaussian process (GP) model was developed
+that is explicitly designed to deal with non-linearities
+induced through contacts with the environment. An example of such non-linearities 
+and the approximated model reconstruction is shown in Figure \ref{fig:example_discontinuities}.
+We called the developed supervised learning method manifold GP (mGP), as it 
+jointly learns a transformation of the data into a feature space, and a GP regression 
+ from the feature space to observed space. In future work, this promising approach 
+ will be applied to motor skill learning task on the iCub with multiple contacts. 
+ A preprint of this work was published this year [Calandra, R. and Peters, J. and Rasmussen, C. and Deisenroth,
+M., 2014].
+
+\begin{figure}
+\centering
+\includegraphics[width=0.7\textwidth]{./images/AAAI2014_0.pdf}
+%\label{fig:subfig2}
+ \caption{Illustration of a discontinuous function (black dots) that is approximated by three 
+ model learning approaches. Classical Gaussian process regression methods (GP SE-ARD, and GP NN) 
+ poorly reconstruct this function as they average over the ``jump'', which results in a high model variance. 
+ TUD, however, demonstrated that by jointly learning a transformation of the data into a feature space, 
+ and a GP regression model from the feature space to observed space, the non-linear function 
+ can be reconstructed without large reconstruction errors. 
+}
+\label{fig:example_discontinuities}
+\end{figure}
 
 \subsubsection{Simulator for whole-body motion with contacts (T1.2)}
 
@@ -243,16 +319,55 @@ During year one, UPMC has led several activities related to the simulation of wh
 
 \subsection{Work package 2 progress}
 
-\emph{\color{red}[For work package 2 (JSI) provide the following information:]}
+\subsubsection{Definition and design of experimental protocols (T2.1)}
 
-\begin{itemize}
-\item[-] \emph{\color{red}[A summary of progress towards objectives and details for each task;]}
-\item[-] \emph{\color{red}[Highlight clearly significant results;]}
-\item[-] \emph{\color{red}[If applicable, explain the reasons for deviations from Annex I and their impact on other tasks as well as on available resources and planning;]}
-\item[-] \emph{\color{red}[If applicable, explain the reasons for failing to achieve critical objectives and/or not being on schedule and explain the impact on other tasks as well as on available resources and planning (the explanations should be consistent with the declaration by the project coordinator) ;]}
-\item[-] \emph{\color{red}[a statement on the use of resources, in particular highlighting and explaining deviations between actual and planned  person-months per work package and per beneficiary in Annex 1 (Description of Work);]}
-\item[-] \emph{\color{red}[If applicable, propose corrective actions.]}
-\end{itemize}
+The aim of the work in this task was to provide a solid multidisciplinary base for future research work within CoDyCo. We made a thorough review and summary of the recent relevant literature on human postural control and whole body motion in contact with environment (Delivery 2.1). The review examines postural control strategies without and with additional support contacts, types of perturbations that are commonly used to study neuromuscular functions involved in postural control and reviews the methods for stability evaluation of bipedal systems. The review is concluded with examination of stability metrics that can be applied for non-planar contacts. We plan to extend the review with methods of determination of inertial parameters of human/robot body and submit it for publication in a robotic journal by the end of 2014.
+
+At JSI, we created an experimental setup to study human postural control and whole body motion in contact with environment. We implemented two state-of-the-art methods for perturbation of balance as shown on Figure \ref{fig:exp_protocol_W2} that will allow us to gain understanding how human brain deals with environment in the sense of supportive contacts. Using the same setup we can also validate all biomechanical findings on robotic systems by simply substituting the human subject with a robot. Besides, work has been undertaken to setup experiments also at UB. New equipment (the Moog Hapticmaster robot) was acquired and configured at both JSI and UB. Hapticmaster robot will be used in experiments with compliant and unpredictable contacts.
+
+\begin{figure}
+\centering
+\includegraphics[width=0.8\hsize]{images/exp_setup_WP2.png}
+\caption{Experimental setup to study human postural control and whole body motion in contact with environment. Front and back waist-pull motors together with the two force sensors located at the subject's waist allow real-time force perturbations of the subject while the Stewart platform can perturb the balance by either translational or rotational motion (or a combination of both) of the support surface. Force plates are used in combination with kinematical and electromiographical measurements (not on the figure) to study the adaptation of subjects to the given perturbations.}
+\label{fig:exp_protocol_W2}
+\end{figure}
+
+\subsubsection{Design of models for human whole body motion in contact (T2.2)}
+
+Work has begun on understanding how to derive simplified models of whole-body balance that will encapsulate the task relevant parameters of posture control with multiple contacts. By emulating situations when balance of an individual is challenged, we examined functional role of supportive hand contact at different locations where balance of an individual was perturbed by translational perturbations of the support surface. The experimental methods rested upon our work in Task 2.1 and are depicted on the left side of Figure \ref{fig:exp_paper_W2}.
+
+\begin{figure}
+\centering
+\includegraphics[width=0.8\hsize]{images/exp1_JSI.png}
+\caption{Examining functional role of supportive hand contact. The subjects were standing on a force plate mounted on top of the Stewart platform that generated translational perturbations. the subjects were holding the handle with a built-in force sensor in four different positions. Major results of the study are shown on the two diagrams on the right side.}
+\label{fig:exp_paper_W2}
+\end{figure}
+
+We found that an additional supportive hand contact significantly reduced the maximal displacement of the subject's centre of pressure (CoP) regardless of the position of the handle and the type of the perturbation. On the other hand, the position of the handle had no effects on the maximal CoP displacement (top right diagram on Figure \ref{fig:exp_paper_W2}) which is against the previous belief that the quality of postural control depend on the location of the hand contact \cite{Sarraf2014} and supports the idea that maintaining postural stability is the task of the highest priority and that the central nervous system does whatever necessary to keep the body balanced \cite{Winter1995}. Specifically, subjects always generated the required hand force, no matter where the location of the handle was, to keep the body balanced to the same extent. To get a better understanding of the functional role of supportive hand contacts, we examined the handle forces exerted by the subjects during the perturbation. In contrast with the effects on CoP, we found significant effects of perturbation direction, perturbation intensity and handle position on the maximal force in the handle (bottom right diagram on Figure \ref{fig:exp_paper_W2}). A manuscript with the results of the work in T2.2 was submitted for publication in Gait \& Posture journal in December 2013 and is under review \cite{Babic2014}.
+
+To properly model all these findings we developed a reduced dimensional (6-link, planar) model of a humanoid to be used as an inverse dynamics model for computing joint torques from human experimental data. The detailed analyses based on this model are under way at JSI and UB.
+
+A major challenge of this task is understanding how to determine and measure stability when a human or humanoid robot is in a multi contact situation. The state-of-the-art in postural stability uses traditional metrics such as centre of pressure or zero moment point. However these planar metrics do not apply when there are multiple non-planar contacts. In addition to reviewing the current literature (Task 2.1), we have begun development of new methods for measuring stability margins when a human or humanoid robot has multiple non-planar contacts.
+
+\subsubsection{Human contact choice and learning through physical interaction (T2.4)}
+
+In order to understand how humans make contact choice decisions (e.g. whether or not to initiate a hand contact, and where to place the hand), we need an estimation of joint torques as well as a metric of stability in various multi-contact situations. Thus the work we have begun in Task 2.2 in terms of both simplified models of postural control and metrics of stability, also apply for Task 2.4.
+
+To understand the factors involved in human choice of contact utilization, we performed a series of experiments where the subjects were standing still with arms hanging freely at the sides. The parallel platform induced a randomly timed series of perturbations of different accelerations, velocities and displacements. The aim of the experiments was to investigate what profile of support perturbation forces the human to make a supportive hand contact with environment and how human chooses the location of the hand contact with regard to the direction of the perturbation. Interestingly, we found that the subjects reacted to every perturbation no matter how small or slow the perturbation was or what was the initial acceleration of the perturbation. The reactions were manifested as muscle twitches of shoulder or as unspecific arm motions that were unrelated to the proximity of possible support objects. The reactions occurred also at the smallest perturbations when no actual correction of balance was needed. Our experiments showed that these reactions are essentially protective reactions rather than reactions that have counterbalancing effects \cite{McIlroy1995, Corbeil2013}.
+
+These reactions mask the real factors involved in human choice of contact utilization. We therefore altered the perturbation methods for our further experiments and designed continuous random perturbations in a frequency band that corresponds with typical human motion during postural control \cite{Nawayseh2006}. By doing so we excluded the effect of surprise that evoked the reflex reactions of humans. This will hopefully allow us to uncover the factors involved in human choice of contact utilization.
+
+\subsubsection{Resources}
+Overall, the use of resources within WP2 was in accordance to the plans. There was a slight increase in the amount of PM for JSI due to the fact that we could not find a suitable Post-doc but hired a PhD student instead.
+
+\begin{center}
+\begin{tabular}{|l|l|l|l|l}
+\cline{1-4}
+ & Planned PM for year 1 & Actual PM & Comment & \\ \cline{1-4}
+JSI & 18 & 12 &  &  \\ \cline{1-4}
+UB & 2.5 & ? &  &  \\ \cline{1-4}
+\end{tabular}
+\end{center}
 
 \subsection{Work package 3 progress}
 
@@ -261,7 +376,7 @@ The progress for each task are described hereafter.
 \subsubsection{Reproducing existing control results in a simple case (T3.1)}
 During year one, UPMC has achieved task T3.1 by creating a stand-alone C++ library encapsulating the whole-body controller developed in \cite{salini2012} so that it can be used by all partners in simulation or on (any) real humanoid robot. This version of the controller has been tested in rigid multi-contact scenarios in simulation (see Fig.~\ref{fig:xde}) and is currently adapted for tests on the iCub robot.
 
-\begin{figure*}[!ht]
+\begin{figure*}
 \begin{center}
 \includegraphics[width=0.3\hsize]{images/s5.png}
 \includegraphics[width=0.3\hsize]{images/s6.png}
@@ -304,7 +419,7 @@ In the meantime, TUD investigated the interchange of forces during cooperative t
     
 \begin{figure}[!ht]
 \centering
-\includegraphics[width=\textwidth]{./pics_tud/interaction_wp3.png}
+\includegraphics[width=\textwidth]{./images/interaction_wp3.png}
 %\label{fig:subfig2}
  \caption{Illustration of three human robot interaction tasks, where an exchange of forces takes place investigated by TUD during year one.
 }
@@ -343,19 +458,85 @@ JSI & 1 & 0 &  &  \\ \cline{1-4}
 
 \subsubsection{Generalizing and Improving Elementary Tasks with Contacts (T4.3)}
 
+In this task, we aim to generate new skills from data, where elementary skills 
+are acquired by imitation learning and transferred to novel situations using 
+dynamic systems. During year one, TUD developed a novel representation of 
+movement primitives that can be used for imitation learning from noisy observations.
+Uncertainty of observed trajectories is explicitely modeled and used to generate new skills.
+This movement representation has state-of-the-art capabilities in generalization, 
+coupling between the degrees of freedom of the robot, and moreover, 
+a time varying feedback controller can be derived in closed form. 
+These features are partially illustrated in Figure \ref{fig:promps}.
+This work was published
+last year at the highly competitive conference on neural information processing (NIPS) 
+[Paraschos, A. and  Daniel, C. and  Peters, J. and Neumann, G, 2013].
+
+\begin{figure}[!ht]
+\centering
+\includegraphics[width=\textwidth]{./images/ProMPs.png}
+%\label{fig:subfig2}
+ \caption{(a)
+Conditioning on different target states. The blue shaded area represents the learned
+trajectory distribution. We condition on different target positions, indicated by the ‘x’-markers. The
+produced trajectories exactly reach the desired targets while keeping the shape of the demonstrations.
+(b)
+Combination of two ProMPs. The trajectory distributions are indicated by the blue and red
+shaded areas. Both primitives have to reach via-points at different points in time, indicated by
+the ‘x’-markers. We co-activate both primitives with the same activation factor. The trajectory
+distribution generated by the resulting feedback controller now goes through all four via-points.
+(c)
+Blending of two ProMPs. We smoothly blend from the red primitive to the blue primitive. The
+activation factors are shown in the bottom. The resulting movement (green) first follows the red
+primitive and, subsequently, switches to following the blue primitive.
+}
+\label{fig:promps}
+\end{figure}
+
+In another work, published at the international conference on humanoid robots (HUMANOIDS), 
+TUD demonstrated that this probabilistic approach for trajectory generation
+has superior performance against deterministic policies. The use of
+probability distributions over the trajectories increased significantly
+ the generalization properties, which was evaluated on a high dimensional table
+tennis scenario [Paraschos, A. and  Neumann, G and  Peters, J., 2013]. 
+In the future work, we plan to incorporate external torque signals to initiate, 
+maintain, and terminate contacts.
+
+TUD also investigated how to learn human robot interaction through imitation. We presented a new approach to robot learning that allows anthropomorphic robots to learn a library of interaction skills from demonstration [H Ben Amor, D Vogt, M Ewerton, E Berger, B Jung and J Peters, 2014]. Traditional approaches to modeling interactions assume a pre-specified symbolic representation of the available actions. For example, they model interactions
+in terms of commands such as \emph{wait}, \emph{pick-up}, and \emph{place}. Instead of such a top-down approach, we focused on learning responsive behavior in a bottom-up fashion using a trajectory based approach. The key idea behind our approach is that the observation of human-human collaborations can provide rich information specifying how and when to interact
+in a particular situation. For example, by observing how two human workmen collaborate on lifting a heavy box, a robot could use machine learning algorithms to extract an
+interaction model that specifies the states, movements, and situational responses of the involved parties. In turn, such a model can be used by the robot to assist in a similar lifting task. Our approach is as an extension of imitation learning to multi-agent scenarios, in which the behavior and the mutual interplay between two agents is imitated
+
+\begin{figure}[!ht]
+\centering
+\includegraphics[width=\textwidth]{./images/newoverview.png}
+%\label{fig:subfig2}
+ \caption{Illustration of the developed interaction primitives that allows to infer the behavior of the interacting partner.
+}
+\label{fig:interaction_primitives}
+\end{figure}
+
+We further extended the above approach by introducing \emph{Interaction Primitives} in [Ben Amor, H.; Neumann, G.; Kamthe, S.; Kroemer, O.; Peters, J., 2014]. Interaction primitives build on the framework of dynamic motor primitives (DMPs) by maintaining a distribution over the parameters of the DMP. With this distribution, we can learn the inherent correlations of cooperative activities which allow us to infer the behavior of the partner and to participate in the cooperation. A conceptual overview is sketched in Figure \ref{fig:interaction_primitives}. A learned Interaction Primitive can be used by a robot to (1) predict the human's next action in the current context, (2) identify the optimal response, (3) synchronize the movement with the human partner.
+
 In the meantime, demonstration-based learning of "optimal trajectories" and stable controllers has been addressed by UPMC, in particular in \cite{stulp2013} where a general, flexible, and compact representation of parameterizable skills is proposed. This work generalizes the standard Dynamic Motor Primitive formulation in \cite{ijspeert2013} and proposes a novel DMP formulation for parametrized skills, based on additionally passing task parameters to the DMP function approximator. This generalizes previous approaches, in particular those which train and execute parametrized skills with two separate regressions. Learning the function approximator with one regression in the full space of phase and tasks parameters allows for more compact models, and the flexible use of different function approximator implementations such as LWPR and GPR, as we demonstrated on the Meka and iCub humanoids robots.
 
 
-\emph{\color{red}[For work package 4 (TUD) provide the following information:]}
+\subsubsection{Resources}
 
-\begin{itemize}
-\item[-] \emph{\color{red}[A summary of progress towards objectives and details for each task;]}
-\item[-] \emph{\color{red}[Highlight clearly significant results;]}
-\item[-] \emph{\color{red}[If applicable, explain the reasons for deviations from Annex I and their impact on other tasks as well as on available resources and planning;]}
-\item[-] \emph{\color{red}[If applicable, explain the reasons for failing to achieve critical objectives and/or not being on schedule and explain the impact on other tasks as well as on available resources and planning (the explanations should be consistent with the declaration by the project coordinator) ;]}
-\item[-] \emph{\color{red}[a statement on the use of resources, in particular highlighting and explaining deviations between actual and planned  person-months per work package and per beneficiary in Annex 1 (Description of Work);]}
-\item[-] \emph{\color{red}[If applicable, propose corrective actions.]}
-\end{itemize}
+\begin{center}
+\begin{tabular}{|l|l|l|l|l}
+\cline{1-4}
+ & Planned PM & Actual PM & Comment & \\ \cline{1-4}
+IIT & 9.3 &  &  &  \\ \cline{1-4}
+TUD & 10.4 & 8 &  &  \\ \cline{1-4}
+UPMC & 5 &  &  &  \\ \cline{1-4}
+UB & 3 &  &  &  \\ \cline{1-4}
+JSI & 2.5 &  &  &  \\ \cline{1-4}
+\end{tabular}
+\end{center}
+
+\subsubsection{Deviations from workplan} 
+
+No significant deviations. 
 
 \subsection{Work package 5 progress}
 
@@ -387,7 +568,7 @@ Resources were used as expected.
 \cline{1-4}
  & Planned PM for year 1 & Actual PM & Comment & \\ \cline{1-4}
 IIT & 12 & 12 &  &  \\ \cline{1-4}
-UPMC & 1 & ? &  &  \\ \cline{1-4}
+UPMC & 1 & 0.33 &  &  \\ \cline{1-4}
 \end{tabular}
 \end{center}
 
@@ -410,7 +591,7 @@ Resources were used as follows.
 \begin{tabular}{|l|l|l|l|l}
 \cline{1-4}
  & Planned PM for year 1 & Actual PM & Comment & \\ \cline{1-4}
-IIT        & ? & ? &  &  \\ \cline{1-4}
+IIT        & 1 & 1 &  &  \\ \cline{1-4}
 TUD    & ? & ? &  &  \\ \cline{1-4}
 UPMC & ? & ? &  &  \\ \cline{1-4}
 JSI       & ? & ? &  &  \\ \cline{1-4}
@@ -455,7 +636,7 @@ Resources were used as follows.
 \begin{tabular}{|l|l|l|l|l}
 \cline{1-4}
  & Planned PM for year 1 & Actual PM & Comment & \\ \cline{1-4}
-IIT        & ? & ? &  &  \\ \cline{1-4}
+IIT        & 1 & 1 &  &  \\ \cline{1-4}
 TUD    & ? & ? &  &  \\ \cline{1-4}
 UPMC & ? & ? &  &  \\ \cline{1-4}
 JSI       & ? & ? &  &  \\ \cline{1-4}
@@ -474,7 +655,7 @@ UB       & ? & ? &  &  \\ \cline{1-4}
 
 \bibliographystyle{IEEEtran}
 % \bibliography{IEEEabrv,yearReport_WP3,all-ias-publications}
-\bibliography{firstYearReport_WP3}
+\bibliography{firstYearReport_WP3,firstYearReport_WP2}
 
 \end{document}
 
