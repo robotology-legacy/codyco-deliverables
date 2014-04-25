@@ -142,7 +142,7 @@ First draft & date & description & author\\\hline
 
 \subsection{Overview}
 
-\emph{\color{red}[Please provide a short overview of the project objectives for the reporting period in question, as included in Annex I of the Grant Agreement. These objectives are required so that this report is a stand-alone document.]}
+The specificity of CoDyCo relies on the fact that the progress beyond the state of the art is guided by the yearly implementation on the iCub humanoid. Within this context, iCub is a peculiar platform being the only humanoid integrating whole-body distributed force and tactile sensors. In this sense CoDyCo first year specific objectives were to design and implement the control of whole-body posture with multiple contacts. Other long term objectives involve setting up the necessary infrastructure (human experimental protocols, software infrastructure, learning and control specifications) for structuring the activities in the following years. 
 
 \begin{longtable}{|C{1.5cm}|C{1.5cm}|C{1.5cm}|C{2cm}|C{2cm}|C{2cm}|C{2cm}|}
 \cline{1-6}
@@ -159,7 +159,7 @@ First draft & date & description & author\\\hline
 
 \subsubsection{WP1: toolbox for computing and controlling dynamics of whole-body movements with contacts (UB)}
 
-\emph{\color{red}[Please provide a short overview of the work package 1 objectives for the reporting period in question, as included in Annex I of the Grant Agreement. These objectives are required so that this report is a stand-alone document.]}
+The overall goal of this work package is to develop software libraries and software modules to be used as toolbox by the entire project consortium. The expected outcomes for year 1 were for the consortium to agree on the architectures, interfaces, and modules necessary for the creation of a shared software toolbox, to fit both individual task requirements and the overall CoDyCo project objectives.  Additionally, at the end of year 1, an enhanced iCub simulator for whole-body contact simulation is to be released as part of deliverable D1.1.
 
 \subsubsection{WP2: understanding and modelling human whole-body behaviours in physical interaction (JSI)}
 
@@ -213,12 +213,39 @@ The main dissemination objectives for the CoDyCo first year were the creation of
 
 \subsection{Progress overview and contribution to the research field}
 
-\emph{\color{red}[Please provide a concise overview of the progress of the work and situate the main achievements in the context of the research field, including a comparative assessment with the current state of the art.]}
+All the CoDyCo first year objectives have been attained. Here is a list of the CoDyCo first year achievements. 
+\begin{itemize}
+
+\item Design and implementation of an open-source simulator environment for the iCub and digital human whole-body motion simulation. After a consortium shared effort, it was decided to adopt Gazebo \url{http://gazebosim.org} as a basis for the simulator. This solution was chosen on the basis of a public survey \url{http://arxiv.org/abs/1402.7050} and on the results of a discussion conducted in Paris during a little workshop organized at ISIR.
+
+\item Design and implementation of a whole-body software abstraction layer \url{https://github.com/robotology/codyco/tree/master/src/libraries/wholeBodyInterface} which represents the backbone of the CoDyCo software architecture, interface and module structure.
+
+\item Design and definition of human experimental protocols and simplified models for whole-body motion with multiple contacts. After an extensive literature review (D2.1), JSI conducted preliminary studies on examining functional role of supportive hand contact while balancing.
+
+\item Design and test of state of the art control strategies for whole-body motion with multiple contacts. Realization of a solver for the whole-body reactive control that provides an expressive and rich description of the control problem as well as an efficient way of solving it. Implementation of the results in a whole-body control validation scenario in presence of multiple contacts. 
+
+\item Preliminary studies on learning methods suitable for tasks that involve many uncertain contacts. Design of fast regression methods that can deal with well structured input noise. Methods for learning how to combine elementary control tasks.
+
+\end{itemize}
 
 \subsubsection{WP1: toolbox for computing and controlling dynamics of whole-body movements with contacts (UB)}
 
-\emph{\color{red}[Please provide a concise overview of the progress of the work and situate the main achievements in the context of the research field, including a comparative assessment with the current state of the art.]}
+WP1 objectives were achieved for the first year. In summary, the main accomplishments and impacts for the research community are as follows: 
 
+\begin{itemize}
+
+\item A survey of over 100 robotics researchers worldwide was conducted on use of simulator tools.  To date, there has been no such objective evaluation of the various simulation packages available for conducting robotics research. The output of such a survey will help researchers determine the best tool for their application and thus, is of great value to the community.  A report of survey results was released as part of deliverable D1.1 and was submitted for journal publication. 
+
+\item A new iCub simulator to cope with multi-contact dynamics has been released. The new simulator can now interface with Gazebo, a widely used and actively developed simulation engine. The simulator has been documented as part of deliverable D1.1
+
+\item A tool for automatic generation of URDF models of digital humans has been developed. As URDF is a standardized format for representing articulated rigid bodies, researchers  now have ease to create human kinematic and dynamic models for simulation and analysis. Documentation of the tool was released as part of D1.1. 
+
+\item New methods for whole-body dynamics estimation have been developed, and submitted for publication. 
+
+\item A new Gaussian process (GP) model was developed that is explicitly designed to deal with non-linearities induced through contacts with the environment. This work was submitted for publication. 
+ 
+ \end{itemize}
+ 
 \subsubsection{WP2: understanding and modelling human whole-body behaviours in physical interaction (JSI)}
 
 After the first year of project, all planed objectives have been reached and one experimental modification has been implemented.
@@ -268,10 +295,46 @@ Within WP7, CoDyCo first year achievement include: dissemination at relevant aca
 
 \subsection{Work package 1 progress}
 
+\subsubsection{Software architecture design and evaluation of available open-source software pertinent to the scope of the project. (T1.1)}
+
+The explicit goal of T1.1 is for the consortium to agree on a specific software architecture with associated software tools whose specifications, dependencies and interconnections meet the requirements and needs for achieving the goals of the project.  To this end, the consortium met on 5th June 2013 at UPMC to discuss and agree on software interfaces, modules and architectures. The main outcomes from this meeting were: 
+\begin{itemize}
+\item IIT to develop plugins for Gazebo to interface with YARP. Gazebo chosen to be a replacement physics core for the iCubsim (see T1.2). 
+\item UPMC to develop software using Orocos/XDE for whole body control and define generic interfaces for controllers, models, sensors, and actuation allowing for the communication of a C++ Orocos-based controller component with a robot using YARP or a YARP/Gazebo-based simulator.
+\item  The consortium agreed on URDF as a unified modeling structure for defining and sharing descriptions of robots and human models. URDF is a standard XML format for representing the kinematic and dynamic description of a branched structure of articulated rigid bodies. 
+\end{itemize}
+The software architectural designs and specifications are to be documented as part of D1.2 and released at the end of year 2. 
+
+\subsubsection{Simulator for whole-body motion with contacts (T1.2)}
+
+The CoDyCo project requires a modular, component-based dynamics simulation software providing numerically stable, computationally efficient and physically consistent simulations of whole-body virtual human(oid) systems in contact with rigid or soft environments. To this end, in year one, a new iCub simulator has been released and documented as part of deliverable D1.1. In summary: 
+
+\begin{itemize}
+\item The previously existing iCub simulator needed an upgrade for more advanced applications including the multi-contact dynamics required for the CoDyCo project. The goal was to replace the physics core from ODE (Open Dynamics Engine) to one more suitable for articulated rigid body structures commonly used in robotics. To this end, Gazebo and XDE were chosen and evaluated as physics cores for the new iCub simulator. 
+
+\item Partner UPMC led a survey of existing simulators for robotics\footnote{http://arxiv.org/abs/1402.7050}. In total 119 international robotics researchers responded to the survey.  
+
+\item IIT contributed in CoDyCo with a joint activity with two other EU projects: Koroibot and WALK-MAN. The result of this collaboration is the development of a Gazebo plugin for exposing a YARP interface to the simulator. The plugin has been released with an open-source license and it is available on github (\url{https://github.com/robotology/gazebo_yarp_plugins}). At the moment of writing the current report, the plugin can be instantiated to control both COMAN (\url{https://github.com/EnricoMingo/iit-coman-ros-pkg}) and iCub (\url{https://github.com/robotology-playground/icub_gazebo}). This activity is related to a preliminary workshop publication \cite{Mingo2014}. 
+
+\item Partner UPMC conducted a comparison between the XDE and Gazebo iCub simulators and a real iCub performing a leg free-falling task. In summary, in terms of predicted simulated outcomes, XDE and Gazebo are nearly numerically identical. However, both suffer with respect to accuracy, as the viscous friction models used are not able to accurately model the actual joint friction in the iCub. In conclusion, work in T1.4 (as well as WP3 and WP4) will need to address the issue of accurate friction modeling and estimation.
+
+\item In order to provide a way to generate URDF models of digital mannequins independently from a specific simulator, JSI has developed a software for generating instances of a parametrized digital human (similar to the one present in XDE) as well as to edit the detailed parameters of an existing instance.  The new digital human URDF file generator is detailed in D1.1.
+\end{itemize}
+
+\subsubsection{Control library for flexible specification of task space dynamics of floating base manipulators. (T1.3)}
+
+During the first year both IIT and UPMC contributed to the development of several software components for controlling the iCub whole-body behavior. The software has been structured around an abstraction layer called wholeBodyInterface, described in details within T3.2. This C++ abstraction layer is already used in a set of whole-body controllers implemented in simulink and available on github at the following address: \url{https://github.com/robotology/codyco/tree/master/src/simulink/controllers}. Within this context simulink is currently adopted as a fast designing tool for testing several controllers whose final implementation is foreseen in C++. Similarly, UPMC has started adopting the wholeBodyInterface within their own
+controller framework based on XDE and ORCISI. Preliminary results are available here: \url{https://github.com/robotology/codyco/tree/master/src/tests}. 
+
 \subsubsection{System dynamics estimation software. Extension to
 environmental compliance estimation (T1.4)}
 
-During year one, TUD started to investigate the learning of dynamic models with
+The goal of this task is to develop a software tool for on-line estimation of whole-body dynamics of the robot, as well as the compliance of contacts established between the robot and the environment. 
+
+\begin{itemize}
+\item Within T1.4, IIT contributed with two activities in year 1: developing a library for whole-body dynamics estimation and starting the activity of compliance estimation. Details of these activities can be found primarily in the associated scientific publications \cite{Traversaro2013, Traversaro2014, Fiorio2014}.
+
+\item Also during year one, TUD started to investigate the learning of dynamic models with
 discontinuities. A new Gaussian process (GP) model was developed
 that is explicitly designed to deal with non-linearities
 induced through contacts with the environment. An example of such non-linearities 
@@ -280,8 +343,10 @@ We called the developed supervised learning method manifold GP (mGP), as it
 jointly learns a transformation of the data into a feature space, and a GP regression 
  from the feature space to observed space. In future work, this promising approach 
  will be applied to motor skill learning task on the iCub with multiple contacts. 
- A preprint of this work was published this year [Calandra, R. and Peters, J. and Rasmussen, C. and Deisenroth,
+ A preprint of this work 
+ was published this year [Calandra, R. and Peters, J. and Rasmussen, C. and Deisenroth,
 M., 2014].
+\end{itemize}
 
 \begin{figure}
 \centering
@@ -297,25 +362,9 @@ M., 2014].
 \label{fig:example_discontinuities}
 \end{figure}
 
-\subsubsection{Simulator for whole-body motion with contacts (T1.2)}
+\subsubsection{Extension and enhancement of the iDyn library. (T1.5)}
 
-During year one, UPMC has led several activities related to the simulation of whole-body motion with contacts. These activities are described in deliverable 1.1 and can be summarized as follows:
-\begin{itemize}
-	\item definition of the requirements for the simulation framework;
-	\item survey of the existing simulators for robotics \footnote{http://arxiv.org/abs/1402.7050};
-	\item comparison between the XDE and Gazebo iCub simulators and a real iCub performing a free-falling task.
-\end{itemize}
-
-\emph{\color{red}[For work package 1 (UB) provide the following information:]}
-
-\begin{itemize}
-\item[-] \emph{\color{red}[A summary of progress towards objectives and details for each task;]}
-\item[-] \emph{\color{red}[Highlight clearly significant results;]}
-\item[-] \emph{\color{red}[If applicable, explain the reasons for deviations from Annex I and their impact on other tasks as well as on available resources and planning;]}
-\item[-] \emph{\color{red}[If applicable, explain the reasons for failing to achieve critical objectives and/or not being on schedule and explain the impact on other tasks as well as on available resources and planning (the explanations should be consistent with the declaration by the project coordinator) ;]}
-\item[-] \emph{\color{red}[a statement on the use of resources, in particular highlighting and explaining deviations between actual and planned  person-months per work package and per beneficiary in Annex 1 (Description of Work);]}
-\item[-] \emph{\color{red}[If applicable, propose corrective actions.]}
-\end{itemize}
+The original iDyn library \url{https://github.com/robotology/icub-main/tree/master/src/libraries/iDyn} was designed assuming the robot in a fixed-base configuration. Within CoDyCo the library was redesigned in order to support floating base structures. The associated source code is available here \url{https://github.com/robotology/codyco/tree/master/src/libraries/iDynTree}. Within the YARP and iCub contexts, the libraries are used in the wholeBodyDynamics modules (\url{https://github.com/robotology/icub-main/tree/master/src/modules/wholeBodyDynamics} and \url{https://github.com/robotology/codyco/tree/master/src/modules/wholeBodyDynamicsTree} respectively) to compute simultaneously internal (joint torques) and external (contact) forces and torques. 
 
 \subsection{Work package 2 progress}
 
@@ -468,8 +517,7 @@ coupling between the degrees of freedom of the robot, and moreover,
 a time varying feedback controller can be derived in closed form. 
 These features are partially illustrated in Figure \ref{fig:promps}.
 This work was published
-last year at the highly competitive conference on neural information processing (NIPS) 
-[Paraschos, A. and  Daniel, C. and  Peters, J. and Neumann, G, 2013].
+last year at the highly competitive conference on neural information processing \cite{Paraschos_NIPS_2013}.
 
 \begin{figure}[!ht]
 \centering
@@ -655,7 +703,7 @@ UB       & ? & ? &  &  \\ \cline{1-4}
 
 \bibliographystyle{IEEEtran}
 % \bibliography{IEEEabrv,yearReport_WP3,all-ias-publications}
-\bibliography{firstYearReport_WP3,firstYearReport_WP2}
+\bibliography{firstYearReport_WP4,firstYearReport_WP3,firstYearReport_WP2,firstYearReport_WP1}
 
 \end{document}
 
