@@ -24,7 +24,7 @@
 
 % declaration of variables used in style
 \reportDocnumber{Year 1}
-\reportTitle{First year periodic report}
+\reportTitle{First year project objectives report}
 
 \reportAuthor{CoDyCo Consortium}
 \reportResponsiblePartner{IIT}
@@ -116,17 +116,10 @@
 \newcolumntype{L}[1]{>{\raggedright\let\newline\\\arraybackslash\hspace{0pt}}m{#1}}
 \newcolumntype{C}[1]{>{\centering\let\newline\\\arraybackslash\hspace{0pt}}m{#1}}
 \newcolumntype{R}[1]{>{\raggedleft\let\newline\\\arraybackslash\hspace{0pt}}m{#1}}
-
-\textbf{Document Revision History}
-\begin{center}
-\begin{tabular}{|C{2cm}|C{3cm}|p{5cm}|C{4cm}|}
-\hline
-\textbf{Version}&\textbf{Date}&\textbf{Description}&\textbf{Author}\\\hline
-First draft & date & description & author\\\hline
-\end{tabular}
-\end{center}
  
  \clearpage
+
+\setcounter{tocdepth}{5}
 
 \newpage
 \renewcommand*\contentsname{Table of Contents}
@@ -138,38 +131,45 @@ First draft & date & description & author\\\hline
 
 %%%%%%%%%%%%%%%%%%%%%%%% Start report content here.
 
-\section{Project objectives for the period}
+\setcounter{section}{3}
+\setcounter{subsection}{1}
+\setcounter{secnumdepth}{5}
 
-\subsection{Overview}
+\subsection{Project objectives for the period}
+
+\subsubsection{Overview}
 
 The specificity of CoDyCo relies on the fact that the progress beyond the state of the art is guided by the yearly implementation on the iCub humanoid. Within this context, iCub is a peculiar platform being the only humanoid integrating whole-body distributed force and tactile sensors. In this sense CoDyCo first year specific objectives were to design and implement the control of whole-body posture with multiple contacts. Other long term objectives involve setting up the necessary infrastructure (human experimental protocols, software infrastructure, learning and control specifications) for structuring the activities in the following years. 
 
 \begin{longtable}{|C{1.5cm}|C{1.5cm}|C{1.5cm}|C{2cm}|C{2cm}|C{2cm}|C{2cm}|}
 \cline{1-6}
-\footnotesize \textbf{Task}& \footnotesize \textbf{IIT}&\footnotesize \textbf{TUD}&\footnotesize \textbf{UPMC}& \footnotesize \textbf{JSI} &\footnotesize \textbf{UB} & \multicolumn{1}{l}{} \\ \hline
-\footnotesize WP1 &  8.5    &  1    &  3     & -   & -     & \textbf{7}  \\  \hline
-\footnotesize WP2 &  -        &  -     &  -       & 18 & 2.5 & \textbf{8}\\ \hline
-\footnotesize WP3 &  6.58 & 4.6  &  22    & -    & -     & \textbf{13}\\ \hline
-\footnotesize WP4 & -         & 8     &  3      & -   & -     & \textbf{12}\\ \hline
-\footnotesize WP5 & -         & -      &  0.3   & -    & -     & \textbf{12}\\ \hline
-\footnotesize WP6 & 2        & -      &  -        & -    & -     & \textbf{21}\\ \hline
-\footnotesize WP7 & 1        & -      &  -        & -    & -     & \textbf{21}\\ \hline
-\multicolumn{1}{l|}{}  & \textbf{26} & \textbf{26} & \textbf{26} & \textbf{23} & \textbf{24}  & \textbf{73} \\  \cline{2-7}
+\footnotesize \textbf{Task}& \footnotesize \textbf{IIT}&\footnotesize \textbf{TUD}&\footnotesize \textbf{UPMC}& \footnotesize \textbf{UB} &\footnotesize \textbf{JSI} & \multicolumn{1}{l}{} \\ \hline
+\footnotesize WP1 &  8.67 &  1    &  -       & 0.51   & 2     & \textbf{7}  \\  \hline
+\footnotesize WP2 &  -        &  -     &  -       & 2.64 & 18.80 & \textbf{8}\\ \hline
+\footnotesize WP3 &  9.9   & 4.6  &  -       & -    & -     & \textbf{13}\\ \hline
+\footnotesize WP4 & -        & 8     &  -       & -   & -     & \textbf{12}\\ \hline
+\footnotesize WP5 & 2       & -      &  -       & -    & -     & \textbf{12}\\ \hline
+\footnotesize WP6 & 1.46 & -      &  -        & -    & 0.1     & \textbf{21}\\ \hline
+\footnotesize WP7 & 1       & -      &  -        & -    & -     & \textbf{21}\\ \hline
+\multicolumn{1}{l|}{}  & \textbf{23.03} & \textbf{13.60} & \textbf{-} & \textbf{3.15} & \textbf{20.90}  & \textbf{73} \\  \cline{2-7}
 \end{longtable}
 
-\subsubsection{WP1: toolbox for computing and controlling dynamics of whole-body movements with contacts (UB)}
+\noindent
+\textbf{Comment:} during year one, UB committed 22\% of PI time and 3\% of senior researcher time (for 3.15 total PM). Starting in year 2, two researchers will be additionally committed to the project at 100\%. The planned involvement for these two researchers is 72 PM over the next 3 years. One of these researchers, Morteza Azad has joined the CoDyCo UB team as a Research Fellow in April 2014.
+
+\paragraph{WP1: toolbox for computing and controlling dynamics of whole-body movements with contacts (UB)}
 
 The overall goal of this work package is to develop software libraries and software modules to be used as toolbox by the entire project consortium. The expected outcomes for year 1 were for the consortium to agree on the architectures, interfaces, and modules necessary for the creation of a shared software toolbox, to fit both individual task requirements and the overall CoDyCo project objectives.  Additionally, at the end of year 1, an enhanced iCub simulator for whole-body contact simulation is to be released as part of deliverable D1.1.
 
-\subsubsection{WP2: understanding and modelling human whole-body behaviours in physical interaction (JSI)}
+\paragraph{WP2: understanding and modelling human whole-body behaviours in physical interaction (JSI)}
 
 There were three main objectives within WP2 for the first year of the project: (i) to thoroughly review and summarise the recent relevant literature on human postural control and whole body motion in contact with environment and/or human, and to define the protocols for experimental procedures, including obtaining ethics committee approval (Task 2.2), (ii) to work on designing of models for human whole body motion in contact where the aim was to form simplified models or high-level understanding of how additional supportive contacts affect human motor control strategies involved in balancing (Task 2.3), and (iii) to study the factors involved in human choice of contact utilization and to investigate how interaction through contacts can contribute to learning of whole body motor control (Task 2.3).
 
-\subsubsection{WP3: control and optimization of whole-body motion in contact (UPMC)}
+\paragraph{WP3: control and optimization of whole-body motion in contact (UPMC)}
 
 The objectives of WP3 for the first year of the project are threefold. The first one is to demonstrate the applicability of state of the art whole-body motion controllers, such as the one developed in \cite{salini2012} and \cite{delprete2013}, within the simulation tools evaluated and retained in WP1 and for simple rigid, multi-contact scenarios. The second one is to propose a formulation and a solver for the whole-body control problem at the reactive level that provides a more expressive, richer description of the control problem as well as an efficient way of solving it. The third one is to identify existing or potential ways of optimally coupling the local, reactive control level and the global, decision making one.
 
-\subsubsection{WP4: adaptation, Generalization and Improvement of Compliant Control and Tasks with Contacts (TUD)}
+\paragraph{WP4: adaptation, Generalization and Improvement of Compliant Control and Tasks with Contacts (TUD)}
 
 The goal of WP4 is to endow the CoDyCo humanoid robot control architecture with the core abilities for the
 adaptation, generalization and self-improvement of both control laws and tasks that involve physical interaction
@@ -195,23 +195,23 @@ tasks.
 \end{itemize}
 
 
-\subsubsection{WP5: systems integration, standardization and evaluation on the iCub robot (IIT)}
+\paragraph{WP5: systems integration, standardization and evaluation on the iCub robot (IIT)}
 
 The first year main objective for WP5 was the implementation of a validation scenario consisting of the balancing on different type of rigid contacts. The goal was to include multiple contact positions: feet, hands, back, buttocks, arms and legs. 
 
 
-\subsubsection{WP6: management (IIT)}
+\paragraph{WP6: management (IIT)}
 
 The first year management was primarily dedicated to the project starting. Among the main goals the release of a project software repository.
 
 
-\subsubsection{WP7: dissemination and Exploitation (IIT)}
+\paragraph{WP7: dissemination and Exploitation (IIT)}
 
 The main dissemination objectives for the CoDyCo first year were the creation of a CoDyCo database infrastructure, a CoDyCo project website and participation to dissemination events towards academia and industry. 
 
-\section{Work progress and achievements during the period}
+\subsection{Work progress and achievements during the period}
 
-\subsection{Progress overview and contribution to the research field}
+\subsubsection{Progress overview and contribution to the research field}
 
 All the CoDyCo first year objectives have been attained. Here is a list of the CoDyCo first year achievements. 
 \begin{itemize}
@@ -228,7 +228,9 @@ All the CoDyCo first year objectives have been attained. Here is a list of the C
 
 \end{itemize}
 
-\subsubsection{WP1: toolbox for computing and controlling dynamics of whole-body movements with contacts (UB)}
+\subsubsection{Work packages progress}
+
+\paragraph*{WP1: toolbox for computing and controlling dynamics of whole-body movements with contacts (UB)}
 
 WP1 objectives were achieved for the first year. In summary, the main accomplishments and impacts for the research community are as follows: 
 
@@ -246,7 +248,7 @@ WP1 objectives were achieved for the first year. In summary, the main accomplish
  
  \end{itemize}
  
-\subsubsection{WP2: understanding and modelling human whole-body behaviours in physical interaction (JSI)}
+\paragraph*{WP2: understanding and modelling human whole-body behaviours in physical interaction (JSI)}
 
 After the first year of project, all planed objectives have been reached and one experimental modification has been implemented.
 
@@ -257,7 +259,7 @@ We performed an experimental study and examined functional role of supportive ha
 Most of the human studies that examine postural control \cite{Horak1986, Henry1998, Dimitrova2004} (including our above mentioned study) utilize one-time support perturbations that unpredictably perturb the balance of an individual. During our experiments we noticed that human subjects reacted to all such perturbations regardless of how small or slow the perturbation was or what was the initial acceleration of the perturbation. Our conclusion was that these reactions are essentially protective reactions that do not necessarily have counterbalancing effects \cite{McIlroy1995, Corbeil2013}. Such reactions mask the real factors involved in human choice of contact utilization. We therefore altered the perturbation methods for our further experiments and designed continuous perturbations in a frequency band that corresponds with typical human motion during postural control \cite{Nawayseh2006}.
 
 
-\subsubsection{WP3: control and optimization of whole-body motion in contact (UPMC)}
+\paragraph*{WP3: control and optimization of whole-body motion in contact (UPMC)}
 
 After one year of project, the level of achievement of the objectives in WP3 meets the expectations.
 
@@ -267,7 +269,7 @@ In the meantime, a novel "Generalized Smooth Hierarchical Control" algorithm has
 
 Regarding the exploration of the potential ways of coupling the local, reactive control level and the global, decision making one, several works have been initiated mostly related to the generation of "globally optimal" reference trajectories to be tracked reactively by the local controller. The contributions in this domain over the first year of project are mostly related to the work of A. Ibanez \cite{ibanez2013}, \cite{ibanez2014-icra} and \cite{ibanez2014-ark}. The distributed MPC approach developed in this work tackles the locomotion and balance problem from a new perspective that shares similarities with recent contributions such as \cite{mordatch2012} where an optimization framework enables an automated generation of rich contact behaviors, and \cite{ott2013} that combines a kinesthetic teaching task with an algorithm partially inspired by our approach to improve the balancing behavior during interactions. In the meantime, TUD investigated the interchange of forces during cooperative tasks between humans and robots \cite{berger2013}.
 
-\subsubsection{WP4: adaptation, generalization and improvement of compliant control and tasks with contacts (TUD)}
+\paragraph*{WP4: adaptation, generalization and improvement of compliant control and tasks with contacts (TUD)}
 
 The goal of WP4 is to endow the CoDyCo
 humanoid robot control architecture with the
@@ -281,21 +283,21 @@ can be used for imitation learning and for superimposing multiple motor tasks.
 TUD also started to investigate to predict the partner's behavior in 
 human robot interaction scenarios. 
 
-\subsubsection{WP5: systems integration, standardization and evaluation on the iCub robot (IIT)}
+\paragraph*{WP5: systems integration, standardization and evaluation on the iCub robot (IIT)}
 
 The first year WP5 activities have concentrated on the first year validation scenario. A complete description of the scenario can be found in ``D5.1 Scientific report on validation scenario 1: balancing on multiple rigid contact points.'' which discusses the technical implementation of the first year validation scenario (see \url{https://github.com/robotology-playground/codyco-deliverables/tree/master/D5.1/pdf}). With respect to the state of the art the work progress represents an implementation of well established torques controlled whole-body control strategies. The integration of tactile feedback within the whole-body controller is a peculiarity of the implemented CoDyCo validation scenario and therefore represent a step forward with respect to the current state of the art. At the moment of writing the current deliverable the iCub tactile sensors cover the feet, the torso, the arms and the hands and the implemented validation scenario accounts for contacts at the hands and feet.
 
-\subsubsection{WP6: management (IIT)}
+\paragraph*{WP6: management (IIT)}
 
 The CoDyCo project started successfully. Management activities included the definition of an amendment procedure smoothly organized by the consortium and the project officer. A software repository (\url{https://github.com/robotology/codyco}) was set up using state of the art versioning tools (git) and social coding website (\url{https://github.com}). 
 
-\subsubsection{WP7: dissemination and exploitation (IIT)}
+\paragraph*{WP7: dissemination and exploitation (IIT)}
 
 Within WP7, CoDyCo first year achievement include: dissemination at relevant academic and industrial events; realization of a CoDyCo experiment database to disseminate robot and humans datasets. 
 
-\subsection{Work package 1 progress}
+\paragraph{Work package 1 progress}
 
-\subsubsection{Software architecture design and evaluation of available open-source software pertinent to the scope of the project. (T1.1)}
+\subparagraph{Software architecture design and evaluation of available open-source software pertinent to the scope of the project. (T1.1)}
 
 The explicit goal of T1.1 is for the consortium to agree on a specific software architecture with associated software tools whose specifications, dependencies and interconnections meet the requirements and needs for achieving the goals of the project.  To this end, the consortium met on 5th June 2013 at UPMC to discuss and agree on software interfaces, modules and architectures. The main outcomes from this meeting were: 
 \begin{itemize}
@@ -305,7 +307,7 @@ The explicit goal of T1.1 is for the consortium to agree on a specific software 
 \end{itemize}
 The software architectural designs and specifications are to be documented as part of D1.2 and released at the end of year 2. 
 
-\subsubsection{Simulator for whole-body motion with contacts (T1.2)}
+\subparagraph{Simulator for whole-body motion with contacts (T1.2)}
 
 The CoDyCo project requires a modular, component-based dynamics simulation software providing numerically stable, computationally efficient and physically consistent simulations of whole-body virtual human(oid) systems in contact with rigid or soft environments. To this end, in year one, a new iCub simulator has been released and documented as part of deliverable D1.1. In summary: 
 
@@ -321,12 +323,12 @@ The CoDyCo project requires a modular, component-based dynamics simulation softw
 \item In order to provide a way to generate URDF models of digital mannequins independently from a specific simulator, JSI has developed a software for generating instances of a parametrized digital human (similar to the one present in XDE) as well as to edit the detailed parameters of an existing instance.  The new digital human URDF file generator is detailed in D1.1.
 \end{itemize}
 
-\subsubsection{Control library for flexible specification of task space dynamics of floating base manipulators. (T1.3)}
+\subparagraph{Control library for flexible specification of task space dynamics of floating base manipulators. (T1.3)}
 
 During the first year both IIT and UPMC contributed to the development of several software components for controlling the iCub whole-body behavior. The software has been structured around an abstraction layer called wholeBodyInterface, described in details within T3.2. This C++ abstraction layer is already used in a set of whole-body controllers implemented in simulink and available on github at the following address: \url{https://github.com/robotology/codyco/tree/master/src/simulink/controllers}. Within this context simulink is currently adopted as a fast designing tool for testing several controllers whose final implementation is foreseen in C++. Similarly, UPMC has started adopting the wholeBodyInterface within their own
 controller framework based on XDE and ORCISI. Preliminary results are available here: \url{https://github.com/robotology/codyco/tree/master/src/tests}. 
 
-\subsubsection{System dynamics estimation software. Extension to
+\subparagraph{System dynamics estimation software. Extension to
 environmental compliance estimation (T1.4)}
 
 The goal of this task is to develop a software tool for on-line estimation of whole-body dynamics of the robot, as well as the compliance of contacts established between the robot and the environment. 
@@ -362,13 +364,25 @@ M., 2014].
 \label{fig:example_discontinuities}
 \end{figure}
 
-\subsubsection{Extension and enhancement of the iDyn library. (T1.5)}
+\subparagraph{Extension and enhancement of the iDyn library. (T1.5)}
 
 The original iDyn library \url{https://github.com/robotology/icub-main/tree/master/src/libraries/iDyn} was designed assuming the robot in a fixed-base configuration. Within CoDyCo the library was redesigned in order to support floating base structures. The associated source code is available here \url{https://github.com/robotology/codyco/tree/master/src/libraries/iDynTree}. Within the YARP and iCub contexts, the libraries are used in the wholeBodyDynamics modules (\url{https://github.com/robotology/icub-main/tree/master/src/modules/wholeBodyDynamics} and \url{https://github.com/robotology/codyco/tree/master/src/modules/wholeBodyDynamicsTree} respectively) to compute simultaneously internal (joint torques) and external (contact) forces and torques. 
 
-\subsection{Work package 2 progress}
+\subparagraph{Resources}
+Overall, the use of resources within WP1 was in accordance to the plans. 
 
-\subsubsection{Definition and design of experimental protocols (T2.1)}
+\begin{center}
+\begin{tabular}{|C{1.5cm}|C{1.5cm}|C{1.5cm}|C{2cm}|C{2cm}|C{2cm}|}
+\hline
+\footnotesize \textbf{WP1 person months}& \footnotesize \textbf{IIT}&\footnotesize \textbf{TUD}&\footnotesize \textbf{UPMC}& \footnotesize \textbf{UB} &\footnotesize \textbf{JSI}\\ \hline
+\footnotesize Year 1 &  8.67 &  1    &  -       & 0.51   & 2      \\  \hline
+\footnotesize Total &  12.00 & 6.00 & 14.00 & 15.00 & 6.00 \\ \hline
+\end{tabular}
+\end{center}
+
+\paragraph{Work package 2 progress}
+
+\subparagraph{Definition and design of experimental protocols (T2.1)}
 
 The aim of the work in this task was to provide a solid multidisciplinary base for future research work within CoDyCo. We made a thorough review and summary of the recent relevant literature on human postural control and whole body motion in contact with environment (Delivery 2.1). The review examines postural control strategies without and with additional support contacts, types of perturbations that are commonly used to study neuromuscular functions involved in postural control and reviews the methods for stability evaluation of bipedal systems. The review is concluded with examination of stability metrics that can be applied for non-planar contacts. We plan to extend the review with methods of determination of inertial parameters of human/robot body and submit it for publication in a robotic journal by the end of 2014.
 
@@ -381,7 +395,7 @@ At JSI, we created an experimental setup to study human postural control and who
 \label{fig:exp_protocol_W2}
 \end{figure}
 
-\subsubsection{Design of models for human whole body motion in contact (T2.2)}
+\subparagraph{Design of models for human whole body motion in contact (T2.2)}
 
 Work has begun on understanding how to derive simplified models of whole-body balance that will encapsulate the task relevant parameters of posture control with multiple contacts. By emulating situations when balance of an individual is challenged, we examined functional role of supportive hand contact at different locations where balance of an individual was perturbed by translational perturbations of the support surface. The experimental methods rested upon our work in Task 2.1 and are depicted on the left side of Figure \ref{fig:exp_paper_W2}.
 
@@ -398,7 +412,7 @@ To properly model all these findings we developed a reduced dimensional (6-link,
 
 A major challenge of this task is understanding how to determine and measure stability when a human or humanoid robot is in a multi contact situation. The state-of-the-art in postural stability uses traditional metrics such as centre of pressure or zero moment point. However these planar metrics do not apply when there are multiple non-planar contacts. In addition to reviewing the current literature (Task 2.1), we have begun development of new methods for measuring stability margins when a human or humanoid robot has multiple non-planar contacts.
 
-\subsubsection{Human contact choice and learning through physical interaction (T2.4)}
+\subparagraph{Human contact choice and learning through physical interaction (T2.4)}
 
 In order to understand how humans make contact choice decisions (e.g. whether or not to initiate a hand contact, and where to place the hand), we need an estimation of joint torques as well as a metric of stability in various multi-contact situations. Thus the work we have begun in Task 2.2 in terms of both simplified models of postural control and metrics of stability, also apply for Task 2.4.
 
@@ -406,23 +420,23 @@ To understand the factors involved in human choice of contact utilization, we pe
 
 These reactions mask the real factors involved in human choice of contact utilization. We therefore altered the perturbation methods for our further experiments and designed continuous random perturbations in a frequency band that corresponds with typical human motion during postural control \cite{Nawayseh2006}. By doing so we excluded the effect of surprise that evoked the reflex reactions of humans. This will hopefully allow us to uncover the factors involved in human choice of contact utilization.
 
-\subsubsection{Resources}
+\subparagraph{Resources}
 Overall, the use of resources within WP2 was in accordance to the plans. There was a slight increase in the amount of PM for JSI due to the fact that we could not find a suitable Post-doc but hired a PhD student instead.
 
 \begin{center}
-\begin{tabular}{|l|l|l|l|l}
-\cline{1-4}
- & Planned PM for year 1 & Actual PM & Comment & \\ \cline{1-4}
-JSI & 18 & 12 &  &  \\ \cline{1-4}
-UB & 2.5 & ? &  &  \\ \cline{1-4}
+\begin{tabular}{|C{1.5cm}|C{1.5cm}|C{1.5cm}|C{2cm}|C{2cm}|C{2cm}|}
+\hline
+\footnotesize \textbf{WP2 person months}& \footnotesize \textbf{IIT}&\footnotesize \textbf{TUD}&\footnotesize \textbf{UPMC}& \footnotesize \textbf{UB} &\footnotesize \textbf{JSI}\\ \hline
+\footnotesize Year 1 &  8.67 &  1    &  -       & 0.51   & 2      \\  \hline
+\footnotesize Total &  0.00	 & 4.00 & 2.00 & 45.00 & 55.00 \\ \hline
 \end{tabular}
 \end{center}
 
-\subsection{Work package 3 progress}
+\paragraph{Work package 3 progress}
 
 The progress for each task are described hereafter.
 
-\subsubsection{Reproducing existing control results in a simple case (T3.1)}
+\subparagraph{Reproducing existing control results in a simple case (T3.1)}
 During year one, UPMC has achieved task T3.1 by creating a stand-alone C++ library encapsulating the whole-body controller developed in \cite{salini2012} so that it can be used by all partners in simulation or on (any) real humanoid robot. This version of the controller has been tested in rigid multi-contact scenarios in simulation (see Fig.~\ref{fig:xde}) and is currently adapted for tests on the iCub robot.
 
 \begin{figure*}
@@ -439,20 +453,20 @@ During year one, UPMC has achieved task T3.1 by creating a stand-alone C++ libra
 \label{fig:xde}
 \end{figure*}
 
-\subsubsection{Formulating the control problem (T3.2)}
+\subparagraph{Formulating the control problem (T3.2)}
 
 The work performed during year one by UPMC to achieve T3.2 has led to the definition of what a task can be considered to be in the context of the reactive formulation of a multi-task whole body control problem. Among the different characteristics of a task (physical frame, task variable, forward model, desired target trajectory, local controller, priority), the notion of task priority has been largely modified with respect to the classical lexicographic task ordering met in the robotics literature and which is particularly appropriate for cascade resolution approaches such as the one recently proposed in \cite{escande2012}. A partial order has been defined such that task priorities can be described for any pair of task $i$ and $j$. This leads to a richer formulation which includes the original one but is also particularly appropriate for describing task insertion and removal processes as well as priority switching between tasks. Further more, this new prioritization paradigm provides a unique way of defining strict and soft hierarchies between tasks. Associated to this work, the notion  of generalized task projector has been introduced. Each task is associated to a projector which is built based on the tasks priorities. The interest of this projector is that it filters the joint space motion associated to a task so that all priorities are respected, being them soft or strict. Details regarding this work are provided in \cite{liu2013}.
 
 Within this task also IIT contributed with the definition of a software abstraction layer, named wholeBodyInterface (\url{http://wiki.icub.org/codyco/dox/html/namespacewbi.html}). This software library defines the interface to access and control the robot  whole-body. Therefore the wholeBodyLibrary structures the control problem and their definition. Currently the library has been been implemented for both the iCub and the Gazebo iCub simulator.  
 
-\subsubsection{Solving the local control problem (T3.3)}
+\subparagraph{Solving the local control problem (T3.3)}
 
 Associated to the new task formulation proposed in T3.2, the control problem has been formulated by UPMC as an LQP which can be solved by any convex optimization solver dealing with linear constraints. Despite the task hierarchy, the introduction of a generalized task projector per task allows to solve only one LQP. This can be done by introducing as many virtual joint space variables as the number of tasks and using the generalized projector of each task in the expression of the constraints. The resulting problem can be solved by standard convex optimization tools and the cost of introducing virtual joint space variables is compensated for by the fact that only one optimization problem has to be solved. Details regarding this work are provided in \cite{liu2013}.
 
 In the meantime, TUD has proposed to explore optimization methods for solving local control problems that do not require the explicit inversion of any model of the system.  During year one, TUD investigated Bayesian optimization methods that were applied to bipedal locomotion tasks.  One of the key challenges in robotic bipedal locomotion is finding gait parameters that optimize a desired performance criterion, such as speed, robustness or energy efficiency. Typically, gait optimization requires extensive robot experiments and specific expert knowledge. During year one, TUD demonstrated that  data-driven machine learning methods based on Bayesian optimization can be used to automate and speed up the process of gait optimization. These Bayesian optimization methods were used to efficiently find gait parameters that optimize the desired performance metric on a real bipedal walker \cite{calandra2014} and \cite{calandra2014b}.
     
 
-\subsubsection{Bootstrapping and validating the control approach in rigid world and compliant cases (T3.4)}
+\subparagraph{Bootstrapping and validating the control approach in rigid world and compliant cases (T3.4)}
 
 During year one, UPMC has explored the contribution of MPC approaches to handle the postural balancing problem under varying contact conditions. The hybrid nature of the problem, where varying contact conditions can be accommodated either by adapting the internal forces distribution given a set of contact or by modifying the set of contacts itself, requires control approaches where the desired task trajectories performed through the local, reactive, whole-body controller have to be optimally planned ahead of time in order to provide robust behaviors. The contributions in this domain are mostly related to the work of A. Ibanez \cite{ibanez2013}, \cite{ibanez2014-icra} and \cite{ibanez2014-ark}. The originality of theses contributions lies in:
 \begin{itemize}
@@ -475,7 +489,7 @@ In the meantime, TUD investigated the interchange of forces during cooperative t
 \label{fig:interaction_tasks}
 \end{figure}
 
-\subsubsection{Deviations from workplan}  
+\subparagraph{Deviations from workplan}  
 
 The PM expenses for WP3 after one year of project are globally conform to the planned one. The observed deviations are related to the fact that tasks 3.3 and 3.4 spans the overall duration of the project and the contribution of some of the partners are expected in the 2nd, 3rd and 4th year.
 
@@ -489,23 +503,20 @@ The PM expenses for WP3 after one year of project are globally conform to the pl
 %\item[-] \emph{\color{red}[If applicable, propose corrective actions.]}
 %\end{itemize}
 
-\subsubsection{Resources}
+\subparagraph{Resources}
 
 \begin{center}
-\begin{tabular}{|l|l|l|l|l}
-\cline{1-4}
- & Planned PM for year 1 & Actual PM & Comment & \\ \cline{1-4}
-IIT & 2 & 2 &  &  \\ \cline{1-4}
-TUD & 6 & 4.6 &  &  \\ \cline{1-4}
-UPMC & 22.5 & 22 &  &  \\ \cline{1-4}
-UB & 2.5 & ? &  &  \\ \cline{1-4}
-JSI & 1 & 0 &  &  \\ \cline{1-4}
+\begin{tabular}{|C{1.5cm}|C{1.5cm}|C{1.5cm}|C{2cm}|C{2cm}|C{2cm}|}
+\hline
+\footnotesize \textbf{WP3 person months}& \footnotesize \textbf{IIT}&\footnotesize \textbf{TUD}&\footnotesize \textbf{UPMC}& \footnotesize \textbf{UB} &\footnotesize \textbf{JSI}\\ \hline
+\footnotesize Year 1 &  8.67 &  1    &  -       & 0.51   & 2      \\  \hline
+\footnotesize Total &  9.00	 & 24.00 & 54.00 & 10.00 & 4.00 \\ \hline
 \end{tabular}
 \end{center}
 
-\subsection{Work package 4 progress}
+\paragraph{Work package 4 progress}
 
-\subsubsection{Generalizing and Improving Elementary Tasks with Contacts (T4.3)}
+\subparagraph{Generalizing and Improving Elementary Tasks with Contacts (T4.3)}
 
 In this task, we aim to generate new skills from data, where elementary skills 
 are acquired by imitation learning and transferred to novel situations using 
@@ -568,33 +579,30 @@ We further extended the above approach by introducing \emph{Interaction Primitiv
 In the meantime, demonstration-based learning of "optimal trajectories" and stable controllers has been addressed by UPMC, in particular in \cite{stulp2013} where a general, flexible, and compact representation of parameterizable skills is proposed. This work generalizes the standard Dynamic Motor Primitive formulation in \cite{ijspeert2013} and proposes a novel DMP formulation for parametrized skills, based on additionally passing task parameters to the DMP function approximator. This generalizes previous approaches, in particular those which train and execute parametrized skills with two separate regressions. Learning the function approximator with one regression in the full space of phase and tasks parameters allows for more compact models, and the flexible use of different function approximator implementations such as LWPR and GPR, as we demonstrated on the Meka and iCub humanoids robots.
 
 
-\subsubsection{Resources}
+\subparagraph{Resources}
 
 \begin{center}
-\begin{tabular}{|l|l|l|l|l}
-\cline{1-4}
- & Planned PM & Actual PM & Comment & \\ \cline{1-4}
-IIT & 9.3 &  &  &  \\ \cline{1-4}
-TUD & 10.4 & 8 &  &  \\ \cline{1-4}
-UPMC & 5 &  &  &  \\ \cline{1-4}
-UB & 3 &  &  &  \\ \cline{1-4}
-JSI & 2.5 &  &  &  \\ \cline{1-4}
+\begin{tabular}{|C{1.5cm}|C{1.5cm}|C{1.5cm}|C{2cm}|C{2cm}|C{2cm}|}
+\hline
+\footnotesize \textbf{WP4 person months}& \footnotesize \textbf{IIT}&\footnotesize \textbf{TUD}&\footnotesize \textbf{UPMC}& \footnotesize \textbf{UB} &\footnotesize \textbf{JSI}\\ \hline
+\footnotesize Year 1 &  8.67 &  1    &  -       & 0.51   & 2      \\  \hline
+\footnotesize Total &  30.00 & 36.00 & 20.00 & 12.00 & 10.00 \\ \hline
 \end{tabular}
 \end{center}
 
-\subsubsection{Deviations from workplan} 
+\subparagraph{Deviations from workplan} 
 
 No significant deviations. 
 
-\subsection{Work package 5 progress}
+\paragraph{Work package 5 progress}
 
 The activities in WP5 are divided into four tasks corresponding to the four years project duration. As a result, during the first year CoDyCo results concentrate on T5.1. The main result consist in the implementation of the validation scenario consisting of the balancing on different type of rigid contacts.
 
-\subsubsection{Scenario 1: iCub balancing on multiple rigid contacts (T5.1)}
+\subparagraph{Scenario 1: iCub balancing on multiple rigid contacts (T5.1)}
 
 The main contributions to T5.1 have been presented in ``D5.1 Scientific report on validation scenario 1: balancing on multiple rigid contact points.'' which discusses the technical implementation of the first year validation scenario (see \url{https://github.com/robotology-playground/codyco-deliverables/tree/master/D5.1/pdf}). The software developed for the scenario implementation is released with an open-source license and distributed through github (\url{https://github.com/robotology/codyco} ). The main software activities include: a module to identify the whole-body motor transfer functions (\url{https://github.com/robotology/codyco/tree/master/src/modules/motorFrictionIdentification}), a module for estimating whole-body internal (joint torques) and external (contact) forces (\url{https://github.com/robotology/codyco/tree/master/src/modules/motorFrictionIdentification}), a module for whole-body joint torque control (\url{https://github.com/robotology/codyco/tree/master/src/modules/jointTorqueControl}), a C++ library that implements the wholeBodyInterface in simulink (\url{https://github.com/robotology/codyco/tree/master/src/simulink}).
 
-\subsubsection{Deviations from workplan}  
+\subparagraph{Deviations from workplan}  
 
 The original work plan have foreseen contacts at feet, hands, back, buttocks, arms and legs. The final validation scenario will only include possible contacts at hands and feet. This simplification is mainly due to the fact that at he end of the CoDyCo first year the iCub does not yet include tactile sensing on the back, legs and buttocks. These sensors will be soon included in the iCub and the CoDyCo software is already designed to include this information. 
 
@@ -607,43 +615,40 @@ The original work plan have foreseen contacts at feet, hands, back, buttocks, ar
 %\item[-] \emph{\color{red}[If applicable, propose corrective actions.]}
 %\end{itemize}
 
-\subsubsection{Resources}
+\subparagraph{Resources}
 
-Resources were used as expected.
+Resources were used with small difference with respect to what planned. In particular IIT invested only 2 PM with respect to 12PM planned. The motivation resides in the fact that WP5 took advantage of the significant effort done in WP1 (software) and WP3 (control) and in a sense resources initially planned on T5.1 eventually have been committed to T1.1, T1.2, T1.3, T3.1 and T3.2.
 
 \begin{center}
-\begin{tabular}{|l|l|l|l|l}
-\cline{1-4}
- & Planned PM for year 1 & Actual PM & Comment & \\ \cline{1-4}
-IIT & 12 & 12 &  &  \\ \cline{1-4}
-UPMC & 1 & 0.33 &  &  \\ \cline{1-4}
+\begin{tabular}{|C{1.5cm}|C{1.5cm}|C{1.5cm}|C{2cm}|C{2cm}|C{2cm}|}
+\hline
+\footnotesize \textbf{WP5 person months}& \footnotesize \textbf{IIT}&\footnotesize \textbf{TUD}&\footnotesize \textbf{UPMC}& \footnotesize \textbf{UB} &\footnotesize \textbf{JSI}\\ \hline
+\footnotesize Year 1 &  8.67 &  1    &  -       & 0.51   & 2      \\  \hline
+\footnotesize Total &  48.00 & 4.00 & 5.00 & 0.00 & 0.00 \\ \hline
 \end{tabular}
 \end{center}
 
-\subsection{Work package 6 progress}
+\paragraph{Work package 6 progress}
 
 Activities within work package 6 achieved the expected results both in terms of administrative activities and management activities. As a major result, the software repository was successfully implemented thanks to novel versioning tool (git) and social coding website (\url{https://github.com}).
 
-\subsubsection{Administrative coordination (T6.1)}
+\subparagraph{Administrative coordination (T6.1)}
 Administration was successfully coordinated by Chiara Andreoli at IIT. The major activity concerned an amendment that the CoDyCo consortium asked the main reason being the fact that Serena Ivaldi, initially hired by UPMC was recently hired by TUD. Part of the administrative coordination activities were also conducted during three main meetings: the kick-off meeting (Genoa, April 5th, 2013), the simulators meeting (Paris, June 5th, 2013) and the midyear meeting (Paris, November 21st-22nd, 2013). Details on the meetings can be found in the CoDyCo website (\url{http://www.codyco.eu}).
 
-\subsubsection{Software repository implementation (T6.2)}
+\subparagraph{Software repository implementation (T6.2)}
 
 A github software repository was set up \url{https://github.com/robotology/codyco} and the contribution from the different developers can be directly checked in the website. Relevant information can be found also in ``D6.1 Website and repository online'' available here: \url{https://github.com/robotology-playground/codyco-deliverables/tree/master/D6.1/pdf}.
 
-\subsubsection{Resources}
+\subparagraph{Resources}
 
 Resources were used as follows.
 
 \begin{center}
-\begin{tabular}{|l|l|l|l|l}
-\cline{1-4}
- & Planned PM for year 1 & Actual PM & Comment & \\ \cline{1-4}
-IIT        & 1 & 1 &  &  \\ \cline{1-4}
-TUD    & ? & ? &  &  \\ \cline{1-4}
-UPMC & ? & ? &  &  \\ \cline{1-4}
-JSI       & ? & ? &  &  \\ \cline{1-4}
-UB       & ? & ? &  &  \\ \cline{1-4}
+\begin{tabular}{|C{1.5cm}|C{1.5cm}|C{1.5cm}|C{2cm}|C{2cm}|C{2cm}|}
+\hline
+\footnotesize \textbf{WP5 person months}& \footnotesize \textbf{IIT}&\footnotesize \textbf{TUD}&\footnotesize \textbf{UPMC}& \footnotesize \textbf{UB} &\footnotesize \textbf{JSI}\\ \hline
+\footnotesize Year 1 &  8.67 &  1    &  -       & 0.51   & 2      \\  \hline
+\footnotesize Total &  5.00	 & 1.00 & 1.00 & 0.60 & 1.00 \\ \hline
 \end{tabular}
 \end{center}
 
@@ -656,50 +661,56 @@ UB       & ? & ? &  &  \\ \cline{1-4}
 %\item[-] \emph{\color{red}[If applicable, propose corrective actions.]}
 %\end{itemize}
 
-\subsection{Work package 7 progress}
+\paragraph{Work package 7 progress}
 
 Dissemination and exploitation activities included the participation to international events addressed to both commercial and academic institutions. A preliminary exploitation plan was delineated and reported in the deliverable D7.1.
 
-\subsubsection{Dissemination activities towards academia, industry, and other users (T7.1)}
+\subparagraph{Dissemination activities towards academia, industry, and other users (T7.1)}
 
 Dissemination activities were conducted in three main events: (1) iCub exposition at IROS2014, IEEE International Conference on Robotics and Automation Karlsruhe, May 6 - 10, 2013; (2) iCub exposition at the European Robotics Forum and Innorobo, Lyon 29th March 2013; (3) iCub exposition at the European Robotics Forum, Rovereto 12th-14th of March 2014. The full list of papers published within CoDyCo can be found here: \url{http://codyco.eu/publications-menu}.
 
-\subsubsection{Exploitation plan (T7.2)}
+\subparagraph{Exploitation plan (T7.2)}
 
 The first year activities on T7.1 and T7.2 are all contained in ``D7.1 Dissemination and exploitation plan'' available here: \url{https://github.com/robotology-playground/codyco-deliverables/tree/master/D7.1/pdf}.
 
-\subsubsection{Management of IPR (T7.3)}
+\subparagraph{Management of IPR (T7.3)}
 
 No activities to be reported during the first year on this task in consideration of the fact that the task started at the very end of the first year. As a minor starting activity the consortium circulated a list containing each partner responsible contact person for the IPR management. This list is contained in ``D7.1 Dissemination and exploitation plan'' available here: \url{https://github.com/robotology-playground/codyco-deliverables/tree/master/D7.1/pdf}.
 
-\subsubsection{Dissemination of a database of human motion with contacts (T7.4)}
+\subparagraph{Dissemination of a database of human motion with contacts (T7.4)}
 
 During the first year of CoDyCo, IIT completed the task of setting up a database for storing both human and robot datasets. The details on the database are reported in ``D7.2 Standard database with support materials'' available here \url{https://github.com/robotology-playground/codyco-deliverables/tree/master/D7.2/pdf}. 
 
-\subsubsection{Resources}
+\subparagraph{Resources}
 
 Resources were used as follows.
 
 \begin{center}
-\begin{tabular}{|l|l|l|l|l}
-\cline{1-4}
- & Planned PM for year 1 & Actual PM & Comment & \\ \cline{1-4}
-IIT        & 1 & 1 &  &  \\ \cline{1-4}
-TUD    & ? & ? &  &  \\ \cline{1-4}
-UPMC & ? & ? &  &  \\ \cline{1-4}
-JSI       & ? & ? &  &  \\ \cline{1-4}
-UB       & ? & ? &  &  \\ \cline{1-4}
+\begin{tabular}{|C{1.5cm}|C{1.5cm}|C{1.5cm}|C{2cm}|C{2cm}|C{2cm}|}
+\hline
+\footnotesize \textbf{WP5 person months}& \footnotesize \textbf{IIT}&\footnotesize \textbf{TUD}&\footnotesize \textbf{UPMC}& \footnotesize \textbf{UB} &\footnotesize \textbf{JSI}\\ \hline
+\footnotesize Year 1 &  8.67 &  1    &  -       & 0.51   & 2      \\  \hline
+\footnotesize Total & 3.00 & 1.00 & 2.00 & 1.00	 & 1.00 \\ \hline
 \end{tabular}
 \end{center}
 
-%\begin{itemize}
-%\item[-] \emph{\color{red}[A summary of progress towards objectives and details for each task;]}
-%\item[-] \emph{\color{red}[Highlight clearly significant results;]}
-%\item[-] \emph{\color{red}[If applicable, explain the reasons for deviations from Annex I and their impact on other tasks as well as on available resources and planning;]}
-%\item[-] \emph{\color{red}[If applicable, explain the reasons for failing to achieve critical objectives and/or not being on schedule and explain the impact on other tasks as well as on available resources and planning (the explanations should be consistent with the declaration by the project coordinator) ;]}
-%\item[-] \emph{\color{red}[a statement on the use of resources, in particular highlighting and explaining deviations between actual and planned  person-months per work package and per beneficiary in Annex 1 (Description of Work);]}
-%\item[-] \emph{\color{red}[If applicable, propose corrective actions.]}
-%\end{itemize}
+\subsection{Deliverables and milestones tables}
+
+\subsubsection{Deliverables (excluding the periodic and final reports)}
+
+\begin{figure*}[ht!]
+\centering
+\includegraphics[width=\textwidth]{./images/deliverables.pdf}
+\end{figure*}
+
+\subsubsection{Milestones}
+
+\begin{figure*}[ht!]
+\centering
+\includegraphics[width=\textwidth]{./images/milestones.pdf}
+\end{figure*}
+
+\newpage
 
 \bibliographystyle{IEEEtran}
 % \bibliography{IEEEabrv,yearReport_WP3,all-ias-publications}
