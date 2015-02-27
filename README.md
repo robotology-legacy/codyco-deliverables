@@ -2,6 +2,12 @@ CoDyCo Deliverables
 ===================
 This repository holds all the code, data and results used for deliverables in [CoDyCo project](http://codyco.eu)
 
+D5.2 - Validation scenario 2: balancing on feet while performing goal directed actions
+-----------------------------------------------------------
+######Responsible: IIT
+######Delivery date: M24
+Code, data and PDF [available here](https://github.com/robotology-playground/codyco-deliverables/tree/master/D5.2).
+
 
 D6.1 - Website and repository online
 -----------------------------------
