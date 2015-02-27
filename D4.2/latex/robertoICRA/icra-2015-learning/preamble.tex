@@ -1,0 +1,218 @@
+\usepackage[english]{babel}
+
+\usepackage{graphics} 		% for pdf, bitmapped graphics files
+\usepackage{graphicx}
+\usepackage{epsfig} 		% for postscript graphics files
+\usepackage{epstopdf}
+
+\usepackage{listings}
+\usepackage{color}
+\usepackage{nameref}
+\usepackage[bookmarks=true]{hyperref}
+\usepackage[colorinlistoftodos]{todonotes}
+%\usepackage{index}
+%\usepackage{pgfgantt}
+\usepackage{amsmath}	 	% assumes amsmath package installed
+\usepackage{amssymb}  		% assumes amsmath package installed
+
+\usepackage{dsfont}
+\usepackage{mathtools}
+
+\usepackage{epigraph}
+\usepackage{lscape}
+\usepackage[]{nomencl}		% nomenclatures
+\usepackage[ruled,vlined]{algorithm2e}
+\usepackage{multicol}
+\usepackage{multirow}
+\usepackage{etoolbox}
+
+\usepackage{caption}
+\usepackage[labelformat=simple]{subcaption}
+\renewcommand\thesubfigure{(\alph{subfigure})}
+\usepackage{wrapfig}
+
+%\usepackage{flushend}
+
+\usepackage{units}
+%\usepackage{flushend}
+
+
+\pdfminorversion=4
+
+%========================================================
+% GENERAL
+%--------------------------------------------------------
+
+\renewcommand{\sec}{Section~}
+\newcommand{\fig}{Fig.~}
+\newcommand{\eq}{}
+\newcommand{\app}{Appendix~}
+\newcommand{\tab}{Table~}
+\newcommand{\alg}{Alg.~}
+%\newcommand{\line}{Line~}
+
+\newcommand{\newword}[1]{\textbf{#1}}
+
+%\newindex{todo}{tod}{tnd}{TODO List} % start todo list
+%\newindex{fixme}{fix}{fnd}{FIXME List} % start fixme list
+%\newcommand{\todo}[1]{\textcolor{blue}{TODO: #1}\index[todo]{#1}} % macro for todo entries
+%\newcommand{\fixme}[1]{#1}
+%\DeclareOption{mydraft}{\renewcommand{\fixme}[1]{\textcolor{red}{\textbf{#1}}}}
+%\ProcessOptions
+
+\newcommand{\fixme}[1]{}
+\DeclareOption{mydraft}{\renewcommand{\fixme}[1]{\textcolor{red}{#1}}} 		% macro for fixme entries
+\ProcessOptions
+\newcommand{\comment}[1]{}
+\DeclareOption{mydraft}{\renewcommand{\comment}[1]{\textcolor{blue}{\textbf{[NdR: #1]}}}}		% macro for comment
+\ProcessOptions
+
+% Colors used in Matlab plots
+\definecolor{matlab1}{rgb}{0,0,1}
+\definecolor{matlab2}{rgb}{0,0.5,0}
+\definecolor{matlab3}{rgb}{1,0,0}
+\definecolor{matlab4}{rgb}{0,0.75,0.75}
+\definecolor{matlab5}{rgb}{0.75,0,0.75}
+\definecolor{matlab6}{rgb}{0.75,0.75,0}
+\definecolor{matlab7}{rgb}{0.25,0.25,0.25}
+
+
+\definecolor{darkgreen}{rgb}{0,0.5,0}		%Olivegreen?
+\definecolor{purple}{rgb}{0.75,0,0.75}
+\definecolor{pink}{rgb}{1,0.4,0.6}
+
+
+\newcommand{\specialcell}[2][c]{%
+  \begin{tabular}[#1]{@{}c@{}}#2\end{tabular}}
+  
+\newcommand{\unknown}[0]{\fixme{XXX}}
+\newcommand{\missingcitation}[0]{\fixme{\cite{???}}}
+
+\providecommand{\SetAlgoLined}{\SetLine}
+\providecommand{\DontPrintSemicolon}{\dontprintsemicolon}
+
+
+%========================================================
+% MATH
+%--------------------------------------------------------
+
+\renewcommand{\vec}{\boldsymbol}				% Vector
+\newcommand{\mat}{\boldsymbol}					% Matrix
+\DeclareMathOperator{\diag}{\mathrm{diag}} 			% Diagonal matrix
+
+\newcommand{\R}[0]{\mathds{R}}					% Real numbers
+
+\renewcommand{\d}{\mathrm{d}}					% Derivate
+\newcommand{\gradient}{\nabla}					% Gradient
+\newcommand{\hessian}{H}					% Hessian
+\nomenclature{\hessian}{Hessian}
+
+\newcommand{\inv}[0]{^{-1}} 					% Inverse
+%\newcommand{\T}[0]{^T} 						% Transpose % \top
+\newcommand{\T}[0]{^\top} 						% Transpose % \top
+
+\newcommand{\norm}[1]{\left|\left| #1 \right|\right|} 		% Norm
+\newcommand{\asin}[0]{\sin^{-1}} 	% 
+
+\newcommand{\E}{\mathds{E}}	 				% expectation operator
+\DeclareMathOperator{\var}{\mathrm{var}} 			% variance
+\newcommand{\prob}{{p}} 					% probability density function
+\newcommand{\normcdf}[1]{\Phi\left( #1 \right)} 		% Normal Cumulative distribution function
+\newcommand{\normpdf}[1]{\phi\left( #1 \right)} 		% Normal probability density function
+\newcommand{\gauss}[2]{\mathcal{N} \left( #1,#2 \right)}	% Gaussian Distribution
+
+
+%========================================================
+% MACHINE LEARNING
+%--------------------------------------------------------
+
+\newcommand{\dataset}[0]{\mathds{D}} 				% Dataset
+\newcommand{\trainingset}[0]{\mathcal{D}}
+
+\newcommand{\inputMatrix}[0]{\mat x}
+\newcommand{\inputSpace}[0]{\mathcal{X}}
+\newcommand{\outputMatrix}[0]{\mat y}
+\newcommand{\regressionNo}[0]{f}
+
+%========================================================
+% GAUSSIAN PROCESSES
+%--------------------------------------------------------
+
+%\newcommand{\GP}[0]{\text{GP}} % Gaussian process
+\newcommand{\GP}[0]{\mathcal{GP}} 	% Gaussian Process
+\newcommand{\noise}[0]{w}
+
+%========================================================
+% OPTIMIZATION
+%--------------------------------------------------------
+
+\DeclareMathOperator*{\argmin}{arg\,min}
+\DeclareMathOperator*{\minimize}{\text{minimize}}
+\newcommand{\parameters}[0]{\vec x} 			% Parameters
+\newcommand{\dimparameters}{d}					% Dimensionality parameters
+\newcommand{\iteration}[0]{i}
+
+\newcommand{\objfuncNo}[0]{f}					% Objective function
+\newcommand{\objfunc}[1]{\objfuncNo\left(#1\right)}		% Objective function (as a function)
+\newcommand{\respsurfNo}[0]{\hat \objfuncNo}			% Response surface
+\newcommand{\respsurf}[1]{\respsurfNo \left( #1 \right)} 	% Response surface (as a function)
+\newcommand{\acqfuncNo}[0]{\alpha}				% Acquisition function
+\newcommand{\acqfunc}[1]{\acqfuncNo \left( #1 \right)}		% Acquisition function (as a function)
+\newcommand{\acqsurf}[1]{\acqfuncNo \left( #1 \right)}		% Acquisition surface
+\newcommand{\gradientline}{\d \objfunc{\parameters}/\d \parameters}
+
+% Multi-objective optimization
+\newcommand{\numbersubobj}[0]{n}
+\newcommand{\mergefuncmooNo}[0]{z}
+\newcommand{\mergefuncmoo}[1]{\mergefuncmooNo \left( #1 \right)}
+\newcommand{\weightsmoo}[0]{\alpha}
+\newcommand{\subobjfuncNo}[0]{g}
+\newcommand{\subobjfunc}[1]{\subobjfuncNo \left( #1 \right)}
+
+
+%========================================================
+% Neural Networks
+%--------------------------------------------------------
+
+\newcommand{\nntf}[1]{\sigma \left( #1 \right)} 		% Neural Networks Transfer function
+\newcommand{\nnBh}[0]{\vec {Bh}} 				% Neural Networks Bias of Hidden layer
+\newcommand{\nnB}[0]{\vec B} 					% Neural Networks Bias
+\newcommand{\nnW}[0]{\mat W} 					% Neural Networks Weights
+\newcommand{\nnE}[0]{E} 					% Neural Networks Error function
+
+
+%========================================================
+% ROBOTICS
+%--------------------------------------------------------
+
+\newcommand{\q}{\mat q}
+\newcommand{\dq}{\dot{\q}}
+\newcommand{\ddq}{\ddot{\q}}
+\newcommand{\skinInput}{\mathcal{\vec S}}
+
+\newcommand{\frictionMatrixNo}[0]{\mat f}
+\newcommand{\inertiaMatrixNo}[0]{\mat M}
+\newcommand{\inertiaMatrix}[0]{\inertiaMatrixNo \left( \q \right)}
+\newcommand{\gravityMatrixNo}[0]{\vec g}
+\newcommand{\torque}{\tau}
+\newcommand{\torques}[0]{\vec \torque}
+%\newcommand{\forceNo}[0]{\vec F}
+\newcommand{\extForce}[0]{\gamma}
+\newcommand{\extForces}[0]{\vec \extForce}
+\newcommand{\ftsForce}{F}
+\newcommand{\ftsForces}{\vec \ftsForce}
+\newcommand{\jtsForce}{\tau}%_text{JTS}}
+\newcommand{\jtsForces}{\vec \jtsForce}%_text{JTS}}
+\newcommand{\Hmatrix}[0]{\vec h \left(\q,\dq \right)}
+\newcommand{\jacobian}[0]{\mat J}
+\newcommand{\coriolis}[0]{C}
+
+%========================================================
+\ProcessOptions
+%========================================================
+
+\newcommand{\idyn}[0]{\textit{iDyn}}
+
+\newcommand{\robot}{\textit{iCub}}
+
+\newcommand{\figspace}{\vspace{-10pt}}

@@ -1,0 +1,347 @@
+<?xml version="1.0" encoding="utf-8" standalone="no"?><!DOCTYPE svg PUBLIC "-//W3C//DTD SVG 1.1//EN" "http://www.w3.org/Graphics/SVG/1.1/DTD/svg11.dtd">
+<svg preserveAspectRatio="xMinYMin meet" width="100%" height="100%" viewBox="0 0 560.000 420.000"  version="1.1" xmlns="http://www.w3.org/2000/svg" xmlns:xlink="http://www.w3.org/1999/xlink">
+  <desc>Matlab Figure Converted by PLOT2SVG written by Juerg Schwizer</desc>
+  <g id="topgroup">
+  <rect x="0" y="0" width="560.000" height="420.000" fill="#ffffff" stroke="none" />
+  <g id ="ID000000">
+  <clipPath id="ID000001">
+    <rect x="121.000" y="34.996" width="385.800" height="304.507"/>
+  </clipPath>
+      <polygon fill="#ffffff" fill-opacity="1.00" stroke="none" stroke-width="0.5pt" stroke-opacity="1.00" stroke-dasharray="none" points="121.000,339.504 506.800,339.504 506.800,34.996 121.000,34.996 "/>
+      <polygon fill="#ffffff" fill-opacity="1.00" stroke="none" stroke-width="0.5pt" stroke-opacity="1.00" stroke-dasharray="none" points="121.000,34.996 506.800,34.996 506.800,34.996 121.000,34.996 "/>
+      <polygon fill="#ffffff" fill-opacity="1.00" stroke="none" stroke-width="0.5pt" stroke-opacity="1.00" stroke-dasharray="none" points="121.000,339.504 121.000,339.504 121.000,34.996 121.000,34.996 "/>
+    <g>
+<g id="ID000002" clip-path="url(#ID000001)" >
+<g>
+<circle cx="457.158" cy="274.333" r="5.000" fill="#ff0000" stroke="none" stroke-width="3.0pt" />
+</g>
+</g>
+<g id="ID000003" >
+  <g transform="translate(457.158,283.333)">
+    <g transform="rotate(-0.0)">
+      <text x="0.000" y="0.000" font-family="Helvetica" text-anchor="start" font-size="20pt" fill="#000000" >1</text>
+    </g>
+  </g>
+</g>
+<g id="ID000004" clip-path="url(#ID000001)" >
+<g>
+<circle cx="239.901" cy="285.554" r="5.000" fill="#ff0000" stroke="none" stroke-width="3.0pt" />
+</g>
+</g>
+<g id="ID000005" >
+  <g transform="translate(239.901,294.554)">
+    <g transform="rotate(-0.0)">
+      <text x="0.000" y="0.000" font-family="Helvetica" text-anchor="start" font-size="20pt" fill="#000000" >2</text>
+    </g>
+  </g>
+</g>
+<g id="ID000006" clip-path="url(#ID000001)" >
+<g>
+<circle cx="253.166" cy="197.532" r="5.000" fill="#ff0000" stroke="none" stroke-width="3.0pt" />
+</g>
+</g>
+<g id="ID000007" >
+  <g transform="translate(253.166,206.532)">
+    <g transform="rotate(-0.0)">
+      <text x="0.000" y="0.000" font-family="Helvetica" text-anchor="start" font-size="20pt" fill="#000000" >3</text>
+    </g>
+  </g>
+</g>
+<g id="ID000008" clip-path="url(#ID000001)" >
+<g>
+<circle cx="289.792" cy="34.996" r="5.000" fill="#ff0000" stroke="none" stroke-width="3.0pt" />
+</g>
+</g>
+<g id="ID000009" >
+  <g transform="translate(289.792,43.996)">
+    <g transform="rotate(-0.0)">
+      <text x="0.000" y="0.000" font-family="Helvetica" text-anchor="start" font-size="20pt" fill="#000000" >4</text>
+    </g>
+  </g>
+</g>
+<g id="ID000010" clip-path="url(#ID000001)" >
+<g>
+<circle cx="364.569" cy="200.577" r="5.000" fill="#ff0000" stroke="none" stroke-width="3.0pt" />
+</g>
+</g>
+<g id="ID000011" >
+  <g transform="translate(364.569,209.577)">
+    <g transform="rotate(-0.0)">
+      <text x="0.000" y="0.000" font-family="Helvetica" text-anchor="start" font-size="20pt" fill="#000000" >5</text>
+    </g>
+  </g>
+</g>
+<g id="ID000012" clip-path="url(#ID000001)" >
+<g>
+<circle cx="395.091" cy="167.732" r="5.000" fill="#ff0000" stroke="none" stroke-width="3.0pt" />
+</g>
+</g>
+<g id="ID000013" >
+  <g transform="translate(395.091,176.732)">
+    <g transform="rotate(-0.0)">
+      <text x="0.000" y="0.000" font-family="Helvetica" text-anchor="start" font-size="20pt" fill="#000000" >6</text>
+    </g>
+  </g>
+</g>
+<g id="ID000014" clip-path="url(#ID000001)" >
+<g>
+<circle cx="359.676" cy="264.962" r="5.000" fill="#ff0000" stroke="none" stroke-width="3.0pt" />
+</g>
+</g>
+<g id="ID000015" >
+  <g transform="translate(359.676,273.962)">
+    <g transform="rotate(-0.0)">
+      <text x="0.000" y="0.000" font-family="Helvetica" text-anchor="start" font-size="20pt" fill="#000000" >7</text>
+    </g>
+  </g>
+</g>
+<g id="ID000016" clip-path="url(#ID000001)" >
+<g>
+<circle cx="261.058" cy="306.339" r="5.000" fill="#ff0000" stroke="none" stroke-width="3.0pt" />
+</g>
+</g>
+<g id="ID000017" >
+  <g transform="translate(261.058,315.339)">
+    <g transform="rotate(-0.0)">
+      <text x="0.000" y="0.000" font-family="Helvetica" text-anchor="start" font-size="20pt" fill="#000000" >8</text>
+    </g>
+  </g>
+</g>
+<g id="ID000018" clip-path="url(#ID000001)" >
+<g>
+<circle cx="340.425" cy="218.207" r="5.000" fill="#ff0000" stroke="none" stroke-width="3.0pt" />
+</g>
+</g>
+<g id="ID000019" >
+  <g transform="translate(340.425,227.207)">
+    <g transform="rotate(-0.0)">
+      <text x="0.000" y="0.000" font-family="Helvetica" text-anchor="start" font-size="20pt" fill="#000000" >9</text>
+    </g>
+  </g>
+</g>
+<g id="ID000020" clip-path="url(#ID000001)" >
+<g>
+<circle cx="458.910" cy="242.154" r="5.000" fill="#ff0000" stroke="none" stroke-width="3.0pt" />
+</g>
+</g>
+<g id="ID000021" >
+  <g transform="translate(458.910,251.154)">
+    <g transform="rotate(-0.0)">
+      <text x="0.000" y="0.000" font-family="Helvetica" text-anchor="start" font-size="20pt" fill="#000000" >10</text>
+    </g>
+  </g>
+</g>
+<g id="ID000022" clip-path="url(#ID000001)" >
+<g>
+<circle cx="429.917" cy="328.788" r="5.000" fill="#0000ff" stroke="none" stroke-width="3.0pt" />
+</g>
+</g>
+<g id="ID000023" >
+  <g transform="translate(429.917,337.788)">
+    <g transform="rotate(-0.0)">
+      <text x="0.000" y="0.000" font-family="Helvetica" text-anchor="start" font-size="20pt" fill="#000000" >11</text>
+    </g>
+  </g>
+</g>
+<g id="ID000024" clip-path="url(#ID000001)" >
+<g>
+<circle cx="347.224" cy="272.968" r="5.000" fill="#0000ff" stroke="none" stroke-width="3.0pt" />
+</g>
+</g>
+<g id="ID000025" >
+  <g transform="translate(347.224,281.968)">
+    <g transform="rotate(-0.0)">
+      <text x="0.000" y="0.000" font-family="Helvetica" text-anchor="start" font-size="20pt" fill="#000000" >12</text>
+    </g>
+  </g>
+</g>
+<g id="ID000026" clip-path="url(#ID000001)" >
+<g>
+<circle cx="227.434" cy="181.943" r="5.000" fill="#0000ff" stroke="none" stroke-width="3.0pt" />
+</g>
+</g>
+<g id="ID000027" >
+  <g transform="translate(227.434,190.943)">
+    <g transform="rotate(-0.0)">
+      <text x="0.000" y="0.000" font-family="Helvetica" text-anchor="start" font-size="20pt" fill="#000000" >13</text>
+    </g>
+  </g>
+</g>
+<g id="ID000028" clip-path="url(#ID000001)" >
+<g>
+<circle cx="253.660" cy="332.563" r="5.000" fill="#0000ff" stroke="none" stroke-width="3.0pt" />
+</g>
+</g>
+<g id="ID000029" >
+  <g transform="translate(253.660,341.563)">
+    <g transform="rotate(-0.0)">
+      <text x="0.000" y="0.000" font-family="Helvetica" text-anchor="start" font-size="20pt" fill="#000000" >14</text>
+    </g>
+  </g>
+</g>
+<g id="ID000030" clip-path="url(#ID000001)" >
+<g>
+<circle cx="186.362" cy="262.456" r="5.000" fill="#0000ff" stroke="none" stroke-width="3.0pt" />
+</g>
+</g>
+<g id="ID000031" >
+  <g transform="translate(186.362,271.456)">
+    <g transform="rotate(-0.0)">
+      <text x="0.000" y="0.000" font-family="Helvetica" text-anchor="start" font-size="20pt" fill="#000000" >15</text>
+    </g>
+  </g>
+</g>
+<g id="ID000032" clip-path="url(#ID000001)" >
+<g>
+<circle cx="202.810" cy="230.232" r="5.000" fill="#0000ff" stroke="none" stroke-width="3.0pt" />
+</g>
+</g>
+<g id="ID000033" >
+  <g transform="translate(202.810,239.232)">
+    <g transform="rotate(-0.0)">
+      <text x="0.000" y="0.000" font-family="Helvetica" text-anchor="start" font-size="20pt" fill="#000000" >16</text>
+    </g>
+  </g>
+</g>
+<g id="ID000034" clip-path="url(#ID000001)" >
+<g>
+<circle cx="213.274" cy="199.704" r="5.000" fill="#0000ff" stroke="none" stroke-width="3.0pt" />
+</g>
+</g>
+<g id="ID000035" >
+  <g transform="translate(213.274,208.704)">
+    <g transform="rotate(-0.0)">
+      <text x="0.000" y="0.000" font-family="Helvetica" text-anchor="start" font-size="20pt" fill="#000000" >17</text>
+    </g>
+  </g>
+</g>
+<g id="ID000036" clip-path="url(#ID000001)" >
+<g>
+<circle cx="168.890" cy="232.756" r="5.000" fill="#0000ff" stroke="none" stroke-width="3.0pt" />
+</g>
+</g>
+<g id="ID000037" >
+  <g transform="translate(168.890,241.756)">
+    <g transform="rotate(-0.0)">
+      <text x="0.000" y="0.000" font-family="Helvetica" text-anchor="start" font-size="20pt" fill="#000000" >18</text>
+    </g>
+  </g>
+</g>
+<g id="ID000038" clip-path="url(#ID000001)" >
+<g>
+<circle cx="276.055" cy="320.079" r="5.000" fill="#0000ff" stroke="none" stroke-width="3.0pt" />
+</g>
+</g>
+<g id="ID000039" >
+  <g transform="translate(276.055,329.079)">
+    <g transform="rotate(-0.0)">
+      <text x="0.000" y="0.000" font-family="Helvetica" text-anchor="start" font-size="20pt" fill="#000000" >19</text>
+    </g>
+  </g>
+</g>
+<g id="ID000040" clip-path="url(#ID000001)" >
+<g>
+<circle cx="274.738" cy="339.504" r="5.000" fill="#0000ff" stroke="none" stroke-width="3.0pt" />
+</g>
+</g>
+<g id="ID000041" >
+  <g transform="translate(274.738,348.504)">
+    <g transform="rotate(-0.0)">
+      <text x="0.000" y="0.000" font-family="Helvetica" text-anchor="start" font-size="20pt" fill="#000000" >20</text>
+    </g>
+  </g>
+</g>
+<g id="ID000042" clip-path="url(#ID000001)" >
+<g>
+<circle cx="324.029" cy="338.757" r="5.000" fill="#0000ff" stroke="none" stroke-width="3.0pt" />
+</g>
+</g>
+<g id="ID000043" >
+  <g transform="translate(324.029,347.757)">
+    <g transform="rotate(-0.0)">
+      <text x="0.000" y="0.000" font-family="Helvetica" text-anchor="start" font-size="20pt" fill="#000000" >21</text>
+    </g>
+  </g>
+</g>
+<g id="ID000044" clip-path="url(#ID000001)" >
+<g>
+<circle cx="316.726" cy="196.654" r="5.000" fill="#0000ff" stroke="none" stroke-width="3.0pt" />
+</g>
+</g>
+<g id="ID000045" >
+  <g transform="translate(316.726,205.654)">
+    <g transform="rotate(-0.0)">
+      <text x="0.000" y="0.000" font-family="Helvetica" text-anchor="start" font-size="20pt" fill="#000000" >22</text>
+    </g>
+  </g>
+</g>
+<g id="ID000046" >
+  <g transform="translate(313.400,416.745)">
+    <g transform="rotate(-0.0)">
+      <text x="0.000" y="0.000" font-family="Helvetica" text-anchor="middle" font-size="28pt" fill="#000000" >x in meter</text>
+    </g>
+  </g>
+</g>
+<g id="ID000047" >
+  <g transform="translate(43.537,188.249)">
+    <g transform="rotate(-90.0)">
+      <text x="0.000" y="0.000" font-family="Helvetica" text-anchor="middle" font-size="28pt" fill="#000000" >y in meter</text>
+    </g>
+  </g>
+</g>
+<g id="ID000048" >
+</g>
+    </g>
+    <g>
+      <polyline fill="none" stroke="#000000" stroke-width="0.5pt" stroke-dasharray="none" points="121.076,339.504 121.076,335.732 "/>
+      <polyline fill="none" stroke="#000000" stroke-width="0.5pt" stroke-dasharray="none" points="231.520,339.504 231.520,335.732 "/>
+      <polyline fill="none" stroke="#000000" stroke-width="0.5pt" stroke-dasharray="none" points="341.964,339.504 341.964,335.732 "/>
+      <polyline fill="none" stroke="#000000" stroke-width="0.5pt" stroke-dasharray="none" points="452.407,339.504 452.407,335.732 "/>
+      <polyline fill="none" stroke="#000000" stroke-width="0.5pt" stroke-dasharray="none" points="121.000,339.504 506.800,339.504 "/>
+  <g transform="translate(121.076,378.634)">
+    <g transform="rotate(-0.0)">
+      <text x="0.000" y="0.000" font-family="Helvetica" text-anchor="middle" font-size="28pt" fill="#000000" >-0.5</text>
+    </g>
+  </g>
+  <g transform="translate(231.520,378.634)">
+    <g transform="rotate(-0.0)">
+      <text x="0.000" y="0.000" font-family="Helvetica" text-anchor="middle" font-size="28pt" fill="#000000" >0</text>
+    </g>
+  </g>
+  <g transform="translate(341.964,378.634)">
+    <g transform="rotate(-0.0)">
+      <text x="0.000" y="0.000" font-family="Helvetica" text-anchor="middle" font-size="28pt" fill="#000000" >0.5</text>
+    </g>
+  </g>
+  <g transform="translate(452.407,378.634)">
+    <g transform="rotate(-0.0)">
+      <text x="0.000" y="0.000" font-family="Helvetica" text-anchor="middle" font-size="28pt" fill="#000000" >1</text>
+    </g>
+  </g>
+      <polyline fill="none" stroke="#000000" stroke-width="0.5pt" stroke-dasharray="none" points="121.000,273.297 124.858,273.297 "/>
+      <polyline fill="none" stroke="#000000" stroke-width="0.5pt" stroke-dasharray="none" points="121.000,162.854 124.858,162.854 "/>
+      <polyline fill="none" stroke="#000000" stroke-width="0.5pt" stroke-dasharray="none" points="121.000,52.410 124.858,52.410 "/>
+      <polyline fill="none" stroke="#000000" stroke-width="0.5pt" stroke-dasharray="none" points="121.000,339.504 121.000,34.996 "/>
+  <g transform="translate(113.284,285.897)">
+    <g transform="rotate(-0.0)">
+      <text x="0.000" y="0.000" font-family="Helvetica" text-anchor="end" font-size="28pt" fill="#000000" >-3</text>
+    </g>
+  </g>
+  <g transform="translate(113.284,175.454)">
+    <g transform="rotate(-0.0)">
+      <text x="0.000" y="0.000" font-family="Helvetica" text-anchor="end" font-size="28pt" fill="#000000" >-2.5</text>
+    </g>
+  </g>
+  <g transform="translate(113.284,65.010)">
+    <g transform="rotate(-0.0)">
+      <text x="0.000" y="0.000" font-family="Helvetica" text-anchor="end" font-size="28pt" fill="#000000" >-2</text>
+    </g>
+  </g>
+      <polyline fill="none" stroke="#000000" stroke-width="0.5pt" stroke-dasharray="none" points="121.000,339.504 121.000,336.458 "/>
+      <polyline fill="none" stroke="#000000" stroke-width="0.5pt" stroke-dasharray="none" points="121.000,339.504 121.000,336.458 "/>
+      <polyline fill="none" stroke="#000000" stroke-width="0.5pt" stroke-dasharray="none" points="121.000,339.504 121.000,336.458 "/>
+      <polyline fill="none" stroke="#000000" stroke-width="0.5pt" stroke-dasharray="none" points="121.000,339.504 121.000,339.504 "/>
+    </g>
+  </g>
+  </g>
+</svg>

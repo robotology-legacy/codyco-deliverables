@@ -1,0 +1,151 @@
+\begin{thebibliography}{10}
+
+\bibitem{Calandra2014}
+R.~Calandra, N.~Gopalan, A.~Seyfarth, J.~Peters, and M.~P. Deisenroth.
+\newblock Bayesian gait optimization for bipedal locomotion.
+\newblock In {\em LION8}, 2014.
+
+\bibitem{Cannata2008}
+G.~Cannata, M.~Maggiali, G.~Metta, and G.~Sandini.
+\newblock An embedded artificial skin for humanoid robots.
+\newblock In {\em MFI}, 2008.
+
+\bibitem{Chang2011}
+C.-C. Chang and C.-J. Lin.
+\newblock {LIBSVM: A Library for Support Vector Machines}.
+\newblock {\em ACM Trans. Intell. Syst. Technol.}, 2(3):27:1--27, 2011.
+
+\bibitem{Deisenroth2014}
+M.~Deisenroth, D.~Fox, and C.~Rasmussen.
+\newblock {Gaussian Processes for Data-Efficient Learning in Robotics and
+  Control}.
+\newblock {\em IEEE TPAMI}, 37(2):408--423, 2015.
+
+\bibitem{Deisenroth2012}
+M.~P. Deisenroth, R.~Calandra, A.~Seyfarth, and J.~Peters.
+\newblock Toward fast policy search for learning legged locomotion.
+\newblock In {\em IROS}, 2012.
+
+\bibitem{DelPrete2011}
+A.~Del~Prete, S.~Denei, L.~Natale, F.~Mastrogiovanni, F.~Nori, G.~Cannata, and
+  G.~Metta.
+\newblock Skin spatial calibration using force/torque measurements.
+\newblock In {\em IROS}, 2011.
+
+\bibitem{DelPrete2012}
+A.~Del~Prete, F.~Nori, G.~Metta, and L.~Natale.
+\newblock Control of contact forces: The role of tactile feedback for contact
+  localization.
+\newblock In {\em IROS}, 2012.
+
+\bibitem{Erez2012}
+T.~Erez and E.~Todorov.
+\newblock Trajectory optimization for domains with contacts using inverse
+  dynamics.
+\newblock In {\em IROS}, 2012.
+
+\bibitem{Featherstone2008}
+R.~Featherstone and D.~Orin.
+\newblock Dynamics.
+\newblock In {\em Springer Handbook of Robotics}, pages 35--65. 2008.
+
+\bibitem{Fumagalli2012}
+M.~Fumagalli, S.~Ivaldi, M.~Randazzo, L.~Natale, G.~Metta, G.~Sandini, and
+  F.~Nori.
+\newblock {Force feedback exploiting tactile and proximal force/torque sensing
+  - Theory and implementation on the humanoid robot iCub}.
+\newblock {\em Autonomous Robots}, 33(4):381--398, 2012.
+
+\bibitem{Ivaldi2011}
+S.~Ivaldi, M.~Fumagalli, M.~Randazzo, F.~Nori, G.~Metta, and G.~Sandini.
+\newblock Computing robot internal/external wrenches by means of inertial,
+  tactile and {F}/{T} sensors: theory and implementation on the {iCub}.
+\newblock In {\em HUMANOIDS}, 2011.
+
+\bibitem{Ivaldi2014}
+S.~Ivaldi, J.~Peters, V.~Padois, and F.~Nori.
+\newblock Tools for simulating humanoid robot dynamics: a survey based on user
+  feedback.
+\newblock In {\em HUMANOIDS}, 2014.
+
+\bibitem{Jain2013clutter}
+A.~Jain, M.~Killpack, A.~Edsinger, and C.~Kemp.
+\newblock Reaching in clutter with whole-arm tactile sensing.
+\newblock {\em IJRR}, 32(4):458--482, 2013.
+
+\bibitem{Handbook2008legged}
+S.~Kajita and B.~Espiau.
+\newblock Legged robots.
+\newblock In {\em Handbook of Robotics}, pages 361--389. Springer, 2008.
+
+\bibitem{Natale2013}
+L.~Natale, F.~Nori, G.~Metta, M.~Fumagalli, S.~Ivaldi, U.~Pattacini,
+  M.~Randazzo, A.~Schmitz, and G.~G.~Sandini.
+\newblock {The iCub platform: a tool for studying intrinsically motivated
+  learning}.
+\newblock In {\em Intrinsically motivated learning in natural and artificial
+  systems}. 2013.
+
+\bibitem{Naveau2014}
+M.~Naveau, J.~Carpentier, S.~Barthelemy, O.~Stasse, and P.~Soueres.
+\newblock {METAPOD - Template META-PrOgramming applied to Dynamics: CoP-CoM
+  trajectories filtering}.
+\newblock In {\em HUMANOIDS}, 2014.
+
+\bibitem{Nguyen-Tuong2011}
+D.~Nguyen-Tuong and J.~Peters.
+\newblock Model learning for robot control: a survey.
+\newblock {\em Cognitive processing}, 12(4):319--340, 2011.
+
+\bibitem{Nguyen-Tuong2008}
+D.~Nguyen-Tuong, J.~Peters, and M.~Seeger.
+\newblock {Local Gaussian process regression for real time online model
+  learning}.
+\newblock In {\em NIPS}, 2008.
+
+\bibitem{Ogawa2014}
+Y.~Ogawa, G.~Venture, and C.~Ott.
+\newblock Dynamic parameters identification of a humanoid robot using joint
+  torque sensors and/or contact forces.
+\newblock In {\em HUMANOIDS}, 2014.
+
+\bibitem{Pedrocchi2014}
+N.~Pedrocchi, E.~Villagrossi, F.~Vicentini, and L.~Tosatti.
+\newblock Robot-dyanmic calibration improvement by local identification.
+\newblock In {\em ICRA}, 2014.
+
+\bibitem{Rasmussen2006}
+C.~E. Rasmussen and C.~K.~I. Williams.
+\newblock {\em Gaussian {Processes for Machine Learning}}.
+\newblock The MIT Press, 2006.
+
+\bibitem{Siciliano2009}
+B.~Siciliano, L.~Sciavicco, L.~Villani, and G.~Oriolo.
+\newblock {\em Robotics: Modelling, Planning and Control}.
+\newblock Springer, 2009.
+
+\bibitem{Toussaint2005}
+M.~Toussaint and S.~Vijayakumar.
+\newblock Learning discontinuities with products-of-sigmoids for switching
+  between local models.
+\newblock In {\em ICML}, 2005.
+
+\bibitem{traversaro2013inertial}
+S.~Traversaro, A.~Del~Prete, R.~Muradore, L.~Natale, and F.~Nori.
+\newblock Inertial parameter identification including friction and motor
+  dynamics.
+\newblock {\em HUMANOIDS}, 2013.
+
+\bibitem{Vijayakumar2000}
+S.~Vijayakumar and S.~Schaal.
+\newblock Locally weighted projection regression: Incremental real time
+  learning in high dimensional space.
+\newblock In {\em ICML}, 2000.
+
+\bibitem{Yamane2011calibration}
+K.~Yamane.
+\newblock Practical kinematic and dynamic calibration methods for
+  force-controlled humanoid robots.
+\newblock In {\em HUMANOIDS}, 2011.
+
+\end{thebibliography}

@@ -1,0 +1,15 @@
+\BOOKMARK [1][-]{section.1}{Introduction}{}% 1
+\BOOKMARK [1][-]{section.2}{Problem Formulation}{}% 2
+\BOOKMARK [2][-]{subsection.2.1}{Classical model-based approaches for computing the robot dynamics}{section.2}% 3
+\BOOKMARK [2][-]{subsection.2.2}{Learning the inverse dynamics}{section.2}% 4
+\BOOKMARK [1][-]{section.3}{Learning Inverse Dynamics with Contacts}{}% 5
+\BOOKMARK [2][-]{subsection.3.1}{Learning contacts as a mixture-of-experts}{section.3}% 6
+\BOOKMARK [2][-]{subsection.3.2}{Gaussian processes as expert models}{section.3}% 7
+\BOOKMARK [1][-]{section.4}{Experimental Set-up and Evaluation}{}% 8
+\BOOKMARK [2][-]{subsection.4.1}{Experimental set-up}{section.4}% 9
+\BOOKMARK [2][-]{subsection.4.2}{Learning a single contact}{section.4}% 10
+\BOOKMARK [2][-]{subsection.4.3}{Robustness of the single contact model}{section.4}% 11
+\BOOKMARK [2][-]{subsection.4.4}{Learning multiple contacts}{section.4}% 12
+\BOOKMARK [2][-]{subsection.4.5}{Learning the gating network}{section.4}% 13
+\BOOKMARK [1][-]{section.5}{Conclusions}{}% 14
+\BOOKMARK [1][-]{section*.21}{References}{}% 15
