@@ -1,0 +1,384 @@
+%% Template for EU deliverable, using the deliverable.sty style file
+
+\documentclass[12pt,a4paper,twoside]{article}
+
+%% common package
+\usepackage[headers]{deliverable}
+\usepackage{xspace}
+\usepackage{verbatim}
+\usepackage[usenames]{color}
+\usepackage{listings}
+\usepackage[usenames,dvipsnames,table]{xcolor}
+\usepackage[pdftex,dvips]{graphicx}
+\usepackage{url}
+\usepackage{array}
+%%
+
+%%insert here other packages needed by sections
+
+%%
+
+%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
+%%% Titlepage
+%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
+
+% declaration of variables used in style
+\deliverableDocnumber{D3.1}
+\deliverableTitle{Local solver in rigid-world cases}
+
+\deliverableAuthor{Vincent Padois$^{1,2}$}
+\deliverableResponsiblePartner{UPMC}
+\deliverableAffiliation{% Insert here authors affiliations
+ $^1$ Sorbonne Universit\'es, UPMC Paris 06, UMR 7222, Institut des Syst\`emes Intelligents et de Robotique (ISIR), F-75005, Paris, France.
+ 
+ $^2$ CNRS, UMR 7222, Institut des Syst\`emes Intelligents et de Robotique (ISIR), F-75005, Paris, France.
+}
+
+
+\deliverableCoordinator{Vincent Padois}
+\deliverableActivityNumber{n} %% n=1,..,10
+\deliverableActivity{Local solver in rigid-world cases}
+\deliverableDoctype{Deliverable} %% or Prototype
+\deliverableClassification{Public} % or Consortium
+\deliverableDistribution{Consortium} %
+\deliverableStatus{Final} % Draft or Final
+\deliverableDeliveryDate{28/2/2015}
+\deliverableFile{D3.1.pdf} % please do not use "-" in the name
+\deliverableVersion{1.0}
+\deliverableDate{Feb.~28, 2015}
+\deliverableYear{2015}
+\deliverablePages{\pageref{LastPage}}
+\deliverableChangelog{}
+\deliverableProjectStartingDate{1st March 2013}
+\deliverableProjectEndDate{28th February 2017}
+\deliverableProjectAcronym{CoDyCo}
+\deliverableProjectTitle{Whole-Body Compliant Dynamical Contacts in Cognitive Humanoids}
+\deliverableContractNumber{600716}
+\deliverableProjectCoordinator{Istituto Italiano di Tecnologia}
+\deliverableProjectUrl{www.codyco.eu}
+\deliverableFrameworkProgramme{FP7}
+ 
+\deliverableWorkpackage{WP3}
+\deliverableEditors{Vincent Padois}
+\deliverableContributors{Aurélien Ibanez, Mingxing Liu, Ryan Lober, Vincent Padois, Nicolas Perrin, Joseph Salini (UPMC), Andrea Del Prete, Francesco Nori, Daniele Pucci, Francesco Romano, Silvio Traversaro (IIT)}
+
+\deliverableAbstract{This deliverable summarizes the contribution of the CoDyCo consortium in the domain of whole-body controllers. First, a review of whole-body control is provided. The analysis of existing research works in that domain clearly positions so-called whole-body controllers as locally optimal, multi-tasks, hierarchical controllers applied to free-floating, underactuated systems, namely humanoids. These local controllers assume the existence of some global controllers providing them with a description of the tasks and contacts to be achieved at each control instant. The contributions of the CoDyCo consortium in the domain of whole-body controllers are then introduced and a concise description of the PhD and postdoc work of Salini, Del Prete and Liu is provided. The report is concluded by a review of the application of these works on the CoDyCo scenarii of Year~1 and Year~2.}
+\deliverableReviewers{}
+\deliverableKeywordList{Whole-bdoy controllers, Rigid world, Multi-contacts, Goal-oriented tasks}
+
+%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
+%%% Sections
+%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
+
+%% constants
+\newcommand{\botegoCaps}{BOTEGO}
+\newcommand{\certhCaps}{CERTH}
+\newcommand{\cybionCaps}{CYBION}
+\newcommand{\nuigCaps}{NUIG}
+\newcommand{\ubitechCaps}{UBITECH}
+%%
+
+%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
+%%% Misc. by Vincent
+%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
+\usepackage{titlesec}
+\newcommand{\sectionbreak}{}
+\graphicspath{{./figure/}}
+\usepackage{pdfpages}
+\usepackage{caption}
+\usepackage{subcaption}
+\usepackage{slashbox}
+\usepackage{multirow}
+\usepackage{appendix}
+\usepackage{amsmath} % assumes amsmath package installed
+\usepackage{amssymb}  % assumes amsmath package installed
+\usepackage[ruled,vlined,linesnumbered]{algorithm2e}
+\usepackage{mathtools}
+\usepackage{graphicx}
+\usepackage{hyperref}
+\hypersetup{
+    bookmarks=true,         % show bookmarks bar?
+    unicode=false,          % non-Latin characters in Acrobat’s bookmarks
+    pdftoolbar=true,        % show Acrobat’s toolbar?
+    pdfmenubar=true,        % show Acrobat’s menu?
+    pdffitwindow=false,     % window fit to page when opened
+    pdfstartview={FitH},    % fits the width of the page to the window
+    pdftitle={D11\_iCubSimulator.pdf},    % title
+    pdfauthor={Vincent Padois},     % author
+    pdfsubject={Local solver in rigid-world cases},   % subject of the document
+    pdfcreator={Vincent Padois},   % creator of the document
+    pdfproducer={Vincent Padois}, % producer of the document
+    pdfkeywords= {}, % list of keywords
+    pdfnewwindow=true,      % links in new window
+    colorlinks=true,       % false: boxed links; true: colored links
+    linkcolor=black,          % color of internal links (change box color with linkbordercolor)
+    citecolor=black,        % color of links to bibliography
+    filecolor=black,      % color of file links
+    urlcolor=black           % color of external links
+}
+
+\newcommand{\vect}[1]{\mbox{\boldmath${#1}$}}%$
+\newcommand{\av}{\vect{\chi}}
+\newcommand{\tens}[1]{#1}
+
+%%%%%%%%%%%%%%%%%%%%%%%%%%%%%% BEGIN DOCUMENT
+\begin{document}
+
+\deliverableMaketitle
+
+%%TODO move to style
+\newcolumntype{L}[1]{>{\raggedright\let\newline\\\arraybackslash\hspace{0pt}}m{#1}}
+\newcolumntype{C}[1]{>{\centering\let\newline\\\arraybackslash\hspace{0pt}}m{#1}}
+\newcolumntype{R}[1]{>{\raggedleft\let\newline\\\arraybackslash\hspace{0pt}}m{#1}}
+
+\textbf{Document Revision History}
+\begin{center}
+\begin{tabular}{|C{2cm}|C{3cm}|C{5cm}|C{4cm}|}
+\hline
+\textbf{Version}&\textbf{Date}&\textbf{Description}&\textbf{Author}\\\hline
+v.~0.1 & Feb.~20, 2015 & Initial draft & Vincent Padois\\ \hline
+v.~0.5 & Feb.~24, 2015 & Intermediate version & Vincent Padois \\ \hline
+v.~0.9 & Feb.~27, 2015 & Final version & Vincent Padois \\ \hline
+v.~1.0 & Feb.~28, 2015 & Proofread version & Francesco Nori \\ \hline
+\end{tabular}
+\end{center}
+ 
+ \clearpage
+
+\newpage
+\renewcommand*\contentsname{Table of Contents}
+\renewcommand*\listfigurename{Index of Figures}
+\tableofcontents
+\newpage
+\listoffigures
+\newpage
+
+%%%%%%%%%%%%%%%%%%%%%%%% Start deliverable content here.
+
+\section{Introduction}
+
+This deliverable summarizes the contribution of the CoDyCo consortium in the domain of whole-body controllers. First, a review of whole-body control is provided. The analysis of existing research works in that domain clearly positions so-called whole-body controllers as locally optimal, multi-tasks, hierarchical controllers applied to free-floating, underactuated systems, namely humanoids. These local controllers assume the existence of some global controllers providing them with a description of the tasks and contacts to be achieved at each control instant. The contributions of the CoDyCo consortium in the domain of whole-body controllers are then introduced and a concise description of the PhD and postdoc work of Salini, Del Prete and Liu is provided. The report is concluded by a review of the application of these works on the CoDyCo scenarii of Year~1 and Year~2.
+
+\section{Whole-Body control and the CoDyCo contribution}
+
+With the emergence of humanoid robots and virtual humans, a fairly large research effort is concentrated on the control of these systems. They are indeed complex by nature and their control remains an opened research question.\\
+
+First, humanoids are free-floating, underactuated systems, \textit{i.e.} systems whose configuration is described by their $n$ joint angles and their 3D pose expressed in some inertial frame\footnote{This pose in SE(3) can be locally described using a minimal number of 6 coordinates.}, while only the joints are directly actuated. Their control is possible thanks to the existence of contacts with the environment\footnote{These contacts are generally located at the feet but can potentially occur anywhere at the surface of the robot.}. These contacts generate wrenches applied to the robot that provide, if properly used, the missing actuation capabilities of the system. While these contacts are necessary, they are challenging as:
+\begin{itemize}
+\item their existence is conditionned by several conditions: 
+\begin{itemize}
+\item contact points (\textit{e.g.} feet) can push on the environment (\textit{e.g.} ground) but not pull: contacts are unilateral;
+\item the contact forces have to lie in their associated Coulomb friction cone to avoid slippage;
+\item the dynamic wrench applied at the center of mass of the robot has to be controlled in such a way that it can actually be compensated for by the contact forces and thus avoid tipping over.
+\end{itemize}
+\item they largely constrain the pose of the contact points and thus the overall motion of the system;
+\item they are discrete in nature: contrarily to wheeled systems, modifying the location of the contact point in a controlled manner\footnote{i.e. without slipping.} requires to break contact.
+\end{itemize}
+
+The second source of complexity comes from the large number of degrees of freedom (DOF) and the tree structure of these systems. These characteristics imply what is generally called "redundancy" and provide the system with the capability to perform several tasks concurrently. While redundancy is appealing, the execution of different tasks may not always be compatible and proper hierachization has to be performed at the control level in order to ensure that safety-critical tasks are not disturbed by less critical ones. This has a fairly large computational complexity.\\
+
+Finally, the control of such systems requires:
+\begin{itemize}
+\item a fairly good knowledge of their kinematic and dynamic model;
+\item access to measures or estimation of contact point locations (and potentially measures of forces if they are to be precisely controlled);
+\item a measure of their 3D pose/velocity/acceleration in some inertial frame;
+\item a torque controlled robot.
+\end{itemize}
+Modeling and identifying the model parameters is thus of major importance. Proper sensing (joint level odometry, force/torque sensing, inertial measurment units) and estimation capabilities are also mandatory.
+
+\subsection{Whole-body control: global vs local control problem} 
+
+Solving the global whole-body control problem as a whole, \textit{i.e.} finding at each control instant the adequate actuation torque given some high level mission description such as "Move object A from place B to C", is beyond reach. As a consequence, what is meant by whole-body control often corresponds to a local control problem, less complex than the global one.\\
+
+The main assumption is that the operational tasks\footnote{Operational space tasks are often expressed in 3D space and associated to end-effectors but the concept can be extended to any space that can be expressed as a function of joint space coordinates, including the joint space itself.} to perform at time t in order to achieve a global goal are given. For simple missions, these tasks, their associated goals and relative importances are very often predefined in a very \textit{ad hoc} way. This is hardly possible when considering the specific problem of changing the contact points location and controlling balance. Indeed, although the dynamics of multibody systems are well understood, direct approaches to resolve the motion of all degrees of freedom for locomotion is computationally intractable in real-time due to their large number and to the non-linear behaviour of the system.\\
+
+In fact, to generate dynamically balanced locomotion trajectories efficiently, current methods are based on simplified models of the robot dynamics \cite{SpringerHandb}. One of the most widespread model is the Inverted Pendulum Model (\emph{IPM}) \cite{3Dlinearinve}, where the mass of the robot is assumed to be concentrated at its center of mass (\emph{CoM}). Although more accurate models are sometimes required \cite{RMPmodelfor}, the simple IPM is suitable for many situations where the rotational inertial effects of the robot arms, legs and torso are negligible or can compensate for each other. An example of such a scenario includes walking at a moderately fast pace. When all the contacts are coplanar, a point, sometimes called the Zero Moment Point (\emph{ZMP}) \cite{zmpreview}, that is of particular interest can be defined. Although this name has led to confusion about its physical nature \cite{posturalstabi}, it is often used. A system is considered dynamically balanced if the ZMP lies within the support region, i.e. the 2D convex hull of the contact points \cite{stabilitywalk}. In the IPM, the relationship between the CoM and ZMP dynamics is defined by nonlinear differential equations. However, if the vertical displacements of the CoM are set in advance, the relationship can be decoupled and expressed as linear differential equations. This substantially simplifies the problem into one that can be more efficiently and easily implemented for locomotion trajectory generation and gait control. The trajectory generation problem has been studied through analytical approaches \cite{motionpattern,analyticalgai,walkingallowi}, and more recently, using convex optimization with constraints on the ZMP in discrete time \cite{fastequilibra,walkingpatter,LMPCwalkingw,LMPCforwalki,locomotionvia,walkingwithou}. The efficiency of convex optimization solvers allows them to be used within model predictive control (\emph{MPC}) schemes. This is important in the real-time implementation of reactive walking. However, the ZMP+MPC approach suffers from two main drawbacks: 1) the trajectory of the CoM height ($z$-direction) must be known or fixed in advance, and 2) the contact points must always be coplanar, making this approach unsuitable for walking in complex unstructured environments or if the arms are to also be used. Due to these two restrictions, the ZMP+MPC approach can be regarded as a 2D CoM planner that operates in the horizontal $xy$-plane only.\\
+
+If real-time is not a constraint, motion planning techniques based on probabilistic searches \cite{planningalgor} have been extended to humanoids and can also be used, mostly in an offline fashion, to generate feasible motions for the overall system \cite{hauser2008motion,dalibard2013dynamic,bouyarmane2012humanoid,lengagne2013generation}.\\ %In contrast with these works, the recent work of Tassa \textit{et al.} is a step toward plausible on-line whole-body motion optimization \cite{tassa2014control}.\\
+
+Overall, given the assumption that tasks are provided, the local whole-body control problem can be formulated as follows: at each control time, given a set of $n_t$ tasks to be perfomed and their relative importance, find the (locally) optimal joint torques and contact wrenches such that the task errors are minimized while respecting the task hierarchy, the equation of motion and physical constraints acting on the system (joint limits, joint velocity and joint torque limits, obstacle avoidance). The contact locations are supposed to be known and compatible with the overall desired motion of the system in terms of dynamic equilibrium/balance. The problem to be addressed is thus a very general problem of multi-tasks hierarchical control applied to humanoids.
+
+\subsection{Hierarchical control}
+
+Approaches to maintain a desired task hierarchy using a multi-objective controller draw a lot of interest. This section reviews some classical types of hierarchical control frameworks, as well as the methods for priority representation and transitions within these frameworks.
+
+\subsubsection{Approaches for handling a strict hierarchy}
+\label{sec:Approaches for handling a strict hierarchy}
+
+The simultaneous management of multiple objectives is a well known problem in Robotics. The most popular method to deal with a set of tasks is a hierarchical framework \cite{Liegeois1977}: objectives are prioritized and low priority objectives are carried out only if they do not impact the achievement of top priority objectives. This analytical\footnote{"Analytical" means that an inverse is explicitly computed contrarily to "optimization-based" approaches where the computation of the inverse is implicit.} method is based on null-space projections and can ensure that lower priority tasks are executed only in the null-space of higher-priority tasks, by means of the appropriate design of a null-space projector. At the velocity kinematics level, this approach is generalized with the notion of \textit{stack of task} \cite{Mansard2007}. Based on this framework, many kinds of inversion-based control problem resolutions have emerged: potential fields and gradient projection methods \cite{Khatib1986,Maciejewski1985}, weighted inversion techniques \cite{Chan1995,Huo2011}, clamping \cite{Baerlocher2004}, etc. They have also been extended to the dynamics level \cite{Khatib1986,Hsu89,Peters08}. Despite the fact that most constraints are naturally expressed as inequalities (\textit{e.g.} maximum actuation torques), these resolution schemes are    relying on linear algebra and matrix inversions and thus express them as equalities, \textit{i.e.} in way similar to the way tasks are expressed. These constraints-related tasks aim at getting away from the constraint (active avoidance). The number of constraints being potentially higher than the number of DOF, they mostly fail in highly constrained cases and cannot lead to control solutions that can strictly guarantee the respect of all constraints. One way to circumvent this limitation rely on the appropriate activation of the constraints based on their level of criticity at each instant. This allows the reduction of the number of tasks to be achieved at a given instant but leads to potential discontinuities in the generated control solution. To deal with these discontinuities dedicated developments have been led: adaptative gains for weighting techniques \cite{Chaumette2001}, smooth tasks transitions \cite{Padois2007}, progressive clamping \cite{Raunhardt2007} and dedicated inversion operator \cite{Mansard2009a}.\\
+
+These techniques have also been adapted to humanoid systems at the velocity \cite{Mistry07,Mistry08} and torque \cite{Sentis04bis} levels. In the case of humanoids, the motion of the overall system should be compatible with the contact constraints and, the constraint being expressed at the velocity level, active avoidance is not an appropriate solution. Instead, projected inverse dynamics schemes have been developed \cite{Aghili05,Khatib08,Sentis10,Righetti_IJORR_2013,DelPreteThesis2013} in which tasks are projected into the null-space of the Jacobian of contact constraints.\\
+
+Deciding when a constraint should be activated remains a problem in these approaches \cite{Rubrecht2011b} and, as in the seminal work in \cite{Faverjon1987}\footnote{In \cite{Faverjon1987}, an obstacle avoidance technique includes a control law structure based on a Quadratic Programming (QP). This method limits the velocities toward obstacles using inequalities.  Avoidance is thus passive (does not require motion) which is more likely to avoid the collisions whatever the number of obstacles.}, control approaches relying on optimization tools such as Linear Quadratic Problem solver have emerged \cite{Abe07,Collette07}. These solvers are designed to optimally choose the subset of constraints that should be considered when computing the optimal solution of the control problem. The strong mathematical background in convex optimization is such that optimization based methods mostly outperform analytical methods attempting to heuristically activate constraints as in \cite{Flacco12, Flacco12bis}.\\
+
+More recently, to deal with prioritized inequality constraints more easily, hierarchical quadratic programming (HQP) approaches use numerical QP solvers to solve a Hierarchical Quadratic Program \cite{Kanoun09}. 
+%An advantage of these approaches is that they can deal with prioritized inequality constraints \cite{Kanoun09}. 
+The idea of HQP is to first solve a QP to obtain a solution for a higher priority task objective; 
+and then to solve another QP for a lower priority task, without increasing the obtained minimum of the previous task objective. This prioritization process corresponds to solving at best lower-priority tasks in the null-space of higher-priority tasks.
+The HQP algorithm is applied for solving prioritized inverse dynamics \cite{Saab11} and is also applied to whole-body motion control under unilateral constraints \cite{Saab13}.
+It requires to solve as many QPs as priority levels, which can be quite time consuming. The computation cost of hierarchical inverse kinematics with inequality constraints is improved by an algorithm developed in \cite{Escande14}, which permits real time control of the HRP-4 humanoid robot. Similar work is performed in \cite{HerzogIROS2014} where a reduction of the equation of motion allows for real time control of the SARCOS humanoid robot.\\ 
+
+Generally, for an approach based on strict hierarchy, the relative importance of one task with respect to another one of different priority level is parametrized in a binary way: either strictly higher or strictly lower.
+However, in many contexts, organizing tasks by assigning them with strict priorities is not generic, \textit{i.e.} can have some limitations. First, a strict priority is just an extreme case of the relations of task importance levels. In fact, a task may not always have a strict priority over another one and it is usually difficult to define a strict hierarchy among a set of tasks. 
+%It might not be necessary to strictly prevent a lower priority task from interfering with a higher priority task, as long as the performance of the higher priority task is acceptable. 
+Second, strict priorities can sometimes be too conservative so that they may completely block lower-priority tasks. 
+%Unlike a discrete parametrization of task priorities, a continuous parametrization is richer and more informative. Therefore, this work handles task priorities, which can be strict or non-strict, by using a continuous parametrization. Moreover, priorities are defined here by pairs of tasks: this choice extends the classical notion of priority in Robotics while still making it possible to represent standard lexicographic orders as defined in \cite{Saab13}. 
+
+\subsubsection{Weighting strategy}
+Non-strict priorities are usually handled by control approaches using weighting strategies \cite{Abe07,Collette07,Liu11,Salini11,Bouyarmane11}.
+These control frameworks solve all the constraints and task objectives in one QP and provide a trade-off among task objectives with different importance levels. 
+As the performances of higher priority tasks cannot be guaranteed by simply adjusting the weights of task objectives, a prioritized control framework is proposed in \cite{Liu12} to ensure the performance of a higher-priority task within a user defined tolerance margin. However, this approach handles priorities of only two levels. 
+In approaches based on weighting strategies, task priorities can be parametrized continuously. Nonetheless, even though the work in \cite{kerrigan2000} on soft constraints in model predictive control could probably be adapted to provide a way to reach the extreme case of strict priorities, the existing robotic applications of these frameworks do not extend to strict hierarchies.
+
+%The control framework proposed in this paper is based on these frameworks: it formulates and solves all tasks and constraints in one QP. It also largely outperforms them by permitting priorities to change continuously from a non-strict case to a strict case.
+
+\subsubsection{Task transitions}
+Earlier versions of analytical methods and HQP approaches can ensure strict priorities among tasks; however, a change in the task set, such as a swap of task priorities, may lead to discontinuity. Recently, different methods have been developed to handle task transition problems.
+An approach to smooth priority rearrangement between two tasks is proposed in \cite{Keith11,Petric13}. Approaches for continuous and simultaneous transitions of multiple tasks are developed in \cite{Mansard09bis,Lee12}. A specific inverse operator is proposed  in \cite{Mansard09bis} to ensure continuous inverse in the analytical computation of control laws. The approach presented in \cite{Lee12} is based on intermediate desired values in the task space. When the number of task transitions increases, this approach recommends to use an approximation to reduce the computational cost.
+Smooth task transitions can be easily achieved within a framework using a weighting strategy by the continuous variation of task weights \cite{Salini11}.
+
+\subsection{Controllers developped within the framework of CoDyCo}
+
+The whole-body controllers developped and implemented by UPMC and IIT  within the framework of the CoDyCo projects are mostly related to the work of:
+\begin{itemize}
+\item Joseph Salini at UPMC whose PhD thesis addressed the topic of "Dynamic control for the task/posture coordination of humanoids: toward synthesis of complex activities" \cite{Salini12};
+\item Andrea Del Prete at IIT whose PhD thesis addressed the topic of "Control of Contact Forces using Whole-Body Force and Tactile Sensors: Theory and Implementation on the iCub Humanoid Robot" \cite{DelPreteThesis2013};
+\item Mingxing Liu at UPMC whose postdoctoral work has been focused on "Generalized Hierarchical Control" \cite{generalizedsm}\footnote{The submitted version of this article is provided in Appendix~\ref{app:GHC}}.
+\end{itemize}
+
+On one hand, the work of Salini deals with the general problem of dynamic control of “task-oriented” under-actuated and redundant systems considering more specifically the humanoid robotic systems or virtual humans. It brings contributions to the problem of motor activities synthesis for constrained systems by their intrinsic capacities and by particular physical interactions with the environment. More specific issues that are addressed relate to:
+\begin{itemize}
+\item the dynamic control of humanoid systems for carrying out basic activities requiring task/posture coordination perturbed by physical interactions;
+\item the building of sequences of continuous dynamic activities based on a repertoire of motor coordination;
+\item the planning and the adaptation of activities in the aim of a supervised automatic sequencing for complex non-deterministic tasks.
+\end{itemize}
+The major outcome of this work is a generic controller based on the completion of several tasks under constraints. As mentionned in Sec.~\ref{sec:Approaches for handling a strict hierarchy}, these constraints are mainly the representation of physical limitations of the robot, both internal, such as joint limits, and external as frictional contacts during interactions with the environment. The formalism is based on "task functions", the simultaneous resolution of several of them is realized by a quadratic multicriteria optimal control scheme. It is based on convex optimization methods, and the good properties of quadratic programming (QP) can efficiently perform the whole body control (in time, convergence, robustness) for the task/ posture coordination. A strategy based on weights is used to manage conflicting tasks. It allows a great flexibility of control during transitions in the sets of tasks and constraints for the continuity of the control variables. This controller has been implemented in a Arboris-Python, a physics engine also developped by Salini \cite{Arboris-Python}, on a virtual model of the iCub robot. These experiments illustrate the achievement of multi-task problems and exhibit the good  performance of the controller for managing transitions in task sequences or when state change in the set of constraints, when a contact is broken, for example. In addition, program performance optimization of a temporal point of view are studied for different formalisms. On top of this whole-body controller, Salini has also developped a high-level controller to plan and adapt sequences of tasks for the realization of more complex activities based on a predetermined repertoire of actions and monitoring their performance, while ensuring the continuity of the  control variables .\\
+
+On the other hand, the objective of the PhD thesis of Del Prete was to improve the abilities of humanoid robots to interact with their surrounding. In particular, the idea of integrating force and touch feedback was investigated, so as to control the robot in presence of external forces acting on any part of its body. To this aim, this work exploited the humanoid robot iCub as test platform, and it tackled three main issues:
+\begin{itemize}
+\item spatial calibration of tactile sensors;
+\item estimation of contact forces using tactile sensors and force/torque sensors;
+\item prioritized position and force control.
+\end{itemize}
+The major outcome of this work was the synthetis a new framework for strictly prioritized position and force control of floating-base robots. The framework was compared to other state-of-the-art similar frameworks, both analytically and in simulation, and it proved preferable in terms of optimality and computational efficiency — twice as efficient, while preserving the optimality of the solution. Moreover, a method for estimating the 3D positions of tactile sensors was proposed. The method relies on force/torque measurements and it was exploited to calibrate the 1500 tactile sensors mounted on the arms of the iCub robot, with an average error of approximately 7 mm. Another method was introduced, which makes use of the calibrated tactile sensors, together with the distributed force/torque sensors, to estimate an arbitrary number of contact forces acting on any part of the robot’s body. The method is based on the Recursive Newton-Euler Algorithm, and it was implemented as part of  the open-source C++ library iDyn. Furthermore, a theoretical and empirical analysis investigated how incorrect estimation of contact points may affect the resulting contact forces and induce undesired joint accelerations. Tests on the iCub robot demonstrated a significant improvement in the performance of the force controller when the tactile system was used.\\
+
+Finally, with the aim of handling both strict and non-strict hierarchies simultaneously, and achieving smooth transitions of priorities, a novel control framework called Generalized Hierarchical Control (GHC) has been developped at UPMC in the work of Liu. The contributions of this work are as follows:
+\begin{itemize}
+\item the development of a generic dynamic control framework, which solves a single quadratic program (QP) to account for an arbitrary number of strict and non-strict task priorities;
+\item the development of a generalized projector, which ensures desired task priorities, their smooth transitions as well as an elegant way of inserting and deleting tasks among those to be performed. The implementation of such a projector is not restricted to the dynamic control framework. In fact, it can be implemented in many analytical and optimization-based control frameworks. Task priorities can be handled by the modulation of a priority matrix, without the necessity of modifying the control problem formulation each time the priorities change. This projection matrix regulates to what extent a lower-priority task is projected into the null-space of a higher-priority task. In other words, it allows a task to be completely, partially, or not at all projected into the null-space of some other tasks. The priority levels can be changed by the modulation of the generalized projector.
+\end{itemize}
+
+\section{Results}
+
+In this section, CoDyCo related results obtained both in simulation and on the iCub robots are summarized. The controllers developped by Salini and Del Prete have been ported to C++ during the first months of the CoDyCo project and are now being integrated to the WBI interface developped to provide a common abstraction layer fo whole-body controllers and described in Deliverable 1.2. The controller of Liu is coded in C++ within the XDE simulation framework (see Deliverable 1.1) and a quasi-static version has been developped as a C++ Orocos component \cite{Bruyninckx2001} for the real-time control of the LWR KUKA robot \cite{liu_ICRA2015}.
+
+\subsection{Year~1 scenario: balancing on multiple rigid contact points}
+
+Year~1 scenario has been validated in simulation using Salini's controller in the XDE simulation framework (see Section 4.7 of Deliverable 5.1). It has also been validated using Liu's controller in simulation using the XDE simulation framework \cite{LiuAutRob2014SI}\footnote{The article related to the work of Liu \textit{et al.}  \cite{LiuAutRob2014SI} is provided in Appendix~\ref{app:LiuAutRob2014SI}}.\\
+
+On the real robot, Del Petre's controller has been used has a basis for the integration of Year 1 Demo (illustrated on Fig.~\ref{fig:year1_demo}). The proposed balanced controller is described in \cite{Nori_FRAI2015,Arslan2014}\footnote{The article related to the work of Nori \textit{et al.} \cite{Nori_FRAI2015} is provided in Appendix~\ref{app:NoriFRAI2015}. The internship report of Talha Ali Arslan \cite{Arslan2014} is provided in Appendix~\ref{app:report Arslan}}. Some extension of this work has led to recent developments illustrated in a recently published video\footnote{\url{https://www.youtube.com/watch?v=VrPBSSQEr3A}}. A view of the obtained performance is provided on Fig.~\ref{fig:cool_balancing}.\\
+
+   \begin{figure}[h!]
+      \centering
+      \includegraphics[width=0.45\textwidth]{figure/year1_demo}       \includegraphics[width=0.45\textwidth]{figure/year1_demo_2}
+      \caption{Views of iCub balancing on multiple contacts using one the whole-body controller developped within the framework of the CoDyCo project.}
+      \label{fig:year1_demo}
+   \end{figure}
+
+    \begin{figure}[h!]
+      \centering
+      \includegraphics[width=0.8\textwidth]{figure/cool_balancing_demo}
+      \caption{View of the most recent developments in the implementation of the CoDyCo whole-body controller: iCub balancing on one foot while interacting with humans.}
+      \label{fig:cool_balancing}
+   \end{figure}
+
+\subsection{Year~2 scenario: balancing on feet while performing goal directed actions}
+
+Year~2 scenario has been validated in simulation using Salini's controller in the XDE simulation framework in several occasions\footnote{see \url{http://goo.gl/tsT4Iv} for an overview.}. More recently, the work of Lober \textit{et al.} aiming at multiple task optimization using dynamical movement primitives for whole-body reactive control builds on Salini's controller \cite{lober-HUMANOIDS2014}. Fig.~\ref{fig:lober-hum14} and a video\footnote{\url{http://goo.gl/QoSfp7}} accompanying the published work illustrate these results.\\
+
+    \begin{figure}[h!]
+      \centering
+      \includegraphics[width=0.8\textwidth]{figure/lober_hum14}
+      \caption{View of some recent developments in the implementation of the CoDyCo whole-body controller in goal oriented actions}
+      \label{fig:lober-hum14}
+   \end{figure}
+
+Fig.\ref{fig:babic_lober_snapshots} provides a view of some recent work performed in coordination with Jan Babic from JSI during his period as a visiting professor at UPMC (November 2014). The goal of this on-going cooperation is to reproduce, using a synthetic whole-body controller, results obtained in human reaching with additional contact experiments in Work Package 2.\\
+
+    \begin{figure}[h!]
+      \centering
+      \includegraphics[width=0.24\textwidth]{figure/lober_babic_seq1}
+	\includegraphics[width=0.24\textwidth]{figure/lober_babic_seq2}
+	\includegraphics[width=0.24\textwidth]{figure/lober_babic_seq3}
+	\includegraphics[width=0.24\textwidth]{figure/lober_babic_seq4}
+      \caption{View of a sequence of motion generated using a robotic controller as an attempt to reproduce results obtained in human reaching with additional contact experiments.}
+      \label{fig:babic_lober_snapshots}
+   \end{figure}
+
+
+Year~2 scenario is being currently implemented on the real robot. A description of the scenario and associated controller is provided in Deliverable~5.2.
+
+\subsection{Other use case of interest}
+
+In the work of Ibanez \textit{et al.} \cite{ibanez-IROS2014} a strategy to automatically combined balance strategies based on continuous postural adjustments and discrete changes in contacts is developped in order to maintain postural stability while considering the engaged walking activity. In order to compute optimal time, duration and position of footsteps along with the center of mass trajectory of a humanoid, a novel mixed-integer model of the system is presented. The introduction of this model in a predictive control problem brings the definition of a Mixed-Integer Quadratic Program, subject to linear constraints. Simulation results demonstrate the simultaneous adaptation of the gait pattern and posture of the humanoid, in a walking activity under large disturbances, to efficiently compromise between task performance and balance. In addition, a push recovery scenario displays how, using a single balance-performance ratio, distinct behaviors of the humanoid can be specified. Fig.~\ref{fig:ibanez_iros14} and a video\footnote{\url{http://goo.gl/PjcTcS}} accompanying the published work illustrate the results. As in \cite{ibanez-ICRA2014}, this work builds on the local whole-body controller of Salini and provides the global MPC level needed to generate feasible tasks for the robot.
+
+    \begin{figure}[h!]
+      \centering
+      \includegraphics[width=0.8\textwidth]{figure/ibanez_iros14}
+      \caption{A view of iCub automatically adapting its contact locations based on some perceived balance perturbation.}
+      \label{fig:ibanez_iros14}
+   \end{figure}
+
+\newpage{}
+\section{Conclusion}
+
+The CoDyCo consortium has a strong expertise in the domain of whole-body control and is well equipped with state-of-the art whole-body controllers. These controllers are the topic of several research results obtained by the consortium and cited in the results Section of this deliverable. Through the WBI software abstraction presented in Deliverable~1.2, they provide appropriate tools based on which the results of all worpackages can be ported to the iCub humanoid robot. This is already the case for the Year~1 and Year~2 demonstration. 
+
+
+
+
+
+\newpage{}
+
+\phantomsection
+\bibliographystyle{IEEEtran}
+% argument is your BibTeX string definitions and bibliography database(s)
+\bibliography{IEEEabrv,D3.1}
+\addcontentsline{toc}{section}{References}
+
+\newpage{}
+\begin{appendices}
+\appendices
+
+\section{Generalized Hierarchical Control}
+\label{app:GHC}
+\newpage
+\includepdf[pages={2-16}]{appendix/GHC_Submitted_ISIR_2014.pdf}
+
+\section{Whole-Body Hierarchical Motion and Force Control for Humanoid Robots}
+\label{app:LiuAutRob2014SI}
+\newpage
+\includepdf[pages={1-9}]{appendix/GHCiCub_AutRobSubmitted_ISIR_2014.pdf}
+
+\section{iCub Whole-body Control through Force Regulation on Rigid Non coplanar Contacts}
+\label{app:NoriFRAI2015}
+\newpage
+\includepdf[pages={1-27}]{appendix/wholeBodyControl_Frontiers_in_Robotics_and_AI_IIT_2014.pdf}
+
+\section{Improvement of a Balancing Force and Posture Controller with Torque Minimization}
+\label{app:report Arslan}
+\newpage
+\includepdf[pages={1-47}]{appendix/BalanceControl_MastersThesis_Internship_Talha_Ali_Arslan_IIT-TUEindhoven_2014.pdf}
+
+\end{appendices}
+
+
+
+
+\end{document}
+
+%%% Local Variables:
+%%% mode: latex
+%%% TeX-master: t
+%%% save-place: t
+%%% End:
