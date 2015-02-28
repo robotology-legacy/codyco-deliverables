@@ -16,7 +16,7 @@ Code, data and PDF [available here](https://github.com/robotology-playground/cod
 
 D4.2 - Learning of tasks with multiple contacts by imitation and reinforcement learning
 -----------------------------------------------------------
-######Responsible: UPMC
+######Responsible: TUD
 ######Delivery date: M24
 Code, data and PDF [available here](https://github.com/robotology-playground/codyco-deliverables/tree/master/D4.2).
 
