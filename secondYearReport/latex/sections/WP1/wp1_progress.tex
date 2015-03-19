@@ -34,32 +34,10 @@ The CoDyCo project requires a modular, component-based dynamics simulation softw
 During the second year both IIT and UPMC contributed to the development of several software components for controlling the iCub whole-body behavior. The software has been structured around an abstraction layer called wholeBodyInterface, described in details within T3.2. This C++ abstraction layer is already used in a set of whole-body controllers implemented in simulink and available on github at the following address: \url{https://github.com/robotology/codyco/tree/master/src/simulink/controllers}. Within this context simulink is currently adopted as a fast designing tool for testing several controllers whose final implementation is foreseen in C++. Similarly, UPMC has started adopting the wholeBodyInterface within their own
 controller framework based on XDE and ORCISI. Preliminary results are available here: \url{https://github.com/robotology/codyco/tree/master/src/tests}. 
 
-\subparagraph{System dynamics estimation software. Extension to
-environmental compliance estimation (T1.4)}
+\input{sections/WP1/wp1_progress_T14.tex}
 
-The goal of this task is to develop a software tool for on-line estimation of whole-body dynamics of the robot, as well as the compliance of contacts established between the robot and the environment. 
+\input{sections/WP1/wp1_progress_T15.tex}
 
-\begin{itemize}
-\item Within T1.4, IIT contributed with two activities in year 1: developing a library for whole-body dynamics estimation and starting the activity of compliance estimation. Details of these activities can be found primarily in the associated scientific publications \cite{Traversaro2013, Traversaro2014, Fiorio2014}.
-
-\item Also during year one, TUD started to investigate the learning of dynamic models with
-discontinuities. A new Gaussian process (GP) model was developed
-that is explicitly designed to deal with non-linearities
-induced through contacts with the environment. An example of such non-linearities 
-and the approximated model reconstruction is shown in Figure \ref{fig:example_discontinuities}.
-We called the developed supervised learning method manifold GP (mGP), as it 
-jointly learns a transformation of the data into a feature space, and a GP regression 
- from the feature space to observed space. In future work, this promising approach 
- will be applied to motor skill learning task on the iCub with multiple contacts. 
- A preprint of this work 
- was published this year [Calandra, R. and Peters, J. and Rasmussen, C. and Deisenroth,
-M., 2014].
-\end{itemize}
-
-
-\subparagraph{Extension and enhancement of the iDyn library. (T1.5)}
-
-The original iDyn library \url{https://github.com/robotology/icub-main/tree/master/src/libraries/iDyn} was designed assuming the robot in a fixed-base configuration. Within CoDyCo the library was redesigned in order to support floating base structures. The associated source code is available here \url{https://github.com/robotology/codyco/tree/master/src/libraries/iDynTree}. Within the YARP and iCub contexts, the libraries are used in the wholeBodyDynamics modules (\url{https://github.com/robotology/icub-main/tree/master/src/modules/wholeBodyDynamics} and \url{https://github.com/robotology/codyco/tree/master/src/modules/wholeBodyDynamicsTree} respectively) to compute simultaneously internal (joint torques) and external (contact) forces and torques. 
 
 
 
