@@ -1,0 +1,67 @@
+%!TEX root = ../../secondYearReport.tex
+
+
+\paragraph{Work package 1 progress}
+
+\subparagraph{Software architecture design and evaluation of available open-source software pertinent to the scope of the project. (T1.1)}
+
+The explicit goal of T1.1 is for the consortium to agree on a specific software architecture with associated software tools whose specifications, dependencies and interconnections meet the requirements and needs for achieving the goals of the project.  To this end, the consortium met on 5th June 2013 at UPMC to discuss and agree on software interfaces, modules and architectures. The main outcomes from this meeting were: 
+\begin{itemize}
+\item IIT to develop plugins for Gazebo to interface with YARP. Gazebo chosen to be a replacement physics core for the iCubsim (see T1.2). 
+\item UPMC to develop software using Orocos/XDE for whole body control and define generic interfaces for controllers, models, sensors, and actuation allowing for the communication of a C++ Orocos-based controller component with a robot using YARP or a YARP/Gazebo-based simulator.
+\item  The consortium agreed on URDF as a unified modeling structure for defining and sharing descriptions of robots and human models. URDF is a standard XML format for representing the kinematic and dynamic description of a branched structure of articulated rigid bodies. 
+\end{itemize}
+The software architectural designs and specifications are to be documented as part of D1.2 and released at the end of year 2. 
+
+\subparagraph{Simulator for whole-body motion with contacts (T1.2)}
+
+The CoDyCo project requires a modular, component-based dynamics simulation software providing numerically stable, computationally efficient and physically consistent simulations of whole-body virtual human(oid) systems in contact with rigid or soft environments. To this end, in year one, a new iCub simulator has been released and documented as part of deliverable D1.1. In summary: 
+
+\begin{itemize}
+\item The previously existing iCub simulator needed an upgrade for more advanced applications including the multi-contact dynamics required for the CoDyCo project. The goal was to replace the physics core from ODE (Open Dynamics Engine) to one more suitable for articulated rigid body structures commonly used in robotics. To this end, Gazebo and XDE were chosen and evaluated as physics cores for the new iCub simulator. 
+
+\item Partner UPMC led a survey of existing simulators for robotics\footnote{http://arxiv.org/abs/1402.7050}. In total 119 international robotics researchers responded to the survey.  
+
+\item IIT contributed in CoDyCo with a joint activity with two other EU projects: Koroibot and WALK-MAN. The result of this collaboration is the development of a Gazebo plugin for exposing a YARP interface to the simulator. The plugin has been released with an open-source license and it is available on github (\url{https://github.com/robotology/gazebo_yarp_plugins}). At the moment of writing the current report, the plugin can be instantiated to control both COMAN (\url{https://github.com/EnricoMingo/iit-coman-ros-pkg}) and iCub (\url{https://github.com/robotology-playground/icub_gazebo}). This activity is related to a preliminary workshop publication \cite{Mingo2014}. 
+
+\item Partner UPMC conducted a comparison between the XDE and Gazebo iCub simulators and a real iCub performing a leg free-falling task. In summary, in terms of predicted simulated outcomes, XDE and Gazebo are nearly numerically identical. However, both suffer with respect to accuracy, as the viscous friction models used are not able to accurately model the actual joint friction in the iCub. In conclusion, work in T1.4 (as well as WP3 and WP4) will need to address the issue of accurate friction modeling and estimation.
+
+\item In order to provide a way to generate URDF models of digital mannequins independently from a specific simulator, JSI has developed a software for generating instances of a parametrized digital human (similar to the one present in XDE) as well as to edit the detailed parameters of an existing instance.  The new digital human URDF file generator is detailed in D1.1.
+\end{itemize}
+
+\subparagraph{Control library for flexible specification of task space dynamics of floating base manipulators. (T1.3)}
+
+During the second year both IIT and UPMC contributed to the development of several software components for controlling the iCub whole-body behavior. The software has been structured around an abstraction layer called wholeBodyInterface, described in details within T3.2. This C++ abstraction layer is already used in a set of whole-body controllers implemented in simulink and available on github at the following address: \url{https://github.com/robotology/codyco/tree/master/src/simulink/controllers}. Within this context simulink is currently adopted as a fast designing tool for testing several controllers whose final implementation is foreseen in C++. Similarly, UPMC has started adopting the wholeBodyInterface within their own
+controller framework based on XDE and ORCISI. Preliminary results are available here: \url{https://github.com/robotology/codyco/tree/master/src/tests}. 
+
+\subparagraph{System dynamics estimation software. Extension to
+environmental compliance estimation (T1.4)}
+
+The goal of this task is to develop a software tool for on-line estimation of whole-body dynamics of the robot, as well as the compliance of contacts established between the robot and the environment. 
+
+\begin{itemize}
+\item Within T1.4, IIT contributed with two activities in year 1: developing a library for whole-body dynamics estimation and starting the activity of compliance estimation. Details of these activities can be found primarily in the associated scientific publications \cite{Traversaro2013, Traversaro2014, Fiorio2014}.
+
+\item Also during year one, TUD started to investigate the learning of dynamic models with
+discontinuities. A new Gaussian process (GP) model was developed
+that is explicitly designed to deal with non-linearities
+induced through contacts with the environment. An example of such non-linearities 
+and the approximated model reconstruction is shown in Figure \ref{fig:example_discontinuities}.
+We called the developed supervised learning method manifold GP (mGP), as it 
+jointly learns a transformation of the data into a feature space, and a GP regression 
+ from the feature space to observed space. In future work, this promising approach 
+ will be applied to motor skill learning task on the iCub with multiple contacts. 
+ A preprint of this work 
+ was published this year [Calandra, R. and Peters, J. and Rasmussen, C. and Deisenroth,
+M., 2014].
+\end{itemize}
+
+
+\subparagraph{Extension and enhancement of the iDyn library. (T1.5)}
+
+The original iDyn library \url{https://github.com/robotology/icub-main/tree/master/src/libraries/iDyn} was designed assuming the robot in a fixed-base configuration. Within CoDyCo the library was redesigned in order to support floating base structures. The associated source code is available here \url{https://github.com/robotology/codyco/tree/master/src/libraries/iDynTree}. Within the YARP and iCub contexts, the libraries are used in the wholeBodyDynamics modules (\url{https://github.com/robotology/icub-main/tree/master/src/modules/wholeBodyDynamics} and \url{https://github.com/robotology/codyco/tree/master/src/modules/wholeBodyDynamicsTree} respectively) to compute simultaneously internal (joint torques) and external (contact) forces and torques. 
+
+
+
+
+

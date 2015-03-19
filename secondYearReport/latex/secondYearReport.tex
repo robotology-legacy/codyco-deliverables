@@ -1,0 +1,246 @@
+%% Template for EU report, using the report.sty style file
+
+\documentclass[12pt,a4paper,twoside]{article}
+%% common package
+\usepackage[headers]{report}
+\usepackage{xspace}
+\usepackage{verbatim}
+\usepackage[usenames]{color}
+\usepackage[usenames,dvipsnames,table]{xcolor}
+\usepackage[pdftex,dvips]{graphicx}
+\usepackage{url}
+\usepackage{array}
+\usepackage{color}
+\usepackage{longtable}
+%%
+
+%%insert here other packages needed by sections
+
+%%
+
+%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
+%%% Titlepage
+%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
+
+% declaration of variables used in style
+\reportDocnumber{Year 1}
+\reportTitle{Second year project objectives report}
+
+\reportAuthor{CoDyCo Consortium}
+\reportResponsiblePartner{IIT}
+\reportAffiliation{% Insert here authors affiliations
+ IIT, TUD, UPMC, UB, JSI.
+}
+
+\reportReviewer{}
+\reportCoordinator{Francesco Nori}
+\reportActivityNumber{1} %% n=1,..,10
+\reportActivity{RTD}
+\reportDoctype{Periodic report} %% or Prototype
+\reportClassification{Public} % or Consortium
+\reportDistribution{Consortium} %
+\reportStatus{Draft} % Draft or Final
+\reportDeliveryDate{28/04/2014}
+\reportVersion{1.0}
+\reportDate{Apr.~28, 2014}
+\reportYear{2014}
+\reportPages{\pageref{LastPage}}
+\reportChangelog{v.1.0 & Feb 13, 2013 & First draft %%\\\hline
+%%              v.2.0 & Feb 20, 2007 & Final version
+}
+\reportProjectStartingDate{1st March 2013}
+\reportProjectEndDate{28th February 2017}
+\reportProjectAcronym{CoDyCo}
+\reportProjectTitle{Whole-Body Compliant Dynamical Contacts in Cognitive Humanoids}
+ \reportContractNumber{600716}
+ \reportProjectCoordinator{Istituto Italiano di Tecnologia}
+ \reportProjectUrl{www.codyco.eu}
+ \reportFrameworkProgramme{FP7}
+ 
+ \reportWorkpackage{All work packages}
+ \reportEditors{Francesco Nori, Vincent Padois, Jan Peters, Jan Babic, Michael Mistry}
+ \reportContributors{Entire CoDyCo consortium}
+ \reportReviewers{-}
+\reportAbstract{The scope of the current report is to present the results ...}
+\reportReviewers{reviewers}
+\reportKeywordList{kw, list, etc, }
+
+%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
+%%% Sections
+%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
+
+%% constants{}
+
+%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
+%%% Misc. by Vincent
+%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
+\usepackage{titlesec}
+\newcommand{\sectionbreak}{}
+\graphicspath{{./images/}}
+\usepackage{pdfpages}
+\usepackage{caption}
+\usepackage{subcaption}
+\usepackage{multirow}
+\usepackage{appendix}
+\usepackage{hyperref}
+\hypersetup{
+    bookmarks=true,         % show bookmarks bar?
+    unicode=false,          % non-Latin characters in Acrobat’s bookmarks
+    pdftoolbar=true,        % show Acrobat’s toolbar?
+    pdfmenubar=true,        % show Acrobat’s menu?
+    pdffitwindow=false,     % window fit to page when opened
+    pdfstartview={FitH},    % fits the width of the page to the window
+    pdftitle={yearReport.pdf},    % title
+    pdfauthor={Vincent Padois},     % author
+    pdfsubject={Year 1 report for the CODYCO project},   % subject of the document
+    pdfcreator={Vincent Padois},   % creator of the document
+    pdfproducer={Vincent Padois}, % producer of the document
+    pdfkeywords= {}, % list of keywords
+    pdfnewwindow=true,      % links in new window
+    colorlinks=true,       % false: boxed links; true: colored links
+    linkcolor=black,          % color of internal links (change box color with linkbordercolor)
+    citecolor=black,        % color of links to bibliography
+    filecolor=black,      % color of file links
+    urlcolor=black           % color of external links
+}
+
+%%
+%%%%%%%%%%%%%%%%%%%%%%%%%%%%%% BEGIN DOCUMENT
+\begin{document}
+
+\reportMaketitle
+
+
+%%TODO move to style
+\newcolumntype{L}[1]{>{\raggedright\let\newline\\\arraybackslash\hspace{0pt}}m{#1}}
+\newcolumntype{C}[1]{>{\centering\let\newline\\\arraybackslash\hspace{0pt}}m{#1}}
+\newcolumntype{R}[1]{>{\raggedleft\let\newline\\\arraybackslash\hspace{0pt}}m{#1}}
+ 
+ \clearpage
+
+\setcounter{tocdepth}{5}
+
+\newpage
+\renewcommand*\contentsname{Table of Contents}
+\renewcommand*\listfigurename{Index of Figures}
+\tableofcontents
+\newpage
+\listoffigures
+\newpage
+
+%%%%%%%%%%%%%%%%%%%%%%%% Start report content here.
+
+\setcounter{section}{3}
+\setcounter{subsection}{1}
+\setcounter{secnumdepth}{5}
+
+\subsection{Project objectives for the period}
+
+\subsubsection{Overview}
+
+The specificity of CoDyCo relies on the fact that the progress beyond the state of the art is guided by the yearly implementation on the iCub humanoid. Within this context, iCub is a peculiar platform being the only humanoid integrating whole-body distributed force and tactile sensors. In this sense CoDyCo second year specific objectives were to design and implement the control of whole-body posture with multiple contacts. Other long term objectives involve setting up the necessary infrastructure (human experimental protocols, software infrastructure, learning and control specifications) for structuring the activities in the following years. 
+
+\begin{longtable}{|C{1.5cm}|C{1.5cm}|C{1.5cm}|C{2cm}|C{2cm}|C{2cm}|C{2cm}|}
+\cline{1-6}
+\footnotesize \textbf{Task}& \footnotesize \textbf{IIT}&\footnotesize \textbf{TUD}&\footnotesize \textbf{UB}& \footnotesize \textbf{UPMC} &\footnotesize \textbf{JSI} & \multicolumn{1}{l}{} \\ \hline
+\footnotesize WP1 &  8.67 &  1    &  3.29 & 0.51   & 2     & \textbf{15.47}  \\  \hline
+\footnotesize WP2 &  -        &  -     & 0.28 & 2.64 & 18.80 & \textbf{21.72}\\ \hline
+\footnotesize WP3 &  9.9   & 4.6  &  -       & 15.15& -     & \textbf{29.65}\\ \hline
+\footnotesize WP4 & -        & 8     &  -       & 2.22   & -     & \textbf{10.22}\\ \hline
+\footnotesize WP5 & 2       & -      &  -       & 0.31    & -     & \textbf{2.31}\\ \hline
+\footnotesize WP6 & 1.46 & -      &  -        & 0.25   & 0.1     & \textbf{1.81}\\ \hline
+\footnotesize WP7 & 1       & -      &  -        & 0.4    & -     & \textbf{1.40}\\ \hline
+\multicolumn{1}{l|}{}  & \textbf{23.03} & \textbf{13.60} & \textbf{3.15} & \textbf{21.90} & \textbf{20.90}  & \textbf{82.58} \\  \cline{2-7}
+\end{longtable}
+
+\noindent
+\textbf{Comment:} during year one, UB committed 22\% of PI time and 3\% of senior researcher time (for 3.15 total PM). Starting in year 2, two researchers will be additionally committed to the project at 100\%. The planned involvement for these two researchers is 72 PM over the next 3 years. One of these researchers, Morteza Azad has joined the CoDyCo UB team as a Research Fellow in April 2014.
+
+\input{sections/WP1/wp1_objectives.tex}
+\input{sections/WP2/wp2_objectives.tex}
+\input{sections/WP3/wp3_objectives.tex}
+\input{sections/WP4/wp4_objectives.tex}
+\input{sections/WP5/wp5_objectives.tex}
+\input{sections/WP6/wp6_objectives.tex}
+\input{sections/WP7/wp7_objectives.tex}
+
+
+\subsection{Work progress and achievements during the period}
+
+\subsubsection{Progress overview and contribution to the research field}
+
+All the CoDyCo second year objectives have been attained. Here is a list of the CoDyCo second year achievements. 
+\begin{itemize}
+
+\item Design and implementation of an open-source simulator environment for the iCub and digital human whole-body motion simulation. After a consortium shared effort, it was decided to adopt Gazebo \url{http://gazebosim.org} as a basis for the simulator. Gazebo offers a structured software interface (plugins) which was used to export a YARP interface to simulated robots. The Gazebo-YARP plugin source code is available on github, at the address \url{https://github.com/robotology/gazebo_yarp_plugins}. The use of Gazebo was chosen on the basis of a public survey \url{http://arxiv.org/abs/1402.7050} and on the results of a discussion conducted in Paris during a workshop organized at ISIR.
+
+\item Design and implementation of a whole-body software abstraction layer \url{https://github.com/robotology/codyco/tree/master/src/libraries/wholeBodyInterface} which represents the backbone of the CoDyCo software architecture, interface and module structure.
+
+\item Design and definition of human experimental protocols and simplified models for whole-body motion with multiple contacts. After an extensive literature review (D2.1), JSI conducted preliminary studies on examining functional role of supportive hand contact while balancing.
+
+\item Design and test of state of the art control strategies for whole-body motion with multiple contacts. Realization of a solver for the whole-body reactive control that provides an expressive and rich description of the control problem as well as an efficient way of solving it. Implementation of the results in a whole-body control validation scenario in presence of multiple contacts. 
+
+\item Preliminary studies on learning methods suitable for tasks that involve many uncertain contacts. Design of fast regression methods that can deal with well structured input noise. Methods for learning how to combine elementary control tasks.
+
+\end{itemize}
+
+\subsubsection{Work packages progress}
+
+\input{sections/WP1/wp1_progress_recap.tex}
+\input{sections/WP2/wp2_progress_recap.tex}
+\input{sections/WP3/wp3_progress_recap.tex}
+\input{sections/WP4/wp4_progress_recap.tex}
+\input{sections/WP5/wp5_progress_recap.tex}
+\input{sections/WP6/wp6_progress_recap.tex}
+\input{sections/WP7/wp7_progress_recap.tex}
+
+\input{sections/WP1/wp1_progress.tex}
+\input{sections/WP1/wp1_resources.tex}
+
+\input{sections/WP2/wp2_progress.tex}
+\input{sections/WP2/wp2_resources.tex}
+
+\input{sections/WP3/wp3_progress.tex}
+\input{sections/WP3/wp3_resources.tex}
+
+\input{sections/WP4/wp4_progress.tex}
+\input{sections/WP4/wp4_resources.tex}
+
+\input{sections/WP5/wp5_progress.tex}
+\input{sections/WP5/wp5_resources.tex}
+
+\input{sections/WP6/wp6_progress.tex}
+\input{sections/WP6/wp6_resources.tex}
+
+\input{sections/WP7/wp7_progress.tex}
+\input{sections/WP7/wp7_resources.tex}
+
+\subsection{Deliverables and milestones tables}
+
+\subsubsection{Deliverables (excluding the periodic and final reports)}
+
+\begin{figure*}[ht!]
+\centering
+\includegraphics[width=0.6\textwidth]{./images/deliverables.pdf}
+\end{figure*}
+
+\subsubsection{Milestones}
+
+\begin{figure*}[ht!]
+\centering
+\includegraphics[width=\textwidth]{./images/milestones.pdf}
+\end{figure*}
+
+\newpage
+
+\bibliographystyle{IEEEtran}
+% \bibliography{IEEEabrv,yearReport_WP3,all-ias-publications}
+\bibliography{secondYearReport_WP4,secondYearReport_WP3,secondYearReport_WP2,secondYearReport_WP1}
+
+\end{document}
+
+%%% Local Variables:
+%%% mode: latex
+%%% TeX-master: t
+%%% save-place: t
+%%% End:

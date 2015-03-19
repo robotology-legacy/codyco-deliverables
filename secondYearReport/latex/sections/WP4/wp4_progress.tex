@@ -1,0 +1,38 @@
+%!TEX root = ../../secondYearReport.tex
+
+
+\paragraph{Work package 4 progress}
+
+\subparagraph{Generalizing and Improving Elementary Tasks with Contacts (T4.3)}
+
+In this task, we aim to generate new skills from data, where elementary skills 
+are acquired by imitation learning and transferred to novel situations using 
+dynamic systems. During year one, TUD developed a novel representation of 
+movement primitives that can be used for imitation learning from noisy observations.
+Uncertainty of observed trajectories is explicitely modeled and used to generate new skills.
+This movement representation has state-of-the-art capabilities in generalization, 
+coupling between the degrees of freedom of the robot, and moreover, 
+a time varying feedback controller can be derived in closed form. 
+These features are partially illustrated in Figure \ref{fig:promps}.
+This work was published
+last year at the highly competitive conference on neural information processing \cite{Paraschos_NIPS_2013}.
+
+
+In another work, published at the international conference on humanoid robots (HUMANOIDS), 
+TUD demonstrated that this probabilistic approach for trajectory generation
+has superior performance against deterministic policies. The use of
+probability distributions over the trajectories increased significantly
+ the generalization properties, which was evaluated on a high dimensional table
+tennis scenario [Paraschos, A. and  Neumann, G and  Peters, J., 2013]. 
+In the future work, we plan to incorporate external torque signals to initiate, 
+maintain, and terminate contacts.
+
+TUD also investigated how to learn human robot interaction through imitation. We presented a new approach to robot learning that allows anthropomorphic robots to learn a library of interaction skills from demonstration [H Ben Amor, D Vogt, M Ewerton, E Berger, B Jung and J Peters, 2014]. Traditional approaches to modeling interactions assume a pre-specified symbolic representation of the available actions. For example, they model interactions
+in terms of commands such as \emph{wait}, \emph{pick-up}, and \emph{place}. Instead of such a top-down approach, we focused on learning responsive behavior in a bottom-up fashion using a trajectory based approach. The key idea behind our approach is that the observation of human-human collaborations can provide rich information specifying how and when to interact
+in a particular situation. For example, by observing how two human workmen collaborate on lifting a heavy box, a robot could use machine learning algorithms to extract an
+interaction model that specifies the states, movements, and situational responses of the involved parties. In turn, such a model can be used by the robot to assist in a similar lifting task. Our approach is as an extension of imitation learning to multi-agent scenarios, in which the behavior and the mutual interplay between two agents is imitated
+
+
+We further extended the above approach by introducing \emph{Interaction Primitives} in [Ben Amor, H.; Neumann, G.; Kamthe, S.; Kroemer, O.; Peters, J., 2014]. Interaction primitives build on the framework of dynamic motor primitives (DMPs) by maintaining a distribution over the parameters of the DMP. With this distribution, we can learn the inherent correlations of cooperative activities which allow us to infer the behavior of the partner and to participate in the cooperation. A conceptual overview is sketched in Figure \ref{fig:interaction_primitives}. A learned Interaction Primitive can be used by a robot to (1) predict the human's next action in the current context, (2) identify the optimal response, (3) synchronize the movement with the human partner.
+
+In the meantime, demonstration-based learning of "optimal trajectories" and stable controllers has been addressed by UPMC, in particular in \cite{stulp2013} where a general, flexible, and compact representation of parameterizable skills is proposed. This work generalizes the standard Dynamic Motor Primitive formulation in \cite{ijspeert2013} and proposes a novel DMP formulation for parametrized skills, based on additionally passing task parameters to the DMP function approximator. This generalizes previous approaches, in particular those which train and execute parametrized skills with two separate regressions. Learning the function approximator with one regression in the full space of phase and tasks parameters allows for more compact models, and the flexible use of different function approximator implementations such as LWPR and GPR, as we demonstrated on the Meka and iCub humanoids robots.
