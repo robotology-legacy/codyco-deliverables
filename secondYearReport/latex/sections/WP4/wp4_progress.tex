@@ -182,8 +182,36 @@ reinforcement learning, where a conference paper was submitted for review.
 
 \subparagraph{Learning the Prioritization of Tasks (T4.4)}%(TUD 3.2PM, INRIA 2PM)}
 
+During year two, UB continued their research on computed torque control leveraging low-gain control. 
+In computed torque control, robot dynamics are predicted by dynamic models.
+This enables more compliant control, as the gains of the feedback term can be
+lowered, because the task of compensating for robot dynamics is delegated from
+the feedback to the feedforward term.  We already showed that Gaussian process
+regression is an effective method for learning computed torque control, by
+setting the feedforward torques to the mean of the Gaussian process.  During
+the second year of the project, we extended this work by also exploiting the
+variance predicted by the Gaussian process, by lowering the gains if the
+variance is low \cite{Albertoetal14}.  This enables an automatic adaptation of
+the gains to the uncertainty in the computed torque model, and leads to more
+compliant low-gain control as the robot learns more accurate models over time.
+On a simulated 7-DOF robot manipulator, we demonstrated how accurate tracking
+can be achieved, despite the gains being lowered over time, which is illustrated in Figure \ref{fig:meanvariance}.
+
+\begin{figure}
+  \centering
+  \includegraphics[scale=0.8]{images/meanvariance.pdf}
+  \caption{Mean and variance of the Gaussian process ($\mu \mp 2\sigma$) on
+    the same test trajectory of 8 seconds, after having been trained with 5,
+    10, 20 and 40 training trajectories. With an increasing number of training
+    data, the mean of the GP approaches the true function (black dashed
+    line). The known values for uff are plotted as a black dotted line.}
+  \label{fig:meanvariance}
+\end{figure}
+
+\input{./sections/WP4/wp4_progress_T44_UPMC.tex}
+
 %Valerio's paper on learning activation policies in task controller.
-In this task, we address the problem of learning the temporal profile of soft
+TUD addressed the problem of learning the temporal profile of soft
 task priorities and null-space projectors for the multi-task controllers
 developed in WP3. Our preliminary results have been submitted to a robotics
 conference\footnote{Modugno, V.; Neumann, G.; Rueckert, E.; Oriolo, G.; Peters,
