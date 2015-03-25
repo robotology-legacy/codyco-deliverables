@@ -2,40 +2,144 @@
  
 \paragraph{Work package 3 progress}
 
-The progress for each task are described hereafter.
+The progress for each task is described hereafter.
 
-\subparagraph{Reproducing existing control results in a simple case (T3.1)}
-During year one, UPMC has achieved task T3.1 by creating a stand-alone C++ library encapsulating the whole-body controller developed in \cite{salini2012} so that it can be used by all partners in simulation or on (any) real humanoid robot. This version of the controller has been tested in rigid multi-contact scenarios in simulation (see Fig.~\ref{fig:xde}) and is currently adapted for tests on the iCub robot.
+\subparagraph{Formulating the control problem (T3.2) (UPMC: 3PM)}
 
+During Year 2, UPMC has explored the different possible usage of the Generalized Hierarchical Controller developped in Year 1 \cite{LiuGHC} and allowing the specification of both strict and soft hierarchical control problems. In \cite{LiuAutRobSpecIssue}, a quasi-static version of this controller is used in simulation for a standing scenario where the iCub robot is using an additional contact which is switched from one hand to the other. This control architecture has also been successfully applied on a KUKA LWR robot \cite{LiuICRA2015}. Tasks performances for three conflicting tasks are illustrated on Fig.~\ref{fig:KUKA_LWR_GHC}.
 
-\subparagraph{Formulating the control problem (T3.2)}
+\begin{figure*}[h]
+\centering
+\includegraphics[width=0.7\textwidth]{images/KUKA_GHC_ICRA}
+\caption{Tasks performance for three conflicting tasks using the GCH control framework.}
+\label{fig:KUKA_LWR_GHC}
+\end{figure*}
 
-The work performed during year one by UPMC to achieve T3.2 has led to the definition of what a task can be considered to be in the context of the reactive formulation of a multi-task whole body control problem. Among the different characteristics of a task (physical frame, task variable, forward model, desired target trajectory, local controller, priority), the notion of task priority has been largely modified with respect to the classical lexicographic task ordering met in the robotics literature and which is particularly appropriate for cascade resolution approaches such as the one recently proposed in \cite{escande2012}. A partial order has been defined such that task priorities can be described for any pair of task $i$ and $j$. This leads to a richer formulation which includes the original one but is also particularly appropriate for describing task insertion and removal processes as well as priority switching between tasks. Further more, this new prioritization paradigm provides a unique way of defining strict and soft hierarchies between tasks. Associated to this work, the notion  of generalized task projector has been introduced. Each task is associated to a projector which is built based on the tasks priorities. The interest of this projector is that it filters the joint space motion associated to a task so that all priorities are respected, being them soft or strict. Details regarding this work are provided in \cite{liu2013}.
+\subparagraph{Solving the local control problem (T3.3) (UPMC: 4.5PM, UB: 0.9PM, TUD: 2.5PM)}
 
-Within this task also IIT contributed with the definition of a software abstraction layer, named wholeBodyInterface (\url{http://wiki.icub.org/codyco/dox/html/namespacewbi.html}). This software library defines the interface to access and control the robot  whole-body. Therefore the wholeBodyLibrary structures the control problem and their definition. Currently the library has been been implemented for both the iCub and the Gazebo iCub simulator.  
+During Year 2, UPMC has started to investigate scenarios where the robot is interacting with the environment through rigid and non-rigid contacts. Assuming that no information is a priori available regarding the nature of the contact surface, a first control strategy has been proposed in \cite{LiuIROS2015} where the desired contact force is adapted online as a function of the velocity of the contact point. Indeed, the risk with an unkwon contact surface is to assume that it will almost instantaneously provide the required contact force to maintain the robot balance. If the surface is non-rigid, the contact point will actually move while being pushed and stable support forces will only be provided to the robot once the contact is properly established. The goal of the adaptation of the desired value for the contact force is to accelerate the obtention of a stable contact force supporting the robot. The desired ttrajectory for the center of mass of the robot is also adapted to account for the non-rigidity of the contact surface. One of the advantages of this approach is that it does not actually requires the knowledge of the contact surface impedance. Fig.~\ref{fig:LIU_IROS_2015} provides a view of the types of considered scenarii and the structure of the considered controller. In this work, the local control problem is solved using the solver described in \cite{salini2012} rather than the one developped in \cite{LiuGHC}. This choice is related to the fact that the computation cost of the GHC approach remains important and is too high to be actually used in a real-time reactive control architecture for a humanoid robot.\\
 
-\subparagraph{Solving the local control problem (T3.3)}
+\begin{figure*}[h]
+\centering
+\includegraphics[width=0.45\textwidth]{images/LIU_IROS_2015} \includegraphics[width=0.45\textwidth]{images/LIU_IROS_2015_bis}
+\caption{Scenarri of interaction with a non-rigid environment (\textit{left}). Structure of the adaptive control architecture (\textit{right}).}
+\label{fig:LIU_IROS_2015}
+\end{figure*}
 
-Associated to the new task formulation proposed in T3.2, the control problem has been formulated by UPMC as an LQP which can be solved by any convex optimization solver dealing with linear constraints. Despite the task hierarchy, the introduction of a generalized task projector per task allows to solve only one LQP. This can be done by introducing as many virtual joint space variables as the number of tasks and using the generalized projector of each task in the expression of the constraints. The resulting problem can be solved by standard convex optimization tools and the cost of introducing virtual joint space variables is compensated for by the fact that only one optimization problem has to be solved. Details regarding this work are provided in \cite{liu2013}.
-
-In the meantime, TUD has proposed to explore optimization methods for solving local control problems that do not require the explicit inversion of any model of the system.  During year one, TUD investigated Bayesian optimization methods that were applied to bipedal locomotion tasks.  One of the key challenges in robotic bipedal locomotion is finding gait parameters that optimize a desired performance criterion, such as speed, robustness or energy efficiency. Typically, gait optimization requires extensive robot experiments and specific expert knowledge. During year one, TUD demonstrated that  data-driven machine learning methods based on Bayesian optimization can be used to automate and speed up the process of gait optimization. These Bayesian optimization methods were used to efficiently find gait parameters that optimize the desired performance metric on a real bipedal walker \cite{calandra2014} and \cite{calandra2014b}.
+In the meantime, UB proposed an algorithm for implementing a momentum
+based controller to control balancing motion of legged robots with non-rigid
+contacts with the environments \cite{Azad&Mistry15}.  The proposed strategy
+converts the balance problem to a linear constrained optimization problem
+which its output is the vector of desired joint accelerations.  It first
+calculates the desired supporting forces at the contact points by using the
+robot’s momentum.  Then, based on the contact model and by using the Jacobian
+of the contact points, it converts the desired contact forces to the desired
+joint accelerations.  At the end, by using the inverse dynamics of the robot,
+the joint torques are calculated.  To implement the proposed method in
+practice, stiffness and damping coefficients of the contact model have to be
+estimated beforehand by using contact model parameter estimation methods.\\
     
+In order to best use the whole-body controllers developped within the framework of WP3, TUD hired a student for setting up the iCub hardware and simulation environment.
 
-\subparagraph{Bootstrapping and validating the control approach in rigid world and compliant cases (T3.4)}
 
-During year one, UPMC has explored the contribution of MPC approaches to handle the postural balancing problem under varying contact conditions. The hybrid nature of the problem, where varying contact conditions can be accommodated either by adapting the internal forces distribution given a set of contact or by modifying the set of contacts itself, requires control approaches where the desired task trajectories performed through the local, reactive, whole-body controller have to be optimally planned ahead of time in order to provide robust behaviors. The contributions in this domain are mostly related to the work of A. Ibanez \cite{ibanez2013}, \cite{ibanez2014-icra} and \cite{ibanez2014-ark}. The originality of theses contributions lies in:
-\begin{itemize}
-	\item an augmented ZMP model including external forces exerted directly on indirectly on the center of mass;
-	\item a distributed optimization approach that provides a way of generating reference trajectories for the center of mass representing a good compromise given some antagonistic balance and task;
-	\item a non scripted foot step placement optimization.
-\end{itemize}
+\subparagraph{Bootstrapping and validating the control approach in rigid world and compliant cases (T3.4) (IIT: ?PM, UPMC: 7.19PM, UB: 0.95PM, TUD: 8PM, Inria: 4PM)}
 
-UPMC also partially contributed with an experimental study about human behavior during physical contact with the robot. The protocol was registered and obtained the approval of the ethics committee CERES (Conseil d’\'evaluation \'ethique pour les recherches en sant\'e), from University Paris-Decartes. \footnote{Ivaldi et al., "Engagement during human-humanoid interaction", IRB N. 20135200001072.}
-The purpose of the experiments is to collect a database of behaviors of experts and naive people interacting physically with the iCub to accomplish a cooperative task. The collected data also include locations of contacts (retrieved through the tactile skin), applied force, robot mouvements: they will be used to study adaptation to human intention during human-robot physical contacts.
-    
-In the meantime, TUD investigated the interchange of forces during cooperative tasks between humans and robots \cite{berger2013}. Three example scenarios are illustrated in Figure \ref{fig:interaction_tasks}. In such tasks, typically an exchange of forces takes place whenever the interacting agents make contact. Sometimes, forces are even exchanged through an object that is manipulated by both agents, e.g., through a box that is lifted. For a successful execution of such joint physical activities, a robot needs to accommodate for the external forces exerted by a human. To this end, we developed a machine learning approach for identifying external influences and guidance information from humans. During behavior execution by a robot, predictions from a statistical sensor model are continuously compared with stability parameters derived from current sensor readings. Differences between predicted and measured values exceeding the variance of the statistical model are interpreted as perturbations caused by a human and are used to adapt the robot's behavior.
+During Year 2, the whole-body controller developped by UPMC and originally described in \cite{salini2012} has been ported, using the Whole Body Interface described in Deliverable~D1.2, on the iCub robot. A non-free-floating first implementation was performed during the \textit{Veni, Vidi, Vici} 2014 summer school. The free-floating version is less straightforward as it requires: a well calibrated torque low-level control loop and a proper on-line estimation of the state of the root-body in order to  compute the dynamics and kinematics models of the robot\footnote{The retained solution is to choose one body in contact with the fixed environment as the root-body (one foot for example) and switch the root-body whenever there is a switch in the contact state of the system)}. IIT is working on these two topics and UPMC, in coordination with IIT, is pursuing integration on its iCub robots.
 
-\input{sections/WP3/wp3_progress_T34_IIT.tex}
+UPMC also kept exploring the contribution of MPC approaches to  handle the postural balancing under varying contact conditions. The contributions in this domain are related to the thesis work of A. Ibanez \cite{ibanezIROS2014} and the postdoctoral work of D. Lau\footnote{A paper has been submitted to a conference with double blind reviews and cannot be explicitely referred to for obvious reasons.}.  In order to compute optimal time, duration and position of footsteps along with the center of mass trajectory of a humanoid, a novel mixed-integer model of the system is introduced in the work of A. Ibanez. The introduction of this model in a predictive control problem brings the definition of a Mixed-Integer Quadratic Program, subject to linear constraints. Simulation results demonstrate the simultaneous adaptation of the gait pattern and posture of the humanoid, in a walking activity under large disturbances, to efficiently compromise between task performance and balance. In addition, a push recovery scenario displays how, using a single balance-performance ratio, distinct behaviors of the humanoid can be specified. Results have been obtained in simulation\footnote{A video associated to this work can be found \href{here}{http://pages.isir.upmc.fr/~padois/website/fichiers/videos/ibanez\_IROS2014.mp4}.} and are being implemented on the TORO robot developped at DLR. This work is also being adapted in order to test control hypothesis to explain  the behaviours observed in the experiment developped in T2.4 of WP2\footnote{This adaptation has been discussed during the visit of Jan Babic as an invited professor during Novemebr 2014 at  UPMC}. In the work of D. Lau, two simple and novel approaches to solve for 3D locomotion with multiple non-coplanar contacts are introduced. Both formulations use model predictive control to generate dynamically balanced trajectories with no restrictions on the center of mass height trajectory. The first formulation treats the balance criterion as an objective function, and solves the control problem using a sequence of alternating convex quadratic programs, while the second formulation considers the criterion as constraints to the problem, and solves a succession of convex quadratically constrained quadratic programs. Preliminary results have been obtained in a scenario where a hand contact on a vertical wall is used to improve balance. A staircase climbing scenario has also been studied.
+
+In coordination with T4.4 in WP4, UPMC also explored ways to optimize tasks trajectories \cite{lober-HUMANOIDS2014} and the weights of tasks \cite{lobersubmittedIROS2015} in the LQP whole-body controller in order to maximize the overall control performance. More details are providied in the description of T4.4.\\
+
+Continuing the activities which started in the first year of the project, IIT further improved the torque whole-body controller. During the second year of the project, attention was mainly on rigid contacts even if the theoretical and software development was guided and constrained by the requirements for extending the approach to non-rigid contacts. Several improvements to the controller significantly improved its performances. Improvements include in-situ force/torque sensor calibration \cite{Traversaro2015b}, inertial parameter identification \cite{Traversaro2015} and individual motor transfer function identification \cite{Nori2015a}. These improvements made possible quite challenging control tasks like the robust single foot balancing represented in Fig.~\ref{fig:footBalancing}. Details of the controller will be given in a forthcoming publication.\\
+
+\begin{figure}[h]
+\vspace{0.5em}
+\centering
+{\includegraphics[width=0.65\textwidth]{images/single_foot_balancing.jpg}}
+\caption{The picture shows the iCub while performing compliant single foot balancing. Details on the controller can be found in \cite{Nori2015a}. A video of the task is available on youtube\protect\footnotemark.}
+\label{fig:footBalancing}
+\end{figure}
+
+\footnotetext{\url{https://www.youtube.com/watch?v=SYVCbzGsBF4}.}
+
+
+During the second year, TUD continued their research in inverse dynamics model
+learning in situations with contacts. A mixture of experts approach with
+Gaussian processes was developed using tactile feedback from the iCub's sensor
+skin. This approach was evaluated on the iCub robot, where the learned model
+accurately predicts contact forces, is robust to changes in the environment and
+outperforms existing analytic dynamic models that make use of force/torque
+sensor data. 
+An exemplary task is illustrated in Figure~\cite{fig:exp3:icuparis_experiment_bars} 
+when obstacles are introduced on both sides of a planned circular motion.
+In Figure~\cite{fig:exp3:gating} can be seen that the mixture-of-experts recognize the presence of the two different contacts and opportunely active the corresponding expert to compensate for the contact.
+As a result, the torques predicted from this approach (red curve) closely follow the ground truth (blue curve) and outperform the analytic model (green curve).
+A paper was published in an international robotics conference
+\cite{Calandra_ICRA15}. A continuative study exploiting learned dynamics models
+for control is in progress of writing. Both studies are detailed in Deliverable
+D4.2.\\
+
+	\begin{figure}[t]
+		\begin{minipage}{.43\linewidth}
+			\centering
+			\includegraphics[width =.94\linewidth]{iCubParis02_Double_Contact}
+			\caption{The robot performs a circle with its left arm. 
+			The forearm collides alternatively with the left, the right or both contacts.}
+			\label{fig:exp3:icuparis_experiment_bars}
+		\end{minipage}	
+		\hfill
+		\begin{minipage}{.52\linewidth}
+			\centering
+			\includegraphics[width=.89\linewidth]{exp3_both}
+			\caption{Prediction of torques with multiple contacts and the corresponding activation of the gating network.
+			%Various models are shown, but individually, none of them correctly capture the dynamics of the system. 
+			Our mixture-of-experts model combines the learned single-contact models into a multiple-contact model which outperform the analytic approach.
+			}
+			\label{fig:exp3:gating}
+		\end{minipage}	
+        %\figspace
+	\end{figure}
+	
+INRIA, in collaboration with TUD, started to study the problem of bootstrapping the parameterized controllers proposed in T3.3. A major problem is how the controllers parameters, particularly the task weights, can be initialized or learned through trial-and-error. With the increasing abilities of humanoid robots, the number of tasks increases, together with their weights or priorities: manually specifying them through a sequence of complex manipulations becomes a major bottleneck. 
+As a first step towards the offline optimization of those parameters, Inria evaluated the benefit of using a stochastic optimization derivative-free strategy such as \textit{Covariance Matrix Adaptation Evolution Strategy} (CMA-ES) \cite{Hansen-2001-ID362}. Figure~\ref{fig:robust} provides a view of the robustness of the optimization strategy by comparing several optimizations experiments with constant and random values for the GHC controller.
+The full study is detailed in the Task 4.4.\\
+
+\begin{figure}[h!]
+  \centering
+  \includegraphics[width=0.5\hsize]{GHC_robust}
+\caption{Learning the activation policies for GHC with CMA-ES. The policies were initialized with constant values $\alpha=0.5$ or random values between $[0,1]$. The mean and variance of the fitness function used for optimization for $R=20$ replicates a test experiment (see also Task 4.4).}
+\label{fig:robust}
+\end{figure}
+
+In the meantime, UB also studied the problem of constrained motion for a manipulator performing
+a task while in contact with the environment, and proposed a solution based on
+projected operational space dynamics \cite{Ortenzietal14}.  The main
+advantages of this control technique are: 1) it exploits the environment
+contact constraint itself, so as to minimise the joint torques needed to
+perform the task; 2) it enables full decoupling of motion and force control;
+3) force feedback from a force sensor mounted at the end effector or other
+contact points is not needed.  This work is a step towards a robot control
+strategy which mimics the human behaviour of exploiting contacts with the
+environment to help perform tasks.  They also presented an experimental
+implementation of the control method in which a KUKA LWR IV manipulator used
+an eraser to wipe a whiteboard.  They showed that the proposed controller can
+effectively exploit contact with the whiteboard in order to reduce joint
+torques while still performing the desired wiping motion.
+
+\begin{figure}
+  \centering
+  \includegraphics[width=0.7\textwidth]{images/whiteboard.pdf}
+  \caption{Experimental setting. The right arm of the humanoid
+    platform Boris is used, and placed the board in between its two arms so that the z
+    axis of the robot end effector frame, the z axis of the robot base frame
+    and the axis orthogonal to the board are parallel.}
+  \label{whiteboard}
+\end{figure}
+
+
+
+
+
     
 \subparagraph{Deviations from workplan}  
 
