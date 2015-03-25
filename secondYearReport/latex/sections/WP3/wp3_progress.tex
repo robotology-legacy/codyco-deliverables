@@ -6,20 +6,20 @@ The progress for each task is described hereafter.
 
 \subparagraph{Formulating the control problem (T3.2) (UPMC: 3PM)}
 
-During Year 2, UPMC has explored the different possible usage of the Generalized Hierarchical Controller developped in Year 1 \cite{LiuGHC} and allowing the specification of both strict and soft hierarchical control problems. In \cite{LiuAutRobSpecIssue}, a quasi-static version of this controller is used in simulation for a standing scenario where the iCub robot is using an additional contact which is switched from one hand to the other. This control architecture has also been successfully applied on a KUKA LWR robot \cite{LiuICRA2015}. Tasks performances for three conflicting tasks are illustrated on Fig.~\ref{fig:KUKA_LWR_GHC}.
+During Year 2, UPMC has explored the different possible usage of the Generalized Hierarchical Controller developed in Year 1 \cite{LiuGHC} and allowing the specification of both strict and soft hierarchical control problems. In \cite{LiuAutRobSpecIssue}, a quasi-static version of this controller is used in simulation for a standing scenario where the iCub robot is using an additional contact which is switched from one hand to the other. This control architecture has also been successfully applied on a KUKA LWR robot \cite{LiuICRA2015}. Tasks performances for three conflicting tasks are illustrated on Figure~\ref{fig:KUKA_LWR_GHC}.
 
-\begin{figure*}[h]
+\begin{figure*}[h!]
 \centering
-\includegraphics[width=0.7\textwidth]{images/KUKA_GHC_ICRA}
-\caption{Tasks performance for three conflicting tasks using the GCH control framework.}
+\includegraphics[width=0.65\textwidth]{images/KUKA_GHC_ICRA}
+\caption{Tasks performance for three conflicting tasks using the GHC control framework.}
 \label{fig:KUKA_LWR_GHC}
 \end{figure*}
 
 \subparagraph{Solving the local control problem (T3.3) (UPMC: 4.5PM, UB: 0.9PM, TUD: 2.5PM)}
 
-During Year 2, UPMC has started to investigate scenarios where the robot is interacting with the environment through rigid and non-rigid contacts. Assuming that no information is a priori available regarding the nature of the contact surface, a first control strategy has been proposed in \cite{LiuIROS2015} where the desired contact force is adapted online as a function of the velocity of the contact point. Indeed, the risk with an unkwon contact surface is to assume that it will almost instantaneously provide the required contact force to maintain the robot balance. If the surface is non-rigid, the contact point will actually move while being pushed and stable support forces will only be provided to the robot once the contact is properly established. The goal of the adaptation of the desired value for the contact force is to accelerate the obtention of a stable contact force supporting the robot. The desired ttrajectory for the center of mass of the robot is also adapted to account for the non-rigidity of the contact surface. One of the advantages of this approach is that it does not actually requires the knowledge of the contact surface impedance. Fig.~\ref{fig:LIU_IROS_2015} provides a view of the types of considered scenarii and the structure of the considered controller. In this work, the local control problem is solved using the solver described in \cite{salini2012} rather than the one developped in \cite{LiuGHC}. This choice is related to the fact that the computation cost of the GHC approach remains important and is too high to be actually used in a real-time reactive control architecture for a humanoid robot.\\
+During Year 2, UPMC has started to investigate scenarios where the robot is interacting with the environment through rigid and non-rigid contacts. Assuming that no information is a priori available regarding the nature of the contact surface, a first control strategy has been proposed in \cite{LiuIROS2015} where the desired contact force is adapted online as a function of the velocity of the contact point. Indeed, the risk with an unknown contact surface is to assume that it will almost instantaneously provide the required contact force to maintain the robot balance. If the surface is non-rigid, the contact point will actually move while being pushed and stable support forces will only be provided to the robot once the contact is properly established. The goal of the adaptation of the desired value for the contact force is to accelerate the obtainment of a stable contact force supporting the robot. The desired trajectory for the center of mass of the robot is also adapted to account for the non-rigidity of the contact surface. One of the advantages of this approach is that it does not actually requires the knowledge of the contact surface impedance. Figure~\ref{fig:LIU_IROS_2015} provides a view of the types of considered scenarii and the structure of the considered controller. In this work, the local control problem is solved using the solver described in \cite{salini2012} rather than the one developed in \cite{LiuGHC}. This choice is related to the fact that the computation cost of the GHC approach remains important and is too high to be actually used in a real-time reactive control architecture for a humanoid robot.\\
 
-\begin{figure*}[h]
+\begin{figure*}[h!]
 \centering
 \includegraphics[width=0.45\textwidth]{images/LIU_IROS_2015} \includegraphics[width=0.45\textwidth]{images/LIU_IROS_2015_bis}
 \caption{Scenarri of interaction with a non-rigid environment (\textit{left}). Structure of the adaptive control architecture (\textit{right}).}
@@ -39,21 +39,20 @@ the joint torques are calculated.  To implement the proposed method in
 practice, stiffness and damping coefficients of the contact model have to be
 estimated beforehand by using contact model parameter estimation methods.\\
     
-In order to best use the whole-body controllers developped within the framework of WP3, TUD hired a student for setting up the iCub hardware and simulation environment.
+In order to best use the whole-body controllers developed within the framework of WP3, TUD hired a student for setting up the iCub hardware and simulation environment.
 
 
 \subparagraph{Bootstrapping and validating the control approach in rigid world and compliant cases (T3.4) (IIT: ?PM, UPMC: 7.19PM, UB: 0.95PM, TUD: 8PM, Inria: 4PM)}
 
-During Year 2, the whole-body controller developped by UPMC and originally described in \cite{salini2012} has been ported, using the Whole Body Interface described in Deliverable~D1.2, on the iCub robot. A non-free-floating first implementation was performed during the \textit{Veni, Vidi, Vici} 2014 summer school. The free-floating version is less straightforward as it requires: a well calibrated torque low-level control loop and a proper on-line estimation of the state of the root-body in order to  compute the dynamics and kinematics models of the robot\footnote{The retained solution is to choose one body in contact with the fixed environment as the root-body (one foot for example) and switch the root-body whenever there is a switch in the contact state of the system)}. IIT is working on these two topics and UPMC, in coordination with IIT, is pursuing integration on its iCub robots.
+During Year 2, the whole-body controller developed by UPMC and originally described in \cite{salini2012} has been ported, using the Whole Body Interface described in Deliverable~D1.2, on the iCub robot. A non-free-floating first implementation was performed during the \textit{Veni, Vidi, Vici} 2014 summer school. The free-floating version is less straightforward as it requires: a well calibrated torque low-level control loop and a proper on-line estimation of the state of the root-body in order to  compute the dynamics and kinematics models of the robot\footnote{The retained solution is to choose one body in contact with the fixed environment as the root-body (one foot for example) and switch the root-body whenever there is a switch in the contact state of the system)}. IIT is working on these two topics and UPMC, in coordination with IIT, is pursuing integration on its iCub robots.
 
-UPMC also kept exploring the contribution of MPC approaches to  handle the postural balancing under varying contact conditions. The contributions in this domain are related to the thesis work of A. Ibanez \cite{ibanezIROS2014} and the postdoctoral work of D. Lau\footnote{A paper has been submitted to a conference with double blind reviews and cannot be explicitely referred to for obvious reasons.}.  In order to compute optimal time, duration and position of footsteps along with the center of mass trajectory of a humanoid, a novel mixed-integer model of the system is introduced in the work of A. Ibanez. The introduction of this model in a predictive control problem brings the definition of a Mixed-Integer Quadratic Program, subject to linear constraints. Simulation results demonstrate the simultaneous adaptation of the gait pattern and posture of the humanoid, in a walking activity under large disturbances, to efficiently compromise between task performance and balance. In addition, a push recovery scenario displays how, using a single balance-performance ratio, distinct behaviors of the humanoid can be specified. Results have been obtained in simulation\footnote{A video associated to this work can be found \href{here}{http://pages.isir.upmc.fr/~padois/website/fichiers/videos/ibanez\_IROS2014.mp4}.} and are being implemented on the TORO robot developped at DLR. This work is also being adapted in order to test control hypothesis to explain  the behaviours observed in the experiment developped in T2.4 of WP2\footnote{This adaptation has been discussed during the visit of Jan Babic as an invited professor during Novemebr 2014 at  UPMC}. In the work of D. Lau, two simple and novel approaches to solve for 3D locomotion with multiple non-coplanar contacts are introduced. Both formulations use model predictive control to generate dynamically balanced trajectories with no restrictions on the center of mass height trajectory. The first formulation treats the balance criterion as an objective function, and solves the control problem using a sequence of alternating convex quadratic programs, while the second formulation considers the criterion as constraints to the problem, and solves a succession of convex quadratically constrained quadratic programs. Preliminary results have been obtained in a scenario where a hand contact on a vertical wall is used to improve balance. A staircase climbing scenario has also been studied.
+UPMC also kept exploring the contribution of MPC approaches to  handle the postural balancing under varying contact conditions. The contributions in this domain are related to the thesis work of A. Ibanez \cite{ibanezIROS2014} and the postdoctoral work of D. Lau\footnote{A paper has been submitted to a conference with double blind reviews and cannot be explicitly referred to for obvious reasons.}.  In order to compute optimal time, duration and position of footsteps along with the center of mass trajectory of a humanoid, a novel mixed-integer model of the system is introduced in the work of A. Ibanez. The introduction of this model in a predictive control problem brings the definition of a Mixed-Integer Quadratic Program, subject to linear constraints. Simulation results demonstrate the simultaneous adaptation of the gait pattern and posture of the humanoid, in a walking activity under large disturbances, to efficiently compromise between task performance and balance. In addition, a push recovery scenario displays how, using a single balance-performance ratio, distinct behaviors of the humanoid can be specified. Results have been obtained in simulation\footnote{A video associated to this work can be found \href{http://pages.isir.upmc.fr/~padois/website/fichiers/videos/ibanez\_IROS2014.mp4}{here}.} and are being implemented on the TORO robot developed at DLR. This work is also being adapted in order to test control hypothesis to explain  the behaviours observed in the experiment developed in T2.4 of WP2\footnote{This adaptation has been discussed during the visit of Jan Babic as an invited professor during November 2014 at  UPMC}. In the work of D. Lau, two simple and novel approaches to solve for 3D locomotion with multiple non-coplanar contacts are introduced. Both formulations use model predictive control to generate dynamically balanced trajectories with no restrictions on the center of mass height trajectory. The first formulation treats the balance criterion as an objective function, and solves the control problem using a sequence of alternating convex quadratic programs, while the second formulation considers the criterion as constraints to the problem, and solves a succession of convex quadratically constrained quadratic programs. Preliminary results have been obtained in a scenario where a hand contact on a vertical wall is used to improve balance. A staircase climbing scenario has also been studied.
 
-In coordination with T4.4 in WP4, UPMC also explored ways to optimize tasks trajectories \cite{lober-HUMANOIDS2014} and the weights of tasks \cite{lobersubmittedIROS2015} in the LQP whole-body controller in order to maximize the overall control performance. More details are providied in the description of T4.4.\\
+In coordination with T4.4 in WP4, UPMC also explored ways to optimize tasks trajectories \cite{lober-HUMANOIDS2014} and the weights of tasks \cite{lobersubmittedIROS2015} in the LQP whole-body controller in order to maximize the overall control performance. More details are provided in the description of T4.4.\\
 
-Continuing the activities which started in the first year of the project, IIT further improved the torque whole-body controller. During the second year of the project, attention was mainly on rigid contacts even if the theoretical and software development was guided and constrained by the requirements for extending the approach to non-rigid contacts. Several improvements to the controller significantly improved its performances. Improvements include in-situ force/torque sensor calibration \cite{Traversaro2015b}, inertial parameter identification \cite{Traversaro2015} and individual motor transfer function identification \cite{Nori2015a}. These improvements made possible quite challenging control tasks like the robust single foot balancing represented in Fig.~\ref{fig:footBalancing}. Details of the controller will be given in a forthcoming publication.\\
+Continuing the activities which started in the first year of the project, IIT further improved the torque whole-body controller. During the second year of the project, attention was mainly on rigid contacts even if the theoretical and software development was guided and constrained by the requirements for extending the approach to non-rigid contacts. Several improvements to the controller significantly improved its performances. Improvements include in-situ force/torque sensor calibration \cite{Traversaro2015b}, inertial parameter identification \cite{Traversaro2015} and individual motor transfer function identification \cite{Nori2015a}. These improvements made possible quite challenging control tasks like the robust single foot balancing represented in Figure~\ref{fig:footBalancing}. Details of the controller will be given in a forthcoming publication.\\
 
-\begin{figure}[h]
-\vspace{0.5em}
+\begin{figure}[h!]
 \centering
 {\includegraphics[width=0.65\textwidth]{images/single_foot_balancing.jpg}}
 \caption{The picture shows the iCub while performing compliant single foot balancing. Details on the controller can be found in \cite{Nori2015a}. A video of the task is available on youtube\protect\footnotemark.}
@@ -70,12 +69,12 @@ skin. This approach was evaluated on the iCub robot, where the learned model
 accurately predicts contact forces, is robust to changes in the environment and
 outperforms existing analytic dynamic models that make use of force/torque
 sensor data. 
-An exemplary task is illustrated in Figure~\cite{fig:exp3:icuparis_experiment_bars} 
+An exemplary task is illustrated in Figure~\ref{fig:exp3:icuparis_experiment_bars} 
 when obstacles are introduced on both sides of a planned circular motion.
-In Figure~\cite{fig:exp3:gating} can be seen that the mixture-of-experts recognize the presence of the two different contacts and opportunely active the corresponding expert to compensate for the contact.
+In Figure~\ref{fig:exp3:gating} can be seen that the mixture-of-experts recognize the presence of the two different contacts and opportunely active the corresponding expert to compensate for the contact.
 As a result, the torques predicted from this approach (red curve) closely follow the ground truth (blue curve) and outperform the analytic model (green curve).
 A paper was published in an international robotics conference
-\cite{Calandra_ICRA15}. A continuative study exploiting learned dynamics models
+\cite{Calandra_ICRA15}. A study exploiting learned dynamics models
 for control is in progress of writing. Both studies are detailed in Deliverable
 D4.2.\\
 
@@ -126,34 +125,20 @@ an eraser to wipe a whiteboard.  They showed that the proposed controller can
 effectively exploit contact with the whiteboard in order to reduce joint
 torques while still performing the desired wiping motion.
 
-\begin{figure}
+\begin{figure*}[h!]
   \centering
-  \includegraphics[width=0.7\textwidth]{images/whiteboard.pdf}
+  \includegraphics[width=0.65\textwidth]{images/whiteboard.pdf}
   \caption{Experimental setting. The right arm of the humanoid
     platform Boris is used, and placed the board in between its two arms so that the z
     axis of the robot end effector frame, the z axis of the robot base frame
     and the axis orthogonal to the board are parallel.}
   \label{whiteboard}
-\end{figure}
+\end{figure*}
 
 
 
 
 
-    
-\subparagraph{Deviations from workplan}  
-
-The PM expenses for WP3 after one year of project are globally conform to the planned one. The observed deviations are related to the fact that tasks 3.3 and 3.4 spans the overall duration of the project and the contribution of some of the partners are expected in the 2nd, 3rd and 4th year.
-
-%\emph{\color{red}[For work package 3 (UPMC) provide the following information:]}
-%\begin{itemize}
-%\item[-] \emph{\color{red}[A summary of progress towards objectives and details for each task;]}
-%\item[-] \emph{\color{red}[Highlight clearly significant results;]}
-%\item[-] \emph{\color{red}[If applicable, explain the reasons for deviations from Annex I and their impact on other tasks as well as on available resources and planning;]}
-%\item[-] \emph{\color{red}[If applicable, explain the reasons for failing to achieve critical objectives and/or not being on schedule and explain the impact on other tasks as well as on available resources and planning (the explanations should be consistent with the declaration by the project coordinator) ;]}
-%\item[-] \emph{\color{red}[a statement on the use of resources, in particular highlighting and explaining deviations between actual and planned  person-months per work package and per beneficiary in Annex 1 (Description of Work);]}
-%\item[-] \emph{\color{red}[If applicable, propose corrective actions.]}
-%\end{itemize}
 
 
 

@@ -4,13 +4,11 @@
  
 \paragraph*{WP3: control and optimization of whole-body motion in contact (UPMC)}
 
-After two years of project, the level of achievement of the objectives in WP3 meets the expectations.
-
-The whole-body control frameworks developed by J. Salini and A. Del Prete as part of their respective PhD thesis \cite{salini2012}, \cite{delprete2013} have been tested for simple rigid, multi-contact scenarios in the XDE \cite{XDE} and Gazebo \cite{Gazebo} physics simulators. These two simulators have been retained in WP1 (Deliverable 1.1) as modular simulation frameworks dedicated to the evaluation of the control strategies in CODYCO.
-
-In the meantime, a novel "Generalized Smooth Hierarchical Control" algorithm has been developed \cite{liu2013}. It offers a rich way of describing and solving multi-task problems under constraints: both strict and soft tasks hierarchies can be enforced, tasks can be inserted and removed in a continuous manner and their priorities can be switched smoothly. It appears as a potential alternative to recent work in this domain \cite{escande2012}. Alternatively, TUD has worked on a Bayesian optimization framework dedicated to the bipedal locomotion gait optimization \cite{calandra2014}, \cite{calandra2014b}.
-
-Regarding the exploration of the potential ways of coupling the local, reactive control level and the global, decision making one, several works have been initiated mostly related to the generation of "globally optimal" reference trajectories to be tracked reactively by the local controller. The contributions in this domain over the second year of project are mostly related to the work of A. Ibanez \cite{ibanez2013}, \cite{ibanez2014-icra} and \cite{ibanez2014-ark}. The distributed MPC approach developed in this work tackles the locomotion and balance problem from a new perspective that shares similarities with recent contributions such as \cite{mordatch2012} where an optimization framework enables an automated generation of rich contact behaviors, and \cite{ott2013} that combines a kinesthetic teaching task with an algorithm partially inspired by our approach to improve the balancing behavior during interactions. In the meantime, TUD investigated the interchange of forces during cooperative tasks between humans and robots \cite{berger2013}.
+After two years of project, the level of achievement of the objectives in WP3 meets the expectations. The main achievements are:
+\begin{itemize}
+\item[T3.3] studies by UPMC and UB on the extension of whole-body control frameworks in order to account for non-rigid contacts.  The approach retained by UPMC adapts the desired contact force value and center of mass trajectory in order to establish stable and supporting contacts as fast as possible. This appproach assumes a local contact model but does not require the explicit knowledge of its parameters and rather uses the velocity of the contact point to directly adapt the desired contact force. UB computes optimal contact forces based on the momentum of the robot and computes and converts this forces into desired acceleration using an estimated model of the surface in contact. Given these desired accelerations, joint torques are computed in order to best achieve the desired accelerations.
+\item[T3.4] 
+\end{itemize}
 
 
 
