@@ -42,7 +42,7 @@ estimated beforehand by using contact model parameter estimation methods.\\
 In order to best use the whole-body controllers developed within the framework of WP3, TUD hired a student for setting up the iCub hardware and simulation environment.
 
 
-\subparagraph{Bootstrapping and validating the control approach in rigid world and compliant cases (T3.4) (IIT: ?PM, UPMC: 7.19PM, UB: 0.95PM, TUD: 8PM, Inria: 4PM)}
+\subparagraph{Bootstrapping and validating the control approach in rigid world and compliant cases (T3.4) (IIT: 3PM, UPMC: 7.19PM, UB: 0.95PM, TUD: 8PM, Inria: 4PM)}
 
 During Year 2, the whole-body controller developed by UPMC and originally described in \cite{salini2012} has been ported, using the Whole Body Interface described in Deliverable~D1.2, on the iCub robot. A non-free-floating first implementation was performed during the \textit{Veni, Vidi, Vici} 2014 summer school. The free-floating version is less straightforward as it requires: a well calibrated torque low-level control loop and a proper on-line estimation of the state of the root-body in order to  compute the dynamics and kinematics models of the robot\footnote{The retained solution is to choose one body in contact with the fixed environment as the root-body (one foot for example) and switch the root-body whenever there is a switch in the contact state of the system.}. IIT is working on these two topics and UPMC, in coordination with IIT, is pursuing integration on its iCub robots.
 
