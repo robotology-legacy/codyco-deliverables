@@ -173,15 +173,15 @@ The specificity of CoDyCo relies on the fact that the progress beyond the state 
 All the CoDyCo second year objectives have been attained. Here is a list of the CoDyCo second year achievements. 
 \begin{itemize}
 
-\item Design and implementation of an open-source simulator environment for the iCub and digital human whole-body motion simulation. After a consortium shared effort, it was decided to adopt Gazebo \url{http://gazebosim.org} as a basis for the simulator. Gazebo offers a structured software interface (plugins) which was used to export a YARP interface to simulated robots. The Gazebo-YARP plugin source code is available on github, at the address \url{https://github.com/robotology/gazebo_yarp_plugins}. The use of Gazebo was chosen on the basis of a public survey \url{http://arxiv.org/abs/1402.7050} and on the results of a discussion conducted in Paris during a workshop organized at ISIR.
+\item Design, implementation and maintenance of the whole-body control software infrastructure. The infrastructure consists of several modules which significantly improved the controller accuracy and robustness thanks to: a module for whole-body torques estimation, a module for force/torque sensors calibration, a module for whole-body dynamics identification and a module for dynamics estimation. 
 
-\item Design and implementation of a whole-body software abstraction layer \url{https://github.com/robotology/codyco/tree/master/src/libraries/wholeBodyInterface} which represents the backbone of the CoDyCo software architecture, interface and module structure.
+\item Design of experimental protocols and data collection of experiments for studying humans in multi-contact interaction with the environment. This includes an experiment on hand-contact assisted balancing, a metric for whole-body stability characterisation, an experiment of human robot physical interaction and a study on collaborative human-robot physical interaction.
 
-\item Design and definition of human experimental protocols and simplified models for whole-body motion with multiple contacts. After an extensive literature review (D2.1), JSI conducted preliminary studies on examining functional role of supportive hand contact while balancing.
+\item Design and simulation of whole-body control strategies in presence of non-rigid contacts. Experiments on postural control under multiple environmental contacts while controlling the operational space dynamics. 
 
-\item Design and test of state of the art control strategies for whole-body motion with multiple contacts. Realization of a solver for the whole-body reactive control that provides an expressive and rich description of the control problem as well as an efficient way of solving it. Implementation of the results in a whole-body control validation scenario in presence of multiple contacts. 
+\item Development of a theoretical framework for representing movement primitives within probabilistic contexts. Design of a model-free probabilistic representation for simultaneous representation of kinematic and force trajectories. Preliminary studies on the problem of learning strategies to adapt temporal activation of low-level primitives and to deal with interferences in combining multiple whole-body tasks. 
 
-\item Preliminary studies on learning methods suitable for tasks that involve many uncertain contacts. Design of fast regression methods that can deal with well structured input noise. Methods for learning how to combine elementary control tasks.
+\item Implementation of the second year validation scenario consisting in whole-body motion control subject to postural, contact and goal-directed (Cartesian) constraints.
 
 \end{itemize}
 
