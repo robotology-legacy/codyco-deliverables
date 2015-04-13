@@ -2,6 +2,24 @@ CoDyCo Deliverables
 ===================
 This repository holds all the code, data and results used for deliverables in [CoDyCo project](http://codyco.eu)
 
+D1.2 - Software for controlling of balancing and reaching with multiple contacts
+-----------------------------------------------------------
+######Responsible: UB
+######Delivery date: M24
+Code, data and PDF [available here](https://github.com/robotology-playground/codyco-deliverables/tree/master/D1.2).
+
+D3.1 - Local solver in rigid-world cases
+-----------------------------------------------------------
+######Responsible: UPMC
+######Delivery date: M24
+Code, data and PDF [available here](https://github.com/robotology-playground/codyco-deliverables/tree/master/D3.1).
+
+D4.2 - Learning of tasks with multiple contacts by imitation and reinforcement learning
+-----------------------------------------------------------
+######Responsible: TUD
+######Delivery date: M24
+Code, data and PDF [available here](https://github.com/robotology-playground/codyco-deliverables/tree/master/D4.2).
+
 D5.2 - Validation scenario 2: balancing on feet while performing goal directed actions
 -----------------------------------------------------------
 ######Responsible: IIT
