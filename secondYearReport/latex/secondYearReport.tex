@@ -1,0 +1,231 @@
+%% Template for EU report, using the report.sty style file
+
+\documentclass[12pt,a4paper,twoside]{article}
+%% common package
+\usepackage[headers]{report}
+\usepackage{xspace}
+\usepackage{verbatim}
+\usepackage[usenames]{color}
+\usepackage[usenames,dvipsnames,table]{xcolor}
+\usepackage[pdftex,dvips]{graphicx}
+\usepackage[hyphens]{url}
+\usepackage{array}
+\usepackage{color}
+\usepackage{longtable}
+\usepackage{tikz}
+\usepackage{wrapfig}
+\usetikzlibrary{graphs}
+\usetikzlibrary{backgrounds}
+%%
+
+%%insert here other packages needed by sections
+
+%%
+
+%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
+%%% Titlepage
+%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
+
+% declaration of variables used in style
+\reportDocnumber{Year 2}
+\reportTitle{Second year project objectives report}
+
+\reportAuthor{CoDyCo Consortium}
+\reportResponsiblePartner{IIT}
+\reportAffiliation{% Insert here authors affiliations
+ IIT, TUD, UPMC, UB, JSI, INRIA.
+}
+
+\reportReviewer{}
+\reportCoordinator{Francesco Nori}
+\reportActivityNumber{1} %% n=1,..,10
+\reportActivity{RTD}
+\reportDoctype{Periodic report} %% or Prototype
+\reportClassification{Public} % or Consortium
+\reportDistribution{Consortium} %
+\reportStatus{Draft} % Draft or Final
+\reportDeliveryDate{01/04/2015}
+\reportVersion{1.0}
+\reportDate{Apr.~1, 2015}
+\reportYear{2014}
+\reportPages{\pageref{LastPage}}
+\reportChangelog{v.1.0 & Feb 13, 2014 & First draft %%\\\hline
+%%              v.2.0 & Feb 20, 2007 & Final version
+}
+\reportProjectStartingDate{1st March 2013}
+\reportProjectEndDate{28th February 2017}
+\reportProjectAcronym{CoDyCo}
+\reportProjectTitle{Whole-Body Compliant Dynamical Contacts in Cognitive Humanoids}
+ \reportContractNumber{600716}
+ \reportProjectCoordinator{Fondazione Istituto Italiano di Tecnologia}
+ \reportProjectUrl{www.codyco.eu}
+ \reportFrameworkProgramme{FP7}
+ 
+ \reportWorkpackage{All work packages}
+ \reportEditors{Francesco Nori, Vincent Padois, Jan Peters, Elmar R\"ukert, Jan Babic, Michael Mistry, Morteza Azad, Serena Ivaldi}
+ \reportContributors{Entire CoDyCo consortium}
+ \reportReviewers{-}
+\reportAbstract{The scope of the current report is to present the results ...}
+\reportReviewers{reviewers}
+\reportKeywordList{kw, list, etc, }
+
+%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
+%%% Sections
+%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
+
+%% constants{}
+
+%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
+%%% Misc. by Vincent
+%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
+\usepackage{titlesec}
+\newcommand{\sectionbreak}{}
+\graphicspath{{./images/}}
+\usepackage{pdfpages}
+\usepackage{caption}
+\usepackage{subcaption}
+\usepackage{multirow}
+\usepackage{appendix}
+\usepackage{hyperref}
+
+
+%%
+%%%%%%%%%%%%%%%%%%%%%%%%%%%%%% BEGIN DOCUMENT
+\begin{document}
+
+\reportMaketitle
+
+
+%%TODO move to style
+\newcolumntype{L}[1]{>{\raggedright\let\newline\\\arraybackslash\hspace{0pt}}m{#1}}
+\newcolumntype{C}[1]{>{\centering\let\newline\\\arraybackslash\hspace{0pt}}m{#1}}
+\newcolumntype{R}[1]{>{\raggedleft\let\newline\\\arraybackslash\hspace{0pt}}m{#1}}
+ 
+ \clearpage
+
+\setcounter{tocdepth}{5}
+
+\newpage
+\renewcommand*\contentsname{Table of Contents}
+\renewcommand*\listfigurename{Index of Figures}
+\tableofcontents
+\newpage
+\listoffigures
+\newpage
+
+%%%%%%%%%%%%%%%%%%%%%%%% Start report content here.
+
+\setcounter{section}{3}
+\setcounter{subsection}{1}
+\setcounter{secnumdepth}{5}
+
+\subsection{Project objectives for the period}
+
+\subsubsection{Overview}
+
+The specificity of CoDyCo relies on the fact that the progress beyond the state of the art is guided by the yearly implementation on the iCub humanoid. Within this context, CoDyCo second year specific objectives were to design and implement the control of whole-body posture while performing goal directed movements. Beyond the activities to achieve this result, other long term activities have been conducted in preparation for the following years objectives. These activities involve human experiments, software infrastructure maintenance and the development of learning/control algorithms.
+
+\begin{longtable}{|C{1.5cm}|C{1.5cm}|C{1.5cm}|C{1.5cm}|C{1.5cm}|C{1.5cm}|C{1.5cm}|C{1.5cm}|}
+\cline{1-7}
+\footnotesize \textbf{Task}& \footnotesize \textbf{IIT}&\footnotesize \textbf{TUD}&\footnotesize \textbf{UPMC}& \footnotesize \textbf{UB} &\footnotesize \textbf{JSI} &\footnotesize \textbf{INRIA} & \multicolumn{1}{l}{} \\ \hline
+\footnotesize WP1      &  3        &  3      &  0.48   &  2.29  &  -     &  -     &  8.77 \\  \hline
+\footnotesize WP2      &  -        &  3      &  0.48   &  7.67  &  22.85 &  -     &  33.00\\  \hline
+\footnotesize WP3      &  -        &  10.5   &  14.69  &  1.85  &  0.00  &  4.00  &  32.04\\  \hline
+\footnotesize WP4      &  6.04     &  21.7   &  1.68   &  2.15  &  3.00  &  2.00  &  36.57\\  \hline
+\footnotesize WP5      &  12       &  0.85   &  0.05   &  -     &  -     &  -     &  12.05\\  \hline
+\footnotesize WP6      &  1.5      &  -      &  0.31   &  -     &  -     &  -     &  1.81 \\  \hline
+\footnotesize WP7      &  -        &  -      &  0.13   &  -     &  -     &  1.00  &  1.13 \\  \hline
+\multicolumn{1}{l|}{}  &  22.54    &  39.05  &  17.82  &  13.96 &  25.85 &  7.00  &  
+\textbf{125.37}     \\  \cline{2-8}
+\end{longtable}
+
+\input{sections/WP1/wp1_objectives.tex}
+\input{sections/WP2/wp2_objectives.tex}
+\input{sections/WP3/wp3_objectives.tex}
+\input{sections/WP4/wp4_objectives.tex}
+\input{sections/WP5/wp5_objectives.tex}
+\input{sections/WP6/wp6_objectives.tex}
+\input{sections/WP7/wp7_objectives.tex}
+
+
+\subsection{Work progress and achievements during the period}
+
+\subsubsection{Progress overview and contribution to the research field}
+
+All the CoDyCo second year objectives have been attained. Here is a list of the CoDyCo second year achievements. 
+\begin{itemize}
+
+\item Design, implementation and maintenance of the whole-body control software infrastructure. The infrastructure consists of several modules which significantly improved the controller accuracy and robustness thanks to: a module for whole-body torques estimation, a module for force/torque sensors calibration, a module for whole-body dynamics identification and a module for dynamics estimation. 
+
+\item Design of experimental protocols and data collection of experiments for studying humans in multi-contact interaction with the environment. This includes an experiment on hand-contact assisted balancing, a metric for whole-body stability characterisation, an experiment of human robot physical interaction and a study on collaborative human-robot physical interaction.
+
+\item Design and simulation of whole-body control strategies in presence of non-rigid contacts. Experiments on postural control under multiple environmental contacts while controlling the operational space dynamics. 
+
+\item Development of a theoretical framework for representing movement primitives within probabilistic contexts. Design of a model-free probabilistic representation for simultaneous representation of kinematic and force trajectories. Preliminary studies on the problem of learning strategies to adapt temporal activation of low-level primitives and to deal with interferences in combining multiple whole-body tasks. 
+
+\item Implementation of the second year validation scenario consisting in whole-body motion control subject to postural, contact and goal-directed (Cartesian) constraints.
+
+\end{itemize}
+
+\subsubsection{Work packages progress}
+
+\input{sections/WP1/wp1_progress_recap.tex}
+\input{sections/WP2/wp2_progress_recap.tex}
+\input{sections/WP3/wp3_progress_recap.tex}
+\input{sections/WP4/wp4_progress_recap.tex}
+\input{sections/WP5/wp5_progress_recap.tex}
+\input{sections/WP6/wp6_progress_recap.tex}
+\input{sections/WP7/wp7_progress_recap.tex}
+
+\input{sections/WP1/wp1_progress.tex}
+\input{sections/WP1/wp1_resources.tex}
+
+\input{sections/WP2/wp2_progress.tex}
+\input{sections/WP2/wp2_resources.tex}
+
+\input{sections/WP3/wp3_progress.tex}
+\input{sections/WP3/wp3_resources.tex}
+
+\input{sections/WP4/wp4_progress.tex}
+\input{sections/WP4/wp4_resources.tex}
+
+\input{sections/WP5/wp5_progress.tex}
+\input{sections/WP5/wp5_resources.tex}
+
+\input{sections/WP6/wp6_progress.tex}
+\input{sections/WP6/wp6_resources.tex}
+
+\input{sections/WP7/wp7_progress.tex}
+\input{sections/WP7/wp7_resources.tex}
+
+\subsection{Deliverables and milestones tables}
+
+\subsubsection{Deliverables (excluding the periodic and final reports)}
+
+\begin{figure*}[ht!]
+\centering
+\includegraphics[width=0.6\textwidth]{./images/deliverables.pdf}
+\end{figure*}
+
+\subsubsection{Milestones}
+
+\begin{figure*}[ht!]
+\centering
+\includegraphics[width=\textwidth]{./images/milestones.pdf}
+\end{figure*}
+
+\newpage
+
+\bibliographystyle{IEEEtran}
+% \bibliography{IEEEabrv,yearReport_WP3,all-ias-publications}
+\bibliography{secondYearReport_WP4,secondYearReport_WP3,secondYearReport_WP2,secondYearReport_WP1}
+
+\input{sections/dissemination.tex}
+
+\end{document}
+
+%%% Local Variables:
+%%% mode: latex
+%%% TeX-master: t
+%%% save-place: t
+%%% End:
