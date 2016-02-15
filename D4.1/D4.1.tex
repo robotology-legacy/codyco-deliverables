@@ -1,0 +1,322 @@
+%% Template for EU deliverable, using the deliverable.sty style file
+
+\documentclass[12pt,a4paper,twoside]{report}
+
+%% common package
+\usepackage[headers]{deliverable}
+\usepackage{xspace}
+\usepackage{verbatim}
+\usepackage[usenames]{color}
+\usepackage[usenames,dvipsnames]{xcolor}
+%\usepackage{graphicx}
+\usepackage{url}
+\usepackage{array}
+\usepackage{graphics} 		% for pdf, bitmapped graphics files
+\usepackage{graphicx}
+\usepackage{epsfig} 		% for postscript graphics files
+\usepackage{epstopdf}
+\usepackage{caption}
+\usepackage[labelformat=simple]{subcaption}
+\renewcommand\thesubfigure{(\alph{subfigure})}
+\usepackage{nameref}
+\usepackage{multirow}
+\usepackage{color}
+ \usepackage{pdfpages}
+%\usepackage{subfigure}
+%%
+
+%%insert here other packages needed by sections
+%\usepackage{esint}
+\usepackage{amstext}
+\usepackage{amsmath}	 	% assumes amsmath package installed
+\usepackage{amssymb}  		% assumes amsmath package installed
+%\renewcommand\thesubfigure{(\alph{subfigure})}
+\usepackage{wrapfig}
+\usepackage[]{nomencl}		% nomenclatures
+%\usepackage{dsfont}
+%%
+
+%%%%%%%%%%%%%%%%%%%%%%%%%%%%%% LyX specific LaTeX commands.
+
+%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
+%%% Titlepage
+%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
+
+% declaration of variables used in style
+\deliverableDocnumber{D4.1}
+\deliverableTitle{Learning approaches for operational space control with contacts.}
+
+\deliverableAuthor{Jan Peters$^{1,2}$ and Elmar Rueckert$^1$}
+\deliverableResponsiblePartner{TUD}
+\deliverableAffiliation{% Insert here authors affiliations
+ $^1$ Intelligent Autonomous Systems Lab, Technische Universit\"at Darmstadt, 64289 Darmstadt, Germany.
+  $^2$ Robot Learning Group, Max-Planck Institute for Intelligent Systems,
+	Tuebingen, Germany.
+}
+
+\deliverableReviewer{}
+\deliverableCoordinator{Jan Peters}
+\deliverableActivityNumber{n} %% n=1,..,10
+\deliverableActivity{Activity Name}
+\deliverableDoctype{Deliverable} %% or Prototype
+\deliverableClassification{Public} % or Consortium
+\deliverableDistribution{Consortium} %
+\deliverableStatus{Draft} % Draft or Final
+\deliverableDeliveryDate{29/2/2016}
+\deliverableFile{Dxx\_DeliverableName.pdf} % please do not use "-" in the name
+\deliverableVersion{1.0}
+\deliverableDate{Feb.~29, 2016}
+\deliverableYear{2016}
+\deliverablePages{\pageref{LastPage}}
+\deliverableChangelog{v.0.1 & Feb 04, 2016 & Initial draft %%\\\hline
+%%              v.2.0 & Feb 20, 2007 & Final version
+}
+\deliverableProjectStartingDate{1st March 2013}
+\deliverableProjectEndDate{28th February 2017}
+\deliverableProjectAcronym{CoDyCo}
+\deliverableProjectTitle{Whole-Body Compliant Dynamical Contacts in Cognitive Humanoids}
+ \deliverableContractNumber{600716}
+ \deliverableProjectCoordinator{Istituto Italiano di Tecnologia}
+ \deliverableProjectUrl{www.codyco.eu}
+ \deliverableFrameworkProgramme{FP7}
+ 
+ \deliverableWorkpackage{WP4}
+ \deliverableEditors{Jan Peters and Elmar Rueckert}
+ \deliverableContributors{Alex Paraschos, Daniel Tanneberg, Jan Peters and Elmar Rueckert (TUD) }
+ \deliverableReviewers{}
+\deliverableAbstract{The scope of the current deliverable is to present the results on solving operational space control problems in humanoid robots. 
+}
+\deliverableKeywordList{contacts, inverse dynamics model learning, probabilistic movement representations, reinforcement learning}
+
+
+\def\BibPath{./manuscript}       % location of bibtex-files
+%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
+%%% Sections
+%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
+
+%% constants
+\newcommand{\botegoCaps}{BOTEGO}
+\newcommand{\certhCaps}{CERTH}
+\newcommand{\cybionCaps}{CYBION}
+\newcommand{\nuigCaps}{NUIG}
+\newcommand{\ubitechCaps}{UBITECH}
+
+%%
+%%%%%%%%%%%%%%%%%%%%%%%%%%%%%% BEGIN DOCUMENT
+\begin{document}
+
+\deliverableMaketitle
+
+%%TODO move to style
+\newcolumntype{L}[1]{>{\raggedright\let\newline\\\arraybackslash\hspace{0pt}}m{#1}}
+\newcolumntype{C}[1]{>{\centering\let\newline\\\arraybackslash\hspace{0pt}}m{#1}}
+\newcolumntype{R}[1]{>{\raggedleft\let\newline\\\arraybackslash\hspace{0pt}}m{#1}}
+
+\textbf{Document Revision History}
+\begin{center}
+\begin{tabular}{|C{2cm}|C{3cm}|p{5cm}|C{4cm}|}
+\hline
+\textbf{Version}&\textbf{Date}&\textbf{Description}&\textbf{Author}\\\hline
+v. 0.1 & Feb. 04 & Initial Draft & Elmar Rueckert\\\hline
+v. 1.0 & Feb. 29 & Final & Elmar Rueckert\\\hline
+\end{tabular}
+\end{center}
+ 
+ \clearpage
+
+\newpage
+\renewcommand*\contentsname{Table of Contents}
+\renewcommand*\listfigurename{Index of Figures}
+\tableofcontents
+\newpage
+%\listoffigures
+%\newpage
+
+%%%%%%%%%%%%%%%%%%%%%%%% Start deliverable content here.
+
+\chapter{Introduction}
+
+This deliverable presents results of task T4.1 and of task T4.2 at the end of the thrid year. The achieved results are briefly discussed with respect to the task description from the Technical Annex.
+
+\paragraph{T4.1 Generalizing and Improving Elementary Tasks with Contacts.} 
+Analytical models that include physical robot-environment contact are frequently not sufficiently accurate
+for gentle and dextrous interaction with the environment. Hence, there is a strong need for improved
+models that enable more versatile predictions (e.g., of the next state or a force required to accomplish an
+acceleration) for whole-body contact. Core problems in these contexts are under-modelled nonlinearities
+(e.g., hydraulic tubes, cable drives, etc.) as well as that the various contact situations have substantially
+different interactive behaviour. As there may be unforeseeably many possible scenarios, real-time
+regression techniques may be one of the most reasonable approaches for such kind of problems. However,
+we avoid the classical problem of learning from scratch but rather learn the part of the dynamics that has
+not been captured by the preceding classical system identification techniques. The resulting model is
+obviously more accurate than the original and its training more efficient. As the type of contact may decide
+upon the type of interaction, it is an essential feature. However, it is not directly accessible but a latent
+cause for a change in behaviour and needs to be inferred online in real-time. Hence, new real-time
+regression techniques need to be developed particularly for a multi-contact situation where multiple model
+classes exist and generalization between different latent contacts. Here is a list of achievements for this task:
+\begin{itemize}
+
+\item TUD learned predictive models of joint angles and task-space forces in a probabilistic control framework. 
+Early results were presented at the end of year two. In particular, TUD developed a model-free control method that can be
+trained from demonstrations and generates time-varying feedback control gains that reproduces
+the demonstrations. In this approach a joint distribution over states, sensory feedback (e.g.,
+measured joint torques or contact forces) and controls is learned. In conditioning on the
+current state the next-state control-law can be computed in closed form approximating the
+true forward dynamics through local linearizations given the demonstrations. During year three, TUD refined this approach 
+and evaluated the model-free ProMP method on the humanoid robot iCub in lifting objects. The model could generalize to 
+different object weights and grasp locations. A paper was published and presented at the IEEE/RSJ Conference on Intelligent Robots and Systems (IROS) in Hamburg, Germany 2015 \cite{Paraschos_IROS_2015}. 
+This work is discussed in Chapter \ref{sec:AlexIROS}. 
+
+% \item Propose a general architecture that estimate the latent type of physical interaction and learn
+% models of the system and its interaction with the environment accordingly.
+% 
+% \textit{TODO}
+
+% \item Possible latent physical interaction type models are the different human contact models, different
+% rigid contact models and different compliant contact models. Similarly, there may be different
+% situations (soft, unstable, unpredictable surfaces; stable, unstable, contact, etc.).
+% 
+% \textit{TODO}
+
+% 
+% \item Bayesian inference is used to infer the current latent physical interaction type and results in an
+% appropriate interaction model.
+% 
+% \item If the existing interaction models can no longer explain the current behaviour during physical
+% contact, new contact models are generated and trained online. For each new contact type, also a
+% new corresponding interaction control law is trained.
+% 
+% \textit{TODO}
+% 
+% \item The physical model, as well as previous contact models, serve as a Bayesian prior to ensure that
+% learning does not happen from scratch.
+% 
+% \item The resulting approach is verified in the setting of several CoDyCo scenarios: contact with different
+% soft, unstable, unpredictable surfaces, contacts with humans, rigid or compliant objects, etc.
+
+\end{itemize}
+
+\paragraph{T4.2 Inferring the Operational Space and Appropriate Controls with Multiple Contacts.} 
+Operational space control (OSC) is among the most general frameworks for phrasing control tasks. It allows
+formulating the task in its own inherent space instead of using a more action-oriented space such as the
+joint-space. Current approaches use human insight for finding the appropriate task space and analytical
+physical models in order to compute the appropriate controls that realize the task (Nakanishi et al., 2008).
+Clearly model errors can have devastating impacts on the performance of operational space control laws
+and, hence, learning approaches have been introduced (Peters \& Schaal, 2008) (Salaün et al., 2010). As
+these learning approaches do not yet include contact, the extension to a multi-contact scenario will be
+essential. However, this step is neither straightforward nor incremental. Only by relying on the latent
+contact inference engine from T4.1, the new Learning OSC module will be able to deal with learning
+multiple different OSCs for different scenarios.
+
+An additional trouble arises from finding the appropriate space for a task. This step is known to be very
+difficult, as here the latent manifold of the task will need to be considered. We will present a machine
+learning approach that will recover the latent task space from the data and models provided by WP2. 
+Here is a list of achievements for this task:
+\begin{itemize}
+
+\item For controlling high-dimensional robots, most stochastic optimal 
+control algorithms use approximations of the system dynamics and of the cost function (e.g.,
+using linearizations and Taylor expansions). These approximations are typically only locally
+correct, which might cause instabilities in the greedy policy updates, lead to oscillations or the
+algorithms diverge. To overcome these drawbacks, TUD added a regularization term to the
+cost function that punishes large policy update steps in the trajectory optimization procedure.
+TUD applied this concept to the Approximate Inference Control method (AICO), where the
+resulting algorithm guarantees convergence for uninformative initial solutions without complex
+hand-tuning of learning rates. The new algorithm was evaluated on two simulated robotic platforms. A robot arm with
+ five joints was used for reaching multiple targets while keeping the roll angle constant. On the
+humanoid robot Nao, we show how complex skills like reaching and balancing 
+can be inferred from desired center of gravity or end effector coordinates. This work was
+presented at the International Conference on Humanoid Robots (HUMANOIDS) in Madrid, Spain in 2014 \cite{AICOHumanoidsFinal}. The stochastic optimal 
+control algorithm is discussed in Chapter \ref{sec:ElmarHumanoids}. 
+
+\item In an ongoing student project, TUD currently evaluates this approach on a real system (the Nao robot). A journal paper is in progress of writing. 
+
+\item Another source of inspiration for novel operational space control algorithms is drawn from observations of how animals solve planning tasks. 
+In particular, TUD investigated how spiking neural networks can be used to learn 
+a mapping between joint and task space and utilized this mapping in a temporal model for movement planning. 
+A paper demonstrating for the first time how a spiking neural network architecture can
+implement probabilistic planning through local reward modulated synaptic plasticity rules was published the journal of Scientific Reports \cite{Rueckert_SR_2016}. 
+The main contribution is a theoretical model with implications for neuroscience studies on path
+planning in the hippocampus and robot controller implemented on neuromorphic hardware.
+Optimal learning rules were derived based on probabilistic inference and links to the widely
+used machine learning techniques expectation maximization and policy search were 
+established. 
+
+As computational model for hippocampal sweeps during maze navigation tasks, the model
+suggests that contextual information about rewarding goal locations or obstacles modulate
+not only the end point of a path (as done in state-of-the-art attractor models) but the complete
+movement trajectory. 
+
+For robotics, the resulting neural network offers the foundation for future neuromorphic
+hardware implementations that can be used in dynamic human robot co-worker
+environments. In this challenging domain large sensory streams from cameras and tactile
+skins have to processed and stochastic decisions have to be computed based on noisy or
+partial observations taking future expectations about human motion into account. In first
+experiments, it is shown that the neural model can be trained to represent and generate multimodal
+movement plans that avoid obstacles in a real robot arm reaching task in real-time. This work is discussed in Chapter \ref{sec:ElmarScientificReports}.
+
+\item In a student's Master thesis, TUD refined the above spiking neural network model to a deep neural network architecture. 
+In using factorized population codes, the model could generalize to high-dimensional robot systems (i.e., a robot with more than six joints). 
+TUD demonstrated that both, the state transition model and the inverse kinematic model can be learned from human demonstrations using kinesthetic teaching. 
+For that purpose TUD derived a spike dependent version of contrastive divergence. The models are learned and evaluated on a KUKA lightweight arm in simulation
+and on the real robot by solving target reaching and obstacle avoidance tasks. A paper on these results is currently in progress of writing. 
+
+
+% \item As a first step, the different operational space control laws will be learning on data from WP2 based
+% on a given a set of contacts, appropriate responses and a pre-specified task-space. An evaluation of
+% this control law on the iCub is given for “stance and reaching action with the other hand free” from
+% WP2.
+% 
+% \textit{TODO}
+% 
+% \item The latent operational space is extracted from data from WP2 and, as a result, the OSC laws can be learned without specifying the task space manually.
+% 
+% \textit{TODO}
+% 
+% 
+% \item Using the latent contact model form T4.1, assumptions on the inputs are relaxed and the OSC laws
+% become more widely applicable. A demonstration of a “stance and reaching action with one hand
+% on a rigid support table” is given as an evaluation on the iCub. Generalization to other, non-rigid
+% type of contact will be possible.
+
+\end{itemize}
+
+\chapter{Executive Summary}
+
+In this deliverable, three studies relevant for improving operational space 
+control with contacts are presented. The first work demonstrates how model-free 
+probabilistic movement primitives can be learned from human demonstrations and 
+generalize to different task-space forces. In a second study, TUD demonstrated 
+how a simple regularization term can greatly improve the convergence properties 
+of incremental stochastic optimal control methods. This work was evaluated in 
+simulations and is currently tested on real humanoid robots. In the last chapter 
+of this deliverable we present an interesting control approach using spiking 
+neural networks. The approach does not aim at solving the challenging control 
+problems within CoDyCo but rather provides an alternative with great potentials 
+for future research. As such TUD is investigating how deep neural network 
+variants of this model can be used for controlling real robots in high-dimensional joint and task 
+spaces.  
+
+
+
+\chapter{Model-Free Probabilistic Movement Primitives for Physical Interaction (TUD)}\label{sec:AlexIROS}
+\includepdf[pages=-]{Paraschos_IROS_2015.pdf}
+
+\chapter{Robust Policy Updates for Stochastic Optimal Control (TUD)}\label{sec:ElmarHumanoids}
+\includepdf[pages=-]{Rueckert_Humanoids_2014.pdf}
+
+\chapter{Recurrent Spiking Networks Solve Planning Tasks (TUD)}\label{sec:ElmarScientificReports}
+\includepdf[pages=-]{Rueckert_ScientificReports_2016.pdf}
+% 
+%\chapter{Deep Spiking Networks for Robot Learning (TUD)}\label{sec:DanielNIPS}
+%\input{robertoIROS/IROS15RobertoClean}
+
+\bibliographystyle{plain}
+\bibliography{manuscript}
+
+\end{document}
+
+%%% Local Variables:
+%%% mode: latex
+%%% TeX-master: t
+%%% save-place: t
+%%% End:
