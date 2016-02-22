@@ -1,0 +1,79 @@
+%% Creator: Inkscape inkscape 0.91, www.inkscape.org
+%% PDF/EPS/PS + LaTeX output extension by Johan Engelen, 2010
+%% Accompanies image file 'estimationTests.eps' (pdf, eps, ps)
+%%
+%% To include the image in your LaTeX document, write
+%%   \input{<filename>.pdf_tex}
+%%  instead of
+%%   \includegraphics{<filename>.pdf}
+%% To scale the image, write
+%%   \def\svgwidth{<desired width>}
+%%   \input{<filename>.pdf_tex}
+%%  instead of
+%%   \includegraphics[width=<desired width>]{<filename>.pdf}
+%%
+%% Images with a different path to the parent latex file can
+%% be accessed with the `import' package (which may need to be
+%% installed) using
+%%   \usepackage{import}
+%% in the preamble, and then including the image with
+%%   \import{<path to file>}{<filename>.pdf_tex}
+%% Alternatively, one can specify
+%%   \graphicspath{{<path to file>/}}
+%% 
+%% For more information, please see info/svg-inkscape on CTAN:
+%%   http://tug.ctan.org/tex-archive/info/svg-inkscape
+%%
+\begingroup%
+  \makeatletter%
+  \providecommand\color[2][]{%
+    \errmessage{(Inkscape) Color is used for the text in Inkscape, but the package 'color.sty' is not loaded}%
+    \renewcommand\color[2][]{}%
+  }%
+  \providecommand\transparent[1]{%
+    \errmessage{(Inkscape) Transparency is used (non-zero) for the text in Inkscape, but the package 'transparent.sty' is not loaded}%
+    \renewcommand\transparent[1]{}%
+  }%
+  \providecommand\rotatebox[2]{#2}%
+  \ifx\svgwidth\undefined%
+    \setlength{\unitlength}{1299.2bp}%
+    \ifx\svgscale\undefined%
+      \relax%
+    \else%
+      \setlength{\unitlength}{\unitlength * \real{\svgscale}}%
+    \fi%
+  \else%
+    \setlength{\unitlength}{\svgwidth}%
+  \fi%
+  \global\let\svgwidth\undefined%
+  \global\let\svgscale\undefined%
+  \makeatother%
+  \begin{picture}(1,0.47783251)%
+    \put(0,0){\includegraphics[width=\unitlength]{figures/estimationTests.eps}}%
+    \put(0.12807882,0.04495074){\makebox(0,0)[lb]{\smash{0}}}%
+    \put(0.25728651,0.04495074){\makebox(0,0)[lb]{\smash{1}}}%
+    \put(0.38649427,0.04495074){\makebox(0,0)[lb]{\smash{2}}}%
+    \put(0.51570197,0.04495074){\makebox(0,0)[lb]{\smash{3}}}%
+    \put(0.64490973,0.04495074){\makebox(0,0)[lb]{\smash{4}}}%
+    \put(0.77411736,0.04495074){\makebox(0,0)[lb]{\smash{5}}}%
+    \put(0.90332512,0.04495074){\makebox(0,0)[lb]{\smash{6}}}%
+    \put(0.48214286,0.03694581){\makebox(0,0)[lb]{\smash{Compression (h-z}}}%
+    \put(0.53571429,0.033867){\makebox(0,0)[lb]{\smash{M}}}%
+    \put(0.54002463,0.03694581){\makebox(0,0)[lb]{\smash{) [m]}}}%
+    \put(0.89285714,0.03509852){\makebox(0,0)[lb]{\smash{10}}}%
+    \put(0.90024631,0.03817734){\makebox(0,0)[lb]{\smash{-3}}}%
+    \put(0.1051993,0.11576355){\makebox(0,0)[lb]{\smash{0.5}}}%
+    \put(0.11012541,0.1807266){\makebox(0,0)[lb]{\smash{1}}}%
+    \put(0.1051993,0.24568966){\makebox(0,0)[lb]{\smash{1.5}}}%
+    \put(0.11012541,0.31065271){\makebox(0,0)[lb]{\smash{2}}}%
+    \put(0.1051993,0.37561576){\makebox(0,0)[lb]{\smash{2.5}}}%
+    \put(0.11012541,0.44057882){\makebox(0,0)[lb]{\smash{3}}}%
+    \put(0.07188528,0.24519408){\rotatebox{90}{\makebox(0,0)[lb]{\smash{2}}}}%
+    \put(0.0749641,0.16514482){\rotatebox{90}{\makebox(0,0)[lb]{\smash{Force distribution f(z) [N/m}}}}%
+    \put(0.0749641,0.2482729){\rotatebox{90}{\makebox(0,0)[lb]{\smash{]}}}}%
+    \put(0.12903385,0.45018515){\makebox(0,0)[lb]{\smash{10}}}%
+    \put(0.13642302,0.45326397){\makebox(0,0)[lb]{\smash{5}}}%
+    \put(0.84975369,0.43050671){\makebox(0,0)[lb]{\smash{Contact surface S1}}}%
+    \put(0.84975369,0.42417309){\makebox(0,0)[lb]{\smash{Contact surface S2}}}%
+  \end{picture}%
+\endgroup%

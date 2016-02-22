@@ -1,0 +1,484 @@
+%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
+%2345678901234567890123456789012345678901234567890123456789012345678901234567890
+%        1         2         3         4         5         6         7         8
+
+
+\newcommand{\EQ}{\!\!\!=\!\!\!}
+
+\newcommand{\Bp}{\mathbf{p}}
+\newcommand{\Br}{\mathbf{r}}
+\newcommand{\Bf}{\mathbf{f}}
+\newcommand{\BJ}{\mathbf{J}}
+\newcommand{\Bv}{\mathbf{v}}
+\newcommand{\BI}{\mathbf{I}}
+\newcommand{\BR}{\mathbf{R}}
+\newcommand{\BK}{\mathbf{K}}
+\newcommand{\BD}{\mathbf{D}}
+\newcommand{\BA}{\mathbf{A}}
+\newcommand{\Bb}{\mathbf{b}}
+\newcommand{\BM}{\mathbf{M}}
+\newcommand{\BC}{\mathbf{C}}
+\newcommand{\Bg}{\mathbf{g}}
+\newcommand{\BS}{\mathbf{S}}
+\newcommand{\Bzero}{\mathbf{0}}
+\newcommand{\BN}{\mathbf{N}}
+\newcommand{\Bh}{\mathbf{h}}
+\newcommand{\BW}{\mathbf{W}}
+\newcommand{\Bq}{\mathbf{q}}
+\newcommand{\BF}{\mathbf{F}}
+\newcommand{\Bn}{\mathbf{n}}
+
+\newcommand{\Bomega}{\boldsymbol{\omega}}
+\newcommand{\Btau}{\boldsymbol{\tau}}
+\newcommand{\Balpha}{\boldsymbol{\alpha}}
+\newcommand{\Bbeta}{\boldsymbol{\beta}}
+
+
+
+\documentclass[a4paper, 11pt]{article}
+
+
+
+% The following packages can be found on http:\\www.ctan.org
+\usepackage{graphics} % for pdf, bitmapped graphics files
+\usepackage{epsfig} % for postscript graphics files
+\usepackage{mathptmx} % assumes new font selection scheme installed
+\usepackage{times} % assumes new font selection scheme installed
+\usepackage{amsmath} % assumes amsmath package installed
+\usepackage{amssymb}  % assumes amsmath package installed
+%\usepackage[cm]{fullpage}
+\usepackage[top=1.5in, bottom=1.5in, left=1in, right=1in]{geometry}
+
+
+
+\begin{document}
+
+\section{Introduction}
+\label{intro}
+
+Balancing for legged robots, which is in fact preventing them from falling
+over, has always the highest priority in controlling their motions.  This
+problem becomes much more challenging if the supporting surface (i.e.\ usually
+the ground) is not ``\emph{rigid}''.  In reality, there is no completely rigid
+surface but in practice we can assume a surface to be rigid if it is stiff
+enough (i.e. deflection is negligible).  Many of existing legged robots are
+able to keep their balance on rigid surfaces but still most of them have
+difficulties in dealing with compliant supporting surfaces.  To balance a
+legged robot on a soft surface (e. g.  on a thick carpet), the compliance of
+the contact has to be considered by the controller, otherwise the robot fails
+to balance and falls over.
+
+Compliant contacts between robots and their environments have been studied by
+some researchers in the area of humanoids \cite{Bouyarmane&Kheddar11},
+grasping \cite{Xydes&Kao99}, animated characters \cite{Jain&Liu11}, etc.
+However, there have not been much efforts on balancing legged robots on
+compliant surfaces.  Here, we tackle this problem and introduce a
+momentum-based balancing controller which takes into account the effects of
+non-rigid contacts between the robot and its environment.  A momentum-based
+controller, controls both linear momentum and angular momentum about the
+center of mass (CoM) of the robot.  This type of controller is first suggested
+by Goswami and Kallem \cite{Goswami&Kallem04} and then extensively used in
+recent years by other researchers \cite{Azadetal14},
+\cite{Azad&Featherstone12}, \cite{Hofmannetal09}, \cite{Lee&Goswami12},
+\cite{Macchiettoetal09}.
+
+
+Here, we propose a balance control strategy for a legged robot which has
+multiple rigid and compliant contacts with its environment.  This controller
+regulates both linear momentum and angular momentum about the center of mass
+of the robot by controlling the contact forces at both rigid and soft contact
+surfaces.  Assuming that contact forces at the compliant surfaces are known
+(i.e. via force-torque sensors) at the current instant, desired contact forces
+at the rigid contacts are calculated in order to provide the required rate of
+change of the robot's momentum.  On the other hand, since compliant contact
+forces are dependent to deformations (and their rates) in the contact areas,
+the change of compliant forces are functions of robot's states and joint
+accelerations.  Therefore, by converting the balancing problem to an
+optimization problem, the controller computes desired joint torques in order
+to provide both desired rigid contact forces (for balance control) and joint
+acceleration (to regulate the soft contact forces).
+
+Note that, to implement the proposed method in practice, stiffness and damping
+coefficients of the contact model have to be estimated beforehand by using
+contact model parameter estimation methods such as \cite{Dallalietal13},
+\cite{Diolaitietal05}, \cite{Ericksonetal03}.
+
+
+\section{Control Strategy}
+\label{control}
+
+Let $\Bv$ denote generalized joint velocities of a floating base robot.
+Therefore, motion equations for this robot will be
+%
+\begin{equation}
+  \BM \dot{\Bv} + \BC \Bv + \Bg = \BS^T \Btau + \BJ_s^T \Bf_s + \BJ_r^T \Bf_r
+  \, ,
+  \label{motionEq}
+\end{equation}
+%
+where $\BM$ is the joint-space inertia matrix, $\BC \Bv$ is the vector of
+Coriolis and centrifugal forces, $\Bg$ is the vector of the gravity forces,
+$\BS$ is the selection matrix for actuated joints, $\Btau$ is the vector of
+joint torques, $\BJ_s$ is the Jacobian of the bodies in contact with soft
+surfaces, $\Bf_s$ is the vector of the contact forces at the soft surfaces,
+$\BJ_r$ is the Jacobian of the bodies in contact with rigid surfaces and
+$\Bf_r$ is the vector of the contact forces at the rigid surfaces.  Due to the
+rigid contacts, we have
+%
+\begin{equation}
+  \BJ_r \Bv = \Bzero \; \implies \; \dot{\BJ}_r \Bv + \BJ_r \dot{\Bv} = \Bzero
+  \, .
+\end{equation}
+%
+Therefore, from equation (\ref{motionEq}) we conclude that
+%
+\begin{equation}
+  \Btau = (\BJ_r \BM^{-1} \BS^T)^{\#}(-\dot{\BJ}_r \Bv + \BJ_r \BM^{-1} \BC
+  \Bv + \BJ_r \BM^{-1} \Bg - \BJ_r \BM^{-1} \BJ_s^T \Bf_s - \BJ_r \BM^{-1}
+  \BJ_r^T \Bf_r^{des}) + \BN \Btau_0 \, ,
+  \label{taucalc}
+\end{equation}
+%
+where superscript $^\#$ denotes the generalized weighted pseudo-inverse and
+$\BN$ is the null-space of $\BJ_r \BM^{-1} \BS^T$ as
+%
+\begin{equation}
+  \BN = \BI - (\BJ_r \BM^{-1} \BS^T)^\# \, \BJ_r \BM^{-1} \BS^T \, .
+\end{equation}
+%
+
+To control the momentum of the robot for its balancing motion, desired force
+at the rigid contact can be calculated by using
+%
+\begin{equation}
+  \Bf_r^{des} = \BA_r^{\#} (\dot{\Bh}^{des} - \BW - \BA_s \Bf_s) + \BN_{A_r}
+  \Bf_{r_0} \, ,
+  \label{frdes}
+\end{equation}
+%
+where $\BW = [0,0,-9.81,0,0,0]^T$ is the force vector due to the weight of the
+robot, $\Bh$ is the vector of linear and angular momentum of the robot about
+its center of mass (CoM), and $\BA_s$ and $\BA_r$ are the matrices that
+transform the soft and rigid contact forces from their local coordinate frames
+to the forces and moments around the CoM, respectively.  Also $\BN_{A_r} = \BI
+- \BA_r^\# \, \BA_r$ is the null-space of $\BA_r$.  Here, $\Bf_{r_0}$ can be
+used to satisfy the constraints (i.e. unilaterality of the normal force and
+friction cone) on the rigid contact forces.
+
+The null-space term in equation (\ref{taucalc}) is available to be used for
+task space control (or impedance control) and also for controlling the soft
+contact force.  For task control we have
+%
+\begin{equation}
+  \Btau_t = \BK_q (\Bq_{des} - \Bq) + \BK_{qd} (\dot{\Bq}_{des} - \dot{\Bq}) +
+  \ddot{\Bq}_{des} \, ,
+  \label{tauImp}
+\end{equation}
+%
+where $\Bq$ is the vector of joint angles and $\BK_q$ and $\BK_{qd}$ are the
+gains of the controller.
+
+Since compliant contact forces are functions of surface deformations, we do
+not have any control on them at the current instant and they are usually given
+via force-torque sensors.  However, it is possible to control those forces in
+the next instant by controlling the acceleration of the contact points.  Here,
+we assume a linear relationship between soft contact forces at the next
+instant (i.e. $\hat{\Bf}_s$) and generalized accelerations as
+%
+\begin{equation}
+  \hat{\Bf}_s = \Bf_s + \BA \dot{\Bv} + \Bb \, ,
+  \label{fs_hat}
+\end{equation}
+%
+where $\BA$ and $\Bb$ are described in the next section.  To find a
+relationship between $\dot{\Bv}$ and $\Btau$, we first solve equation
+(\ref{motionEq}) for $\Bf_r$ as
+%
+\begin{equation}
+  \Bf_r = (\BJ_r \BM^{-1} \BJ_r^T)^{-1} (-\dot{\BJ}_r \Bv + \BJ_r \BM^{-1} \BC
+  \Bv + \BJ_r \BM^{-1} \Bg - \BJ_r \BM^{-1} \BJ_s^T \Bf_s - \BJ_r \BM^{-1}
+  \BS^T \Btau) \, .
+  \label{fr}
+\end{equation}
+%
+By defining
+%
+\begin{equation}
+  (\BJ_r \BM^{-1})^{\#} = \BJ_r^T (\BJ_r \BM^{-1} \BJ_r^T)^{-1} \, ,
+\end{equation}
+%
+and replacing (\ref{fr}) into (\ref{motionEq}), we will have
+%
+\begin{equation}
+  \dot{\Bv} = \BM^{-1} \BN_{JM} (-\BC \Bv - \Bg + \BS^T \Btau + \BJ_s^T \Bf_s)
+  - \BM^{-1} (\BJ_r \BM^{-1})^{\#} \dot{\BJ}_r \Bv \, ,
+\end{equation}
+%
+where
+%
+\begin{equation}
+  \BN_{JM} = \BI - (\BJ_r \BM^{-1})^{\#} \BJ_r \BM^{-1} \, .
+\end{equation}
+%
+Hence, $\dot{\Bv}$ is linearly dependent on $\Btau$ and we can write
+%
+\begin{equation}
+  \dot{\Bv} = \Balpha \Btau + \Bbeta \, ,
+  \label{vdot_tau}
+\end{equation}
+%
+where
+%
+\begin{equation}
+  \Balpha = \BM^{-1} \BN_{JM} \BS^T \Btau \, ,
+\end{equation}
+%
+and
+%
+\begin{equation}
+  \Bbeta = \BM^{-1} \BN_{JM} (-\BC \Bv - \Bg + \BJ_s^T \Bf_s) - \BM^{-1}
+  (\BJ_r \BM^{-1})^{\#} \dot{\BJ}_r \Bv \, .
+\end{equation}
+%
+
+Therefore, by replacing equation (\ref{vdot_tau}) into (\ref{fs_hat}) we have
+%
+\begin{equation}
+  \hat{\Bf}_s = (\BA \Balpha) \Btau + (\Bf_s + \Bb + \BA \Bbeta) \, ,
+\end{equation}
+%
+which is a linear relationship between $\hat{\Bf}_s$ and $\Btau$.
+
+Now, we can describe the balancing problem as an optimization problem which
+its objective is to find $\Btau$ in order to minimize the following function
+as
+%
+\begin{equation}
+  \Btau = ArgMin ( w_1 ||\Btau_0 - \Btau_t|| + w_2||\hat{\Bf}_s -
+  \Bf_s^{des}||)
+\end{equation}
+%
+where $\Bf_s^{des}$ is the desired forces for the soft contacts and $w_1$ and
+$w_2$ are the values representing the priority of each term.  By setting
+$\Bf_s^{des}$ we can determine how much we want to rely on the soft contacts
+during a balancing motion.  This optimization problem is subject to the
+constraints on the saturation limits of the actuators and also the constraints
+on the soft contact forces (friction cones and unilaterality of the normal
+forces).  Note that contact force constraints for the rigid contacts should be
+already considered in computing $\Bf_r$ from (\ref{frdes}).
+
+The next section, explains the estimation of the soft contact forces to obtain
+(\ref{fs_hat}), and also constraints on $\hat{\Bf}_s$ that should be
+considered in the above optimization problem.
+
+
+\section{Estimation of the soft contact force}
+
+Assume that the body which is in contact with a soft surface is labeled with
+$B_c$.  We characterize the contact surface of $B_c$ by $m$ fictitious contact
+points on this body.  Let $\Bp_i$ denote the position of the i$^{th}$ contact
+point ($i=1,2,\ldots,m$) in the world frame.  Therefore,
+%
+\begin{equation}
+  \Bp_i = \Bp + \BR \Br_i \, ,
+\end{equation}
+%
+where $\Bp$ is the position of the origin of the local frame of $B_c$ with
+respect to the world frame, $\BR$ is the rotation matrix of $B_c$ with respect
+to the world frame and $\Br_i$ is the position of i$^{th}$ contact point in
+the local frame of $B_c$.  So
+%
+\begin{equation}
+  \dot{\Bp}_i = \dot{\Bp} + \dot{\BR} \Br_i = \dot{\Bp} - (\BR\Br_i)^{\wedge}
+  \Bomega = [ \BI_{3 \times 3} \; \; {}-(\BR\Br_i)^{\wedge} ] \BJ_s \Bv \, ,
+  \label{pidot}
+\end{equation}
+%
+where $\Bomega$ is the angular velocity of $B_c$ and $()^{\wedge}$ represents
+the skew symmetric matrix.  We also have
+%
+\begin{equation}
+  \ddot{\Bp}_i = \ddot{\Bp} + \ddot{\BR} \Br_i = \ddot{\Bp} - (\BR
+  \Br_i)^{\wedge} \dot{\Bomega} + (\Bomega)^{\wedge} (\Bomega)^{\wedge} \BR
+  \Br_i = [ \BI_{3 \times 3} \; \; {}-(\BR \Br_i)^{\wedge}] (\dot{\BJ}_s \Bv +
+  \BJ_s \dot{\Bv}) + (\Bomega)^{\wedge} (\Bomega)^{\wedge} \BR \Br_i \, .
+  \label{piddot}
+\end{equation}
+%
+
+According to contact mechanics \cite{Johnson77} and its applications in
+robotics \cite{Azad&Featherstone10, Azad&Featherstone14a, Hunt&Crossley75,
+  Marhefka&Orin99}, there is a non-linear relationship between compliant
+contact force and deformation and the rate of the deformation of the surface.
+However, we can assume a locally linear relationship between the change of the
+contact force and the change of the deformation and its rate.  Therefore,
+according to this assumption, we can write
+%
+\begin{equation}
+  \delta \Bf_i = \BK \delta \Bp_i + \BD \delta \dot{\Bp}_i \, ,
+\end{equation}
+%
+where $\delta \Bf_i$ and $\delta \Bp_i$ are the changes of the contact force
+and the deformation at the i$^{th}$ contact point, respectively, and $\BK$ and
+$\BD$ are $3 \times 3$ matrices of the coefficients of stiffness and damping,
+respectively.  By using a linear integration method, we can estimate $\delta
+\Bp_i$ and $\delta \dot{\Bp}_i$ as
+%
+\begin{equation}
+  \delta \Bp_i = \dot{\Bp}_i \delta t + \frac{1}{2} \ddot{\Bp}_i \delta t^2 \,
+  ,
+  \label{deltapi}
+\end{equation}
+%
+and
+%
+\begin{equation}
+  \delta \dot{\Bp}_i = \ddot{\Bp}_i \delta t \, ,
+  \label{deltapidot}
+\end{equation}
+%
+where $\delta t$ is the sampling time.  Hence, by substituting (\ref{pidot})
+and (\ref{piddot}) into (\ref{deltapi}) and (\ref{deltapidot}), we will have
+%
+\begin{equation}
+  \delta \Bf_i = \BA_i \dot{\Bv} + \Bb_i \, ,
+\end{equation}
+%
+where
+%
+%
+\begin{equation}
+  \BA_i = \frac{1}{2} \delta t^2 [\BK \; \; -\BK(\BR \Br_i)^{\wedge}] \BJ_s +
+  \delta t [\BD \; \; - \BD(\BR \Br_i)^{\wedge}] \BJ_s \, ,
+\end{equation}
+%
+and
+%
+\begin{eqnarray}
+  \nonumber \Bb_i & \EQ & \delta t [\BK \; \; -\BK(\BR \Br_i)^{\wedge}] \BJ_s
+  \Bv + \frac{1}{2} \delta t^2 [\BK \; \; -\BK(\BR \Br_i)^{\wedge}]
+  \dot{\BJ}_s \Bv\\ & & + \frac{1}{2} \delta t^2 \BK (\Bomega)^{\wedge}
+  (\Bomega)^{\wedge} \BR \Br_i + \delta t [\BD \; \; -\BD(\BR \Br_i)^{\wedge}]
+  \dot{\BJ}_s \Bv + \delta t \BD (\Bomega)^{\wedge} (\Bomega)^{\wedge} \BR
+  \Br_i \, .
+\end{eqnarray}
+%
+Also for the moment of the contact forces we have
+%
+\begin{equation}
+  \delta \Bn_i = (\BR \Br_i)^{\wedge} \delta \Bf_i \, .
+\end{equation}
+%
+Therefore, total change of force vector for $B_c$ will be
+%
+\begin{equation}
+  \delta \Bf_s =
+  \begin{bmatrix}
+    \sum_{i=1}^m \BA_i \dot{\Bv} + \sum_{i=1}^m \Bb_i\\
+    \\
+    \sum_{i=1}^m (\BR \Br_i)^{\wedge} \BA_i \dot{\Bv} + \sum_{i=1}^m \Bb_i
+  \end{bmatrix}
+  =
+  \begin{bmatrix}
+    \BA_f \\
+    \\
+    \BA_n
+  \end{bmatrix}
+  \dot{\Bv} +
+  \begin{bmatrix}
+    \Bb_f \\
+    \\
+    \Bb_n
+  \end{bmatrix}
+  = \BA \dot{\Bv} + \Bb \, .
+\end{equation}
+%
+Hence, the estimated (for the next instant) 6D force-torque vector of the
+contact force of $B_c$ will be
+%
+\begin{equation}
+  \hat{\Bf}_s = \Bf_s + \delta \Bf_s = \BA \dot{\Bv} + \Bb + \Bf_s \, ,
+\end{equation}
+%
+which is the same as (\ref{fs_hat}) that we already used in the control
+algorithm.  Note that for the constraints on the soft contact force
+(unilaterality and friction cone), $\hat{\Bf}_s$ has to be expressed in the
+local frame of $B_c$ as $\hat{\BF}_s = \BR^T \hat{\Bf}_s$.
+
+
+
+\begin{thebibliography}{16}
+
+\bibitem{Azadetal14} M. Azad, J. Babi\v{c} and M. Mistry, Effects of hand
+  contact on the stability of a planar humanoid with a momentum based
+  controller, Proc. IEEE-RAS Int. Conf. Humanoid Robots, Madrid, Spain, 18--20
+  Nov 2014.
+  
+\bibitem{Azad&Featherstone10} M. Azad and R. Featherstone, Modeling the
+  contact between a rolling sphere and a compliant ground
+  plane. Proc. Australasian Conf. Robotics and Automation, Brisbane,
+  Australia, 1--3 Dec 2010.
+
+\bibitem{Azad&Featherstone12} M. Azad and R. Featherstone, Angular momentum
+  based controller for balancing an inverted double pendulum. RoManSy 19-Robot
+  Design, Dynamics and Control, pp. 251--258, Paris, France, 12--15 June 2012.
+
+\bibitem{Azad&Featherstone14a} M. Azad and R. Featherstone, A new nonlinear
+  model of contact normal force, IEEE Trans. Robotics, 30(3):736--739, June
+  2014.
+
+\bibitem{Bouyarmane&Kheddar11} K. Bouyarmane and A. Kheddar, FEM-based static
+  posture planning for a humanoid on deformable contact support, IEEE-RAS
+  Int. Conf. Humanoid Robots, pp. 487--492, Bled, Slovenia, 26--28 Oct 2011.
+
+\bibitem{Dallalietal13} H. Dallali, M. Mosadeghzad, G. A. Medrano-Cerda and
+  N. Docquier, Development of a dynamic simulator for a compliant humanoid
+  robot based on a symbolic multibody approach, IEEE Int. Conf. Mechatronics,
+  pp. 598--603, Vicenza, Italy, Feb 2013.
+
+\bibitem{Diolaitietal05} N. Diolaiti, C. Melchiorri, S. Stramigioli, Contact
+  impedance estimation for robotic systems, IEEE Trans. Robotics,
+  21(5):925--935, Oct 2005.
+
+\bibitem{Ericksonetal03} D. Erickson, M. Weber, I. Sharf, Contact stiffness
+  and damping estimation for robotic systems, Int. J. Robotics Research,
+  22(1):41--57, Jan 2003.
+
+\bibitem{Goswami&Kallem04} A. Goswami and V. Kallem, Rate of change of angular
+  momentum and balance maintenance of biped robots, Proc. IEEE
+  Int. Conf. Robotics and Automation, pp. 3785--3790, New Orleans, LA, April
+  2004.
+
+\bibitem{Hofmannetal09} A. Hofmann, M. Popovic and H. Herr, Exploiting angular
+  momentum to enhance bipedal center-of-mass control, IEEE Int. Conf. Robotics
+  and Automation, pp.4423--4429, Kobe, Japan, 12--17 May 2009.
+
+\bibitem{Hunt&Crossley75} K. H. Hunt and F. R. E. Crossley, Coefficient of
+  restitution interpreted as damping in vibroimpact, J. Applied Mechanics,
+  42(2):440--445, 1975.
+
+\bibitem{Jain&Liu11} S. Jain and C. K. Liu, Controlling physics-based
+  characters using soft contacts, ACM Trans. Graphics, 30(6):163, 2011.
+
+\bibitem{Johnson77} K. L. Johnson, Contact mechanics, Cambridge University
+  Press, 1977.
+  
+\bibitem{Lee&Goswami12} S. H. Lee and A. Goswami, A momentum-based balance
+  controller for humanoid robots on non-level and non-stationary ground,
+  Autonomous Robots, 33(4):399--414, Springer, 2012.
+
+\bibitem{Macchiettoetal09} A. Macchietto, V. Zordan and C. R. Shelton,
+  Momentum control for balance, ACM Trans. Graphics, 28(3):80--87, 2009.
+
+\bibitem{Marhefka&Orin99} D. W. Marhefka and D. E. Orin, A compliant contact
+  model with nonlinear damping for simulation of robotic systems, IEEE
+  Trans. Systems, Man, and Cybernetics-part A: Systems and Humans,
+  29(6):566--572, 1999.
+
+\bibitem{Xydes&Kao99} N. Xydes and I. Kao, Modeling of contact mechanics and
+  friction limit surfaces for soft fingers in robotics, with experimental
+  results, Int. J. Robotics Research, 18(9):941--950, Sep 1999.
+
+\end{thebibliography}
+
+\end{document}
