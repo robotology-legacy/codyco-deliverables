@@ -1,0 +1,152 @@
+%% Template for EU deliverable, using the deliverable.sty style file
+
+\documentclass[12pt,a4paper,twoside]{article}
+
+%% common package
+\usepackage[headers]{deliverable}
+\usepackage{xspace}
+\usepackage{verbatim}
+\usepackage[usenames]{color}
+\usepackage[usenames,dvipsnames]{xcolor}
+\usepackage{graphicx}
+\usepackage{url}
+\usepackage{array}
+\usepackage{amsmath,bm,amsfonts}
+\usepackage{tikz}
+\usetikzlibrary{arrows,automata}
+%%
+
+%%insert here other packages needed by sections
+
+%%
+
+%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
+%%% Titlepage
+%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
+
+% declaration of variables used in style
+\deliverableDocnumber{D5.3}
+\deliverableTitle{Validation scenario 3: \\ balancing on compliant environmental contacts}
+
+\deliverableAuthor{Daniele Pucci}
+\deliverableResponsiblePartner{IIT}
+\deliverableAffiliation{% Insert here authors affiliations
+ $^1$ IIT
+}
+
+\deliverableReviewer{Daniele Pucci}
+\deliverableCoordinator{Daniele Pucci}
+\deliverableActivityNumber{n} %% n=1,..,10
+\deliverableActivity{RTD}
+\deliverableDoctype{Deliverable} %% or Prototype
+\deliverableClassification{Public} % or Consortium
+\deliverableDistribution{Consortium} %
+\deliverableStatus{Draft} % Draft or Final
+\deliverableDeliveryDate{28/2/2016}
+\deliverableFile{D5.2.pdf} % please do not use "-" in the name
+\deliverableVersion{1.0}
+\deliverableDate{Feb.~28, 2016}
+\deliverableYear{2015}
+\deliverablePages{\pageref{LastPage}}
+\deliverableChangelog{v.1.0 & Feb 19, 2015 & First draft %%\\\hline
+%%              v.2.0 & Feb 20, 2007 & Final version
+}
+\deliverableProjectStartingDate{1st March 2013}
+\deliverableProjectEndDate{28th February 2017}
+\deliverableProjectAcronym{CoDyCo}
+\deliverableProjectTitle{Whole-Body Compliant Dynamical Contacts in Cognitive Humanoids}
+ \deliverableContractNumber{600716}
+ \deliverableProjectCoordinator{Istituto Italiano di Tecnologia}
+ \deliverableProjectUrl{www.codyco.eu}
+ \deliverableFrameworkProgramme{FP7}
+ 
+ \deliverableWorkpackage{deliv WP5}
+ \deliverableEditors{Daniele Pucci}
+ \deliverableContributors{Daniele Pucci, Francesco Romano, Jorhabib Eljaik, Silvio Traversaro, Serena Ivaldi, Vincent Padois, Francesco Nori}
+ \deliverableReviewers{}
+\deliverableAbstract{This deliverable discusses the technical details and choices for the implementation of the year-3 validation scenario of the CoDyCo project.  The validation scenario aims at verifying the control performances in the case the humanoid robot iCub must balance  by means of  compliant or dynamical contacts. With \emph{dynamical contact} we mean that the robot's link in contact with the environment is not fixed with respect to an inertial frame, and the wrench applied to it is not due to a spring-damper system. First, we detail the control algorithm for dealing with a soft carpet underneath the robot's feet. This case study exemplifies the case of a robot interacting with a compliant environment. Then, we present the control algorithm to allow the robot balancing on a semi-cylindrical seesaw. This case study exemplifies the  problem of a humanoid robot  balancing by means of dynamical contacts. In fact, the robot's feet do not have a constant pose with respect to the inertial frame in this case. Contact and trajectory planning are not part of the scenario. }
+\deliverableReviewers{}
+\deliverableKeywordList{Multiple, compliant, dynamical, contacts, control, stability, tracking, forces, torques.}
+
+%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
+%%% Sections
+%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
+
+
+%%
+%%%%%%%%%%%%%%%%%%%%%%%%%%%%%% BEGIN DOCUMENT
+\begin{document}
+
+\deliverableMaketitle
+
+%%TODO move to style
+\newcolumntype{L}[1]{>{\raggedright\let\newline\\\arraybackslash\hspace{0pt}}m{#1}}
+\newcolumntype{C}[1]{>{\centering\let\newline\\\arraybackslash\hspace{0pt}}m{#1}}
+\newcolumntype{R}[1]{>{\raggedleft\let\newline\\\arraybackslash\hspace{0pt}}m{#1}}
+
+\textbf{Document Revision History}
+\begin{center}
+\begin{tabular}{|C{2cm}|C{3cm}|p{5cm}|C{4cm}|}
+\hline
+\textbf{Version}&\textbf{Date}&\textbf{Description}&\textbf{Author}\\\hline
+First draft & 19 Feb 2016 & In this version we simply write down a few considerations on the third year validation scenario as discussed after the mid-year CoDyCo meeting in Birmingham. & Daniele Pucci \\\hline
+\end{tabular}
+\end{center}
+ 
+ \clearpage
+
+\newpage
+\renewcommand*\contentsname{Table of Contents}
+\renewcommand*\listfigurename{Index of Figures}
+\tableofcontents
+\newpage
+\newpage
+
+%%%%%%%%%%%%%%%%%%%%%%%% Start deliverable content here.
+
+\section{Introduction}
+
+Differently from  the first and second year validation scenarios, the third year CoDyCo  scenario  consists in adding compliance and dynamicity of the robot contacts while the humanoid attempts at balancing.  This kind of situations have not received much attention from the control community,  and the  solutions presented in this document are original in several aspects. 
+
+As in the previous validation scenarios, the control objective is  the regulation of the robot momentum. The rate-of-change of this momentum  equals the summation of all external wrenches applied to the system, and controlling the external wrenches to stabilize the robot's momentum is a known control strategy for humanoids when balancing. One of the main difficulties when dealing with compliant and dynamical contacts in this context comes from the fact that the external wrenches may not be  instantaneously related to the robot's torques, i.e. the input to the system. 
+This is the case, for instance, of a humanoid standing on two springs, which exert forces on the robot's feet that depend on the relative compressions only. 
+
+There may be some particular soft terrains, however, that exert forces and torques not only depending on the relative compressions, but also on the robot's joint torques. In these cases, the soft terrain is subject to some rigid constraints that may allow the control of the robot's momentum through the external forces, which depend on the joint torques. This is the case of a thin, highly damped carpet, which can be modeled, in the first approximation, as a continuum of vertical springs. Each of these springs is assumed to compress vertically only, and the other degrees of freedom are rigidly constrained, thus creating the aforementioned relation between external forces and joint torques. The first experimental demonstration during the review meeting consists of showing the humanoid robot iCub while it balances on a soft carpet of the above kind.
+
+
+Then,  Taking advantage of our experience on the topic \cite{delPrete2013} the second year validation scenario will be implemented in the Task Space Inverse Dynamics (TSID) framework and in particular we will consider its application to floating base kinematic chains. The iCub will be torque controlled and the controller will assume that desired torques are exactly executed by a lower level torque control. Dynamics will be computed with a custom library, iDynTree\footnote{\url{http://wiki.icub.org/codyco/dox/html/group__iDynTree.html}}, built on top of KDL\footnote{\url{http://www.orocos.org/kdl}}. Desired joint torques will be computed by the TSID algorithm given a set of tasks and their relative priorities. The definition of tasks and priorities is described in details in the following sections. 
+
+\section{Executive Summary}
+
+The deliverable is organized as follows. Section \ref{sec:secondYearScenario} gives an high level presentation of the validation scenario to be presented at the second year review meeting. Section \ref{sec:TSID} discusses the numerical technique (TSID) used to implement the validation scenario as a prioritization of concurrent tasks. Section \ref{sec:tasks} discusses the set of control tasks that will be implemented in order to perform the validation scenario.  Their sequencing in the form of a finite state machine is discussed in Section \ref{sec:taskSequencing} and issues related to task switching discussed in Section \ref{sec:taskReferences}. Priorities between tasks are summarized in Section \ref{sec:taskPrioritization}.
+
+\section{Second Year Scenario Validation} \label{sec:secondYearScenario}
+
+The second year scenario aims at validating on the iCub\footnote{ Implementation is foreseen on the iCub platforms currently available at IIT and UPMC.} the theoretical results of the consortium in performing the task of balancing on multiple rigid contacts while performing goal directed actions. As clearly stated in the CoDyCo proposal the validation should not involve any planning and therefore the sequence of movements and trajectories will be predefined and kept constant across trials. During the mid-year meeting held in Paris, the sequence of movements was discussed and an agreement was found across the entire consortium. The scenario will begin with the iCub standing on two feet in front of an object that offers the possibility of additional contacts (e.g. a table where to place both hands). After some time the robot will start a movement of both hands towards the additional contact. As soon as the hands detect the additional contacts with the artificial skin, the iCub will start regulating the interaction forces at both hands trying to maintain a comfortable and stable posture. Finally, the robot will exploit the additional contacts to perform a goal directed movement which was not possible without the aforementioned additional contacts.
+
+\section{Second year scenario implementation}
+
+Recently we proposed a numerical technique \cite{delPrete2013} for solving the problem of controlling multiple concurrent tasks on floating base robots. Considered tasks include the control of contact forces and multiple motion tasks. Tasks are ordered according to a priority structure, with force tasks at the highest priority. The proposed solution, named task space inverse dynamics (TSID), is presented in the following section.
+
+\subsection{Task Space Inverse Dynamics (TSID)} \label{sec:TSID}
+
+
+
+\subsection{Sequencing of tasks} \label{sec:taskSequencing}
+
+
+
+
+\subsection{Task trajectories} \label{sec:refTrajectories}
+
+
+\bibliographystyle{apalike}
+\bibliography{D5.2}
+
+\end{document}
+
+%%% Local Variables:
+%%% mode: latex
+%%% TeX-master: t
+%%% save-place: t
+%%% End:
