@@ -111,34 +111,51 @@ Differently from  the first and second year validation scenarios, the third year
 As in the previous validation scenarios, the control objective is  the regulation of the robot momentum. The rate-of-change of this momentum  equals the summation of all external wrenches applied to the system, and controlling the external wrenches to stabilize the robot's momentum is a known control strategy for humanoids when balancing. One of the main difficulties when dealing with compliant and dynamical contacts in this context comes from the fact that the external wrenches may not be  instantaneously related to the robot's torques, i.e. the input to the system. 
 This is the case, for instance, of a humanoid standing on two springs, which exert forces on the robot's feet that depend on the relative compressions only. 
 
-There may be some particular soft terrains, however, that exert forces and torques not only depending on the relative compressions, but also on the robot's joint torques. In these cases, the soft terrain is subject to some rigid constraints that may allow the control of the robot's momentum through the external forces, which depend on the joint torques. This is the case of a thin, highly damped carpet, which can be modeled, in the first approximation, as a continuum of vertical springs. Each of these springs is assumed to compress vertically only, and the other degrees of freedom are rigidly constrained, thus creating the aforementioned relation between external forces and joint torques. The first experimental demonstration during the review meeting consists of showing the humanoid robot iCub while it balances on a soft carpet of the above kind.
+There may be some particular soft terrains, however, that exert forces and torques not only depending on the relative compressions, but also on the robot's joint torques. In these cases, the soft terrain is subject to some rigid constraints that may allow the control of the robot's momentum through the external forces, which thus depend on the joint torques. This is the case of a thin, highly damped carpet, which can be modeled, in the first approximation, as a continuum of vertical springs. Each of these springs is assumed to compress vertically only, and the other degrees of freedom are rigidly constrained, thus creating the aforementioned relation between external forces and joint torques~\cite{deliverable32}. The first experimental demonstration during the review meeting consists of showing the humanoid robot iCub while it balances on a soft carpet of the above kind.
 
 
-Then,  Taking advantage of our experience on the topic \cite{delPrete2013} the second year validation scenario will be implemented in the Task Space Inverse Dynamics (TSID) framework and in particular we will consider its application to floating base kinematic chains. The iCub will be torque controlled and the controller will assume that desired torques are exactly executed by a lower level torque control. Dynamics will be computed with a custom library, iDynTree\footnote{\url{http://wiki.icub.org/codyco/dox/html/group__iDynTree.html}}, built on top of KDL\footnote{\url{http://www.orocos.org/kdl}}. Desired joint torques will be computed by the TSID algorithm given a set of tasks and their relative priorities. The definition of tasks and priorities is described in details in the following sections. 
+We then go one step further and  present control algorithms to deal with \emph{dynamical} contacts. The application scenario of the controller consists of the humanoid robot iCub balnacing on a semi-cylindrical seesaw. In this case, the contacts between the robot ad its environment are subject to the seesaw dynamics, and the control of the robot is particularly challenging. 
 
-\section{Executive Summary}
+The iCub will be torque controlled and the controller assumes that desired torques are exactly executed by a lower level torque control. Dynamics will be computed with a custom library, iDynTree\footnote{\url{http://wiki.icub.org/codyco/dox/html/group__iDynTree.html}}, built on top of KDL\footnote{\url{http://www.orocos.org/kdl}}. 
 
 The deliverable is organized as follows. Section \ref{sec:secondYearScenario} gives an high level presentation of the validation scenario to be presented at the second year review meeting. Section \ref{sec:TSID} discusses the numerical technique (TSID) used to implement the validation scenario as a prioritization of concurrent tasks. Section \ref{sec:tasks} discusses the set of control tasks that will be implemented in order to perform the validation scenario.  Their sequencing in the form of a finite state machine is discussed in Section \ref{sec:taskSequencing} and issues related to task switching discussed in Section \ref{sec:taskReferences}. Priorities between tasks are summarized in Section \ref{sec:taskPrioritization}.
 
-\section{Second Year Scenario Validation} \label{sec:secondYearScenario}
+\section{Background} 
+\label{sec:background}
 
-The second year scenario aims at validating on the iCub\footnote{ Implementation is foreseen on the iCub platforms currently available at IIT and UPMC.} the theoretical results of the consortium in performing the task of balancing on multiple rigid contacts while performing goal directed actions. As clearly stated in the CoDyCo proposal the validation should not involve any planning and therefore the sequence of movements and trajectories will be predefined and kept constant across trials. During the mid-year meeting held in Paris, the sequence of movements was discussed and an agreement was found across the entire consortium. The scenario will begin with the iCub standing on two feet in front of an object that offers the possibility of additional contacts (e.g. a table where to place both hands). After some time the robot will start a movement of both hands towards the additional contact. As soon as the hands detect the additional contacts with the artificial skin, the iCub will start regulating the interaction forces at both hands trying to maintain a comfortable and stable posture. Finally, the robot will exploit the additional contacts to perform a goal directed movement which was not possible without the aforementioned additional contacts.
+\subsection{Notation} 
+\label{sec:notation}
 
-\section{Second year scenario implementation}
+\subsection{Robot equations of motion} 
+\label{sec:eqmotion}
 
-Recently we proposed a numerical technique \cite{delPrete2013} for solving the problem of controlling multiple concurrent tasks on floating base robots. Considered tasks include the control of contact forces and multiple motion tasks. Tasks are ordered according to a priority structure, with force tasks at the highest priority. The proposed solution, named task space inverse dynamics (TSID), is presented in the following section.
+\subsection{A simple model for a compliant carpet} 
+\label{sec:modelCarpet}
 
-\subsection{Task Space Inverse Dynamics (TSID)} \label{sec:TSID}
+\subsection{A simple model for a compliant carpet} 
+\label{sec:eqmotion}
+
+\subsection{The controller for the first and second year validation scenario} 
+\label{sec:firstSecondValid}
 
 
+\section{Controllers} 
+\label{sec:controllers}
 
-\subsection{Sequencing of tasks} \label{sec:taskSequencing}
+\subsection{Controller for balancing on the soft terrain} 
+\label{sec:controllerSoftTerrain}
 
+\subsection{Controller for balancing on the seesaw} 
+\label{sec:controllerSeeSaw}
 
+\section{Estimation algorithms} 
+\label{sec:estimation}
 
+\subsection{Estimation of the floating base} 
+\label{sec:estimationFloatingBase}
 
-\subsection{Task trajectories} \label{sec:refTrajectories}
-
+\subsection{Estimation of the floor compliance} 
+\label{sec:estimationFloorCompliance}
 
 \bibliographystyle{apalike}
 \bibliography{D5.2}
