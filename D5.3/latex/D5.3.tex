@@ -14,6 +14,32 @@
 \usepackage{amsmath,bm,amsfonts}
 \usepackage{tikz}
 \usetikzlibrary{arrows,automata}
+\usepackage{IEEEtrantools}
+
+\usepackage{times}
+
+% numbers option provides compact numerical references in the text. 
+\usepackage[numbers]{natbib}
+\usepackage{multicol}
+\usepackage[bookmarks=true]{hyperref}
+
+\usepackage{graphicx,import}
+\usepackage{mathtools, amssymb}
+\usepackage{paralist}
+\usepackage[pdf]{svg}
+\usepackage{amsmath,amssymb,amsthm}
+
+% \pdfinfo{
+%    /Author (Homer Simpson)
+%    /Title  (Robots: Our new overlords)
+%    /CreationDate (D:20160128120000)
+%    /Subject ()
+%    /Keywords (Robotics;)
+% }
+
+\newtheorem{assumption}{\bf{Assumption}}
+\newtheorem{definition}{\bf{Definition}}
+\newtheorem{boldLemma}{\bf{Lemma}}
 %%
 
 %%insert here other packages needed by sections
@@ -118,7 +144,7 @@ We then go one step further and  present control algorithms to deal with \emph{d
 
 The iCub will be torque controlled and the controller assumes that desired torques are exactly executed by a lower level torque control. Dynamics will be computed with a custom library, iDynTree\footnote{\url{http://wiki.icub.org/codyco/dox/html/group__iDynTree.html}}, built on top of KDL\footnote{\url{http://www.orocos.org/kdl}}. 
 
-The deliverable is organized as follows. Section \ref{sec:secondYearScenario} gives an high level presentation of the validation scenario to be presented at the second year review meeting. Section \ref{sec:TSID} discusses the numerical technique (TSID) used to implement the validation scenario as a prioritization of concurrent tasks. Section \ref{sec:tasks} discusses the set of control tasks that will be implemented in order to perform the validation scenario.  Their sequencing in the form of a finite state machine is discussed in Section \ref{sec:taskSequencing} and issues related to task switching discussed in Section \ref{sec:taskReferences}. Priorities between tasks are summarized in Section \ref{sec:taskPrioritization}.
+The deliverable is organized as follows. Section \ref{sec:secondYearScenario} gives an high level presentation of the validation scenario to be presented at the second year review meeting. Section \ref{sec:TSID} discusses the numerical technique (TSID) used to implement the validation scenario as a prioritization of concurrent tasks. Section \ref{sec:tasks} discusses the set of control tasks that will be implemented in order to perform the validation scenario.  Their sequencing in the form of a finite state machine is discussed in Section \ref{sec:taskSequencing} and issues related to task switching discussed in Section \ref{sec:taskReferences}.
 
 \section{Background} 
 \label{sec:background}
@@ -126,18 +152,221 @@ The deliverable is organized as follows. Section \ref{sec:secondYearScenario} gi
 \subsection{Notation} 
 \label{sec:notation}
 
+
+Throughout the paper we will use the following definitions:
+\begin{itemize}
+   \item $\mathcal{I}$ denotes an inertial frame, with its $z$ axis pointing against the gravity. We denote with $g$ the gravitational constant.
+    \item $e_i \in \mathbb{R}^m$ is the canonical vector, consisting of all zeros but the $i$-th component which is one.
+    \item Given two orientation frames $A$ and $B$, and vectors of coordinates expressed in these orientation frames, i.e. $\prescript{A}{}p$ and $\prescript{B}{}p$, respectively, the rotation matrix 
+    $\prescript{A}{}R_B$ is such that $\prescript{A}{}p = \prescript{A}{}R_B  \prescript{B}{}p$. 
+%    \item $\prescript{A}{}f$ denotes the fact that the vector $f$ is written w.r.t. the frame $A$.
+    % \item Given a vector $x \in \mathbb{R}^m$ we denote with $x_i$ its $i$-th element. \marginpar{This notation is used once in this sense in the paper, and multiple times numerical pedices are used with other meanings. I strongly suggest to remove this definition.}
+    \item $1_n \in \mathbb{R}^{n \times n}$ is the identity matrix of size $n$; $0_{m \times n} \in \mathbb{R}^{m \times n}$ is the zero matrix of size $m \times n$ and $0_{n } = 0_{n \times 1}$.
+    \item We denote with $S(x) \in \mathbb{R}^{3 \times 3}$ the skew-symmetric matrix such that $S(x)y = x \times y$, where $\times$ denotes the cross product operator in $\mathbb{R}^3$. 
+    % \item $\prescript{A}{}X_B$ is the coordinate transformation from frame $B$ to frame $A$ when applied to motion vectors (e.g. velocities). If we consider a 2D space, $\prescript{A}{}X_B \in \mathbb{R}^{3 \times 3}$.
+    % \item $\prescript{A}{}X_B^*$ is the coordinate transformation from frame $B$ to frame $A$ when applied to force vectors (e.g. wrenches). Note that $\prescript{A}{}X_B^* = \prescript{A}{}X_B^{-\top}$. If we consider a 2D space, $\prescript{A}{}X_B^* \in \mathbb{R}^{3 \times 3}$.
+\end{itemize}
+
 \subsection{Robot equations of motion} 
 \label{sec:eqmotion}
+We assume that the robot is composed of $n+1$ rigid bodies -- called links -- connected by $n$ joints with one degree of freedom each. In addition, we also assume   that the multi-body system is \emph{free floating}, i.e. none of the links has an \emph{a priori} constant pose with respect to the the inertial frame. This implies that  the multi-body system possesses $n~+~6$ degrees of freedom. The 
+configuration space of the multi-body system can then be characterized by the \emph{position} and the \emph{orientation} of a frame attached to a robot's link -- called 
+\emph{base frame} $\mathcal{B}$ -- and the joint configurations. More precisely, the robot configuration space  is defined by
+\begin{equation*}
+    \mathbb{Q} = \mathbb{R}^3 \times SO(3) \times \mathbb{R}^n.
+\end{equation*}
+An element of the set $\mathbb{Q}$ is then a triplet \[q = (\prescript{\mathcal{I}}{}p_{\mathcal{B}},\prescript{\mathcal{I}}{}R_{\mathcal{B}},q_j),\] where $(\prescript{\mathcal{I}}{}p_{\mathcal{B}},\prescript{\mathcal{I}}{}R_{\mathcal{B}})$ denotes the origin  and orientation of the \emph{base frame} expressed in the inertial frame, and $q_j$ denotes the \emph{joint angles}. It is possible to define an operation associated with the set $\mathbb{Q}$ such that this set is a group. More precisely, given two elements $q$ and $\rho$ of the configuration space, the set $\mathbb{Q}$ is a group under the following operation:
+\begin{IEEEeqnarray}{RCL}
+\label{eqn:groupOperation}
+q \cdot \rho = (p_q + p_\rho, R_q R_\rho, q_j + {\rho}_j).
+\end{IEEEeqnarray}
+Being the direct product of Lie groups, the set $\mathbb{Q}$ is itself a Lie group. The 
+\emph{velocity} of the multi-body system can then be characterized by the \emph{algebra} $\mathbb{V}$ of $\mathbb{Q}$ defined by:
+    $\mathbb{V} = \mathbb{R}^3 \times \mathbb{R}^3 \times \mathbb{R}^n$.
+An element of $\mathbb{V}$ is then a triplet \[\nu = ( ^\mathcal{I}\dot{ p}_{\mathcal{B}},^\mathcal{I}\omega_{\mathcal{B}},\dot{q}_j),\] where $^\mathcal{I}\omega_{\mathcal{B}}$ is the angular velocity of the base frame expressed w.r.t. the inertial frame, i.e. $^\mathcal{I}\dot{R}_{\mathcal{B}} = S(^\mathcal{I}\omega_{\mathcal{B}})^\mathcal{I}{R}_{\mathcal{B}}$. 
+
+Although the above digression on the robot configuration space may sound pedantic and marginal, let us observe that the choice of the group operation in~\eqref{eqn:groupOperation} implies that an element $\nu \in \mathbb{V}$ is composed of  $\dot{p}$, i.e. the time derivative of the origin of the floating base frame. Other choices for the group operation would imply a different algebra and, consequently, a different representation of the system's \emph{velocity}.
+
+We also assume that the robot is interacting with the environment through $n_c$ distinct contacts. 
+Applying  the Euler-Poincar\'e formalism \cite[Ch. 13.5]{Marsden2010} to the multi-body system  yields the following equations of motion: 
+\begin{align}
+    \label{eq:system_dynamics}
+       {M}(q)\dot{{\nu}} + {C}(q, {\nu}) {\nu} + {G}(q) =  B \tau + \sum_{k = 1}^{n_c} {J}^\top_{\mathcal{C}_k} f_k
+\end{align}
+where ${M} \in \mathbb{R}^{n+6 \times n+6}$ is the mass matrix, ${C} \in \mathbb{R}^{n+6 \times n+6}$ is the Coriolis matrix, ${G} \in \mathbb{R}^{n+6}$ is the gravity term, $B = (0_{n\times 6} , 1_n)^\top$ is a selector matrix, $\tau$ are the internal actuation torques, and $f_k$  denotes an external wrench applied by the environment on the link of the $k$-th contact. We assume that the application point of the external wrench is associated with a frame $\mathcal{C}_k$, which is attached to the robot's link where the wrench acts on and has its $z$ axis pointing as the normal of the contact plane. Then,  the external wrench $f_k$ is expressed in a frame whose orientation coincides with that of the inertial frame $\mathcal{I}$, but whose origin is the  origin of $\mathcal{C}_k$, i.e. the application point of the external wrench $f_k$. 
+The Jacobian ${J}_k= {J}_k(q)$ is the map between the robot's velocity ${\nu}$ and the linear and angular velocity $ ^\mathcal{I}v_{\mathcal{C}_k} := (^\mathcal{I}\dot{ p}_{\mathcal{C}_k},^\mathcal{I}\omega_{\mathcal{C}_k})$ of the frame $\mathcal{C}_k$, i.e.
+\begin{align} 
+^\mathcal{I}v_{\mathcal{C}_k} = {J}_{\mathcal{C}_k}(q) {\nu}.
+\end{align}
+The Jacobian has the following structure. 
+\begin{IEEEeqnarray}{RCLRLL}
+\label{eqn:jacobian}
+{J}_{\mathcal{C}_k}(q) &=& \begin{bmatrix} {J}_{\mathcal{C}_k}^b(q) & {J}_{\mathcal{C}_k}^j(q)\end{bmatrix} &\in& \mathbb{R}^{6\times n+6}, \IEEEyessubnumber \\ 
+ {J}_{\mathcal{C}_k}^b(q) &=& 
+ \begin{bmatrix}
+ 1_3 & -S(\prescript{\mathcal{I}}{}p_{\mathcal{C}_k}-\prescript{\mathcal{I}}{}p_{\mathcal{B}})\\ 
+ 0_{3\times3} & 1_3 \\ 
+ \end{bmatrix} &\in& \mathbb{R}^{6\times6} . \IEEEyessubnumber
+\end{IEEEeqnarray}
+
+Lastly, we assume that  rigid contacts may occur between the robot and the environment. The rigid contacts are assumed to be due to the rubbing of two flat surfaces belonging to the robot and to the environment, respectively.
+The constraint associated with the rigid contact is  modeled as a kinematic constraint that forbids any motion of the frame $\mathcal{C}_k$, i.e. ${J}_{\mathcal{C}_k}(q) {\nu} = 0$.
 
 \subsection{A simple model for a compliant carpet} 
 \label{sec:modelCarpet}
+\begin{figure}[t]
+    \centering{
+    % \includsvg{imgs/model}
+        \def\svgwidth{0.77\columnwidth}         
+        \input{images/softFloor3DBent.eps_tex}
+    \caption{A compliant carpet subject to a non-uniform force distribution}
+    \label{fig:compliantCarpet3D}
+    }
+\end{figure}
+As seen in the deliverable~\cite{deliverable}, the model of a compliant carpet can be developed under the following assumption. 
+\begin{assumption}
+\label{hp:uniformity} 
+We assume the following holds.
+\begin{enumerate}
+    \item The carpet characteristics are isotropic.
+    \item The soft carpet can be approximated as a continuum of springs. In addition, each infinitesimal spring can  exert only a vertical force.
+\end{enumerate}
+\end{assumption}
+As a consequence of the above assumption,
+ the force and torque exerted from a compliant floor onto  a generic contact surface is given by:
+\begin{subequations}
+\label{forceTorque3DGeneral}
+    \begin{alignat}{2}
+\label{eq:forcesDist3DE}
+F &= e_3 \int\int_{{D}} f(z) dx dy, \\
+\label{eq:torqueDist3DE}
+M &= 
+% \int \int S(p-p_0) e_3 f(z) dx dy =
+\int \int_{{D}}
+%\begin{pmatrix}
+%    y - \bar{y} \\
+%    \bar{x} - x \\
+%    0
+%\end{pmatrix}
+f(z)S(p-\bar{p})e_3 dx dy, 
+    \end{alignat}
+\end{subequations}
+with $f(z)$  the vertical force distribution per surface, $p=(x \quad y \quad z)^\top$ a point of the contact surface,  
+$\bar{p} = (\bar{x} \quad \bar{y} \quad \bar{z})^\top$ the point w.r.t. which the torque is expressed, and $D \subset \mathbb{R}^2$ a proper integration domain associated with the contact surface configuration.
+% , and $S(\cdot) \in \mathbb{R}^3$ the skew-symmetric matrix associated with the cross product operator in $\mathbb{R}^3$, i.e. $u \times v = S(u)v$.
+%
+%\begin{figure}[t]
+%    \centering{
+%    % \includsvg{imgs/model}
+%        \def\svgwidth{0.75\columnwidth}         
+%        \input{figures/softFloor3D.eps_tex}
+%    \caption{A compliant floor subject to a non-uniform force distribution}
+%    \label{fig:compliantCarpet3D}
+%    }
+%\end{figure}
 
-\subsection{A simple model for a compliant carpet} 
+We have also seen that in the case 
+of a rectangular, flat contact surface -- see Figure~\ref{fig:compliantCarpet3D} -- the closed form expression of the force-torque due to a generic surface compression can be evaluated. 
+
+\begin{boldLemma}
+\label{lemma3D}
+Assume that Assumption~\ref{hp:uniformity} holds, and that the force distribution $f(\cdot)$ associated with the compliant carpet  is linear with respect to the height, i.e.
+\begin{equation}
+\label{distributionLinear3D}
+f(z) = k(h-z).
+\end{equation}
+Let a flat, rectangular surface, of length $l$ and width $d$, be in full-contact with the compliant carpet. Then, the force-torque acting on the  rectangular surface at the equilibrium configuration is given by: 
+\begin{subequations}
+\label{forceTorqueOn3DBentPlate}
+    \begin{alignat}{2}
+\label{force3D}
+F &= kld|n^\top e_3|\left(h-z_M \right)e_3 \\
+\label{torque3D}
+M &= S(p_M - \bar{p})F + \frac{kld}{12}|n^\top e_3|S(e_3)\Lambda(\imath,\jmath)e_3 
+    \end{alignat}
+\end{subequations}
+with 
+\begin{equation}
+\Lambda = d^2 \jmath \jmath^\top + l^2 \imath \imath^\top ,
+\end{equation}
+ $p_M$  the central point of the rectangular surface,  
+%$\bar{p}~{=}~(\bar{x},\bar{y},\bar{z})$ the point with respect to which the torque $M$ is expressed, 
+and $\imath$ and 
+$\jmath$ two unit, perpendicular vectors parallel to the rectangle's borders associated with the length and the width, respectively.
+\end{boldLemma}
+
+In the context of this report, the flat, rectangular plate represents the robot's sole.
+Let us also recall that  the constraints due to friction and carpet damping are given by
+
+%\subsubsection{Constraints associated with the flat plate due to friction}
+%Consider Figure~\ref{fig:compliantCarpet3D}, where $v \in \mathbb{R}^3$ denotes the velocity of the point $p_M$, and $\omega \in \mathbb{R}^3$ the angular velocity of the flat plate, both expressed with respect to the inertial frame. Then, it is reasonable to assume that friction effects  forbid any rotation of the plate about the axis $n$ as long as friction forces belong to the associated friction cones, i.e. $n^\top \omega = 0$. In addition, it is also reasonable  to assume that friction effects forbid the velocity of any point of the plate to be tangential to the plate itself. It is straightforward to verify that the velocity of any point $p$ of the flat plate has null tangential velocity if and only if the velocity of the point $p_M$ has  null tangential velocity when $n^\top \omega = 0$. In light of the above,  we assume that as long as friction forces belong to the associated friction cones, one has:
+\begin{IEEEeqnarray}{RCL}
+\label{constraintsWithVerticalMotion}
+ \IEEEyesnumber
+ ^{\mathcal{I}} v_c{^\top} \imath &=& 0 \IEEEyessubnumber \\
+ ^{\mathcal{I}} v_c{^\top} \jmath &=& 0 \IEEEyessubnumber \\
+ ^{\mathcal{I}} v_c{^\top}  e_3 &=& 0 \IEEEyessubnumber \\
+ ^{\mathcal{I}} \omega_c{^\top}  n &=& 0  \IEEEyessubnumber
+\end{IEEEeqnarray}
+where $^{\mathcal{I}} v_c \in \mathbb{R}^3$ denotes the velocity of the point $p_M$, and $^{\mathcal{I}} \omega_c \in \mathbb{R}^3$ the angular velocity of the flat plate, both expressed with respect to the inertial frame. The above equations point out that the flat plate can only rotate only about the axes $\imath$ and $\jmath$.
+
+
+\subsection{The equation of motion of the seesaw} 
 \label{sec:eqmotion}
+\begin{figure}[t]
+    \centering{
+    % \includsvg{imgs/model}
+        \def\svgwidth{0.77\columnwidth}         
+        \input{images/seesaw.eps_tex}
+    \caption{The semi-cylindrical seesaw}
+    \label{fig:seesaw}
+    }
+\end{figure}
+
+The equation of motion of the seesaw are derived by considering it as a rigid body subject to the rolling constraint. Let $m_s$ and $I_s$ denote the mass and the inertia matrix of the seesaw, and $^{\mathcal{I}} v_s$ and $^{\mathcal{I}} \omega_s$ the linear velocity of its center of mass and its angular velocity, respectively. Then,  the momentum of the seesaw $H_s \in \mathbb{R}^6$ is defined by
+\begin{IEEEeqnarray}{RCL}
+ \IEEEyesnumber
+    H_s :=
+ 	\begin{pmatrix}
+ 	m_s \ ^{\mathcal{I}} v_s \\
+ 	I_s \ ^{\mathcal{I}} \omega_s
+ 	\end{pmatrix},
+\end{IEEEeqnarray}
+and the equation of motion= are given by
+\begin{IEEEeqnarray}{RCL}
+ \IEEEyesnumber
+    \dot{H}_s &=& 
+ 	\sum w_{ext}   
+\end{IEEEeqnarray}
+subject to the following constraints 
+\begin{IEEEeqnarray}{RCL}
+ \IEEEyesnumber
+ 	\label{constraintsSeesaw}
+ 	^{\mathcal{I}} v_p &=&0.\IEEEyessubnumber \label{rollingConstraint} \\
+ 	 ^{\mathcal{I}} \omega_s{^\top}  e_2 &=& 0  \IEEEyessubnumber \\
+ ^{\mathcal{I}} \omega_s{^\top}  e_3 &=& 0  \IEEEyessubnumber
+\end{IEEEeqnarray}
+with $w_{ext}$ the external wrenches applied to the seesaw. The kinematic constraints~\eqref{constraintsSeesaw} express the following facts: 
+\begin{itemize}
+\item The seesaw cannot rotate about the axes $e_2$ and $e_3$ of the inertial frame.
+\item The contact point between the seesaw and the floor possesses null velocity. This, along with the constraints on the seesaw angular velocity,  ensures that all points of the contact line between the  seesaw and the floor have zero velocity.
+\end{itemize}
+The satisfaction of the above constraints is ensured as long as the contact wrench $w_c$ (see Figure~\ref{fig:seesaw} ) belong to the associated friction cones.
+
+\newpage
 
 \subsection{The controller for the first and second year validation scenario} 
 \label{sec:firstSecondValid}
-
+The control objective for achieving balancing on either one foot or two feet has been the following ones since the beginning of the project:
+\begin{figure}[t]
+    \centering{
+    % \includsvg{imgs/model}
+        \def\svgwidth{0.5\columnwidth}         
+        \includegraphics[width=0.75\columnwidth]{images/iCubInteractionOneFoot.jpg}
+    \caption{A screen-shot of the one-foot balancing demo }
+    \label{fig:oneFootBalnacing}
+    }
+\end{figure}
 
 \section{Controllers} 
 \label{sec:controllers}
@@ -158,7 +387,7 @@ The deliverable is organized as follows. Section \ref{sec:secondYearScenario} gi
 \label{sec:estimationFloorCompliance}
 
 \bibliographystyle{apalike}
-\bibliography{D5.2}
+\bibliography{D5.3}
 
 \end{document}
 
