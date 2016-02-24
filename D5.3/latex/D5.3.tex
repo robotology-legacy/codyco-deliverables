@@ -220,7 +220,7 @@ The constraint associated with the rigid contact is  modeled as a kinematic cons
 \begin{figure}[t]
     \centering{
     % \includsvg{imgs/model}
-        \def\svgwidth{0.77\columnwidth}         
+        \def\svgwidth{0.65\columnwidth}         
         \input{images/softFloor3DBent.eps_tex}
     \caption{A compliant carpet subject to a non-uniform force distribution}
     \label{fig:compliantCarpet3D}
@@ -311,8 +311,29 @@ Let us also recall that  the constraints due to friction and carpet damping are 
  ^{\mathcal{I}} v_c{^\top}  e_3 &=& 0 \IEEEyessubnumber \\
  ^{\mathcal{I}} \omega_c{^\top}  n &=& 0  \IEEEyessubnumber
 \end{IEEEeqnarray}
-where $^{\mathcal{I}} v_c \in \mathbb{R}^3$ denotes the velocity of the point $p_M$, and $^{\mathcal{I}} \omega_c \in \mathbb{R}^3$ the angular velocity of the flat plate, both expressed with respect to the inertial frame. The above equations point out that the flat plate can only rotate only about the axes $\imath$ and $\jmath$.
-
+where $^{\mathcal{I}} v_c \in \mathbb{R}^3$ denotes the velocity of the point $p_M$, and $^{\mathcal{I}} \omega_c \in \mathbb{R}^3$ the angular velocity of the flat plate, both expressed with respect to the inertial frame. The above equations point out that the flat plate can only rotate only about the axes $\imath$ and $\jmath$. Note that the constraints~\eqref{constraintsWithVerticalMotion} can be compactly written as:
+\begin{IEEEeqnarray}{RCL}
+\label{constraintsWithVerticalMotionCompact}
+ \IEEEyesnumber
+ H(\imath,\jmath,n) ^{\mathcal{I}} \bm{v}_c &=& 0, 
+\end{IEEEeqnarray}
+where
+\begin{IEEEeqnarray}{RCL}
+\label{constraintsWithVerticalMotionCompactDetails}
+ \IEEEyesnumber
+ H(\imath,\jmath,n) &:=&
+ \begin{pmatrix}
+ \imath^\top &&  0_{1\times 3} \\
+  \jmath^\top && 0_{1\times 3} \\
+   e^\top_3 &&0_{1\times 3} \\
+   0_{1\times 3}  && n^\top\\ 
+ \end{pmatrix} \IEEEyessubnumber \\
+ \bm{v}_c &:=&
+  \begin{pmatrix}
+ ^{\mathcal{I}} v_c \\ 
+ ^{\mathcal{I}} \omega_c 
+ \end{pmatrix} \IEEEyessubnumber
+\end{IEEEeqnarray}
 
 \subsection{The equation of motion of the seesaw} 
 \label{sec:eqmotion}
@@ -386,6 +407,7 @@ with $H_i$ the momentum of each link composing the multi-body system, $m$ the to
 
 The control of the robot momentum is achieved assuming the contact wrenches as a virtual control input in the dynamics of $H$. For instance, assuming that the robot is balancing on two feet, two external wrenches $f_L \in \mathbb{R}^6 $ and $f_R \in \mathbb{R}^6$ act on the left and right foot, respectively. Then, one has
 \begin{IEEEeqnarray}{RCL}
+	\label{centroidalMomentumDyn}
 	\yesnumber
 	\dot{H} = mg +^c X_L f_L +^c X_R f_R = mg + 
 	\begin{pmatrix}
@@ -418,12 +440,12 @@ In the language of the \emph{Optimization Theory}, the above control objectives 
 \end{IEEEeqnarray}
 For the sake of completeness, in the above optimization problem one has
 \begin{IEEEeqnarray}{RCL}
-	\yesnumber 
+	\IEEEyesnumber 
 	\dot{H}^* &=& 
 	\begin{pmatrix}
 		m(\ddot{x}_d - k_p(x-x_d)-k_d(\dot{x}-\dot{x}_d)) \\
 		-k_\omega H_\omega
-	\end{pmatrix}	 \\
+	\end{pmatrix}	 \IEEEyessubnumber\\
 	\bar{h} &:=& h_j - M^\top_{bj}M^{-1}_b h_b \IEEEyessubnumber \\
 	\bar{h} &:=& 
 	\begin{pmatrix}
@@ -454,25 +476,56 @@ where $A \in \mathbb{R}^{n\times 12}$ and $b \in \mathbb{R}^{n}$ two proper matr
 This leads to the following simplification of the optimization problem 
 \begin{IEEEeqnarray}{RCL}
 	\label{optTorque2}
-	\yesnumber
-	f^* &=& \argmin_{f_d}  |\tau^*(f_d)|   \\
+	\IEEEyesnumber
+	f^* &=& \argmin_{f_d}  |\tau^*(f_d)|  \IEEEyessubnumber \\
 		   &s.t.& \nonumber \\
 		   &&Cf_d < b \IEEEyessubnumber  \label{frictionCones2} \\
 		   && \dot{H}(f_d) = \dot{H}^* \IEEEyessubnumber \\
 		   &&\tau^*(f_d) = A(q,\nu)f_d + b(q,\nu) \IEEEyessubnumber
 		   \yesnumber
 \end{IEEEeqnarray}
-
 The above control algorithm has run at both review meetings of the CoDyCo project.
 
 \section{Controllers} 
 \label{sec:controllers}
 This section discusses the modification of the control algorithm~\eqref{optTorque} for dealing with compliant and dynamical contacts.
 
-
 \subsection{Controller for balancing on the soft terrain} 
 \label{sec:controllerSoftTerrain}
 
+Assume that the robot is balancing, on two feet, on the compliant carpet described in Section~\ref{sec:modelCarpet}. In view of Eq.~\eqref{constraintsWithVerticalMotionCompactDetails}, the constraints acting on the system can be compactly written as:
+\begin{IEEEeqnarray}{RCL}
+\label{constraintsWithVerticalMotionCompact}
+ \IEEEyesnumber
+ \bar{H}(\imath,\jmath,n) ^{\mathcal{I}} {v}_f &=& 0, 
+\end{IEEEeqnarray}
+with 
+\begin{IEEEeqnarray}{RCL}
+	\IEEEyesnumber
+	\bar{H} &=& 
+	\begin{pmatrix}
+		\bar{H}_L(\imath_L,\jmath_L,n_L) && 0_{3\times3} \\
+ 		0_{3\times3} && \bar{H}_R(\imath_R,\jmath_R,n_R)
+	\end{pmatrix} \IEEEyessubnumber  \\
+	\label{feetvelocity}
+ v_f &=& 
+ \begin{pmatrix}
+\bm{v}_L \\
+ \bm{v}_R
+\end{pmatrix} \IEEEyessubnumber
+\end{IEEEeqnarray}
+and and $\bm{v}_L$ and $\bm{v}_R$ the linear and angular velocity of the central point of the robot's feet, respectively.
+Recall also that the control objective is the asymptotic stabilization of the robot's momentum $H$, the rate-of-change of which equals the summation of all external wrenches acting on the system. In view of~\eqref{centroidalMomentumDyn}, one has
+\begin{IEEEeqnarray}{RCL}
+	\label{centroidalMomentumDynComp}
+	\yesnumber
+	\dot{H} = mg +^c X_L f_L +^c X_R f_R = mg + 
+	\begin{pmatrix}
+	^c X_L && ^c X_R 
+	\end{pmatrix}	
+	f,
+\end{IEEEeqnarray}
+where now $f$ is composed of two components: the wrench due to the compliant carpet, and the wrench necessary for the satisfaction of the constraints 
 \subsection{Controller for balancing on the seesaw} 
 \label{sec:controllerSeeSaw}
 
