@@ -15,6 +15,9 @@
 \usepackage{tikz}
 \usetikzlibrary{arrows,automata}
 \usepackage{IEEEtrantools}
+\usepackage{mathtools}
+\DeclareMathOperator*{\argmin}{argmin}
+
 
 \usepackage{times}
 
@@ -316,7 +319,7 @@ where $^{\mathcal{I}} v_c \in \mathbb{R}^3$ denotes the velocity of the point $p
 \begin{figure}[t]
     \centering{
     % \includsvg{imgs/model}
-        \def\svgwidth{0.77\columnwidth}         
+        \def\svgwidth{1\columnwidth}         
         \input{images/seesaw.eps_tex}
     \caption{The semi-cylindrical seesaw}
     \label{fig:seesaw}
@@ -336,7 +339,7 @@ and the equation of motion= are given by
 \begin{IEEEeqnarray}{RCL}
  \IEEEyesnumber
     \dot{H}_s &=& 
- 	\sum w_{ext}   
+ 	\sum_i w_{ext_i}   
 \end{IEEEeqnarray}
 subject to the following constraints 
 \begin{IEEEeqnarray}{RCL}
@@ -353,7 +356,7 @@ with $w_{ext}$ the external wrenches applied to the seesaw. The kinematic constr
 \end{itemize}
 The satisfaction of the above constraints is ensured as long as the contact wrench $w_c$ (see Figure~\ref{fig:seesaw} ) belong to the associated friction cones.
 
-\newpage
+
 
 \subsection{The controller for the first and second year validation scenario} 
 \label{sec:firstSecondValid}
@@ -361,15 +364,111 @@ The control objective for achieving balancing on either one foot or two feet has
 \begin{figure}[t]
     \centering{
     % \includsvg{imgs/model}
-        \def\svgwidth{0.5\columnwidth}         
-        \includegraphics[width=0.75\columnwidth]{images/iCubInteractionOneFoot.jpg}
+        \def\svgwidth{0.2\columnwidth}         
+        \includegraphics[width=0.65\columnwidth]{images/iCubInteractionOneFoot.jpg}
     \caption{A screen-shot of the one-foot balancing demo }
     \label{fig:oneFootBalnacing}
     }
 \end{figure}
 
+\begin{enumerate}
+	\item Stabilization of the robot's momentum (expressed at the center-of-mass and with the inertial frame orientation), which is defined by
+\begin{IEEEeqnarray}{RCL}
+	\yesnumber
+	H = \sum H_i = 
+	\begin{pmatrix}
+	m \dot{x} \\
+	H_\omega
+	\end{pmatrix},
+	\nonumber
+\end{IEEEeqnarray}
+with $H_i$ the momentum of each link composing the multi-body system, $m$ the total mass of the robot, $x \in \mathbb{R}^3$ the position of the robot center-of-mass, and $H_\omega$ the angular momentum of the multi-body system. Let us recall that contrary to the case of a single rigid body, the possibility of expressing the angular momentum $H_\omega$ in terms of a proper angular velocity is still open. For this reason, we won't refer to a \emph{robot angular velocity} when stabilizing the humanoid angular momentum. 
+
+The control of the robot momentum is achieved assuming the contact wrenches as a virtual control input in the dynamics of $H$. For instance, assuming that the robot is balancing on two feet, two external wrenches $f_L \in \mathbb{R}^6 $ and $f_R \in \mathbb{R}^6$ act on the left and right foot, respectively. Then, one has
+\begin{IEEEeqnarray}{RCL}
+	\yesnumber
+	\dot{H} = mg +^c X_L f_L +^c X_R f_R = mg + 
+	\begin{pmatrix}
+	^c X_L && ^c X_R 
+	\end{pmatrix}	
+	f,
+\end{IEEEeqnarray}
+where $^c X_L,^c X_R \in \mathbb{R}^{6\times6}$ are two proper projection matrices, and $f := (f_L^\top,f_R^\top)^\top$.
+Since $f$ is assumed to be a control input, one can choose it so that $\dot{H} = \dot{H}^*$, where  $\dot{H}^*$ ensures that $x \rightarrow x_d$ and $H_\omega \rightarrow 0$. Clearly, at this level, one is left with a six-dimensional redundancy of the control input. This redundancy is exploited to minimize joint torques. 
+	\item In the null space of the above task, we want the robot to assume a desired joint configuration, while being as compliant as possible. This is achieved by means of a postural task at the joint torque level, which exploits a proportional-derivative plus gravity compensation control strategy for stabilizing a desired joint reference.
+\end{enumerate}
+
+In the language of the \emph{Optimization Theory}, the above control objectives can be formulated as follows. 
+
+\begin{IEEEeqnarray}{RCL}
+	\label{optTorque}
+	\yesnumber
+	f^* &=& \argmin_{f_d}  |\tau^*(f_d)| \IEEEyessubnumber  \\
+		   &s.t.& \nonumber \\
+		   &&Cf_d < b \IEEEyessubnumber  \label{frictionCones} \\
+		   && \dot{H}(f_d) = \dot{H}^* \IEEEyessubnumber \\
+		   &&\tau^*(f_d) = \argmin_{\tau}  |\tau(f_d) - \tau_0(f_d)| 	\label{optPost} 
+  \\
+		   	&& \quad s.t.  \nonumber \\
+		   	&& \quad \quad \ \dot{J}(q,\nu)\nu + J(q)\dot{\nu} = 0 \IEEEyessubnumber \\
+		   	&& \quad \quad \ \dot{\nu} = M^{-1}(S\tau+J^\top(q) f - h(q,\nu)) \IEEEyessubnumber \\
+		   && \quad \quad \ 	f = f_d \IEEEyessubnumber \\
+		   && \quad \quad \ 	\tau_0 = \bar{h}-\bar{J}^{\top}_j f- K_p (q_j-q^{des}_j)- K_d (\dot{q}_j-\dot{q}^{des}_j) \IEEEyessubnumber
+		   \yesnumber
+\end{IEEEeqnarray}
+For the sake of completeness, in the above optimization problem one has
+\begin{IEEEeqnarray}{RCL}
+	\yesnumber 
+	\dot{H}^* &=& 
+	\begin{pmatrix}
+		m(\ddot{x}_d - k_p(x-x_d)-k_d(\dot{x}-\dot{x}_d)) \\
+		-k_\omega H_\omega
+	\end{pmatrix}	 \\
+	\bar{h} &:=& h_j - M^\top_{bj}M^{-1}_b h_b \IEEEyessubnumber \\
+	\bar{h} &:=& 
+	\begin{pmatrix}
+	h_b \\ h_j
+	\end{pmatrix} =
+	{C}(q, {\nu}) {\nu} + {G}(q), \quad h_b \in \mathbb{R}^6 \quad h_j \in \mathbb{R}^n
+	 \IEEEyessubnumber \\
+	\bar{J} &:=& J_j - J^{\top}_b M^{-1}_b M_{bj} \IEEEyessubnumber	\\
+	M &=& 
+	\begin{pmatrix}
+		M_b && M_{bj} \\
+		M^{\top}_{bj} && M_j
+	\end{pmatrix}	 \quad M_b \in \mathbb{R}^{6\times 6}
+	\quad M_{bj} \in \mathbb{R}^{6\times n}
+	\quad M_b \in \mathbb{R}^{n\times n}\IEEEyessubnumber
+\end{IEEEeqnarray}
+
+Note that the additional constraint~\eqref{frictionCones} ensures that the desired contact wrenches $f_d$ belong to the associated friction cones. Once the optimum $f^*$ has been determined, the input torques $\tau$ are obtained by re-using the expression~\eqref{optPost}, i.e.
+\begin{IEEEeqnarray}{RCL}
+	\label{optTorqueFinal}
+	\tau = \tau^*(f^*)
+		   \yesnumber
+\end{IEEEeqnarray}
+
+Now, by direct calculations one can verify that the solution to the problem~\eqref{optPost} is an affine function versus the desired wrenches $f_d$, i.e. 
+$\tau^* = A(q,\nu)f_d + b(q,\nu),$
+where $A \in \mathbb{R}^{n\times 12}$ and $b \in \mathbb{R}^{n}$ two proper matrices. 
+This leads to the following simplification of the optimization problem 
+\begin{IEEEeqnarray}{RCL}
+	\label{optTorque2}
+	\yesnumber
+	f^* &=& \argmin_{f_d}  |\tau^*(f_d)|   \\
+		   &s.t.& \nonumber \\
+		   &&Cf_d < b \IEEEyessubnumber  \label{frictionCones2} \\
+		   && \dot{H}(f_d) = \dot{H}^* \IEEEyessubnumber \\
+		   &&\tau^*(f_d) = A(q,\nu)f_d + b(q,\nu) \IEEEyessubnumber
+		   \yesnumber
+\end{IEEEeqnarray}
+
+The above control algorithm has run at both review meetings of the CoDyCo project.
+
 \section{Controllers} 
 \label{sec:controllers}
+This section discusses the modification of the control algorithm~\eqref{optTorque} for dealing with compliant and dynamical contacts.
+
 
 \subsection{Controller for balancing on the soft terrain} 
 \label{sec:controllerSoftTerrain}
