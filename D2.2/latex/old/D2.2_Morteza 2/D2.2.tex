@@ -1,0 +1,184 @@
+%% Template for EU deliverable, using the deliverable.sty style file
+
+\documentclass[12pt,a4paper,twoside]{report}
+
+%% common package
+\usepackage[headers]{deliverable}
+\usepackage{xspace}
+\usepackage{verbatim}
+\usepackage[usenames]{color}
+\usepackage[usenames,dvipsnames]{xcolor}
+%\usepackage{graphicx}
+\usepackage{url}
+\usepackage{array}
+\usepackage{graphics} 		% for pdf, bitmapped graphics files
+\usepackage{graphicx}
+\usepackage{epsfig} 		% for postscript graphics files
+\usepackage{epstopdf}
+\usepackage{caption}
+\usepackage[labelformat=simple]{subcaption}
+\renewcommand\thesubfigure{(\alph{subfigure})}
+\usepackage{nameref}
+\usepackage{multirow}
+\usepackage{color}
+%\usepackage{subfigure}
+%%
+
+%%insert here other packages needed by sections
+%\usepackage{esint}
+\usepackage{amstext}
+\usepackage{amsmath}	 	% assumes amsmath package installed
+\usepackage{amssymb}  		% assumes amsmath package installed
+%\renewcommand\thesubfigure{(\alph{subfigure})}
+\usepackage{wrapfig}
+\usepackage[]{nomencl}		% nomenclatures
+%\usepackage{dsfont}
+%%
+
+%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
+%%% Special Commands and Packages needed by Elmar
+%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
+\usepackage{bm}
+\usepackage{amsfonts}
+\usepackage{setspace}
+\usepackage{mathtools}
+\newcommand{\FigureAbbr}{Fig~}%PLOS CB style
+\newcommand{\FigureAbbrP}{Fig~}%PLOS CB style
+\newcommand{\N}{\ensuremath{\mathcal{N}}}
+\renewcommand{\vec}[1]{\ensuremath{\boldsymbol{#1}}}
+
+
+%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
+%%% Titlepage
+%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
+
+% declaration of variables used in style
+\deliverableDocnumber{D2.2}
+\deliverableTitle{Models of human whole body motions in contact with rigid and compliant support surfaces}
+
+\deliverableAuthor{Morteza Azad, Elmar Rueckert$^1$ and Jan Peters$^{1,2}$}
+\deliverableResponsiblePartner{TUD}
+\deliverableAffiliation{% Insert here authors affiliations
+ $^1$ Intelligent Autonomous Systems Lab, Technische Universit\"at Darmstadt, 64289 Darmstadt, Germany.
+  $^2$ Robot Learning Group, Max-Planck Institute for Intelligent Systems,
+	Tuebingen, Germany.
+}
+
+\deliverableReviewer{}
+\deliverableCoordinator{Jan Babi\v{c}}
+\deliverableActivityNumber{n} %% n=1,..,10
+\deliverableActivity{Activity Name}
+\deliverableDoctype{Deliverable} %% or Prototype
+\deliverableClassification{Public} % or Consortium
+\deliverableDistribution{Consortium} %
+\deliverableStatus{Draft} % Draft or Final
+\deliverableDeliveryDate{29/2/2016}
+\deliverableFile{Dxx\_DeliverableName.pdf} % please do not use "-" in the name
+\deliverableVersion{1.0}
+\deliverableDate{Feb.~29, 2016}
+\deliverableYear{2016}
+\deliverablePages{\pageref{LastPage}}
+\deliverableChangelog{v.0.1 & Feb 04, 2016 & Initial draft %%\\\hline
+%%              v.2.0 & Feb 20, 2007 & Final version
+}
+\deliverableProjectStartingDate{1st March 2013}
+\deliverableProjectEndDate{28th February 2017}
+\deliverableProjectAcronym{CoDyCo}
+\deliverableProjectTitle{Whole-Body Compliant Dynamical Contacts in Cognitive Humanoids}
+ \deliverableContractNumber{600716}
+ \deliverableProjectCoordinator{Istituto Italiano di Tecnologia}
+ \deliverableProjectUrl{www.codyco.eu}
+ \deliverableFrameworkProgramme{FP7}
+ 
+ \deliverableWorkpackage{WP2}
+ \deliverableEditors{Morteza Azad and Jan Babi\v{c}}
+ \deliverableContributors{Morteza Azad (UB) / Elmar Rueckert, Serena Invaldi, Jan Peters (TUDA) / Jernej Camernik, Jan Babic (JSI)}
+ \deliverableReviewers{}
+\deliverableAbstract{The scope of the current deliverable is to present the results on developing models of human whole body motions. 
+}
+\deliverableKeywordList{contacts, model learning, probabilistic movement representations}
+
+
+\def\BibPath{./manuscript}       % location of bibtex-files
+%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
+%%% Sections
+%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
+
+%% constants
+\newcommand{\botegoCaps}{BOTEGO}
+\newcommand{\certhCaps}{CERTH}
+\newcommand{\cybionCaps}{CYBION}
+\newcommand{\nuigCaps}{NUIG}
+\newcommand{\ubitechCaps}{UBITECH}
+
+%%
+%%%%%%%%%%%%%%%%%%%%%%%%%%%%%% BEGIN DOCUMENT
+\begin{document}
+
+\deliverableMaketitle
+
+%%TODO move to style
+\newcolumntype{L}[1]{>{\raggedright\let\newline\\\arraybackslash\hspace{0pt}}m{#1}}
+\newcolumntype{C}[1]{>{\centering\let\newline\\\arraybackslash\hspace{0pt}}m{#1}}
+\newcolumntype{R}[1]{>{\raggedleft\let\newline\\\arraybackslash\hspace{0pt}}m{#1}}
+
+\textbf{Document Revision History}
+\begin{center}
+\begin{tabular}{|C{2cm}|C{3cm}|p{5cm}|C{4cm}|}
+\hline
+\textbf{Version}&\textbf{Date}&\textbf{Description}&\textbf{Author}\\\hline
+v. 0.1 & Feb. 04 & Initial Draft & Morteza Azad\\\hline
+v. 1.0 & Feb. 29 & Final & Morteza Azad\\\hline
+\end{tabular}
+\end{center}
+ 
+ \clearpage
+
+\newpage
+\renewcommand*\contentsname{Table of Contents}
+\renewcommand*\listfigurename{Index of Figures}
+\tableofcontents
+\newpage
+%\listoffigures
+%\newpage
+
+%%%%%%%%%%%%%%%%%%%%%%%% Start deliverable content here.
+
+\chapter{Introduction}
+
+%Short summary of our collaborative contribution
+\paragraph{Postural Control Precedes and Predicts Volitional Motor Control (TUD/JSI)} 
+
+The human motor control system is involved in most learning tasks including 
+movement skill acquisition, cognitive reasoning and all flavors of communication 
+skills like speech, sign language, gestures and writing. It processes perceptual 
+streams, recalls memorized movements and is modulated by anticipated goals. To 
+minimize the effect of all these influences, most studies investigate motor learning 
+in unnatural conditions where the results are difficult to exploit. We show that 
+motor adaptation can be analyzed under more ecological and thus more natural 
+conditions by inspecting  the adaptation of a full-body motor task. A target had 
+to be reached by the motion of one arm and the postural stability had to be 
+maintained by the other arm. In a novel movement model we found strong  
+correlations between both arms which were used to predict the reaching motion 
+solely from observing the motion related to keeping postural stability. This 
+finding has the potential to impact pre-tests of central nervous system 
+disorders that are less prone to factors like stress, sleep deprivation and age 
+compared to the classical cognitive tests. In robotics, the model can be 
+exploited to overcome current limitations of autonomous robots in interacting 
+with the environment through supportive contacts. 
+
+\chapter{Executive Summary}
+
+\chapter{Postural Control Precedes and Predicts Volitional Motor Control (TUD/JSI)}\label{sec:ElmarPrePrint}
+\input{Elmar/PlosCBPreprint}
+
+\bibliographystyle{plain}
+\bibliography{manuscriptAll}
+
+\end{document}
+
+%%% Local Variables:
+%%% mode: latex
+%%% TeX-master: t
+%%% save-place: t
+%%% End:

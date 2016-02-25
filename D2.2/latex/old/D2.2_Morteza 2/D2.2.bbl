@@ -1,0 +1,280 @@
+\begin{thebibliography}{10}
+
+\bibitem{codyco}
+Whole-body compliant dynamical contacts in cognitive humanoids.
+\newblock \url{https://www.codyco.eu}.
+\newblock Accessed: 2015-10-20.
+
+\bibitem{adolph2002learning}
+K~Adolph.
+\newblock Learning to keep balance.
+\newblock {\em Advances in child development and behavior}, 30:1--40, 2002.
+
+\bibitem{adolph2006motor}
+Karen~E Adolph and Sarah~E Berger.
+\newblock Motor development.
+\newblock {\em Handbook of child psychology}, 2006.
+
+\bibitem{atkeson2007multiple}
+Christopher~G Atkeson and Benjamin Stephens.
+\newblock Multiple balance strategies from one optimization criterion.
+\newblock 2007.
+
+\bibitem{babivc2014effects}
+Jan Babi{\v{c}}, Tadej Petri{\v{c}}, Luka Peternel, and Nejc {\v{S}}arabon.
+\newblock Effects of supportive hand contact on reactive postural control
+  during support perturbations.
+\newblock {\em Gait \& posture}, 40(3):441--446, 2014.
+
+\bibitem{balasubramaniam2002dynamics}
+Ramesh Balasubramaniam and Alan~M Wing.
+\newblock The dynamics of standing balance.
+\newblock {\em Trends in cognitive sciences}, 6(12):531--536, 2002.
+
+\bibitem{berger2013differences}
+Denise~J Berger, Reinhard Gentner, Timothy Edmunds, Dinesh~K Pai, and Andrea
+  d'Avella.
+\newblock Differences in adaptation rates after virtual surgeries provide
+  direct evidence for modularity.
+\newblock {\em The Journal of Neuroscience}, 33(30):12384--12394, 2013.
+
+\bibitem{bland2000introduction}
+Martin Bland et~al.
+\newblock {\em An introduction to medical statistics.}
+\newblock Number Ed. 3. Oxford University Press, 2000.
+
+\bibitem{bouisset1981sequence}
+S~Bouisset and M~Zattara.
+\newblock A sequence of postural movements precedes voluntary movement.
+\newblock {\em Neuroscience letters}, 22(3):263--270, 1981.
+
+\bibitem{cordo1982properties}
+PJ~Cordo and LEWIS~M Nashner.
+\newblock Properties of postural adjustments associated with rapid arm
+  movements.
+\newblock {\em Journal of neurophysiology}, 47(2):287--302, 1982.
+
+\bibitem{d2006control}
+Andrea d'Avella, Alessandro Portone, Laure Fernandez, and Francesco Lacquaniti.
+\newblock Control of fast-reaching movements by muscle synergy combinations.
+\newblock {\em The Journal of neuroscience}, 26(30):7791--7810, 2006.
+
+\bibitem{Dempster1977}
+A.~Dempster, N.~Laird, and D.~Rubin.
+\newblock {Maximum likelihood from incomplete data via the EM algorithm}.
+\newblock {\em Journal of the Royal Statistical Society, Series B},
+  39(1):1--38, 1977.
+
+\bibitem{dickstein2003effects}
+R~Dickstein, RJ~Peterka, and FB~Horak.
+\newblock Effects of light fingertip touch on postural responses in subjects
+  with diabetic neuropathy.
+\newblock {\em Journal of Neurology, Neurosurgery \& Psychiatry},
+  74(5):620--626, 2003.
+
+\bibitem{diedrichsen2010coordination}
+J{\"o}rn Diedrichsen, Reza Shadmehr, and Richard~B Ivry.
+\newblock The coordination of movement: optimal feedback control and beyond.
+\newblock {\em Trends in cognitive sciences}, 14(1):31--39, 2010.
+
+\bibitem{duncan1990functional}
+Pamela~W Duncan, Debra~K Weiner, Julie Chandler, and Stephanie Studenski.
+\newblock Functional reach: a new clinical measure of balance.
+\newblock {\em Journal of gerontology}, 45(6):M192--M197, 1990.
+
+\bibitem{flash1990human}
+T~Flash and F~Mussa-Ivaldi.
+\newblock Human arm stiffness characteristics during the maintenance of
+  posture.
+\newblock {\em Experimental brain research}, 82(2):315--326, 1990.
+
+\bibitem{horak1986central}
+Fay~B Horak and Lewis~M Nashner.
+\newblock Central programming of postural movements: adaptation to altered
+  support-surface configurations.
+\newblock {\em Journal of neurophysiology}, 55(6):1369--1381, 1986.
+
+\bibitem{huys2004timescales}
+R~Huys, A~Daffertshofer, and PJ~Beek.
+\newblock Multiple time scales and multiform dynamics in learning to juggle.
+\newblock {\em Motor Control}, 8:188--212, 2004.
+
+\bibitem{hyon2007full}
+Sang-Ho Hyon, Joshua~G Hale, and Gordon Cheng.
+\newblock Full-body compliant human--humanoid interaction: balancing in the
+  presence of unknown external forces.
+\newblock {\em Robotics, IEEE Transactions on}, 23(5):884--898, 2007.
+
+\bibitem{ijspeert2013dynamical}
+Auke~Jan Ijspeert, Jun Nakanishi, Heiko Hoffmann, Peter Pastor, and Stefan
+  Schaal.
+\newblock Dynamical movement primitives: learning attractor models for motor
+  behaviors.
+\newblock {\em Neural computation}, 25(2):328--373, 2013.
+
+\bibitem{jeka1994fingertip}
+John~J Jeka and James~R Lackner.
+\newblock Fingertip contact influences human postural control.
+\newblock {\em Experimental Brain Research}, 79(2):495--502, 1994.
+
+\bibitem{johannsen2007effects}
+Leif Johannsen, Alan~M Wing, and Vassilia Hatzitaki.
+\newblock Effects of maintaining touch contact on predictive and reactive
+  balance.
+\newblock {\em Journal of neurophysiology}, 97(4):2686--2695, 2007.
+
+\bibitem{klatzky1995planning}
+Roberta~L Klatzky, Thomas~G Fikes, and James~W Pellegrino.
+\newblock Planning for hand shape and arm transport when reaching for objects.
+\newblock {\em Acta Psychologica}, 88(3):209--232, 1995.
+
+\bibitem{klove1963clinical}
+H~Klove.
+\newblock Clinical neuropsychology.
+\newblock {\em The medical clinics of North America}, 47:1647--1658, 1963.
+
+\bibitem{kuo1995optimal}
+Arthur~D Kuo.
+\newblock An optimal control model for analyzing human postural balance.
+\newblock {\em Biomedical Engineering, IEEE Transactions on}, 42(1):87--101,
+  1995.
+
+\bibitem{Lockhart2007}
+Daniel~B. Lockhart and Lena~H. Ting.
+\newblock {Optimal sensorimotor transformations for balance}.
+\newblock {\em Nature Neuroscience}, 10(10):1329--1336, October 2007.
+
+\bibitem{minshew2004underdevelopment}
+Nancy~J Minshew, KiBum Sung, Bobby~L Jones, and Joseph~M Furman.
+\newblock Underdevelopment of the postural control system in autism.
+\newblock {\em Neurology}, 63(11):2056--2061, 2004.
+
+\bibitem{pai1997center}
+Yi-Chung Pai and James Patton.
+\newblock Center of mass velocity-position predictions for balance control.
+\newblock {\em Journal of biomechanics}, 30(4):347--354, 1997.
+
+\bibitem{reed1982outline}
+Edward~S Reed.
+\newblock An outline of a theory of action systems.
+\newblock {\em Journal of motor behavior}, 14(2):98--134, 1982.
+
+\bibitem{Rueckert2015}
+E.~Rueckert, J.~Mundo, A.~Paraschos, J.~Peters, and G.~Neumann.
+\newblock Extracting low-dimensional control variables for movement primitives.
+\newblock In {\em Proceedings of the International Conference on Robotics and
+  Automation (ICRA)}, 2015.
+
+\bibitem{Rueckert2013}
+Elmar Rueckert and Andrea d'Avella.
+\newblock Learned parametrized dynamic movement primitives with shared
+  synergies for controlling robotic and musculoskeletal systems.
+\newblock {\em Frontiers in Computational Neuroscience (Special Issue on
+  Modularity in motor control: from muscle synergies to cognitive action
+  representation)}, 7(138), 2013.
+
+\bibitem{rueckert2014robust}
+Elmar Rueckert, Max Mindt, Jan Peters, and Gerhard Neumann.
+\newblock Robust policy updates for stochastic optimal control.
+\newblock In {\em Humanoid Robots (Humanoids), 2014 14th IEEE-RAS International
+  Conference on}, pages 388--393. IEEE, 2014.
+
+\bibitem{ruckert2011study}
+Elmar Rueckert and Gerhard Neumann.
+\newblock A study of morphological computation by using probabilistic inference
+  for motor planning.
+\newblock In {\em 2nd international conference on morphological computation,
+  Venice, Italy}, pages 51--53, 2011.
+
+\bibitem{schmitz2003motor}
+Christina Schmitz, Jo{\"e}lle Martineau, Catherine Barth{\'e}l{\'e}my, and
+  Christine Assaiante.
+\newblock Motor control and children with autism: deficit of anticipatory
+  function?
+\newblock {\em Neuroscience letters}, 348(1):17--20, 2003.
+
+\bibitem{scott2004optimal}
+Stephen~H Scott.
+\newblock Optimal feedback control and the neural basis of volitional motor
+  control.
+\newblock {\em Nature Reviews Neuroscience}, 5(7):532--546, 2004.
+
+\bibitem{shadmehr1993postural}
+Reza Shadmehr, Ferdinando~A Mussa-Ivaldi, and Emilio Bizzi.
+\newblock Postural force fields of the human arm and their role in generating
+  multijoint movements.
+\newblock {\em The Journal of neuroscience}, 13(1):45--62, 1993.
+
+\bibitem{slijper2000effects}
+Harm Slijper and Mark Latash.
+\newblock The effects of instability and additional hand support on
+  anticipatory postural adjustments in leg, trunk, and arm muscles during
+  standing.
+\newblock {\em Experimental Brain Research}, 135(1):81--93, 2000.
+
+\bibitem{smith2006interacting}
+Maurice~A Smith, Ali Ghazizadeh, and Reza Shadmehr.
+\newblock Interacting adaptive processes with different timescales underlie
+  short-term motor learning.
+\newblock {\em PLoS Biol}, 4(6):e179, 2006.
+
+\bibitem{stapley1999does}
+Paul~J Stapley, Thierry Pozzo, Guy Cheron, and Alexander Grishin.
+\newblock Does the coordination between posture and movement during human
+  whole-body reaching ensure center of mass stabilization?
+\newblock {\em Experimental Brain Research}, 129(1):134--146, 1999.
+
+\bibitem{stewart1965platform}
+Doug Stewart.
+\newblock A platform with six degrees of freedom.
+\newblock {\em Proceedings of the institution of mechanical engineers},
+  180(1):371--386, 1965.
+
+\bibitem{sugihara2002whole}
+Tomomichi Sugihara and Yoshihiko Nakamura.
+\newblock Whole-body cooperative balancing of humanoid robot using cog
+  jacobian.
+\newblock In {\em Intelligent Robots and Systems, 2002. IEEE/RSJ International
+  Conference on}, volume~3, pages 2575--2580. IEEE, 2002.
+
+\bibitem{tassa2012synthesis}
+Yuval Tassa, Tom Erez, and Emanuel Todorov.
+\newblock Synthesis and stabilization of complex behaviors through online
+  trajectory optimization.
+\newblock In {\em Intelligent Robots and Systems (IROS), 2012 IEEE/RSJ
+  International Conference on}, pages 4906--4913. IEEE, 2012.
+
+\bibitem{todorov2004optimality}
+Emanuel Todorov.
+\newblock Optimality principles in sensorimotor control.
+\newblock {\em Nature neuroscience}, 7(9):907--915, 2004.
+
+\bibitem{toussaint2014dual}
+Marc Toussaint, Nathan Ratliff, Jeannette Bohg, Ludovic Righetti, Peter
+  Englert, and Stefan Schaal.
+\newblock Dual execution of optimized contact interaction trajectories.
+\newblock In {\em Intelligent Robots and Systems (IROS 2014), 2014 IEEE/RSJ
+  International Conference on}, pages 47--54. IEEE, 2014.
+
+\bibitem{Hofsten1993prospective}
+Claes Von~Hofsten.
+\newblock Prospective control: A basic aspect of action development.
+\newblock {\em Human development}, 36(5):253--270, 1993.
+
+\bibitem{winter1995human}
+David~A Winter.
+\newblock Human balance and posture control during standing and walking.
+\newblock {\em Gait \& posture}, 3(4):193--214, 1995.
+
+\bibitem{wolpert2000computational}
+Daniel~M Wolpert and Zoubin Ghahramani.
+\newblock Computational principles of movement neuroscience.
+\newblock {\em nature neuroscience}, 3:1212--1217, 2000.
+
+\bibitem{wolpert1995arm}
+Daniel~M Wolpert, Zoubin Ghahramani, and Michael~I Jordan.
+\newblock Are arm trajectories planned in kinematic or dynamic coordinates? an
+  adaptation study.
+\newblock {\em Experimental brain research}, 103(3):460--470, 1995.
+
+\end{thebibliography}

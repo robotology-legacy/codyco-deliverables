@@ -1,0 +1,75 @@
+\documentclass{article}
+
+\usepackage{tikz}
+\usetikzlibrary{calc}
+\usepackage{tikz-3dplot}
+
+\begin{document}
+
+
+\begin{tikzpicture}[scale=2.5]
+
+  \definecolor{lightgray}{RGB}{211,211,211};
+  \definecolor{dimgray}{RGB}{105,105,105};
+  
+  \draw[dashed] (0,0.15) -- (0.5,0.15);
+
+  % drawing the robot as sticks and defining the nodes
+  \draw (0,0.15) node (ankle) -- ++({0.7*cos(70)},{0.7*sin(70)}) node (knee)
+  -- ++({0.9*cos(70+40)},{0.9*sin(70+40)}) node (hip) --
+  ++({1.5*cos(70+40-30)},{1.5*sin(70+40-30)}) node (head) --
+  ++({-0.4*cos(70+40-30)},{-0.4*sin(70+40-30)}) node (shoulder) --
+  ++({0.65*cos(70+40-30-120)},{0.65*sin(70+40-30-120)}) node (elbow) --
+  ++({0.6*cos(70+40-30-120+70)},{0.6*sin(70+40-30-120+70)}) node (hand);
+
+  % drawing bodies (ellipses)
+  \tdplotsetrotatedcoordsorigin{(hip)}
+  \draw[thick,tdplot_rotated_coords,fill=lightgray] [rotate=80] (0.75,0)
+  ellipse (7.5mm and 2.2mm);
+  \tdplotsetrotatedcoordsorigin{(ankle)}
+  \draw[thick,tdplot_rotated_coords,fill=lightgray] [rotate=70] (0.35,0)
+  ellipse (3.5mm and 1.2mm);
+  \tdplotsetrotatedcoordsorigin{(knee)}
+  \draw[thick,tdplot_rotated_coords,fill=lightgray] [rotate=110] (0.45,0)
+  ellipse (4.5mm and 1.2mm);
+  \tdplotsetrotatedcoordsorigin{(shoulder)}
+  \draw[thick,tdplot_rotated_coords,fill=lightgray] [rotate=-40] (0.325,0)
+  ellipse (3.25mm and 1.2mm);
+  \tdplotsetrotatedcoordsorigin{(elbow)}
+  \draw[thick,tdplot_rotated_coords,fill=lightgray] [rotate=30] (0.3,0)
+  ellipse (3mm and 1.2mm);
+
+  % drawing arcs of the joint angles
+  \draw[->,>=stealth'] (0.4,0.15) arc (0:68:0.4) node[align=left] at
+  (0.45,0.4) {$q_1$};
+  \tdplotsetrotatedcoordsorigin{(ankle)}
+  \draw[dashed,tdplot_rotated_coords] [rotate=70] (0.73,0) -- (1.1,0);
+  \draw[tdplot_rotated_coords,->,>=stealth'] [rotate=70] (1.05,0) arc
+  (0:38:0.35) node[align=left] at (1.15,0.1) {$q_2$};
+  \tdplotsetrotatedcoordsorigin{(knee)}
+  \draw[dashed,tdplot_rotated_coords] [rotate=110] (0.93,0) -- (1.2,0);
+  \draw[tdplot_rotated_coords,->,>=stealth'] [rotate=110] (1.1,0) arc
+  (0:328:0.2) node[align=left] at (0.9,0.28) {$q_3$};
+  \tdplotsetrotatedcoordsorigin{(hip)}
+  \draw[tdplot_rotated_coords,->,>=stealth'] [rotate=260] (-0.75,0) arc
+  (0:58:0.35) node[align=left] at (-0.7,0.32) {$q_4$};
+  \tdplotsetrotatedcoordsorigin{(shoulder)}
+  \draw[dashed,tdplot_rotated_coords] [rotate=-40] (0.68,0) -- (1.1,0);
+  \draw[tdplot_rotated_coords,->,>=stealth'] [rotate=-40] (0.9,0) arc
+  (0:68:0.25) node[align=left] at (0.95,0.18) {$q_5$};
+
+  % drawing the sticks of the bodies
+  \draw[dimgray] (ankle) -- (knee) -- (hip) -- (head) -- (shoulder) -- (elbow)
+  -- (hand);
+
+  % drawing circles at the joints
+  \draw[fill] (ankle) circle (0.5mm);
+  \draw[fill] (knee) circle (0.5mm);
+  \draw[fill] (hip) circle (0.5mm);
+  \draw[fill] (shoulder) circle (0.5mm);
+  \draw[fill] (elbow) circle (0.5mm);
+
+\end{tikzpicture}
+
+\end{document}
+

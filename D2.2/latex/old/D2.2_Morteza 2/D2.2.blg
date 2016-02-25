@@ -1,0 +1,50 @@
+This is BibTeX, Version 0.99d (TeX Live 2013/Debian)
+Capacity: max_strings=35307, hash_size=35307, hash_prime=30011
+The top-level auxiliary file: D2.2.aux
+The style file: plain.bst
+Database file #1: manuscriptAll.bib
+Warning--to sort, need author or key in codyco
+Warning--empty journal in atkeson2007multiple
+Warning--there's a number but no series in bland2000introduction
+You've used 48 entries,
+            2118 wiz_defined-function locations,
+            802 strings with 12522 characters,
+and the built_in function-call counts, 16953 in all, are:
+= -- 1733
+> -- 748
+< -- 7
++ -- 303
+- -- 246
+* -- 1292
+:= -- 2784
+add.period$ -- 149
+call.type$ -- 48
+change.case$ -- 265
+chr.to.int$ -- 0
+cite$ -- 51
+duplicate$ -- 585
+empty$ -- 1327
+format.name$ -- 246
+if$ -- 3497
+int.to.chr$ -- 0
+int.to.str$ -- 48
+missing$ -- 48
+newline$ -- 243
+num.names$ -- 94
+pop$ -- 219
+preamble$ -- 1
+purify$ -- 218
+quote$ -- 0
+skip$ -- 407
+stack$ -- 0
+substring$ -- 1333
+swap$ -- 100
+text.length$ -- 7
+text.prefix$ -- 0
+top$ -- 0
+type$ -- 190
+warning$ -- 3
+while$ -- 182
+width$ -- 50
+write$ -- 529
+(There were 3 warnings)
