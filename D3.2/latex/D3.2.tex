@@ -60,7 +60,7 @@
  
 \deliverableWorkpackage{WP3}
 \deliverableEditors{Vincent Padois}
-\deliverableContributors{Morteza Azzad, Mingxing Liu, Mike Mistry, Francesco Nori, Vincent Padois, Daniele Pucci, Silvio Traversaro}
+\deliverableContributors{Morteza Azzad, Mingxing Liu, Mike Mistry, Francesco Nori, Vincent Padois, Daniele Pucci, Francesco Romano, Silvio Traversaro}
 
 \deliverableAbstract{This deliverable provides an overview of the whole-body control strategies proposed within the framework of the CoDyCo project for balancing by means of compliant contacts. We first recall the general structure of the whole-body controller used in the CoDyCo project. This controller is written as a quadratic multi-objective optimization problem under linear constraints and priorities between the objectives can be dealt with through strict of soft hierarchy. This controller has to be modified in order to deal with compliant cases and two cases are then distinguished. In the first one, a contact model is supposed to be known and using that knowledge a control strategy is derived. In the second case, no model of the environment is assumed to be known and an adaptive force regulation task is added in order to account for the compliance of the environment. This deliverable is strongly related to deliverable 5.3 CITE{deliverable53} which discusses the technical details and choices for the implementation of the year-3 validation scenario.}
 \deliverableReviewers{}
@@ -158,18 +158,19 @@ v.~1.0 & Feb.~28, 2016 & Proofread version & Francesco Nori \\ \hline
 \section{Introduction}
 
 
-Under-actuated robots, such as free-floating humanoid robots, usually need to make contacts with their environments to achieve some goal directed whole-body movements. Most researches on whole-body control assume that the environment of a robot is rigid. This means that no adaptation to the environment compliance is needed for controllers. In reality, there is no completely rigid surface but in practice we can assume a surface to be rigid if it is stiff enough (i.e. deflection is negligible). However, many objects in a human environment cannot be considered as stiff enough and there compliance has to be accounted for (e.g. a soft cushion, a sofa, a yoga carpet). Indeed, in these cases, a controller that does not take into account the rigidity properties of the contact material is not sufficient:  the compliance of
-the contact has to be considered by the controller, otherwise the robot may fail to properly balance and fall over. For example, pushing too strongly against a rigid object may result in damages to the robot or the environment; and pushing too weakly against a compliant object may not provide the robot with enough reaction forces to support its whole-body tasks. The problem becomes more complex when the rigidity of the object in contact is unknown a priori to robotic controllers, which is usually the case in many scenarios.
+Under-actuated robots, such as free-floating humanoid robots, usually need to make contacts with their environments to achieve some goal directed whole-body movements. Most researches on whole-body control assume that the environment of the robot is rigid. This means that no adaptation to the environment compliance is needed for controllers. In reality, there is no completely rigid surface even if in practice we can assume a surface to be rigid if it is stiff enough (i.e. deflection is negligible). Unfortunately, many objects in human environments cannot be considered as stiff enough and their compliance has to be accounted for (e.g. a soft cushion, a sofa, a yoga carpet). Indeed, a controller that does not take into account the compliant  properties of the contact material may not be sufficient:  the compliance of
+the contact has to be considered by the controller, otherwise the robot may fail to properly balance and fall over. For example, %pushing too strongly against a rigid object may result in damages to the robot or the environment; and 
+pushing too weakly against a compliant object may not provide the robot with enough reaction forces to support its whole-body tasks. The problem is complex as the rigidity of the object in contact is unknown a priori to robotic controllers, which is usually the case in many scenarios.\\
  
 
 The humanoid whole-body control problem has been addressed by different types of whole-body controllers, using analytical approaches \cite{Khatib08,Sentis10,Righetti13}, constrained quadratic programming \cite{Abe07,Liu11,Salini11,Salini13,Saab13}, or a mixture of them \cite{Stephens10,Nori15}. These controllers are either developed for rigid environments, or validated only in rigid contact scenarios.
-In general, a valid set of contact forces during whole-body task control can be found by solving a multi-objective problem with a set of elementary task objectives as well as constraints, such as whole-body dynamics, friction cone constraints for non-sliding contacts, and linear complementarity conditions \cite{Muico09,Saab13,Salini11,Salini13}, which implies zero relative motions between two bodies in contact when normal contact force is non-negative. In the case of rigid contact with static environment, the linear complementarity condition implies two constraints: (i) the motion of the contact point is zero and (ii) the contact force along the normal to the contact surface is non-negative.  The zero motion constraint may not necessarily be true in the case of non-rigid contacts, since the velocities or accelerations of contact points may be non-zero, although the relative motion between the two contact points remains zero. In this case, hybrid control methods \cite{khatib87} that control forces and motions in orthogonal directions are not applicable. Therefore, the controller should take into account the dynamic relation between the contact point position and the contact force, rather than just control the contact force alone. 
+In general, a valid set of contact forces during whole-body task control can be found by solving a multi-objective problem with a set of elementary task objectives as well as constraints, such as whole-body dynamics, friction cone constraints for non-sliding contacts, and linear complementarity conditions \cite{Muico09,Saab13,Salini11,Salini13}, which implies zero relative motions between two bodies in contact when normal contact force is non-negative. In the case of rigid contact with static environment, the linear complementarity condition implies two constraints: (i) the motion of the contact point is zero and (ii) the contact force along the normal to the contact surface is non-negative.  The zero motion constraint may not necessarily be true in the case of non-rigid contacts, since the velocities or accelerations of contact points may be non-zero, although the relative motion between the two contact points remains zero. In this case, hybrid control methods \cite{khatib87} that control forces and motions in orthogonal directions are not applicable. Therefore, the controller should take into account the dynamic relation between the contact point position and the contact force, rather than just control the contact force alone.\\ 
 
-Such physical interaction dynamics is taken into account in impedance control \cite{Hogan85} with the idea of controlling the relation between the contact point motion and the reaction force. Traditional impedance control \cite{Hogan85,Love95,Tsumugiwa02} computes the target impedance of the robot according to the estimated impedance of the environment, which requires high quality measurement of interaction forces. In \cite{Buchli10, Yang11}, learning approaches are applied to optimize the robot impedance. Such approaches do not require interaction force sensing and can be adaptable to variable environment impedance. However, the application of such approaches in the context of humanoid balance control with non-rigid contacts is not suitable. First, these methods rely on trajectory-based learning and adaptation algorithms, whereas there is not necessarily a reference motion trajectory for each support contact in the whole-body balancing context considered here. Furthermore, they need to explore the entire state-action space if a globally optimal solution is to be found, which is impossible for high dimensional robots such as humanoids.
+Such physical interaction dynamics is taken into account in impedance control \cite{Hogan85} with the idea of controlling the relation between the contact point motion and the reaction force. Traditional impedance control \cite{Hogan85,Love95,Tsumugiwa02} computes the target impedance of the robot according to the estimated impedance of the environment, which requires high quality measurement of interaction forces. In \cite{Buchli10, Yang11}, learning approaches are applied to optimize the robot impedance. Such approaches do not require interaction force sensing and can be adaptable to variable environment impedance. However, the application of such approaches in the context of humanoid balance control with non-rigid contacts is not suitable. First, these methods rely on trajectory-based learning and adaptation algorithms, whereas there is not necessarily a reference motion trajectory for each support contact in the whole-body balancing context considered here. Furthermore, they need to explore the entire state-action space if a globally optimal solution is to be found, which is impossible for high dimensional robots such as humanoids.\\
 
-The problem of humanoid balance control with deformable contact support was addressed in \cite{Bouyarmane11b}, which proposed a posture planning approach assuming that the contact material properties are known. Compliant contacts between robots and their environments have been studied by some researchers in other areas such as grasping \cite{Xydes&Kao99} and animated characters \cite{Jain&Liu11}. However, there has not been much research efforts on balancing legged robots on compliant surfaces.
+The problem of humanoid balance control with deformable contact support was addressed in \cite{Bouyarmane11b}, which proposed a posture planning approach assuming that the contact material properties are known. Compliant contacts between robots and their environments have been studied by some researchers in other areas such as grasping \cite{Xydes&Kao99} and animated characters \cite{Jain&Liu11}. However, there has not been much research efforts on balancing legged robots on compliant surfaces.\\
 
-This deliverable provides an overview of the whole-body control strategies proposed within the framework of the CoDyCo project for balancing by means of compliant contacts. It is organized as follows. We first recall the general structure of the whole-body controller used in the CoDyCo project. This controller is written as a quadratic multi-objective optimization problem under linear constraints and priorities between the objectives can be dealt with through strict of soft hierarchy. This controller has to be modified in order to deal with compliant cases and two cases are then distinguished. In the first one, a contact model is supposed to be known and using that knowledge a control strategy is derived. In the second case, no model of the environment is assumed to be known and an adaptive force regulation task is added in order to account for the compliance of the environment.
+This deliverable provides an overview of the whole-body control strategies proposed within the framework of the CoDyCo project for balancing by means of compliant contacts. It is organized as follows. We first recall the general structure of the whole-body controller used in the CoDyCo project. This controller is written as a quadratic multi-objective optimization problem under linear constraints and priorities between the objectives can be dealt with through strict of soft hierarchy. This controller has to be modified in order to deal with compliant cases and two cases are then distinguished. In the first one, no model of the environment is assumed to be known and an adaptive force regulation task is added to the original ``rigid contact" controller in order to account for the compliance of the environment. In the second case, a contact model is supposed to be known and using that knowledge a control strategy is derived.
 
 \section{General structure of the whole-body controller in the CoDyCo project}
 
@@ -184,7 +185,8 @@ Even though it is not often formulated as such, control of dynamical systems is 
 \item The strong mathematical background in convex optimization is such that optimization based methods mostly outperform analytical methods attempting to heuristically activate constraints.
 \end{enumerate}
 
-Based on this formulation choice, the reactive control problem aims at finding at each control instant the actuation torque minimizing $T(\mathbb{X})$, some tasks related function to minimize, given the equation of motion of the multi-body system as well as other equality and inequality constraints. This can be written:
+\subsection{Formulation}
+Based on this formulation choice, the reactive control problem aims at finding at each control instant the actuation torque minimizing $T(\mathbb{X})$, some tasks related function to minimize, given the equation of motion of the multi-body system as well as other equality and inequality constraints. This can be written
 \begin{subequations}\label{eq:one task}
 %\begin{eqnarray}
 %\vect{\tau}^*_{t} =~\argmin \limits_{\mathbb{X}_{t}} & T(\mathbb{X}_{t}, t) \label{eq:cp obj}\\  
@@ -217,7 +219,9 @@ where:
 \item ${D}(q,\nu) \mathbb{X} \leq {h}(q,\nu)$ gathers inequality constraints related to joint limits (position and velocity), control input saturation, contact forces (existence and friction limits) and potentially obstacle avoidance.
 \end{itemize}
 
-The control problem is often multi-objective and the tasks-related function $T(\mathbb(X))$ can actually be written:
+\subsection{Dealing with multiple objectives}
+
+The control problem is often multi-objective and the tasks-related function $T(\mathbb(X))$ can actually be written
 \begin{equation}\label{eq:multi task}
 T(\mathbb{X}) = T\left(\lambda_1, T_1(\mathbb{X}), \lambda_2, T_2(\mathbb{X}), \dots, \lambda_{n_t},T_{n_t}(\mathbb{X})\right)
 \end{equation}
@@ -229,16 +233,97 @@ where $T_i(\mathbb{X})$ is the $i$-th task among $n_t$ operational tasks to be a
 \bullet~~\text{Operational space force}        & T_i={f}_{\mathcal{C}_i}-{f}_{\mathcal{C}_i}^{d}
 \end{array}
 \end{equation}
-where ${\ddot{x}}^{d}$, ${\dot{\nu}}^{d}$ and ${f}_{\mathcal{C}_i}^{d}$ are desired Cartesian space acceleration, configuration space acceleration and contact wrench respectively, the desired value itself being the outcome of some higher level control architecture (Proportional--Derivative--Integral regulators and/or Momentum regulators and/or Model Predicitve Controllers and/or Trajectory planners providing a feedfoward reference, \textit{etc}).
+where ${\ddot{x}}^{d}$, ${\dot{\nu}}^{d}$ and ${f}_{\mathcal{C}_i}^{d}$ are desired Cartesian space acceleration, configuration space acceleration and contact wrench respectively, the desired value itself being the outcome of some higher level control architecture (Proportional--Derivative--Integral regulators and/or Momentum regulators and/or Model Predicitve Controllers and/or Trajectory planners providing a feedfoward reference, \textit{etc}).\\
 
 $T_i$ usually appears in $T$ under the form of a weighted, euclidean norm thus leading to a quadratic cost associated to each task. This quadratic form and the linearity of the constraints allows to resort to the convex optimization techniques, more particularly Linear Quadratic Programs. Then, depending of the type of retained prioritization scheme, the optimization problem \ref{eq:one task} can be solved:
-\begin{itemize}
+\begin{enumerate}
 \item at once using a single LQP and soft prioritization where $T$ is written as a weighted sum of quadratic costs and where $\lambda$s play the role of weights for each task, see \cite{Salini2011,bouyarmane2011using} for examples;
 \item using a cascade of LQPs thus inducing strict prioritization between tasks (in that case $\lambda$s are used to defined a lexicographic order), see \cite{Saab13,herzog2014balancing,hierarchicalq} for examples;
 \item using a representation able to convey both soft and strict prioritization, see \cite{liu-AutRob2015,liu-AutRobSI2015}.
-\end{itemize}
+\end{enumerate}
 
+\subsection{Direct and two-stage whole-body control approaches}
 
+In CoDyCo, these three types of prioritization scheme coexist and are used indifferently as they allow to produce very similar types of behaviours\footnote{A formal comparison of their intrinsic properties is out of the scope of this deliverable but would constitute a work of interest for the community}. A distinction has still to be made between two ways to approach the whole-body control problem.\\
+
+The first, direct, approach does not separate the problem of computing the contact forces from the one of computing the joint torques. Given some task space desired acceleration (among which a center of mass one), the resolution of the control problem described by Equation~(\ref{eq:one task}) directly provides the optimal torques. The contact forces come as a by-product of the problem resolution. This approach has the very nice property of being able to account for the joint level constraints. Its drawback is that it hides some of the essence of the balance control problem and while it may be preferable to use such a solution for practical implementation, a two-stage solution may be preferred to ease the analysis of the system (for example in terms of its controllability).\\
+
+The second, two-stage approach, uses contact forces as intermediate controls and first compute the desired contact forces given the desired acceleration of the center of mass. This can be done using the Newton-Euler equation for the floating-base system, written at the center of mass of the system. It can be written
+\begin{equation}
+\label{equ:NE equation}
+\left( \begin{array}{c}
+m \ddot{x}\\ 
+\dot{H}_{\omega}
+\end{array}\right) =
+m g + \underbrace{\sum_k \left(\begin{array}{cc}
+S(p_{\mathcal{C}_k} - x) & 1_{3} \\
+1_{3} & 0_{3\times 3}
+\end{array}\right)  f_k}_{X_{\mathcal{C}} f}
+\end{equation}
+where $m$ is the total mass of the system, $x \in \mathbb{R}^3$ is the position of the center of mass expressed in the inertial frame, $\dot{H}_{\omega}$ is the derivative of the angular momentum, $g$ is the acceleration induced by gravity expressed in the inertial frame, $p_{\mathcal{C}_k}$ is the $k$-contact point and $S(u) \in \mathbb{R}^{3\times 3}$ is the skew-symmetric matrix such that $S(u)v = u \times v$, where $\times$ denotes the cross product operator in $\mathbb{R}^3$.\\
+
+Equation~(\ref{equ:NE equation}) plainly displays the relation between contact wrenches and the dynamics of the center of mass and $f$ can be computed based on it in order to achieve some desired center of mass linear acceleration $\ddot{x}^d$ and to maintain the angular momentum null (by choosing $\dot{H}_{\omega} = 0$). The solution for $f$ can be computed using an LQP as well. This allows to account for inequality constraints related to friction. Given these desired contact forces, the whole-body control problem can then be solved using the general formulation provided by Equation~(\ref{eq:one task}). This control approach, often referred as \textit{momentum-based balance controller}, has extensively been used in the recent years \cite{Lee&Goswami12,perrin_ISRR2015,Herzog2015} and is the one used in the CoDyCo demonstrations.
+
+The next sections describe how this generic controller structure can be exploited and adapted to deal with compliant contacts.
+
+\section{Balancing on compliant contacts: model-free control approach}
+
+When robots evolve in partially known environments, model-based control approaches requires to incrementally, through experience, modify existing models or build new ones (see CITEdeliverable4.2 for details on learning of tasks with multiple contacts by imitation and reinforcement learning). While models evolve, the robot still needs to be able to act accordingly, or at least without failure, in this, partially known, environment. Providing an adaptive control approach, not relying on a compliance model, in order to adapt the whole-body motions of humanoid robots to unknown rigidity properties of the environment is thus of interest.
+
+\subsection{Summary of the contribution}
+The work described hereafter was published in \cite{liu_IROS2015} and is dedicated to whole-body balancing, and more generally whole-body control, with non-rigid, unilateral, frictional support contacts, for example, standing on a soft ground, or pushing against a compliant support contact with one hand while reaching for an object far away with the other hand (see Fig.\ref{reaching}). The problems of the manipulation of compliant objects and the handling of unexpected disturbance forces are beyond the scope of this work. Moreover, the proposed control approach does not handle anticipatory aspects of balance, but it provides a reactive  mechanism to maintain balance while multiple motion and contact tasks are being performed in a compliant environment.
+\begin{figure}[!t]
+\centering
+\vspace{5pt}
+\includegraphics[width=.8\linewidth]{figure/scenario.pdf}
+\caption{Examples of balancing on non-rigid contacts during whole-body task execution.}
+\label{reaching}
+\end{figure}
+
+The contribution of this work consists in a reactive controller for whole-body balancing of humanoid robots performing whole-body tasks in unknown compliant environments. As the motions and forces at support contacts are related to whole-body task executions, their reference trajectories are unavailable a priori. Therefore, this approach focuses on the regulation of contact forces in a reactive way. It reacts to the motions of non-rigid contacts in real-time during whole-body movements, with the aim of establishing contact equilibrium quickly.\\
+
+A frictional non-rigid contact model is proposed both for simulation and for control. The model parameters of the non-rigid environment are unknown to the controller. The force regulation approach does not try to estimate the impedance parameters of the environment, but it regulates contact forces by reacting to environment motions directly. This reactive control approach is embedded in an optimization based multi-task controller of type (1), which has been used to achieve whole-body control of humanoid robots in rigid environments. However, the reactive principle of the approach proposed here is general and can also be applied in many other whole-body controllers to handle non-rigid support contacts. Examples using this approach are provided, where a humanoid robot performs reaching and stepping actions in a non-rigid environment. Further research directions related to this approach are also presented. Details can be found in the paper hereafter included.
+
+\subsection{Reactive whole-body control for humanoid balancing on non-rigid unilateral contacts}
+\label{app:liu_IROS2015}
+\newpage
+\includepdf[pages={1-7}]{appendix/paper_liu-padois_IROS2015.pdf}
+
+\section{Balancing on compliant contacts: model-based control approach}
+
+When a model of the environment is available or has been incrementally learnt, using this model does not only provide the necessary adaptation to the new conditions but allows to obtain efficient behaviours that could not be obtained otherwise. It thus makes much sense to try to model the compliant environment.
+
+\subsection{Model modifications induced by compliant contacts}
+
+When dealing with compliant contacts, modifications are induced in the equation of motion and kinematic constraints expression. The former writes
+\begin{equation}
+{M}(q) {\dot{\nu}}+{C}({q},{\nu}){\nu} + G(q) = {B} {\tau} + J^\top_{rigid} (q) f_{rigid} + J^\top_{comp} (q) f_{comp}, \label{eq:compliant dyn model}
+\end{equation}
+while the latter is decomposed in two sub-equations
+\begin{subequations}\label{eq:kin constraints}
+\begin{eqnarray}
+J_{rigid}(q) \dot\nu + \dot{J}_{rigid}(q) \nu & = & 0 \label{eq:kin constraints rigid}\\  
+J_{comp}(q) \dot\nu + \dot{J}_{comp}(q) \nu & = & \ddot{p}_{\mathcal{C}_{comp}}\label{eq:kin constraints comp},%(p_{\mathcal{C}_{comp}},R_{\mathcal{C}_{comp}},\dot{p}_{\mathcal{C}_{comp}},\omega_{\mathcal{C}_{comp}},\dot{f}_{comp}) \label{eq:kin constraints rigid},
+\end{eqnarray}               
+\end{subequations}
+where $J^\top_{rigid} (q)$, $f_{rigid}$, $J^\top_{comp} (q)$ and $f_{comp}$ respectively represent the contact Jacobian in the rigid contact directions, the associated rigid contact wrench, the contact Jacobian in the compliant contact directions and the associated compliant contact wrench. Without loss of generality, contacts are here supposed to be either strictly rigid or compliant\footnote{A given contact point can actually be rigid in some direction while compliant in other orthogonal ones.}. $\ddot{p}_{\mathcal{C}_{comp}}$ is the compliant contact points linear and angular acceleration which is assumed to be a function of the state of the contact points and of the derivative of the compliant contact wrench\footnote{As an intuition, consider the example of a mono-dimensional spring-damper system described by the scalar relation $ f = K (x-x_0) + b \dot{x} $, the contact point acceleration can be written $\ddot{x} = \frac{1}{b} ( \dot{f} - K \dot{x})$.} $\ddot{p}_{\mathcal{C}_{comp}} = z\left(p_{\mathcal{C}_{comp}},R_{\mathcal{C}_{comp}},\dot{p}_{\mathcal{C}_{comp}},\omega_{\mathcal{C}_{comp}},f_{comp}\right)$.
+
+ 
+
+\subsection{Augmentation of the relative degree of the controlled outputs}
+
+From the modified model, it can be shown that $f$ cannot be considered as an independent intermediate control input any longer as its evolution is subject to the contact points dynamics which is a function of $\dot{f}$. $\dot{f}$ becomes the new independent intermediate control input and it can be concluded that compliant contacts augment the relative degree of the controlled outputs. This means that Equation~(\ref{equ:NE equation}) has to be differentiated in order to relate $\dot{f}$ to the desired center of mass behaviour. The computed contact force derivative can then be fed into Equation~(\ref{eq:kin constraints comp}). Assuming that a good measurement of the compliant contact forces is available and that $z$ can be estimated with high bandwidth and precision through measurement, whole-body dynamics estimation and/or contact model parameters estimation, one can then directly solve the whole-body control problem.\\
+
+Even if not formulated in this way, this is the approach retained in \cite{AzadIROS2015} where a ``practical'' implementation is proposed. The proposed controller regulates both linear momentum and angular momentum about the center of mass of the robot by controlling the contact forces at soft contact surfaces\footnote{rigid contact can be accounted for as well without modifying the proposed method itself and with the advantage of easing the estimation of the state of the floating base}. Assuming that contact forces at the compliant surfaces are known (i.e. via force-torque sensors) at the current instant, desired contact forces at the rigid contacts are calculated in order to provide the required rate of change of the robot's momentum.  However, since compliant contact forces are functions of surface deformations, there is not  any control on them at the current instant. Nonetheless, it is possible to control those forces in the next instant by controlling the acceleration of the contact points.  This can be done by predicting one step ahead in time the compliant contact forces given the currently measured ones and the contact model $z$. To implement the proposed method in practice, stiffness and damping coefficients of the contact model have to be estimated beforehand by using contact model parameter estimation methods such as in \cite{Dallalietal13}, \cite{Diolaitietal05}, \cite{Ericksonetal03}. Details of the proposed implementation can be found in the paper hereafter included.
+
+\newpage
+\includepdf[pages={1-6}]{appendix/paper_azad-mistry_ICRA2015.pdf}
+
+\subsection{Making use of reasonable rigidity assumptions}
+
+ However, estimating $z$ with high bandwith and precision is a very complex problem and relying on such an assumption is doomed to fail. 
+
+%Balancing is possible only if rigid contacts are available. Non rigid contacts induce a motion of the contact point and cannot provide the support contact forces needed to compensate for the under-actuation of the floating base. The controller introduced in section~\ref{app:liu_IROS2015} actually aims at reaching rigid contact situations as fast as possible thus reducing the transient period during which the robot is actually ``sinking'' in the ground or contact surface. Then, assuming a contact state has been reached where some rigid contacts are available for support, one still needs to account for the compliant behaviour in some contact directions.  
 
 %\section{Whole-Body control and the CoDyCo contribution}
 %
