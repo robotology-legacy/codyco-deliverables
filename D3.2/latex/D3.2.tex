@@ -62,9 +62,9 @@
 \deliverableEditors{Vincent Padois}
 \deliverableContributors{Morteza Azzad, Mingxing Liu, Mike Mistry, Francesco Nori, Vincent Padois, Daniele Pucci, Francesco Romano, Silvio Traversaro}
 
-\deliverableAbstract{This deliverable provides an overview of the whole-body control strategies proposed within the framework of the CoDyCo project for balancing by means of compliant contacts. We first recall the general structure of the whole-body controller used in the CoDyCo project. This controller is written as a quadratic multi-objective optimization problem under linear constraints and priorities between the objectives can be dealt with through strict of soft hierarchy. This controller has to be modified in order to deal with compliant cases and two cases are then distinguished. In the first one, a contact model is supposed to be known and using that knowledge a control strategy is derived. In the second case, no model of the environment is assumed to be known and an adaptive force regulation task is added in order to account for the compliance of the environment. This deliverable is strongly related to deliverable 5.3 CITE{deliverable53} which discusses the technical details and choices for the implementation of the year-3 validation scenario.}
+\deliverableAbstract{This deliverable provides an overview of the whole-body control strategies proposed within the framework of the CoDyCo project for balancing by means of compliant contacts. We first recall the general structure of the whole-body controller used in the CoDyCo project. This controller is written as a quadratic multi-objective optimization problem under linear constraints and priorities between the objectives can be dealt with through strict of soft hierarchy. This controller has to be modified in order to deal with compliant cases and two cases are then distinguished. In the first one, a contact model is supposed to be known and using that knowledge a control strategy is derived. In the second case, no model of the environment is assumed to be known and an adaptive force regulation task is added in order to account for the compliance of the environment. This deliverable is strongly related to Deliverable~5.3 \cite{deliverable53} which discusses the technical details and choices for the implementation of the year-3 validation scenario.}
 \deliverableReviewers{}
-\deliverableKeywordList{Whole-body controllers, Non-rigid contacts, Multi-contacts, Goal-oriented tasks.}
+\deliverableKeywordList{Whole-body controllers, Non-rigid contacts, Multi-contacts}
 
 %%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
 %%% Sections
@@ -103,12 +103,12 @@
     pdfmenubar=true,        % show Acrobat’s menu?
     pdffitwindow=false,     % window fit to page when opened
     pdfstartview={FitH},    % fits the width of the page to the window
-    pdftitle={D11\_iCubSimulator.pdf},    % title
+    pdftitle={D32.pdf},    % title
     pdfauthor={Vincent Padois},     % author
-    pdfsubject={Local solver in rigid-world cases},   % subject of the document
+    pdfsubject={Local solver in compliant-world cases},   % subject of the document
     pdfcreator={Vincent Padois},   % creator of the document
     pdfproducer={Vincent Padois}, % producer of the document
-    pdfkeywords= {}, % list of keywords
+    pdfkeywords= {Whole-body controllers, Non-rigid contacts, Multi-contacts}, % list of keywords
     pdfnewwindow=true,      % links in new window
     colorlinks=true,       % false: boxed links; true: colored links
     linkcolor=black,          % color of internal links (change box color with linkbordercolor)
@@ -174,7 +174,7 @@ This deliverable provides an overview of the whole-body control strategies propo
 
 \section{General structure of the whole-body controller in the CoDyCo project}
 
-Even though it is not often formulated as such, control of dynamical systems is an optimization problem. Within the framework of the CoDyCo project, the whole-body controller is written as a quadratic multi-objective optimization problem under linear constraints where priorities between the objectives can be dealt with through strict of soft hierarchy. Deliverable 3.1 CITE{deliverable31} exposes the reasons why it is preferable to express controllers in this way. The logic behind this choice can be briefly summarized in a very straightforward way:
+Even though it is not often formulated as such, control of dynamical systems is an optimization problem. Within the framework of the CoDyCo project, the whole-body controller is written as a quadratic multi-objective optimization problem under linear constraints where priorities between the objectives can be dealt with through strict of soft hierarchy. Deliverable~3.1 \cite{deliverable31} exposes the reasons why it is preferable to express controllers in this way. The logic behind this choice can be briefly summarized in a very straightforward way:
 \begin{enumerate}
 \item the equation of motion and joint space to task spaces mappings can be written as equalities but they are not sufficient to describe the overall dynamics and physical behaviour of a robot.
 \item Indeed, other intrinsic physical constraint have to be accounted for at the joint level as well as in Cartesian space. These constraints do not solely describe relationships between physical quantities but also limits which cannot (control input saturation) or should never be crossed in order to maintain the robot and its environment in proper working conditions.
@@ -268,7 +268,7 @@ The next sections describe how this generic controller structure can be exploite
 
 \section{Balancing on compliant contacts: model-free control approach}
 
-When robots evolve in partially known environments, model-based control approaches requires to incrementally, through experience, modify existing models or build new ones (see CITEdeliverable4.2 for details on learning of tasks with multiple contacts by imitation and reinforcement learning). While models evolve, the robot still needs to be able to act accordingly, or at least without failure, in this, partially known, environment. Providing an adaptive control approach, not relying on a compliance model, in order to adapt the whole-body motions of humanoid robots to unknown rigidity properties of the environment is thus of interest.
+When robots evolve in partially known environments, model-based control approaches requires to incrementally, through experience, modify existing models or build new ones (see Deliverable~4.2 \cite{deliverable42} for details on learning of tasks with multiple contacts by imitation and reinforcement learning). While models evolve, the robot still needs to be able to act accordingly, or at least without failure, in this, partially known, environment. Providing an adaptive control approach, not relying on a compliance model, in order to adapt the whole-body motions of humanoid robots to unknown rigidity properties of the environment is thus of interest.
 
 \subsection{Summary of the contribution}
 The work described hereafter was published in \cite{liu_IROS2015} and is dedicated to whole-body balancing, and more generally whole-body control, with non-rigid, unilateral, frictional support contacts, for example, standing on a soft ground, or pushing against a compliant support contact with one hand while reaching for an object far away with the other hand (see Fig.\ref{reaching}). The problems of the manipulation of compliant objects and the handling of unexpected disturbance forces are beyond the scope of this work. Moreover, the proposed control approach does not handle anticipatory aspects of balance, but it provides a reactive  mechanism to maintain balance while multiple motion and contact tasks are being performed in a compliant environment.
@@ -321,7 +321,17 @@ Even if not formulated in this way, this is the approach retained in \cite{AzadI
 
 \subsection{Making use of reasonable rigidity assumptions}
 
- However, estimating $z$ with high bandwith and precision is a very complex problem and relying on such an assumption is doomed to fail. 
+In practice, assuming that a good measurement of the compliant contact forces is available and that $z$ can be estimated with high bandwidth and precision through measurement is an illusion. Force measurements are subject to high-frequency noises which in practice limits the bandwidth of the available signal. Moreover, the estimation of the contact model $z$ is complex, and subject to many uncertainties.\\
+
+There are actually many type of soft terrains that exert forces and torques not only depending on their relative compression, but also on the robot’s joint torques. In these cases, the soft terrain is subject to some rigid constraints that may allow the control of the robot’s momentum through the external forces, which thus depend on the joint torques. This is the case of a thin, highly damped carpet, which can be modelled, in the first approximation, as a continuum of vertical springs. Each of these springs is assumed to compress vertically only, and the other degrees of freedom are rigidly constrained, thus creating the aforementioned relation between external forces and joint torques. This brings us back to the case of rigid contacts even though the compliant force component $f_comp$ in Equation~(\ref{eq:compliant dyn model}) still needs to be properly compensated for. This particular component cannot be measured separately from the rigid component and a contact model is still needed to estimate it. This approach is the one retained for the demonstration of Year 3 and it is described in details in Deliverale~5.3 \cite{deliverable53}. This deliverable also provides an extension towards balance in contact with rigid dynamical systems such as a seesaw.
+
+\section{Conclusion}
+
+In this deliverable, an overview of the work performed, within the framework of the CoDyCo project, on balancing with compliant contacts is provided. This work is the result of tasks T3.2, T3.3 and T5.3.
+
+The adaptive approach described in \cite{liu_IROS2015} has the advantage of providing a way to accommodate compliant contacts without the need for a model. Its major disadvantage lies in the fact that it aims at reaching a state where, after a transient period, compliant contacts are fully compressed and can be used as rigid ones. Unfortunately, in highly compliant environment this is never the case and one actually has to balance with contact points that remain compliant. A second disadvantage is that the proposed algorithm tends to require  more forces from the most compliant contact points. This may be critical if the corresponding contacts corresponds to fragile surfaces which may break under high contact forces.\\
+
+The two other proposed approaches \cite{AzadIROS2015}, \cite{deliverable53} assume that a model of the compliant contact is known. While the approach described in Deliverable~5.3 \cite{deliverable53} is less sensitive to the quality of the estimation of this model, the identification problem remains a complex one. At this stage estimation is performed off-line through a tedious procedure. In practical cases where the environment may not be known in advance, online estimation techniques would be needed. However, these methods are stil to be developed, in a context  where estimating dynamic quantities (for example the floating-base state) for rigid multi-body systems remains a recent research topic \cite{nori2015simultaneous}, \cite{rotella2015humanoid}.
 
 %Balancing is possible only if rigid contacts are available. Non rigid contacts induce a motion of the contact point and cannot provide the support contact forces needed to compensate for the under-actuation of the floating base. The controller introduced in section~\ref{app:liu_IROS2015} actually aims at reaching rigid contact situations as fast as possible thus reducing the transient period during which the robot is actually ``sinking'' in the ground or contact surface. Then, assuming a contact state has been reached where some rigid contacts are available for support, one still needs to account for the compliant behaviour in some contact directions.  
 
