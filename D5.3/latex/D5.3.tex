@@ -192,10 +192,12 @@ Although the above digression on the robot configuration space may sound pedanti
 
 We also assume that the robot is interacting with the environment through $n_c$ distinct contacts. 
 Applying  the Euler-Poincar\'e formalism \cite[Ch. 13.5]{Marsden2010} to the multi-body system  yields the following equations of motion: 
-\begin{align}
+\begin{IEEEeqnarray}{RCL}
     \label{eq:system_dynamics}
-       {M}(q)\dot{{\nu}} + {C}(q, {\nu}) {\nu} + {G}(q) =  B \tau + \sum_{k = 1}^{n_c} {J}^\top_{\mathcal{C}_k} f_k
-\end{align}
+       {M}(q)\dot{{\nu}} + {C}(q, {\nu}) {\nu} + {G}(q) &=&  B \tau + J^\top(q) f
+       \IEEEyessubnumber \\
+       J^\top(q) f &:=& \sum_{k = 1}^{n_c} {J}^\top_{\mathcal{C}_k} f_k \IEEEyessubnumber
+\end{IEEEeqnarray}
 where ${M} \in \mathbb{R}^{n+6 \times n+6}$ is the mass matrix, ${C} \in \mathbb{R}^{n+6 \times n+6}$ is the Coriolis matrix, ${G} \in \mathbb{R}^{n+6}$ is the gravity term, $B = (0_{n\times 6} , 1_n)^\top$ is a selector matrix, $\tau$ are the internal actuation torques, and $f_k$  denotes an external wrench applied by the environment on the link of the $k$-th contact. We assume that the application point of the external wrench is associated with a frame $\mathcal{C}_k$, which is attached to the robot's link where the wrench acts on and has its $z$ axis pointing as the normal of the contact plane. Then,  the external wrench $f_k$ is expressed in a frame whose orientation coincides with that of the inertial frame $\mathcal{I}$, but whose origin is the  origin of $\mathcal{C}_k$, i.e. the application point of the external wrench $f_k$. 
 The Jacobian ${J}_k= {J}_k(q)$ is the map between the robot's velocity ${\nu}$ and the linear and angular velocity $ ^\mathcal{I}v_{\mathcal{C}_k} := (^\mathcal{I}\dot{ p}_{\mathcal{C}_k},^\mathcal{I}\omega_{\mathcal{C}_k})$ of the frame $\mathcal{C}_k$, i.e.
 \begin{align} 
@@ -423,8 +425,8 @@ Since $f$ is assumed to be a control input, one can choose it so that $\dot{H} =
 In the language of the \emph{Optimization Theory}, the above control objectives can be formulated as follows. 
 
 \begin{IEEEeqnarray}{RCL}
+	\IEEEyesnumber
 	\label{optTorque}
-	\yesnumber
 	f^* &=& \argmin_{f_d}  |\tau^*(f_d)| \IEEEyessubnumber  \\
 		   &s.t.& \nonumber \\
 		   &&Cf_d < b \IEEEyessubnumber  \label{frictionCones} \\
@@ -432,7 +434,8 @@ In the language of the \emph{Optimization Theory}, the above control objectives 
 		   &&\tau^*(f_d) = \argmin_{\tau}  |\tau(f_d) - \tau_0(f_d)| 	\label{optPost} 
   \\
 		   	&& \quad s.t.  \nonumber \\
-		   	&& \quad \quad \ \dot{J}(q,\nu)\nu + J(q)\dot{\nu} = 0 \IEEEyessubnumber \\
+		   	&& \quad \quad \ \dot{J}(q,\nu)\nu + J(q)\dot{\nu} = 0
+		    \IEEEyessubnumber 	\label{constraintsRigid} \\
 		   	&& \quad \quad \ \dot{\nu} = M^{-1}(S\tau+J^\top(q) f - h(q,\nu)) \IEEEyessubnumber \\
 		   && \quad \quad \ 	f = f_d \IEEEyessubnumber \\
 		   && \quad \quad \ 	\tau_0 = \bar{h}-\bar{J}^{\top}_j f- K_p (q_j-q^{des}_j)- K_d (\dot{q}_j-\dot{q}^{des}_j) \IEEEyessubnumber
@@ -493,7 +496,7 @@ This section discusses the modification of the control algorithm~\eqref{optTorqu
 \subsection{Controller for balancing on the soft terrain} 
 \label{sec:controllerSoftTerrain}
 
-Assume that the robot is balancing, on two feet, on the compliant carpet described in Section~\ref{sec:modelCarpet}. In view of Eq.~\eqref{constraintsWithVerticalMotionCompactDetails}, the constraints acting on the system can be compactly written as:
+Assume that the robot is balancing, on two feet, on the compliant carpet described in Section~\ref{sec:modelCarpet}. In view of Eq.~\eqref{constraintsWithVerticalMotionCompactDetails}, the constraints acting on the robot can be compactly written as:
 \begin{IEEEeqnarray}{RCL}
 \label{constraintsWithVerticalMotionCompact}
  \IEEEyesnumber
@@ -504,8 +507,8 @@ with
 	\IEEEyesnumber
 	\bar{H} &=& 
 	\begin{pmatrix}
-		\bar{H}_L(\imath_L,\jmath_L,n_L) && 0_{3\times3} \\
- 		0_{3\times3} && \bar{H}_R(\imath_R,\jmath_R,n_R)
+		\bar{H}_L(\imath_L,\jmath_L,n_L) && 0_{4\times 6} \\
+ 		0_{4\times 6} && \bar{H}_R(\imath_R,\jmath_R,n_R)
 	\end{pmatrix} \IEEEyessubnumber  \\
 	\label{feetvelocity}
  v_f &=& 
@@ -514,8 +517,31 @@ with
  \bm{v}_R
 \end{pmatrix} \IEEEyessubnumber
 \end{IEEEeqnarray}
-and and $\bm{v}_L$ and $\bm{v}_R$ the linear and angular velocity of the central point of the robot's feet, respectively.
-Recall also that the control objective is the asymptotic stabilization of the robot's momentum $H$, the rate-of-change of which equals the summation of all external wrenches acting on the system. In view of~\eqref{centroidalMomentumDyn}, one has
+and  $\bm{v}_L$ and $\bm{v}_R$ the linear and angular velocity of the central point of the robot's feet, respectively. Now, the feet velocity $ ^{\mathcal{I}}{v}_f$ can be expressed in terms of the robot velocity $\nu$ though its Jacobian, i.e. 
+\[ ^{\mathcal{I}}{v}_f = J(q)\nu.\]
+By substituting the above equation into~\eqref{constraintsWithVerticalMotionCompact}, one obtains
+\begin{IEEEeqnarray}{RCL}
+\label{constraintsCompactComplJBar}
+ \IEEEyesnumber
+ \bar{J}(q)\nu &=& 0\IEEEyessubnumber \\
+ \dot{\bar{J}}(q)\nu + \bar{J}(q)\dot{\nu} &=& 0\IEEEyessubnumber
+ \label{constraintsCompactComplJBar}
+\end{IEEEeqnarray}
+where
+\begin{IEEEeqnarray}{RCL}
+\label{constraintsCompactJBar}
+ \IEEEyesnumber
+ \bar{J}(q) &:=& \bar{H}(\imath,\jmath,n)J(q). 
+\end{IEEEeqnarray}
+Hence, the constraint equations when the robot stands on a compliant carpet have the same form of  those when standing on rigid constraints (compare Eqs.~\eqref{constraintsCompactComplJBar} and~\eqref{constraintsRigid}). What does change between these two situations is the number of rigid constraints acting on the system. In fact, in the case the robot stands on rigid contacts, one has 12 kinematic constraints, while when the humanoid balances on the soft carpet described in  Section~\ref{sec:modelCarpet}, one has eight rigid constraints acting on the system. These eight rigid constraints generate eight contact \emph{forces} $f_{rigid} \in \mathbb{R}^8$. The contact forces depend on the torque input $\tau$ via the dynamic equation
+\begin{IEEEeqnarray}{RCL}
+    \label{eq:system_dynamicsCarpet}
+       {M}(q)\dot{{\nu}} + {C}(q, {\nu}) {\nu} + {G}(q) &=&  B \tau + J^\top(q) f_{rigid}
+       + J^\top(q) f_{ext} \IEEEyessubnumber
+\end{IEEEeqnarray}
+and the constraint equation~\eqref{constraintsCompactComplJBar}.
+......
+   Recall also that the control objective is the asymptotic stabilization of the robot's momentum $H$, the rate-of-change of which equals the summation of all external wrenches acting on the system. In view of~\eqref{centroidalMomentumDyn}, one has
 \begin{IEEEeqnarray}{RCL}
 	\label{centroidalMomentumDynComp}
 	\yesnumber
