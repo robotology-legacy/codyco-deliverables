@@ -51,9 +51,9 @@
   \begin{picture}(1,0.33713562)%
     \put(0,0){\includegraphics[width=\unitlength]{images/seesaw.eps}}%
     \put(0.46566655,0.17977614){\color[rgb]{0,0,0}\makebox(0,0)[lb]{\smash{}}}%
-    \put(0.20145001,0.19875915){\color[rgb]{0,0,0}\makebox(0,0)[lb]{\smash{$w_c$}}}%
-    \put(0.70494316,0.23708503){\color[rgb]{0,0,0}\makebox(0,0)[lb]{\smash{$w_{ext_1}$}}}%
-    \put(0.22610903,0.30221174){\color[rgb]{0,0,0}\makebox(0,0)[lb]{\smash{$w_{ext_2}$}}}%
+    \put(0.25945001,0.19875915){\color[rgb]{0,0,0}\makebox(0,0)[lb]{\smash{$f_c$}}}%
+    \put(0.70494316,0.23708503){\color[rgb]{0,0,0}\makebox(0,0)[lb]{\smash{$f_{ext_1}$}}}%
+    \put(0.22610903,0.30221174){\color[rgb]{0,0,0}\makebox(0,0)[lb]{\smash{$f_{ext_2}$}}}%
     \put(0.5,0.01){\color[rgb]{0,0,0}\makebox(0,0)[lb]{\smash{$e_1$}}}%
     \put(0.8,0.09150764){\color[rgb]{0,0,0}\makebox(0,0)[lb]{\smash{$e_2$}}}%
     \put(0.50312521,0.18129998){\color[rgb]{0,0,0}\makebox(0,0)[lb]{\smash{$e_3$}}}%

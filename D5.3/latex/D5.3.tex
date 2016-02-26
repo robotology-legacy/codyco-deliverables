@@ -171,7 +171,7 @@ Throughout the paper we will use the following definitions:
 \end{itemize}
 
 \subsection{Robot equations of motion} 
-\label{sec:eqmotion}
+\label{sec:eqmotionRobot}
 We assume that the robot is composed of $n+1$ rigid bodies -- called links -- connected by $n$ joints with one degree of freedom each. In addition, we also assume   that the multi-body system is \emph{free floating}, i.e. none of the links has an \emph{a priori} constant pose with respect to the the inertial frame. This implies that  the multi-body system possesses $n~+~6$ degrees of freedom. The 
 configuration space of the multi-body system can then be characterized by the \emph{position} and the \emph{orientation} of a frame attached to a robot's link -- called 
 \emph{base frame} $\mathcal{B}$ -- and the joint configurations. More precisely, the robot configuration space  is defined by
@@ -379,7 +379,7 @@ The control of the robot momentum is achieved assuming the contact wrenches as a
 \end{IEEEeqnarray}
 where $^c X_L,^c X_R \in \mathbb{R}^{6\times6}$ are two proper projection matrices, and $f := (f_L^\top,f_R^\top)^\top$.
 Since $f$ is assumed to be a control input, one can choose it so that $\dot{H} = \dot{H}^*$, where  $\dot{H}^*$ ensures that $x \rightarrow x_d$ and $H_\omega \rightarrow 0$. Clearly, at this level, one is left with a six-dimensional redundancy of the control input. This redundancy is exploited to minimize joint torques. 
-	\item In the null space of the above task, we want the robot to assume a desired joint configuration, while being as compliant as possible. This is achieved by means of a postural task at the joint torque level, which exploits a proportional-derivative plus gravity compensation control strategy for stabilizing a desired joint reference.
+	\item In the null space of the above task, we want the robot to assume a desired joint configuration, while having also some compliance. This is achieved by means of a postural task at the joint torque level, which exploits a proportional-derivative plus gravity compensation control strategy for stabilizing a desired joint reference.
 \end{enumerate}
 
 In the language of the \emph{Optimization Theory}, the above control objectives can be formulated as follows. 
@@ -406,7 +406,7 @@ For the sake of completeness, in the above optimization problem one has
 	\dot{H}^* &=& 
 	\begin{pmatrix}
 		m(\ddot{x}_d - k_p(x-x_d)-k_d(\dot{x}-\dot{x}_d)) \\
-		-k_\omega H_\omega
+		-k_\omega H_\omega -k_i \int_0^t  H_\omega ds
 	\end{pmatrix}	 \IEEEyessubnumber\\
 	\bar{h} &:=& h_j - M^\top_{bj}M^{-1}_b h_b \IEEEyessubnumber \\
 	\bar{h} &:=& 
@@ -701,22 +701,22 @@ Assume that the robot is balancing on both feet, underneath which there is the c
 \begin{IEEEeqnarray}{RCL}
 \label{constraintsWithVerticalMotionCompact}
  \IEEEyesnumber
- \bar{H}(\imath,\jmath,n) ^{\mathcal{I}} {v}_f &=& 0, 
+ \bar{H} ^{\mathcal{I}} {v}_f &=& 0, 
 \end{IEEEeqnarray}
 with 
 \begin{IEEEeqnarray}{RCL}
 	\IEEEyesnumber
 	\bar{H} &=& 
 	\begin{pmatrix}
-		\bar{H}_L(\imath_L,\jmath_L,n_L) && 0_{4\times 6} \\
- 		0_{4\times 6} && \bar{H}_R(\imath_R,\jmath_R,n_R)
+		{H}(\imath_L,\jmath_L,n_L) && 0_{4\times 6} \\
+ 		0_{4\times 6} && {H}(\imath_R,\jmath_R,n_R)
 	\end{pmatrix} \IEEEyessubnumber  \\
 	\label{feetvelocity}
  v_f &=& 
  \begin{pmatrix}
 \bm{v}_L \\
  \bm{v}_R
-\end{pmatrix} \IEEEyessubnumber
+\end{pmatrix}, \IEEEyessubnumber
 \end{IEEEeqnarray}
 and $(\imath_L,\jmath_L,n_L)$ and $(\imath_R,\jmath_R,n_R)$ two frames attached to the left and right foot, respectively (as indicated in Figure~\eqref{fig:compliantCarpet3D}b and  $\bm{v}_L$ and $\bm{v}_R$ the linear and angular velocity of the central point of the robot's feet, respectively. Now, the feet velocity $ ^{\mathcal{I}}{v}_f$ can be expressed in terms of the robot velocity $\nu$ though its Jacobian, i.e. 
 \[ ^{\mathcal{I}}{v}_f = J(q)\nu.\]
@@ -726,7 +726,6 @@ By substituting the above equation into~\eqref{constraintsWithVerticalMotionComp
  \IEEEyesnumber
  {J}_s(q)\nu &=& 0\IEEEyessubnumber \\
  {\dot{J}}_s(q)\nu + {J}_s(q)\dot{\nu} &=& 0\IEEEyessubnumber
- \label{constraintsCompactComplJBar}
 \end{IEEEeqnarray}
 where
 \begin{IEEEeqnarray}{RCL}
@@ -775,7 +774,7 @@ Recall that the control objective is the asymptotic stabilization of the robot m
 \end{IEEEeqnarray}
 where $f^{rigid}$, being dependent on the input torques $\tau$, can be assumed as a control input in the above dynamics. 
 
-In light of the above, the control problem~\eqref{optTorque} is formulated as follows.
+In light of the above, the control problem~\eqref{optTorque} is modified as follows to deal with the compliant carpet.
 
 \begin{IEEEeqnarray}{RCL}
 	\IEEEyesnumber
@@ -835,11 +834,11 @@ The equation of motion of the seesaw are derived by considering it as a rigid bo
  	I_s \ ^{\mathcal{I}} \omega_s
  	\end{pmatrix},
 \end{IEEEeqnarray}
-and the equation of motion= are given by
+and the equation of motion are given by
 \begin{IEEEeqnarray}{RCL}
  \IEEEyesnumber
     \dot{H}_s &=& 
- 	\sum_i w_{ext_i}   
+ 	\sum_i f_{ext_i}   
 \end{IEEEeqnarray}
 subject to the following constraints 
 \begin{IEEEeqnarray}{RCL}
@@ -849,15 +848,117 @@ subject to the following constraints
  	 ^{\mathcal{I}} \omega_s{^\top}  e_2 &=& 0  \IEEEyessubnumber \\
  ^{\mathcal{I}} \omega_s{^\top}  e_3 &=& 0  \IEEEyessubnumber
 \end{IEEEeqnarray}
-with $w_{ext}$ the external wrenches applied to the seesaw. The kinematic constraints~\eqref{constraintsSeesaw} express the following facts: 
+with $f_{ext_i}$ the external wrenches acting on the seesaw (see Figure~\ref{fig:seesaw}). The kinematic constraints~\eqref{constraintsSeesaw} express the following facts: 
 \begin{itemize}
 \item The seesaw cannot rotate about the axes $e_2$ and $e_3$ of the inertial frame.
 \item The contact point between the seesaw and the floor possesses null velocity. This, along with the constraints on the seesaw angular velocity,  ensures that all points of the contact line between the  seesaw and the floor have zero velocity.
 \end{itemize}
 The satisfaction of the above constraints is ensured as long as the contact wrench $w_c$ (see Figure~\ref{fig:seesaw} ) belong to the associated friction cones.
 
+\begin{figure}[t]
+    \centering{
+    % \includsvg{imgs/model}
+        \def\svgwidth{0.65\columnwidth}         
+        \input{images/seesawRobot.eps_tex}
+    \caption{The robot balancing on the semi-cylindrical seesaw}
+    \label{fig:RobotOnSeesaw}
+    }
+\end{figure}
+
+\subsection{Control design} 
+\label{sec:controlesignDyn}
+Consider the robot balancing on the seesaw depicted in 
+Figure~\ref{fig:RobotOnSeesaw}. Recall that the control objective is the asymptotic stabilization of the robot's momentum $H$, the rate-of-change of which equals the net external force acting on the system. In the case of the robot balancing on the seesaw, one has:
+\begin{IEEEeqnarray}{RCL}
+	\label{centroidalMomentumDynSeesaw}
+	\yesnumber
+	\dot{H} = mg +^c X_L f_L +^c X_R f_R = mg + 
+	\begin{pmatrix}
+	^c X_L && ^c X_R 
+	\end{pmatrix}	
+	f,
+\end{IEEEeqnarray}
+where $^c X_L,^c X_R \in \mathbb{R}^{6\times6}$ are two proper projection matrices, and $f := (f_L^\top,f_R^\top)^\top$. Now, we consider the contact forces $f$ as a virtual control input of the above system, which can then be chosen so as $\dot{H}  = \dot{H}^*$ . To determine the relation between the contact forces $f$ and the input torques $\tau$, we have to define the constraints acting on the system robot plus seesaw. 
+
+To do so, consider, for instance, the left foot. As long as the foot stays in contact with the seesaw, the angular acceleration of the foot equals the angular acceleration of the seesaw. Analogously,  the linear acceleration of any point belonging to the  foot's sole equals the acceleration of the corresponding point belonging to the seesaw. This latter condition can be imposed by considering one single point of the foot's sole. As a consequence, the feet  constraints can be expressed as follows:
+ \begin{IEEEeqnarray}{RCL}
+\label{constraintsFeetSeesaw}
+ {\dot{J}}(q)\nu + {J}(q)\dot{\nu} &=& a_c
+\end{IEEEeqnarray}
+where
+ \begin{IEEEeqnarray}{RCL}
+ \label{as}
+ a_c = 
+ \begin{pmatrix}
+ 	a_L \\
+ 	a_R
+ \end{pmatrix} = 
+ \begin{pmatrix}
+ 	\ddot{p}_L \\
+ 	^{\mathcal{I}} \dot{\omega}_s \\
+ 	\ddot{p}_R \\
+ 	^{\mathcal{I}} \dot{\omega}_s
+ \end{pmatrix}
+\end{IEEEeqnarray}
+and $a_L$ and $a_R$ the linear accelerations of the points $p_L$ and $p_R$, respectively. Note that the accelerations $a_L$ and $a_R$ can be expressed in terms of the acceleration of the seesaw center of mass $G_s$ through the relation
+
+\begin{IEEEeqnarray}{RCL}
+	\label{accelerationsPlPr}
+\ddot{p}_L &=& 
+^{\mathcal{I}}\dot{ v}_s 
++ ^{\mathcal{I}}\dot{\omega}_s \times (p_L - G_s)
++ ^{\mathcal{I}} \omega_s \times (\dot{p}_L -  ^{\mathcal{I}}{ v}_s ).  
+\end{IEEEeqnarray}
+
+The accelerations $\dot{ v}_s $ and $\dot{\omega}_s$ can be evaluated from the Newton-Euler equation of the seesaw. By considering Figure~\ref{fig:RobotOnSeesaw}, one has  
+\begin{IEEEeqnarray}{RCL}
+	\label{centroidalMomentumDynSeesawForces}
+	\yesnumber
+	\dot{H}_s =
+	\frac{d}{dt} 
+	\begin{pmatrix}
+ 	m_s \ ^{\mathcal{I}} v_s \\
+ 	I_s \ ^{\mathcal{I}} \omega_s
+ 	\end{pmatrix}	
+	&=& m_sg +^s X_c f_c-^s X_L f_L -^s X_R f_R \nonumber \\
+	 &=& m_sg  +^s X_c f_c- 
+	\begin{pmatrix}
+	^s X_L && ^s X_R 
+	\end{pmatrix}	
+	f,
+\end{IEEEeqnarray}
+The above balance has been written by considering the fact that  the force-torque (at each contact)  that the seesaw exerts on the robot is equal and opposite to the force-torque the robot exerts on the seesaw. In view of~\eqref{constraintsFeetSeesaw},~\eqref{as},~\eqref{accelerationsPlPr},~\eqref{centroidalMomentumDynSeesawForces}, one has 
+ \begin{IEEEeqnarray}{RCL}
+\label{constraintsFeetSeesawC}
+ {\dot{J}}(q)\nu + {J}(q)\dot{\nu}(\tau,f) &=& a_c(f)
+\end{IEEEeqnarray}
+
+In light of the above, the control problem~\eqref{optTorque} is modified as follows to deal with the dynamical contacts generated by the seesaw.
+
+\begin{IEEEeqnarray}{RCL}
+	\IEEEyesnumber
+	\label{optTorqueSeesaw}
+	f^* &=& \argmin_{f}  |\tau^*(f)| \IEEEyessubnumber  \\
+		   &s.t.& \nonumber \\
+		   &&Cf < b \IEEEyessubnumber  \label{frictionConesSeesaw} \\
+		   && \dot{H}(f) = \dot{H}^* \IEEEyessubnumber \\
+		   && \dot{H}_s = \dot{H}_s(f,fc) \IEEEyessubnumber  \\
+		   &&^{\mathcal{I}} v_p =0.\IEEEyessubnumber  \\
+ 	       &&^{\mathcal{I}} \omega_s{^\top}  e_2 = 0  \IEEEyessubnumber \\
+           &&^{\mathcal{I}} \omega_s{^\top}  e_3 = 0  \IEEEyessubnumber \\
+		   &&\tau^*(f) = \argmin_{\tau}  |\tau(f) - \tau_0(f)| 	\label{optPostSeesaw} 
+  \\
+		   	&& \quad s.t.  \nonumber \\
+		   	&& \quad \quad \ {\dot{J}}(q)\nu + {J}(q)\dot{\nu}(\tau,f) = a_c(f)
+		    \IEEEyessubnumber 	\label{constraintsRigidSeesaw} \\
+		   	&& \quad \quad \ \dot{\nu} = M^{-1}(S\tau+J^\top(q) f - h(q,\nu)) \IEEEyessubnumber \\
+		   && \quad \quad \ 	\tau_0 = \bar{h}-\bar{J}^{\top}_j f- K_p (q_j-q^{des}_j)- K_d (\dot{q}_j-\dot{q}^{des}_j) \IEEEyessubnumber
+		   \yesnumber
+\end{IEEEeqnarray}
+
 \section{Estimation algorithms} 
 \label{sec:estimation}
+This section discusses the estimation algorithms for both the floating base and the compliance of the soft carpet.
 
 \subsection{Estimation of the floating base} 
 \label{sec:estimationFloatingBase}
@@ -865,8 +966,116 @@ The satisfaction of the above constraints is ensured as long as the contact wren
 \subsection{Estimation of the floor compliance} 
 \label{sec:estimationFloorCompliance}
 
+This section presents preliminary results on the estimation of the force distribution $f(z)$ of the compliant carpet. The carpet's height is equal to $h = 1 \ cm$. 
+\begin{figure}[t]
+    \centering{
+    % \includsvg{imgs/model}
+        \def\svgwidth{0.9\columnwidth}         
+        \input{images/estimationSetup.eps_tex}
+    \caption{Estimation setup}
+    \label{fig:estimationSetup}
+    }
+\end{figure}
+\subsection{The setup}
+Figure~\ref{fig:estimationSetup} shows the experimental setup used for estimating the compliance $f(z)$ associated with the chosen soft carpet. 
+By means of a vise, we push a dynamometer that measures the force exerted from the compliant carpet to a flat plate attached to the  dynamometer's top.
+The measurement of the carpet's compression is taken by using a high-precision caliper whose resolution is $0.01 \ mm$.
+
+\subsection{Results}
+We carried on experiments with two rectangular contact surfaces of different size:
+\begin{description}
+  \item[$S1:$] $l_1 = 5.01 \ cm$ and $d_1 = 2.01 \ cm$;
+  \item[$S2:$] $l_2 = 5.6 \ cm$ and $d_2 = 3.5 \ cm$.
+\end{description}
+The measurements are taken so that the contact force spans the range $[0,265] \ N$ for $S1$ and $[0,388] \ N$ for $S2$.
+\begin{figure}[t]
+    % \includsvg{imgs/model}
+    \begin{center}
+%    \hspace{-1cm}
+\includegraphics[width=\linewidth]{images/estimationTests.eps}    \caption{Estimation setup}
+    \label{fig:estimationResults}
+    \end{center}
+\end{figure}
+Figure~\ref{fig:estimationResults} depicts both the measurements taken  for the two different surfaces and the approximation result. Recall that the force distribution $f(z)$ is estimated from the measurement of the contact force via  
+Eq.~\eqref{fromForceToDistr3D}, i.e. 
+\begin{equation}
+f(z) = \frac{|F_E(z)|}{l_id_i}, \nonumber
+\end{equation}
+with $i \in \{1,2\}$. Hence, Figure~\ref{fig:estimationResults} points out the following facts:
+\begin{itemize}
+\item Assumption~\ref{hp:uniformity}.1, namely the carpet characteristics be uniform,  is well-posed. In fact, measurements taken with a larger contact surface show that the governing behavior of the force distribution $f(z)$ does not change significantly versus the contact's surface.  
+\item The assumption made in Lemma~\ref{lemma3D} on the linearity of the force distribution  versus $(h-z)$ is well-posed. 
+\item Since the carpet is of $h= 1 \ cm$, it shows some nonlinear effects around $(h-z)\approx 0.6 \ cm$. This threshold, which impairs the use of the model~\eqref{distributionLinear3D} to evaluate the total force-torque acting on the plate, is far from the operational condition representing a foot size in contact with the carpet.   
+\end{itemize}
+
+
+
+
+
+
 \bibliographystyle{apalike}
 \bibliography{D5.3}
+
+\newpage
+\section*{Appendix}
+\subsection*{Proof of Lemma~\ref{lemma3D}}
+First, note that any point $p=(x,y,z)$ of the rectangular surface can be expressed as follows
+\begin{equation}
+\label{changeOfVariable}
+p = p_M + Rp',
+\end{equation}
+where $R$ is the rotation matrix given by $R = (\imath,\jmath,n)$, and $p'=(u,v,0)$ any point of the rectangular surface expressed in the frame $(p_M,R)$, which implies that $u\in \left[-\frac{l}{2},\frac{l}{2}\right]$ and
+$v~\in~\left[-\frac{d}{2},\frac{d}{2}\right]$. Then, we consider~\eqref{changeOfVariable} as a variable change 
+\begin{subequations}
+	\label{changeOfVariables}
+    \begin{alignat}{2}
+x &= x(u,v) \label{xUvu}
+\\
+y &= y(u,v)  
+\label{yUvi} 
+    \end{alignat}
+\end{subequations}
+to facilitate the process of finding the solutions to the integrals~\eqref{forceTorque3DGeneral}. Let us  remind that given a double integral of a function $g(x,y): \mathbb{R}^2 \rightarrow \mathbb{R}$, a variable change of the form~\eqref{changeOfVariables} yields 
+ \begin{equation}
+ \int\int g(x,y) dx dy = \int\int g(x(u,v),y(u,v)) |\det(J)|dudv, 
+\end{equation}
+where $J$ is the Jacobian of the variable transformation~\eqref{changeOfVariables}, i.e.
+
+\begin{equation}
+\label{generalJacobian}
+J =
+\begin{pmatrix}
+\partial_u x &  \partial_v x  \\
+\partial_u y & \partial_v y
+\end{pmatrix}
+\end{equation}
+It is straightforward to verify that the variable change~\eqref{changeOfVariable} yields
+
+\begin{equation}
+\label{particularJacobian}
+|\det(J)| = |\imath_1 \jmath_2 - \imath_2 \jmath_1| = |n^\top e_3|
+\end{equation}
+Once the variable change~\eqref{changeOfVariables} has been applied, the domains on which the integrals~\eqref{forceTorque3DGeneral} must be evaluated are normal with domains $u\in \left[-\frac{l}{2},\frac{l}{2}\right]$ and
+$v~\in~\left[-\frac{d}{2},\frac{d}{2}\right]$. Hence, from Eqs.~ \eqref{forceTorque3DGeneral}~\eqref{distributionLinear3D}~\eqref{changeOfVariable} and~\eqref{particularJacobian}, one has
+\begin{subequations}
+\label{forceTorque3DGeneralVC}
+    \begin{alignat}{2}
+\label{eq:forcesDist3DEVC}
+F &= e_3 k |n^\top e_3| \int_{-\frac{d}{2}}^{\frac{d}{2}} dv \int_{-\frac{l}{2}}^{\frac{l}{2}} (h-z_M -\imath_3 u - \jmath_3 v)  du, \\
+\label{eq:torqueDist3DEVC}
+M &= k |n^\top e_3|
+% \int \int S(p-p_0) e_3 f(z) dx dy =
+\int_{-\frac{d}{2}}^{\frac{d}{2}} dv \int_{-\frac{l}{2}}^{\frac{l}{2}}
+%\begin{pmatrix}
+%    y_M +\imath_2 u + \jmath_2 v - \bar{y} \\
+%    x_M +\imath_1 u + \jmath_1 v - x \\
+%    0
+%\end{pmatrix}
+(h{-}z_M {-}\imath_3 u {-} \jmath_3 v) S(p_M - \bar{p} + u \imath + v \jmath)e_3
+  du.
+    \end{alignat}
+\end{subequations}
+By computing the above integrals, one gets~\eqref{forceTorqueOn3DBentPlate}.
 
 \end{document}
 

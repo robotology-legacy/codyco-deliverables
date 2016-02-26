@@ -49,7 +49,7 @@
   \global\let\svgscale\undefined%
   \makeatother%
   \begin{picture}(1,0.36131992)%
-    \put(0,0){\includegraphics[width=\unitlength]{figures/estimationSetup.eps}}%
+    \put(0,0){\includegraphics[width=\unitlength]{images/estimationSetup.eps}}%
     \put(0.45396769,0.16342034){\color[rgb]{0,0,0}\makebox(0,0)[lb]{\smash{$F = 10 \ N$}}}%
     \put(0.81866607,0.24659874){\color[rgb]{0,0,0}\makebox(0,0)[lb]{\smash{$z$}}}%
     \put(0.3100733,0.29435509){\color[rgb]{0,0,0}\makebox(0,0)[lb]{\smash{$h$}}}%
