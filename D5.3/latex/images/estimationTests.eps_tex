@@ -49,7 +49,7 @@
   \global\let\svgscale\undefined%
   \makeatother%
   \begin{picture}(1,0.47783251)%
-    \put(0,0){\includegraphics[width=\unitlength]{images/estimationTests.eps}}%
+    \put(0,0){\includegraphics[width=\unitlength]{figures/estimationTests.eps}}%
     \put(0.12807882,0.04495074){\makebox(0,0)[lb]{\smash{0}}}%
     \put(0.25728651,0.04495074){\makebox(0,0)[lb]{\smash{1}}}%
     \put(0.38649427,0.04495074){\makebox(0,0)[lb]{\smash{2}}}%

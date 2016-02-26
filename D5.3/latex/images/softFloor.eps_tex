@@ -1,6 +1,6 @@
 %% Creator: Inkscape inkscape 0.91, www.inkscape.org
 %% PDF/EPS/PS + LaTeX output extension by Johan Engelen, 2010
-%% Accompanies image file 'estimationSetup.eps' (pdf, eps, ps)
+%% Accompanies image file 'softFloor.eps' (pdf, eps, ps)
 %%
 %% To include the image in your LaTeX document, write
 %%   \input{<filename>.pdf_tex}
@@ -36,7 +36,7 @@
   }%
   \providecommand\rotatebox[2]{#2}%
   \ifx\svgwidth\undefined%
-    \setlength{\unitlength}{2035.88061716bp}%
+    \setlength{\unitlength}{675.22323008bp}%
     \ifx\svgscale\undefined%
       \relax%
     \else%
@@ -48,11 +48,15 @@
   \global\let\svgwidth\undefined%
   \global\let\svgscale\undefined%
   \makeatother%
-  \begin{picture}(1,0.36131992)%
-    \put(0,0){\includegraphics[width=\unitlength]{figures/estimationSetup.eps}}%
-    \put(0.45396769,0.16342034){\color[rgb]{0,0,0}\makebox(0,0)[lb]{\smash{$F = 10 \ N$}}}%
-    \put(0.81866607,0.24659874){\color[rgb]{0,0,0}\makebox(0,0)[lb]{\smash{$z$}}}%
-    \put(0.3100733,0.29435509){\color[rgb]{0,0,0}\makebox(0,0)[lb]{\smash{$h$}}}%
-    \put(0.31736737,0.36047544){\color[rgb]{0,0,0}\makebox(0,0)[lb]{\smash{$z{-}z_0$}}}%
+  \begin{picture}(1,0.42705453)%
+    \put(0,0){\includegraphics[width=\unitlength]{images/softFloor.eps}}%
+    \put(0.00022335,0.1361559){\color[rgb]{0,0,0}\makebox(0,0)[lb]{\smash{$z_M$}}}%
+        \put(0.00922335,0.4061559){\color[rgb]{0,0,0}\makebox(0,0)[lb]{\smash{$z$}}}
+    \put(0.01257535,0.20398322){\color[rgb]{0,0,0}\makebox(0,0)[lb]{\smash{$h$}}}%
+    \put(0.42573976,0.36474552){\color[rgb]{0,0,0}\makebox(0,0)[lb]{\smash{$l$}}}%
+    \put(0.37572447,0.22323894){\color[rgb]{0,0,0}\makebox(0,0)[lb]{\smash{$F$}}}%
+    \put(0.96126914,0.00975904){\color[rgb]{0,0,0}\makebox(0,0)[lb]{\smash{$x$}}}%
+    \put(0.17481423,-0.00157488){\color[rgb]{0,0,0}\makebox(0,0)[lb]{\smash{$a$}}}%
+    \put(0.76540286,-0.00000003){\color[rgb]{0,0,0}\makebox(0,0)[lb]{\smash{$b$}}}%
   \end{picture}%
 \endgroup%
