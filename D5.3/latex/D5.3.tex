@@ -379,7 +379,7 @@ The control of the robot momentum is achieved assuming the contact wrenches as a
 \end{IEEEeqnarray}
 where $^c X_L,^c X_R \in \mathbb{R}^{6\times6}$ are two proper projection matrices, and $f := (f_L^\top,f_R^\top)^\top$.
 Since $f$ is assumed to be a control input, one can choose it so that $\dot{H} = \dot{H}^*$, where  $\dot{H}^*$ ensures that $x \rightarrow x_d$ and $H_\omega \rightarrow 0$. Clearly, at this level, one is left with a six-dimensional redundancy of the control input. This redundancy is exploited to minimize joint torques. 
-	\item In the null space of the above task, we want the robot to assume a desired joint configuration, while having also some compliance. This is achieved by means of a postural task at the joint torque level, which exploits a proportional-derivative plus gravity compensation control strategy for stabilizing a desired joint reference.
+	\item In the null space of the above task, we want the robot to assume a desired joint configuration, while being as compliant as possible. This is achieved by means of a postural task at the joint torque level, which exploits a proportional-derivative plus gravity compensation control strategy for stabilizing a desired joint reference.
 \end{enumerate}
 
 In the language of the \emph{Optimization Theory}, the above control objectives can be formulated as follows. 
@@ -406,7 +406,7 @@ For the sake of completeness, in the above optimization problem one has
 	\dot{H}^* &=& 
 	\begin{pmatrix}
 		m(\ddot{x}_d - k_p(x-x_d)-k_d(\dot{x}-\dot{x}_d)) \\
-		-k_\omega H_\omega -k_i \int_0^t  H_\omega ds
+		-k_\omega H_\omega
 	\end{pmatrix}	 \IEEEyessubnumber\\
 	\bar{h} &:=& h_j - M^\top_{bj}M^{-1}_b h_b \IEEEyessubnumber \\
 	\bar{h} &:=& 
@@ -701,22 +701,22 @@ Assume that the robot is balancing on both feet, underneath which there is the c
 \begin{IEEEeqnarray}{RCL}
 \label{constraintsWithVerticalMotionCompact}
  \IEEEyesnumber
- \bar{H} ^{\mathcal{I}} {v}_f &=& 0, 
+ \bar{H}(\imath,\jmath,n) ^{\mathcal{I}} {v}_f &=& 0, 
 \end{IEEEeqnarray}
 with 
 \begin{IEEEeqnarray}{RCL}
 	\IEEEyesnumber
 	\bar{H} &=& 
 	\begin{pmatrix}
-		{H}(\imath_L,\jmath_L,n_L) && 0_{4\times 6} \\
- 		0_{4\times 6} && {H}(\imath_R,\jmath_R,n_R)
+		\bar{H}_L(\imath_L,\jmath_L,n_L) && 0_{4\times 6} \\
+ 		0_{4\times 6} && \bar{H}_R(\imath_R,\jmath_R,n_R)
 	\end{pmatrix} \IEEEyessubnumber  \\
 	\label{feetvelocity}
  v_f &=& 
  \begin{pmatrix}
 \bm{v}_L \\
  \bm{v}_R
-\end{pmatrix}, \IEEEyessubnumber
+\end{pmatrix} \IEEEyessubnumber
 \end{IEEEeqnarray}
 and $(\imath_L,\jmath_L,n_L)$ and $(\imath_R,\jmath_R,n_R)$ two frames attached to the left and right foot, respectively (as indicated in Figure~\eqref{fig:compliantCarpet3D}b and  $\bm{v}_L$ and $\bm{v}_R$ the linear and angular velocity of the central point of the robot's feet, respectively. Now, the feet velocity $ ^{\mathcal{I}}{v}_f$ can be expressed in terms of the robot velocity $\nu$ though its Jacobian, i.e. 
 \[ ^{\mathcal{I}}{v}_f = J(q)\nu.\]

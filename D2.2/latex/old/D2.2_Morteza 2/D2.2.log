@@ -1,0 +1,601 @@
+This is pdfTeX, Version 3.1415926-2.5-1.40.14 (TeX Live 2013/Debian) (format=pdflatex 2015.5.10)  27 JAN 2016 09:29
+entering extended mode
+ restricted \write18 enabled.
+ %&-line parsing enabled.
+**D2.2.tex
+(./D2.2.tex
+LaTeX2e <2011/06/27>
+Babel <3.9h> and hyphenation patterns for 2 languages loaded.
+(/usr/share/texlive/texmf-dist/tex/latex/base/report.cls
+Document Class: report 2007/10/19 v1.4h Standard LaTeX document class
+(/usr/share/texlive/texmf-dist/tex/latex/base/size12.clo
+File: size12.clo 2007/10/19 v1.4h Standard LaTeX file (size option)
+)
+\c@part=\count79
+\c@chapter=\count80
+\c@section=\count81
+\c@subsection=\count82
+\c@subsubsection=\count83
+\c@paragraph=\count84
+\c@subparagraph=\count85
+\c@figure=\count86
+\c@table=\count87
+\abovecaptionskip=\skip41
+\belowcaptionskip=\skip42
+\bibindent=\dimen102
+) (./deliverable.sty
+Package: deliverable 2013/03/04 1.1 LaTeX2e package
+
+Package: `deliverable.sty' (Style file for official deliverable documents) 1.1 
+<2013/03/04> 
+(/usr/share/texlive/texmf-dist/tex/latex/fancyhdr/fancyhdr.sty
+\fancy@headwidth=\skip43
+\f@ncyO@elh=\skip44
+\f@ncyO@erh=\skip45
+\f@ncyO@olh=\skip46
+\f@ncyO@orh=\skip47
+\f@ncyO@elf=\skip48
+\f@ncyO@erf=\skip49
+\f@ncyO@olf=\skip50
+\f@ncyO@orf=\skip51
+)
+(/usr/share/texlive/texmf-dist/tex/latex/lastpage/lastpage.sty
+Package: lastpage 2013/01/28 v1.2l Refers to last page's name (HMM; JPG)
+))
+(/usr/share/texlive/texmf-dist/tex/latex/tools/xspace.sty
+Package: xspace 2009/10/20 v1.13 Space after command names (DPC,MH)
+)
+(/usr/share/texlive/texmf-dist/tex/latex/tools/verbatim.sty
+Package: verbatim 2003/08/22 v1.5q LaTeX2e package for verbatim enhancements
+\every@verbatim=\toks14
+\verbatim@line=\toks15
+\verbatim@in@stream=\read1
+)
+(/usr/share/texlive/texmf-dist/tex/latex/graphics/color.sty
+Package: color 2005/11/14 v1.0j Standard LaTeX Color (DPC)
+
+(/usr/share/texlive/texmf-dist/tex/latex/latexconfig/color.cfg
+File: color.cfg 2007/01/18 v1.5 color configuration of teTeX/TeXLive
+)
+Package color Info: Driver file: pdftex.def on input line 130.
+
+(/usr/share/texlive/texmf-dist/tex/latex/pdftex-def/pdftex.def
+File: pdftex.def 2011/05/27 v0.06d Graphics/color for pdfTeX
+
+(/usr/share/texlive/texmf-dist/tex/generic/oberdiek/infwarerr.sty
+Package: infwarerr 2010/04/08 v1.3 Providing info/warning/error messages (HO)
+)
+(/usr/share/texlive/texmf-dist/tex/generic/oberdiek/ltxcmds.sty
+Package: ltxcmds 2011/11/09 v1.22 LaTeX kernel commands for general use (HO)
+)
+\Gread@gobject=\count88
+))
+(/usr/share/texmf/tex/latex/xcolor/xcolor.sty
+Package: xcolor 2007/01/21 v2.11 LaTeX color extensions (UK)
+
+(/usr/share/texlive/texmf-dist/tex/latex/latexconfig/color.cfg
+File: color.cfg 2007/01/18 v1.5 color configuration of teTeX/TeXLive
+)
+Package xcolor Info: Package option `usenames' ignored on input line 216.
+Package xcolor Info: Driver file: pdftex.def on input line 225.
+LaTeX Info: Redefining \color on input line 702.
+Package xcolor Info: Model `cmy' substituted by `cmy0' on input line 1337.
+Package xcolor Info: Model `hsb' substituted by `rgb' on input line 1341.
+Package xcolor Info: Model `RGB' extended on input line 1353.
+Package xcolor Info: Model `HTML' substituted by `rgb' on input line 1355.
+Package xcolor Info: Model `Hsb' substituted by `hsb' on input line 1356.
+Package xcolor Info: Model `tHsb' substituted by `hsb' on input line 1357.
+Package xcolor Info: Model `HSB' substituted by `hsb' on input line 1358.
+Package xcolor Info: Model `Gray' substituted by `gray' on input line 1359.
+Package xcolor Info: Model `wave' substituted by `hsb' on input line 1360.
+
+(/usr/share/texlive/texmf-dist/tex/latex/graphics/dvipsnam.def
+File: dvipsnam.def 1999/02/16 v3.0i Driver-dependant file (DPC,SPQR)
+))
+(/usr/share/texlive/texmf-dist/tex/latex/url/url.sty
+\Urlmuskip=\muskip10
+Package: url 2013/09/16  ver 3.4  Verb mode for urls, etc.
+)
+(/usr/share/texlive/texmf-dist/tex/latex/tools/array.sty
+Package: array 2008/09/09 v2.4c Tabular extension package (FMi)
+\col@sep=\dimen103
+\extrarowheight=\dimen104
+\NC@list=\toks16
+\extratabsurround=\skip52
+\backup@length=\skip53
+)
+(/usr/share/texlive/texmf-dist/tex/latex/graphics/graphics.sty
+Package: graphics 2009/02/05 v1.0o Standard LaTeX Graphics (DPC,SPQR)
+
+(/usr/share/texlive/texmf-dist/tex/latex/graphics/trig.sty
+Package: trig 1999/03/16 v1.09 sin cos tan (DPC)
+)
+(/usr/share/texlive/texmf-dist/tex/latex/latexconfig/graphics.cfg
+File: graphics.cfg 2010/04/23 v1.9 graphics configuration of TeX Live
+)
+Package graphics Info: Driver file: pdftex.def on input line 91.
+)
+(/usr/share/texlive/texmf-dist/tex/latex/graphics/graphicx.sty
+Package: graphicx 1999/02/16 v1.0f Enhanced LaTeX Graphics (DPC,SPQR)
+
+(/usr/share/texlive/texmf-dist/tex/latex/graphics/keyval.sty
+Package: keyval 1999/03/16 v1.13 key=value parser (DPC)
+\KV@toks@=\toks17
+)
+\Gin@req@height=\dimen105
+\Gin@req@width=\dimen106
+)
+(/usr/share/texlive/texmf-dist/tex/latex/graphics/epsfig.sty
+Package: epsfig 1999/02/16 v1.7a (e)psfig emulation (SPQR)
+\epsfxsize=\dimen107
+\epsfysize=\dimen108
+)
+(/usr/share/texlive/texmf-dist/tex/latex/oberdiek/epstopdf.sty
+Package: epstopdf 2010/02/09 v2.5 Conversion with epstopdf on the fly (HO)
+
+(/usr/share/texlive/texmf-dist/tex/latex/oberdiek/epstopdf-base.sty
+Package: epstopdf-base 2010/02/09 v2.5 Base part for package epstopdf
+
+(/usr/share/texlive/texmf-dist/tex/latex/oberdiek/grfext.sty
+Package: grfext 2010/08/19 v1.1 Manage graphics extensions (HO)
+
+(/usr/share/texlive/texmf-dist/tex/generic/oberdiek/kvdefinekeys.sty
+Package: kvdefinekeys 2011/04/07 v1.3 Define keys (HO)
+))
+(/usr/share/texlive/texmf-dist/tex/latex/oberdiek/kvoptions.sty
+Package: kvoptions 2011/06/30 v3.11 Key value format for package options (HO)
+
+(/usr/share/texlive/texmf-dist/tex/generic/oberdiek/kvsetkeys.sty
+Package: kvsetkeys 2012/04/25 v1.16 Key value parser (HO)
+
+(/usr/share/texlive/texmf-dist/tex/generic/oberdiek/etexcmds.sty
+Package: etexcmds 2011/02/16 v1.5 Avoid name clashes with e-TeX commands (HO)
+
+(/usr/share/texlive/texmf-dist/tex/generic/oberdiek/ifluatex.sty
+Package: ifluatex 2010/03/01 v1.3 Provides the ifluatex switch (HO)
+Package ifluatex Info: LuaTeX not detected.
+)
+Package etexcmds Info: Could not find \expanded.
+(etexcmds)             That can mean that you are not using pdfTeX 1.50 or
+(etexcmds)             that some package has redefined \expanded.
+(etexcmds)             In the latter case, load this package earlier.
+)))
+(/usr/share/texlive/texmf-dist/tex/generic/oberdiek/pdftexcmds.sty
+Package: pdftexcmds 2011/11/29 v0.20 Utility functions of pdfTeX for LuaTeX (HO
+)
+
+(/usr/share/texlive/texmf-dist/tex/generic/oberdiek/ifpdf.sty
+Package: ifpdf 2011/01/30 v2.3 Provides the ifpdf switch (HO)
+Package ifpdf Info: pdfTeX in PDF mode is detected.
+)
+Package pdftexcmds Info: LuaTeX not detected.
+Package pdftexcmds Info: \pdf@primitive is available.
+Package pdftexcmds Info: \pdf@ifprimitive is available.
+Package pdftexcmds Info: \pdfdraftmode found.
+)
+Package grfext Info: Graphics extension search list:
+(grfext)             [.png,.pdf,.jpg,.mps,.jpeg,.jbig2,.jb2,.PNG,.PDF,.JPG,.JPE
+G,.JBIG2,.JB2,.eps]
+(grfext)             \AppendGraphicsExtensions on input line 452.
+
+(/usr/share/texlive/texmf-dist/tex/latex/latexconfig/epstopdf-sys.cfg
+File: epstopdf-sys.cfg 2010/07/13 v1.3 Configuration of (r)epstopdf for TeX Liv
+e
+)))
+(/usr/share/texlive/texmf-dist/tex/latex/caption/caption.sty
+Package: caption 2013/05/02 v3.3-89 Customizing captions (AR)
+
+(/usr/share/texlive/texmf-dist/tex/latex/caption/caption3.sty
+Package: caption3 2013/05/02 v1.6-88 caption3 kernel (AR)
+Package caption3 Info: TeX engine: e-TeX on input line 57.
+\captionmargin=\dimen109
+\captionmargin@=\dimen110
+\captionwidth=\dimen111
+\caption@tempdima=\dimen112
+\caption@indent=\dimen113
+\caption@parindent=\dimen114
+\caption@hangindent=\dimen115
+)
+\c@ContinuedFloat=\count89
+)
+(/usr/share/texlive/texmf-dist/tex/latex/caption/subcaption.sty
+Package: subcaption 2013/02/03 v1.1-62 Sub-captions (AR)
+\c@subfigure=\count90
+\c@subtable=\count91
+)
+(/usr/share/texlive/texmf-dist/tex/latex/hyperref/nameref.sty
+Package: nameref 2012/10/27 v2.43 Cross-referencing by name of section
+
+(/usr/share/texlive/texmf-dist/tex/latex/oberdiek/refcount.sty
+Package: refcount 2011/10/16 v3.4 Data extraction from label references (HO)
+)
+(/usr/share/texlive/texmf-dist/tex/generic/oberdiek/gettitlestring.sty
+Package: gettitlestring 2010/12/03 v1.4 Cleanup title references (HO)
+)
+\c@section@level=\count92
+LaTeX Info: Redefining \ref on input line 353.
+LaTeX Info: Redefining \pageref on input line 353.
+)
+(/usr/share/texlive/texmf-dist/tex/latex/multirow/multirow.sty
+\bigstrutjot=\dimen116
+)
+(/usr/share/texlive/texmf-dist/tex/latex/amsmath/amstext.sty
+Package: amstext 2000/06/29 v2.01
+
+(/usr/share/texlive/texmf-dist/tex/latex/amsmath/amsgen.sty
+File: amsgen.sty 1999/11/30 v2.0
+\@emptytoks=\toks18
+\ex@=\dimen117
+))
+(/usr/share/texlive/texmf-dist/tex/latex/amsmath/amsmath.sty
+Package: amsmath 2013/01/14 v2.14 AMS math features
+\@mathmargin=\skip54
+
+For additional information on amsmath, use the `?' option.
+(/usr/share/texlive/texmf-dist/tex/latex/amsmath/amsbsy.sty
+Package: amsbsy 1999/11/29 v1.2d
+\pmbraise@=\dimen118
+)
+(/usr/share/texlive/texmf-dist/tex/latex/amsmath/amsopn.sty
+Package: amsopn 1999/12/14 v2.01 operator names
+)
+\inf@bad=\count93
+LaTeX Info: Redefining \frac on input line 210.
+\uproot@=\count94
+\leftroot@=\count95
+LaTeX Info: Redefining \overline on input line 306.
+\classnum@=\count96
+\DOTSCASE@=\count97
+LaTeX Info: Redefining \ldots on input line 378.
+LaTeX Info: Redefining \dots on input line 381.
+LaTeX Info: Redefining \cdots on input line 466.
+\Mathstrutbox@=\box26
+\strutbox@=\box27
+\big@size=\dimen119
+LaTeX Font Info:    Redeclaring font encoding OML on input line 566.
+LaTeX Font Info:    Redeclaring font encoding OMS on input line 567.
+\macc@depth=\count98
+\c@MaxMatrixCols=\count99
+\dotsspace@=\muskip11
+\c@parentequation=\count100
+\dspbrk@lvl=\count101
+\tag@help=\toks19
+\row@=\count102
+\column@=\count103
+\maxfields@=\count104
+\andhelp@=\toks20
+\eqnshift@=\dimen120
+\alignsep@=\dimen121
+\tagshift@=\dimen122
+\tagwidth@=\dimen123
+\totwidth@=\dimen124
+\lineht@=\dimen125
+\@envbody=\toks21
+\multlinegap=\skip55
+\multlinetaggap=\skip56
+\mathdisplay@stack=\toks22
+LaTeX Info: Redefining \[ on input line 2665.
+LaTeX Info: Redefining \] on input line 2666.
+)
+(/usr/share/texlive/texmf-dist/tex/latex/amsfonts/amssymb.sty
+Package: amssymb 2013/01/14 v3.01 AMS font symbols
+
+(/usr/share/texlive/texmf-dist/tex/latex/amsfonts/amsfonts.sty
+Package: amsfonts 2013/01/14 v3.01 Basic AMSFonts support
+\symAMSa=\mathgroup4
+\symAMSb=\mathgroup5
+LaTeX Font Info:    Overwriting math alphabet `\mathfrak' in version `bold'
+(Font)                  U/euf/m/n --> U/euf/b/n on input line 106.
+))
+(/usr/share/texlive/texmf-dist/tex/latex/wrapfig/wrapfig.sty
+\wrapoverhang=\dimen126
+\WF@size=\dimen127
+\c@WF@wrappedlines=\count105
+\WF@box=\box28
+\WF@everypar=\toks23
+Package: wrapfig 2003/01/31  v 3.6
+)
+(/usr/share/texlive/texmf-dist/tex/latex/nomencl/nomencl.sty
+Package: nomencl 2005/09/22 v4.2 Nomenclature package (LN)
+\nomlabelwidth=\dimen128
+\nom@tempdim=\dimen129
+\nomitemsep=\skip57
+)
+(/usr/share/texlive/texmf-dist/tex/latex/tools/bm.sty
+Package: bm 2004/02/26 v1.1c Bold Symbol Support (DPC/FMi)
+\symboldoperators=\mathgroup6
+\symboldletters=\mathgroup7
+\symboldsymbols=\mathgroup8
+LaTeX Font Info:    Redeclaring math alphabet \mathbf on input line 138.
+LaTeX Info: Redefining \bm on input line 204.
+)
+(/usr/share/texlive/texmf-dist/tex/latex/setspace/setspace.sty
+Package: setspace 2011/12/19 v6.7a set line spacing
+)
+(/usr/share/texlive/texmf-dist/tex/latex/mh/mathtools.sty
+Package: mathtools 2013/02/12 v1.13 mathematical typesetting tools
+
+(/usr/share/texlive/texmf-dist/tex/latex/tools/calc.sty
+Package: calc 2007/08/22 v4.3 Infix arithmetic (KKT,FJ)
+\calc@Acount=\count106
+\calc@Bcount=\count107
+\calc@Adimen=\dimen130
+\calc@Bdimen=\dimen131
+\calc@Askip=\skip58
+\calc@Bskip=\skip59
+LaTeX Info: Redefining \setlength on input line 76.
+LaTeX Info: Redefining \addtolength on input line 77.
+\calc@Ccount=\count108
+\calc@Cskip=\skip60
+)
+(/usr/share/texlive/texmf-dist/tex/latex/mh/mhsetup.sty
+Package: mhsetup 2010/01/21 v1.2a programming setup (MH)
+)
+LaTeX Info: Thecontrolsequence`\['isalreadyrobust on input line 129.
+LaTeX Info: Thecontrolsequence`\]'isalreadyrobust on input line 129.
+\g_MT_multlinerow_int=\count109
+\l_MT_multwidth_dim=\dimen132
+\origjot=\skip61
+\l_MT_shortvdotswithinadjustabove_dim=\dimen133
+\l_MT_shortvdotswithinadjustbelow_dim=\dimen134
+\l_MT_above_intertext_sep=\dimen135
+\l_MT_below_intertext_sep=\dimen136
+\l_MT_above_shortintertext_sep=\dimen137
+\l_MT_below_shortintertext_sep=\dimen138
+) (./D2.2.aux)
+\openout1 = `D2.2.aux'.
+
+LaTeX Font Info:    Checking defaults for OML/cmm/m/it on input line 116.
+LaTeX Font Info:    ... okay on input line 116.
+LaTeX Font Info:    Checking defaults for T1/cmr/m/n on input line 116.
+LaTeX Font Info:    ... okay on input line 116.
+LaTeX Font Info:    Checking defaults for OT1/cmr/m/n on input line 116.
+LaTeX Font Info:    ... okay on input line 116.
+LaTeX Font Info:    Checking defaults for OMS/cmsy/m/n on input line 116.
+LaTeX Font Info:    ... okay on input line 116.
+LaTeX Font Info:    Checking defaults for OMX/cmex/m/n on input line 116.
+LaTeX Font Info:    ... okay on input line 116.
+LaTeX Font Info:    Checking defaults for U/cmr/m/n on input line 116.
+LaTeX Font Info:    ... okay on input line 116.
+Package lastpage Info: Please have a look at the pageslts package at
+(lastpage)             http://www.ctan.org/tex-archive/ 
+(lastpage)             macros/latex/contrib/pageslts/ 
+(lastpage)             or
+(lastpage)             http://www.ctan.org/tex-archive/ 
+(lastpage)             install/macros/latex/contrib/pageslts.tds.zip
+(lastpage)             ! on input line 116.
+
+(/usr/share/texlive/texmf-dist/tex/context/base/supp-pdf.mkii
+[Loading MPS to PDF converter (version 2006.09.02).]
+\scratchcounter=\count110
+\scratchdimen=\dimen139
+\scratchbox=\box29
+\nofMPsegments=\count111
+\nofMParguments=\count112
+\everyMPshowfont=\toks24
+\MPscratchCnt=\count113
+\MPscratchDim=\dimen140
+\MPnumerator=\count114
+\makeMPintoPDFobject=\count115
+\everyMPtoPDFconversion=\toks25
+)
+Package caption Info: Begin \AtBeginDocument code.
+Package caption Info: wrapfig package is loaded.
+Package caption Info: End \AtBeginDocument code.
+ <images/seventh.png, id=1, 148.555pt x 125.46875pt>
+File: images/seventh.png Graphic file (type png)
+ <use images/seventh.png>
+Package pdftex.def Info: images/seventh.png used on input line 118.
+(pdftex.def)             Requested size: 148.55463pt x 125.46843pt.
+
+<images/codycoLogo.png, id=3, 310.15875pt x 104.39pt>
+File: images/codycoLogo.png Graphic file (type png)
+
+<use images/codycoLogo.png>
+Package pdftex.def Info: images/codycoLogo.png used on input line 118.
+(pdftex.def)             Requested size: 310.15799pt x 104.38972pt.
+LaTeX Font Info:    Try loading font information for U+msa on input line 118.
+
+(/usr/share/texlive/texmf-dist/tex/latex/amsfonts/umsa.fd
+File: umsa.fd 2013/01/14 v3.01 AMS symbols A
+)
+LaTeX Font Info:    Try loading font information for U+msb on input line 118.
+
+(/usr/share/texlive/texmf-dist/tex/latex/amsfonts/umsb.fd
+File: umsb.fd 2013/01/14 v3.01 AMS symbols B
+)
+
+LaTeX Font Warning: Font shape `OT1/cmss/m/it' in size <14.4> not available
+(Font)              Font shape `OT1/cmss/m/sl' tried instead on input line 118.
+
+
+
+Overfull \hbox (11.42168pt too wide) in paragraph at lines 118--118
+ [][] 
+ []
+
+
+Underfull \vbox (badness 10000) has occurred while \output is active []
+
+ [0
+
+{/var/lib/texmf/fonts/map/pdftex/updmap/pdftex.map} <./images/seventh.png> <./i
+mages/codycoLogo.png>] [1] [2
+
+] (./D2.2.toc)
+\tf@toc=\write3
+\openout3 = `D2.2.toc'.
+
+ [3
+
+
+]
+Chapter 1.
+[4
+
+]
+Chapter 2.
+[5
+
+]
+Chapter 3.
+(./Elmar/PlosCBPreprint.tex [6
+
+]
+<Elmar/picsClean/Fig1ExperimentContactsOnsets.pdf, id=34, 611.45161pt x 246.227
+7pt>
+File: Elmar/picsClean/Fig1ExperimentContactsOnsets.pdf Graphic file (type pdf)
+ <use Elmar/picsClean/Fig1ExperimentContactsOnsets.pdf>
+Package pdftex.def Info: Elmar/picsClean/Fig1ExperimentContactsOnsets.pdf used 
+on input line 98.
+(pdftex.def)             Requested size: 455.24408pt x 183.32526pt.
+ [7]
+
+LaTeX Font Warning: Font shape `OT1/cmss/m/it' in size <12> not available
+(Font)              Font shape `OT1/cmss/m/sl' tried instead on input line 173.
+
+
+[8 <./Elmar/picsClean/Fig1ExperimentContactsOnsets.pdf>] [9]
+<Elmar/picsClean/AProbModelofMotionApproach1.pdf, id=1795, 601.8761pt x 295.985
+6pt>
+File: Elmar/picsClean/AProbModelofMotionApproach1.pdf Graphic file (type pdf)
+ <use Elmar/picsClean/AProbModelofMotionApproach1.pdf>
+Package pdftex.def Info: Elmar/picsClean/AProbModelofMotionApproach1.pdf used o
+n input line 248.
+(pdftex.def)             Requested size: 455.24408pt x 223.88551pt.
+
+Underfull \vbox (badness 2384) has occurred while \output is active []
+
+ [10 <./Elmar/picsClean/AProbModelofMotionApproach1.pdf>]
+<Elmar/picsClean/Fig3Predictions.pdf, id=1855, 571.67538pt x 201.05447pt>
+File: Elmar/picsClean/Fig3Predictions.pdf Graphic file (type pdf)
+
+<use Elmar/picsClean/Fig3Predictions.pdf>
+Package pdftex.def Info: Elmar/picsClean/Fig3Predictions.pdf used on input line
+ 323.
+(pdftex.def)             Requested size: 455.24408pt x 160.11057pt.
+
+<Elmar/picsClean/SubFigPredError9DoF.pdf, id=1856, 595.93993pt x 204.50342pt>
+File: Elmar/picsClean/SubFigPredError9DoF.pdf Graphic file (type pdf)
+
+<use Elmar/picsClean/SubFigPredError9DoF.pdf>
+Package pdftex.def Info: Elmar/picsClean/SubFigPredError9DoF.pdf used on input 
+line 347.
+(pdftex.def)             Requested size: 455.24408pt x 156.21991pt.
+
+<Elmar/picsClean/Fig4ModelComparison.pdf, id=1857, 584.84427pt x 314.70209pt>
+File: Elmar/picsClean/Fig4ModelComparison.pdf Graphic file (type pdf)
+
+<use Elmar/picsClean/Fig4ModelComparison.pdf>
+Package pdftex.def Info: Elmar/picsClean/Fig4ModelComparison.pdf used on input 
+line 372.
+(pdftex.def)             Requested size: 455.24408pt x 244.97682pt.
+ [11] [12 <./Elmar/picsClean/Fig3Predictions.pdf>] [13 <./Elmar/picsClean/SubFi
+gPredError9DoF.pdf>] [14 <./Elmar/picsClean/Fig4ModelComparison.pdf>] [15] [16]
+ [17]
+
+Package amsmath Warning: Foreign command \atopwithdelims;
+(amsmath)                \frac or \genfrac should be used instead
+(amsmath)                 on input line 699.
+
+[18] [19] [20] [21]
+<Elmar/picsSupp/SubFigStewartPert.pdf, id=1953, 582.77336pt x 202.45517pt>
+File: Elmar/picsSupp/SubFigStewartPert.pdf Graphic file (type pdf)
+
+<use Elmar/picsSupp/SubFigStewartPert.pdf>
+Package pdftex.def Info: Elmar/picsSupp/SubFigStewartPert.pdf used on input lin
+e 870.
+(pdftex.def)             Requested size: 455.24408pt x 158.15535pt.
+
+<Elmar/picsSupp/SubFigANOVAContactsUPvsPNoTitle.pdf, id=1954, 620.07661pt x 466
+.1415pt>
+File: Elmar/picsSupp/SubFigANOVAContactsUPvsPNoTitle.pdf Graphic file (type pdf
+)
+ <use Elmar/picsSupp/SubFigANOVAContactsUPvsPNoTitle.pdf>
+Package pdftex.def Info: Elmar/picsSupp/SubFigANOVAContactsUPvsPNoTitle.pdf use
+d on input line 881.
+(pdftex.def)             Requested size: 318.66946pt x 239.55698pt.
+
+<Elmar/picsSupp/SubFigWristPriorities.pdf, id=1955, 529.77605pt x 284.06125pt>
+File: Elmar/picsSupp/SubFigWristPriorities.pdf Graphic file (type pdf)
+
+<use Elmar/picsSupp/SubFigWristPriorities.pdf>
+Package pdftex.def Info: Elmar/picsSupp/SubFigWristPriorities.pdf used on input
+ line 911.
+(pdftex.def)             Requested size: 273.14922pt x 146.46437pt.
+
+<Elmar/picsSupp/NumGaussianFeatures.pdf, id=1956, 434.42317pt x 285.63663pt>
+File: Elmar/picsSupp/NumGaussianFeatures.pdf Graphic file (type pdf)
+
+<use Elmar/picsSupp/NumGaussianFeatures.pdf>
+Package pdftex.def Info: Elmar/picsSupp/NumGaussianFeatures.pdf used on input l
+ine 940.
+(pdftex.def)             Requested size: 227.62204pt x 149.66074pt.
+
+<Elmar/picsSupp/SubFigPredErrorTrunkvsLW.pdf, id=1957, 291.77684pt x 187.26556p
+t>
+File: Elmar/picsSupp/SubFigPredErrorTrunkvsLW.pdf Graphic file (type pdf)
+ <use Elmar/picsSupp/SubFigPredErrorTrunkvsLW.pdf>
+Package pdftex.def Info: Elmar/picsSupp/SubFigPredErrorTrunkvsLW.pdf used on in
+put line 1010.
+(pdftex.def)             Requested size: 182.09485pt x 116.87209pt.
+
+<Elmar/picsSupp/FigRewards.png, id=1958, 788.64638pt x 346.53465pt>
+File: Elmar/picsSupp/FigRewards.png Graphic file (type png)
+
+<use Elmar/picsSupp/FigRewards.png>
+Package pdftex.def Info: Elmar/picsSupp/FigRewards.png used on input line 1022.
+
+(pdftex.def)             Requested size: 455.24408pt x 200.03845pt.
+) (./D2.2.bbl [22 <./Elmar/picsSupp/SubFigStewartPert.pdf>] [23 <./Elmar/picsSu
+pp/SubFigANOVAContactsUPvsPNoTitle.pdf> <./Elmar/picsSupp/SubFigWristPriorities
+.pdf
+
+pdfTeX warning: /usr/bin/pdflatex (file ./Elmar/picsSupp/SubFigWristPriorities.
+pdf): PDF inclusion: multiple pdfs with page group included in a single page
+>] [24 <./Elmar/picsSupp/NumGaussianFeatures.pdf> <./Elmar/picsSupp/SubFigPredE
+rrorTrunkvsLW.pdf
+
+pdfTeX warning: /usr/bin/pdflatex (file ./Elmar/picsSupp/SubFigPredErrorTrunkvs
+LW.pdf): PDF inclusion: multiple pdfs with page group included in a single page
+
+>] [25 <./Elmar/picsSupp/FigRewards.png>] [26
+
+] [27] [28])
+
+AED: lastpage setting LastPage
+[29] (./D2.2.aux) ) 
+Here is how much of TeX's memory you used:
+ 5654 strings out of 495028
+ 84592 string characters out of 6181497
+ 162233 words of memory out of 5000000
+ 8712 multiletter control sequences out of 15000+600000
+ 15543 words of font info for 56 fonts, out of 8000000 for 9000
+ 14 hyphenation exceptions out of 8191
+ 42i,12n,45p,1095b,327s stack positions out of 5000i,500n,10000p,200000b,80000s
+</usr/share/texlive/texmf-dist/fonts/type1/public/amsfonts/c
+m/cmbx12.pfb></usr/share/texlive/texmf-dist/fonts/type1/public/amsfonts/cm/cmbx
+8.pfb></usr/share/texlive/texmf-dist/fonts/type1/public/amsfonts/cm/cmex10.pfb>
+</usr/share/texlive/texmf-dist/fonts/type1/public/amsfonts/cm/cmmi12.pfb></usr/
+share/texlive/texmf-dist/fonts/type1/public/amsfonts/cm/cmmi6.pfb></usr/share/t
+exlive/texmf-dist/fonts/type1/public/amsfonts/cm/cmmi8.pfb></usr/share/texlive/
+texmf-dist/fonts/type1/public/amsfonts/cm/cmmib10.pfb></usr/share/texlive/texmf
+-dist/fonts/type1/public/amsfonts/cmextra/cmmib8.pfb></usr/share/texlive/texmf-
+dist/fonts/type1/public/amsfonts/cm/cmr12.pfb></usr/share/texlive/texmf-dist/fo
+nts/type1/public/amsfonts/cm/cmr6.pfb></usr/share/texlive/texmf-dist/fonts/type
+1/public/amsfonts/cm/cmr8.pfb></usr/share/texlive/texmf-dist/fonts/type1/public
+/amsfonts/cm/cmss12.pfb></usr/share/texlive/texmf-dist/fonts/type1/public/amsfo
+nts/cm/cmssbx10.pfb></usr/share/texlive/texmf-dist/fonts/type1/public/amsfonts/
+cm/cmssi12.pfb></usr/share/texlive/texmf-dist/fonts/type1/public/amsfonts/cm/cm
+sy10.pfb></usr/share/texlive/texmf-dist/fonts/type1/public/amsfonts/cm/cmsy6.pf
+b></usr/share/texlive/texmf-dist/fonts/type1/public/amsfonts/cm/cmsy8.pfb></usr
+/share/texlive/texmf-dist/fonts/type1/public/amsfonts/cm/cmtt12.pfb></usr/share
+/texlive/texmf-dist/fonts/type1/public/amsfonts/symbols/msbm10.pfb></usr/share/
+texmf/fonts/type1/public/tex-gyre/qhvr.pfb>
+Output written on D2.2.pdf (30 pages, 4121956 bytes).
+PDF statistics:
+ 2254 PDF objects out of 2487 (max. 8388607)
+ 1489 compressed objects within 15 object streams
+ 0 named destinations out of 1000 (max. 500000)
+ 66 words of extra memory for PDF output out of 10000 (max. 10000000)
+

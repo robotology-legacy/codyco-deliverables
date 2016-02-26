@@ -1,0 +1,160 @@
+%% Template for EU deliverable, using the deliverable.sty style file
+
+\documentclass[12pt,a4paper,twoside]{article}
+
+%% common package
+\usepackage[headers]{deliverable}
+\usepackage{xspace}
+\usepackage{verbatim}
+\usepackage[usenames]{color}
+\usepackage[usenames,dvipsnames]{xcolor}
+\usepackage{graphicx}
+\usepackage{url}
+\usepackage{array}
+\usepackage{hyperref}
+\usepackage{courier}
+%%
+
+%%insert here other packages needed by sections
+
+%%
+
+%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
+%%% Titlepage
+%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
+
+% declaration of variables used in style
+\deliverableDocnumber{D1.3}
+\deliverableTitle{Software for dealing with compliant contacts}
+
+\deliverableAuthor{Michael Mistry}
+\deliverableResponsiblePartner{UB}
+\deliverableAffiliation{% Insert here authors affiliations
+ $^1$ UB
+}
+
+\deliverableReviewer{Name of internal reviewer}
+\deliverableCoordinator{Francesco Nori}
+\deliverableActivityNumber{n} %% n=1,..,10
+\deliverableActivity{SW}
+\deliverableDoctype{Deliverable} %% or Prototype
+\deliverableClassification{Public} % or Consortium
+\deliverableDistribution{Consortium} %
+\deliverableStatus{Draft} % Draft or Final
+\deliverableDeliveryDate{29/2/2016}
+\deliverableFile{D1.2.pdf} % please do not use "-" in the name
+\deliverableVersion{1.0}
+\deliverableDate{Feb.~29, 2016}
+\deliverableYear{2015}
+\deliverablePages{\pageref{LastPage}}
+\deliverableChangelog{v.1.0 & Feb 13, 2013 & First draft %%\\\hline
+%%              v.2.0 & Feb 20, 2007 & Final version
+}
+\deliverableProjectStartingDate{1st March 2013}
+\deliverableProjectEndDate{28th February 2017}
+\deliverableProjectAcronym{CoDyCo}
+\deliverableProjectTitle{Whole-Body Compliant Dynamical Contacts in Cognitive Humanoids}
+\deliverableContractNumber{600716}
+\deliverableProjectCoordinator{Istituto Italiano di Tecnologia}
+\deliverableProjectUrl{www.codyco.eu}
+\deliverableFrameworkProgramme{FP7}
+
+\deliverableWorkpackage{deliv WP1}
+\deliverableEditors{Michael Mistry}
+\deliverableContributors{Morteza Azad, Elmar Rueckert}
+\deliverableReviewers{}
+\deliverableAbstract{This deliverable references the open-source software
+  repositories, and corresponding documentation, developed under the CoDyCo
+  project for dealing with compliant contacts.}
+\deliverableReviewers{}
+
+\deliverableKeywordList{CoDyCo, software, whole-body, compliant contacts,
+  postural control, balancing, learning, contact parameter estimation}
+
+%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
+%%% Sections
+%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
+
+%% constants
+\newcommand{\botegoCaps}{BOTEGO}
+\newcommand{\certhCaps}{CERTH}
+\newcommand{\cybionCaps}{CYBION}
+\newcommand{\nuigCaps}{NUIG}
+\newcommand{\ubitechCaps}{UBITECH}
+
+%%
+%%%%%%%%%%%%%%%%%%%%%%%%%%%%%% BEGIN DOCUMENT
+\begin{document}
+
+\deliverableMaketitle
+
+%%TODO move to style
+\newcolumntype{L}[1]{>{\raggedright\let\newline\\\arraybackslash\hspace{0pt}}m{#1}}
+\newcolumntype{C}[1]{>{\centering\let\newline\\\arraybackslash\hspace{0pt}}m{#1}}
+\newcolumntype{R}[1]{>{\raggedleft\let\newline\\\arraybackslash\hspace{0pt}}m{#1}}
+
+\textbf{Document Revision History}
+\begin{center}
+\begin{tabular}{|C{2cm}|C{3cm}|p{5cm}|C{4cm}|}
+\hline
+\textbf{Version}&\textbf{Date}&\textbf{Description}&\textbf{Author}\\\hline
+First draft & 29/2/2016 & initial release & Michael Mistry\\\hline
+\end{tabular}
+\end{center}
+ 
+ \clearpage
+
+\newpage
+\renewcommand*\contentsname{Table of Contents}
+\renewcommand*\listfigurename{Index of Figures}
+\tableofcontents
+\newpage
+\listoffigures
+\newpage
+
+%%%%%%%%%%%%%%%%%%%%%%%% Start deliverable content here.
+
+\section{Software Modules}
+
+All software developed for the CoDyCo project, including modules for the
+control of balancing and reaching with multiple contacts, and also dealing
+with compliant contacts are available as open-source within the following
+repositories:
+\begin{itemize}
+\item \texttt{codyco-superbuild}: Main software repository.
+\item \texttt{idyntree}: Dynamics library designed for free floating robots.
+\item \texttt{wholebodyinterface}: C++ Interfaces to sensor measurements,
+  state estimations, kinematic/dynamic model and actuators for a floating base
+  robot.
+\item \texttt{yarp-wholebodyinterface}: Implementation of the
+  wholeBodyInterface for YARP robots.
+\item \texttt{WB-Toolbox}: Simulink Toolbox for rapid prototyping of Whole
+  Body Robot Controllers.
+\item \texttt{codyco-modules}: Whole-body Compliant Dynamical Contacts in
+  Cognitive Humanoids.
+\item \texttt{mex-wholebodymodel}: Matlab MEX interface to the iWholeBodyModel
+  interface.
+\item \texttt{codyco-commons}: Miscellanous libraries developed in the CoDyCo
+  project.
+\item \texttt{WBI-Toolbox-controllers}: Controllers developed using the
+  WB-Toolbox.
+\item \texttt{LWR-ContactParams}: Locally Weighted Regression (LWR) algorithm
+  for learning contact parameters of compliant contacts (this is available
+  from \url{https://github.com/azadm/LWR_for_ContactParams.git}).
+\end{itemize}
+
+Further details and freely available software downloads are available via
+github: \\ \url{https://github.com/robotology} \\
+
+Additional documentation is available via the icub wiki: \\
+\url{http://wiki.icub.org/codyco/dox/html/index.html} \\
+
+
+
+\end{document}
+
+%%% Local Variables:
+%%% mode: latex
+%%% TeX-master: t
+%%% save-place: t
+%%% End:

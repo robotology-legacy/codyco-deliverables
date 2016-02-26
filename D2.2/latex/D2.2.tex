@@ -1,0 +1,207 @@
+%% Template for EU deliverable, using the deliverable.sty style file
+
+\documentclass[12pt,a4paper,twoside]{report}
+
+%% common package
+\usepackage[headers]{deliverable}
+\usepackage{xspace}
+\usepackage{verbatim}
+\usepackage[usenames]{color}
+\usepackage[usenames,dvipsnames]{xcolor}
+%\usepackage{graphicx}
+\usepackage{url}
+\usepackage{array}
+\usepackage{graphics} 		% for pdf, bitmapped graphics files
+\usepackage{graphicx}
+\usepackage{epsfig} 		% for postscript graphics files
+\usepackage{epstopdf}
+\usepackage{caption}
+\usepackage[labelformat=simple]{subcaption}
+\renewcommand\thesubfigure{(\alph{subfigure})}
+\usepackage{nameref}
+\usepackage{multirow}
+\usepackage{color}
+%\usepackage{subfigure}
+%%
+
+%%insert here other packages needed by sections
+%\usepackage{esint}
+\usepackage{amstext}
+\usepackage{amsmath}	 	% assumes amsmath package installed
+\usepackage{amssymb}  		% assumes amsmath package installed
+%\renewcommand\thesubfigure{(\alph{subfigure})}
+\usepackage{wrapfig}
+\usepackage[]{nomencl}		% nomenclatures
+%\usepackage{dsfont}
+%%
+
+%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
+%%% Special Commands and Packages needed by Elmar
+%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
+\usepackage{bm}
+\usepackage{amsfonts}
+\usepackage{setspace}
+\usepackage{mathtools}
+\newcommand{\FigureAbbr}{Fig~}%PLOS CB style
+\newcommand{\FigureAbbrP}{Fig~}%PLOS CB style
+\newcommand{\N}{\ensuremath{\mathcal{N}}}
+\renewcommand{\vec}[1]{\ensuremath{\boldsymbol{#1}}}
+
+%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
+%%% Titlepage
+%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
+
+% declaration of variables used in style
+\deliverableDocnumber{D2.2}
+\deliverableTitle{Models of human whole body motions in contact with rigid and
+  compliant support surfaces}
+
+\deliverableAuthor{Morteza Azad$^{1}$, Michael Mistry$^{1}$ and Jan
+  Babi\v{c}$^{2}$}
+\deliverableResponsiblePartner{JSI}
+\deliverableAffiliation{$^1$ School of Computer Science, University of
+  Birmingham, UK.
+  $^2$ Department for Automation, Biocybernetics and Robotics, Jo\v{z}ef
+  Stefan Institute, Ljubljana, Slovenia.}
+
+\deliverableReviewer{}
+\deliverableCoordinator{Jan Babi\v{c}}
+\deliverableActivityNumber{n} %% n=1,..,10
+\deliverableActivity{Activity Name}
+\deliverableDoctype{Deliverable} %% or Prototype
+\deliverableClassification{Public} % or Consortium
+\deliverableDistribution{Consortium} %
+\deliverableStatus{Final} % Draft or Final
+\deliverableDeliveryDate{29/2/2016}
+\deliverableFile{Dxx\_DeliverableName.pdf} % please do not use "-" in the name
+\deliverableVersion{1.0}
+\deliverableDate{29/2/2016}
+\deliverableYear{2016}
+\deliverablePages{\pageref{LastPage}}
+\deliverableChangelog{v.0.1 & Feb 04, 2016 & Initial draft %%\\\hline
+%%              v.2.0 & Feb 20, 2007 & Final version
+}
+\deliverableProjectStartingDate{1st March 2013}
+\deliverableProjectEndDate{28th February 2017}
+\deliverableProjectAcronym{CoDyCo}
+\deliverableProjectTitle{Whole-Body Compliant Dynamical Contacts in Cognitive Humanoids}
+\deliverableContractNumber{600716}
+\deliverableProjectCoordinator{Istituto Italiano di Tecnologia}
+\deliverableProjectUrl{www.codyco.eu}
+\deliverableFrameworkProgramme{FP7}
+
+\deliverableWorkpackage{WP2}
+\deliverableEditors{Morteza Azad, Michael Mistry and Jan Babi\v{c}}
+\deliverableContributors{Morteza Azad (UB), Michael Mistry (UB), Chie
+  Takahashi (UB), Elmar Rueckert (TUD), Jan Peters (TUD), Jernej \v{C}amernik
+  (JSI), Jan Babi\v{c} (JSI)}
+\deliverableReviewers{}
+\deliverableAbstract{The scope of the current deliverable is to present the
+  results on developing models of human whole body motions in contact with
+  environment.}
+\deliverableKeywordList{contacts, model learning, probabilistic movement
+  representations}
+
+
+\def\BibPath{./manuscript}       % location of bibtex-files
+%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
+%%% Sections
+%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
+
+%% constants
+\newcommand{\botegoCaps}{BOTEGO}
+\newcommand{\certhCaps}{CERTH}
+\newcommand{\cybionCaps}{CYBION}
+\newcommand{\nuigCaps}{NUIG}
+\newcommand{\ubitechCaps}{UBITECH}
+
+%%
+%%%%%%%%%%%%%%%%%%%%%%%%%%%%%% BEGIN DOCUMENT
+\begin{document}
+
+\deliverableMaketitle
+
+%%TODO move to style
+\newcolumntype{L}[1]{>{\raggedright\let\newline\\\arraybackslash\hspace{0pt}}m{#1}}
+\newcolumntype{C}[1]{>{\centering\let\newline\\\arraybackslash\hspace{0pt}}m{#1}}
+\newcolumntype{R}[1]{>{\raggedleft\let\newline\\\arraybackslash\hspace{0pt}}m{#1}}
+
+\textbf{Document Revision History}
+\begin{center}
+\begin{tabular}{|C{2cm}|C{3cm}|p{5cm}|C{4cm}|}
+\hline
+\textbf{Version}&\textbf{Date}&\textbf{Description}&\textbf{Author}\\\hline
+v. 1.0 & 29 Feb 2016 & Final Version & Morteza Azad\\\hline
+\end{tabular}
+\end{center}
+ 
+ \clearpage
+
+\newpage
+\renewcommand*\contentsname{Table of Contents}
+\renewcommand*\listfigurename{Index of Figures}
+\tableofcontents
+\newpage
+%\listoffigures
+%\newpage
+
+%%%%%%%%%%%%%%%%%%%%%%%% Start deliverable content here.
+
+\chapter{Introduction}
+
+%Short summary of our collaborative contribution
+
+This deliverable summarizes the contribution of the CoDyCo consortium in tasks
+T2.2 and T2.3 at the end of the third year.  These tasks are \textit{design of
+  models for human whole body motion in contact}, and \textit{strategies of
+  dealing with uncertainties in contact}, respectively.  The results are
+briefly explained in four chapters.  In chapter 2, dynamic manipulability of
+the centre of mass (CoM) is introduced as a metric for measuring the balance
+ability of legged robots while they are in contact with their environment.
+Experiments on human subjects show the applicability of this theory in
+analysing balancing recovery motion in humans.  In chapter 3, the effects of
+using handles is studied for posture control of standing subjects while they
+are perturbed by external forces.  It is shown that the use of handles
+significantly reduces the displacement of the centre of pressure.  Also, it is
+observed that subjects clearly relied on using the handle for support, even
+though the perturbations did not pose a significant balance threat.  Chapter 4
+investigates the use of supporting contact (and its relationship with task)
+while it is required for accomplishing a task.  In the experiments, human
+subjects are asked to reach a target by the motion of one arm while they has
+to maintain their postural balance with the other arm.  In a novel movement
+model, strong correlations between both arms are found which were used to
+predict the reaching motion solely from observing the motion related to
+keeping postural stability. This finding has the potential to impact pre-tests
+of central nervous system disorders that are less prone to factors like
+stress, sleep deprivation and age compared to the classical cognitive tests.
+In robotics, the model can be exploited to overcome current limitations of
+autonomous robots in interacting with the environment through supportive
+contacts.
+
+% \chapter{Executive Summary}
+
+\chapter{Manipulability of the Center of Mass: A Tool to Study, Analyse and
+  Measure the Ability to Balance (UB/JSI)}\label{sec:Morteza}
+\input{Morteza/manipulability}
+
+\chapter{Postural Control Precedes and Predicts Volitional Motor Control
+  (TUD/JSI)}\label{sec:ElmarPrePrint}
+\input{Elmar/PlosCBPreprint}
+
+\chapter{Use of rigid contacts during continuous perturbations
+  (JSI)}\label{sec:Jernej}
+\input{Jernej/rigidContacts}
+
+\bibliographystyle{plain}
+\bibliography{manuscriptAll,rigidContacts}
+
+
+
+
+\end{document}
+
+%%% Local Variables:
+%%% mode: latex
+%%% TeX-master: t
+%%% save-place: t
+%%% End:
