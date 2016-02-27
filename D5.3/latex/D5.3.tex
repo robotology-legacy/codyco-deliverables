@@ -9,6 +9,7 @@
 \usepackage[usenames]{color}
 \usepackage[usenames,dvipsnames]{xcolor}
 \usepackage{graphicx}
+
 \usepackage{url}
 \usepackage{array}
 \usepackage{amsmath,bm,amsfonts}
@@ -119,6 +120,8 @@
 \hline
 \textbf{Version}&\textbf{Date}&\textbf{Description}&\textbf{Author}\\\hline
 First draft & 19 Feb 2016 & In this version we simply write down a few considerations on the third year validation scenario as discussed after the mid-year CoDyCo meeting in Birmingham. & Daniele Pucci \\\hline
+\hline
+Final version & 27 Feb 2016 & None & Daniele Pucci \\\hline
 \end{tabular}
 \end{center}
  
@@ -140,14 +143,16 @@ Differently from  the first and second year validation scenarios, the third year
 As in the previous validation scenarios, the control objective is  the regulation of the robot momentum. The rate-of-change of this momentum  equals the summation of all external wrenches applied to the system, and controlling the external wrenches to stabilize the robot's momentum is a known control strategy for humanoids when balancing. One of the main difficulties when dealing with compliant and dynamical contacts in this context comes from the fact that the external wrenches may not be  instantaneously related to the robot's torques, i.e. the input to the system. 
 This is the case, for instance, of a humanoid standing on two springs, which exert forces on the robot's feet that depend on the relative compressions only. 
 
-There may be some particular soft terrains, however, that exert forces and torques not only depending on the relative compressions, but also on the robot's joint torques. In these cases, the soft terrain is subject to some rigid constraints that may allow the control of the robot's momentum through the external forces, which thus depend on the joint torques. This is the case of a thin, highly damped carpet, which can be modeled, in the first approximation, as a continuum of vertical springs. Each of these springs is assumed to compress vertically only, and the other degrees of freedom are rigidly constrained, thus creating the aforementioned relation between external forces and joint torques~\cite{deliverable32}. The first experimental demonstration during the review meeting consists of showing the humanoid robot iCub while it balances on a soft carpet of the above kind.
+There may be some particular soft terrains, however, that exert forces and torques not only depending on the relative compressions, but also on the robot's joint torques. In these cases, the soft terrain is subject to some rigid constraints that may allow the control of the robot's momentum through the external forces, which thus depend on the joint torques. This is the case of a thin, highly damped carpet, which can be modeled, in the first approximation, as a continuum of vertical springs. Each of these springs is assumed to compress vertically only, and the other degrees of freedom are rigidly constrained, thus creating the aforementioned relation between external forces and joint torques. The first experimental demo during the review meeting consists of showing the humanoid robot iCub while it balances on a soft carpet of the above kind.
 
 
 We then go one step further and  present control algorithms to deal with \emph{dynamical} contacts. The application scenario of the controller consists of the humanoid robot iCub balnacing on a semi-cylindrical seesaw. In this case, the contacts between the robot ad its environment are subject to the seesaw dynamics, and the control of the robot is particularly challenging. 
 
 The iCub will be torque controlled and the controller assumes that desired torques are exactly executed by a lower level torque control. Dynamics will be computed with a custom library, iDynTree\footnote{\url{http://wiki.icub.org/codyco/dox/html/group__iDynTree.html}}, built on top of KDL\footnote{\url{http://www.orocos.org/kdl}}. 
 
-The deliverable is organized as follows. Section \ref{sec:secondYearScenario} gives an high level presentation of the validation scenario to be presented at the second year review meeting. Section \ref{sec:TSID} discusses the numerical technique (TSID) used to implement the validation scenario as a prioritization of concurrent tasks. Section \ref{sec:tasks} discusses the set of control tasks that will be implemented in order to perform the validation scenario.  Their sequencing in the form of a finite state machine is discussed in Section \ref{sec:taskSequencing} and issues related to task switching discussed in Section \ref{sec:taskReferences}.
+The deliverable is organized as follows. Section \ref{sec:background} presents the notation, the robot equations of motion, and recalls on the controller implemented for the first and second year validation scenario. Section \ref{sec:modellingAndControlSoft} discusses the modeling and control design in the case a humanoid must balance on a thin, compliant carpet. 
+Section \ref{sec:controllerSeeSaw} presents the control design in the case the humanoid must balance on dynamical contacts, and the theory is applied to the case of balancing on a seesaw. Section \ref{sec:estimation} presents the estimation algorithms used to estimate the floating base of the robot and the compliance of the thin carpet used for the validation scenario.
+
 
 \section{Background} 
 \label{sec:background}
@@ -647,9 +652,7 @@ M &= S(p_M - \bar{p})F + \frac{kld}{12}|n^\top e_3|S(e_3)\Lambda(\imath,\jmath)e
     \end{alignat}
 \end{subequations}
 with 
-\begin{equation}
-\Lambda = d^2 \jmath \jmath^\top + l^2 \imath \imath^\top ,
-\end{equation}
+$\Lambda = d^2 \jmath \jmath^\top + l^2 \imath \imath^\top$,
  $p_M$  the central point of the rectangular surface,  
 %$\bar{p}~{=}~(\bar{x},\bar{y},\bar{z})$ the point with respect to which the torque $M$ is expressed, 
 and $\imath$ and 
@@ -662,7 +665,7 @@ $\jmath^\top e_3 = 0$. As a consequence, the second term on the right hand side 
 \subsubsection{Constraints associated with the flat plate due to friction}
 Consider Figure~\ref{fig:compliantCarpet3D}, where $v \in \mathbb{R}^3$ denotes the velocity of the point $p_M$, and $\omega \in \mathbb{R}^3$ the angular velocity of the flat plate, both expressed with respect to the inertial frame. Then, it is reasonable to assume that friction effects  forbid any rotation of the plate about the axis $n$ as long as friction forces belong to the associated friction cones, i.e. $n^\top \omega = 0$. In addition, it is also reasonable  to assume that friction effects forbid the velocity of any point of the plate to be tangential to the plate itself. It is straightforward to verify that the velocity of any point $p$ of the flat plate has null tangential velocity if and only if the velocity of the point $p_M$ has  null tangential velocity when $n^\top \omega = 0$. In light of the above,  we assume that as long as friction forces belong to the associated friction cones, one has:
 \begin{subequations}
-\label{constraintsWithVerticalMotion}
+\label{constraintsWithVerticalMotion1}
     \begin{alignat}{3}
 \imath^\top v &= 0 \\
 \jmath^\top v &= 0 \\
@@ -692,16 +695,38 @@ typically  associated with very high value of $k_v$, which implies fast converge
 \end{equation}
 Since the weight of the plate is constant, then the height $z_M$ converges to the same value independently of an external, vanishing perturbation applied to the plate. This fact combined with the high value of carpet's damping justify the assumption~\eqref{constraintsNoVerticalMotion}.
 
-
+Note that the constraints~\eqref{constraintsWithVerticalMotion}~\eqref{constraintsNoVerticalMotion} can be compactly written as:
+\begin{IEEEeqnarray}{RCL}
+\label{constraintsWithVerticalMotionCompact}
+ \IEEEyesnumber
+ H(\imath,\jmath,n)\bm{v} &=& 0, 
+\end{IEEEeqnarray}
+where
+\begin{IEEEeqnarray}{RCL}
+\label{constraintsWithVerticalMotionCompactDetails}
+ \IEEEyesnumber
+ H(\imath,\jmath,n) &:=&
+ \begin{pmatrix}
+ \imath^\top &&  0_{1\times 3} \\
+  \jmath^\top && 0_{1\times 3} \\
+   e^\top_3 &&0_{1\times 3} \\
+   0_{1\times 3}  && n^\top\\ 
+ \end{pmatrix} \IEEEyessubnumber \\
+ \bm{v} &:=&
+  \begin{pmatrix}
+  v \\ 
+  \omega 
+ \end{pmatrix} \IEEEyessubnumber
+\end{IEEEeqnarray}
 
 \subsubsection{Kinematic constraints and contact forces associated with the robot's feet}
 
 
-Assume that the robot is balancing on both feet, underneath which there is the compliant carpet characterized by the equations presented above. In view of Eq.~\eqref{constraintsWithVerticalMotion}-\eqref{constraintsNoVerticalMotion}, the constraints acting on both feet  can be compactly written as:
+Assume that the robot is balancing on both feet, underneath which there is the compliant carpet characterized by the equations presented above. In view of Eqs.~\eqref{constraintsWithVerticalMotionCompactDetails}, the constraints acting on both feet  can be compactly written as:
 \begin{IEEEeqnarray}{RCL}
-\label{constraintsWithVerticalMotionCompact}
+\label{constraintsWithVerticalMotionCompact1}
  \IEEEyesnumber
- \bar{H} ^{\mathcal{I}} {v}_f &=& 0, 
+ \bar{H}  {v}_f &=& 0, 
 \end{IEEEeqnarray}
 with 
 \begin{IEEEeqnarray}{RCL}
@@ -718,21 +743,21 @@ with
  \bm{v}_R
 \end{pmatrix}, \IEEEyessubnumber
 \end{IEEEeqnarray}
-and $(\imath_L,\jmath_L,n_L)$ and $(\imath_R,\jmath_R,n_R)$ two frames attached to the left and right foot, respectively (as indicated in Figure~\eqref{fig:compliantCarpet3D}b and  $\bm{v}_L$ and $\bm{v}_R$ the linear and angular velocity of the central point of the robot's feet, respectively. Now, the feet velocity $ ^{\mathcal{I}}{v}_f$ can be expressed in terms of the robot velocity $\nu$ though its Jacobian, i.e. 
-\[ ^{\mathcal{I}}{v}_f = J(q)\nu.\]
+and $(\imath_L,\jmath_L,n_L)$ and $(\imath_R,\jmath_R,n_R)$ two frames attached to the left and right foot, respectively (as indicated in Figure~\eqref{fig:compliantCarpet3D}b and  $\bm{v}_L$ and $\bm{v}_R$ the linear and angular velocity of the central point of the robot's feet, respectively. Now, the feet velocity $ {v}_f$ can be expressed in terms of the robot velocity $\nu$ though its Jacobian, i.e. 
+\[{v}_f = J(q)\nu.\]
 By substituting the above equation into~\eqref{constraintsWithVerticalMotionCompact}, one obtains
 \begin{IEEEeqnarray}{RCL}
 \label{constraintsCompactComplJBar}
  \IEEEyesnumber
- {J}_s(q)\nu &=& 0\IEEEyessubnumber \\
+% {J}_s(q)\nu &=& 0\IEEEyessubnumber \\
  {\dot{J}}_s(q)\nu + {J}_s(q)\dot{\nu} &=& 0\IEEEyessubnumber
 \end{IEEEeqnarray}
 where
-\begin{IEEEeqnarray}{RCL}
-\label{constraintsCompactJBar}
- \IEEEyesnumber
- {J}_s(q) &:=& \bar{H}(q)J(q). 
-\end{IEEEeqnarray}
+%\begin{IEEEeqnarray}{RCL}
+%\label{constraintsCompactJBar}
+% \IEEEyesnumber
+ ${J}_s(q) := \bar{H}(q)J(q). $
+%\end{IEEEeqnarray}
 Hence, the constraint equations when the robot stands on a compliant carpet have the same form of  those when standing on rigid constraints (compare Eqs.~\eqref{constraintsCompactComplJBar} and~\eqref{constraintsRigid}). What does change between these two situations is the number of rigid constraints acting on the system. In fact, in the case the robot stands on rigid contacts, one has 12 kinematic constraints, while when the humanoid balances on the soft carpet, %described in  Section~\ref{sec:modelCarpet}, 
 one has 8 rigid constraints acting on the system. 
 
@@ -742,7 +767,7 @@ The rigid constraints generate eight contact \emph{forces} $f^{rigid} \in \mathb
        {M}(q)\dot{{\nu}} + {C}(q, {\nu}) {\nu} + {G}(q) &=&  B \tau 
        + {J}_s^\top(q) f^{rigid} + J^\top(q) f^{comp} 
 \end{IEEEeqnarray}
-By combining the above equation with the constraints~\eqref{constraintsCompactComplJBar}, one can find an expression of the contact forces $f^{rigid}$, which thus depend on the  torque $\tau$, and can be assumed as an artificial control input. Note that the effect of the compliant forces $f^{comp}$ in Eq.~\eqref{eq:system_dynamicsCarpet} is also taken into account. Let $f^{comp}_{L} \in \mathbb{R}^6$ and $f^{comp}_{R}\in \mathbb{R}^6$ denote the compliant wrenches acting on the left and right foot, respectively. Assuming that the contact torques $M$ in  Eq.~\eqref{forceTorqueOn3DBentPlate} are expressed w.r.t. the feet central point, i.e. $ \bar{p} = p_M $, and that the feet can be approximated as two rectangles of the same dimension, one has
+By combining the above equation with the constraints~\eqref{constraintsCompactComplJBar}, one can find an expression of the contact forces $f^{rigid}$, which  depend on the  torque $\tau$ and can be assumed as an artificial control input. Note that the effect of the compliant forces $f^{comp}$ in Eq.~\eqref{eq:system_dynamicsCarpet} is also taken into account. Let $f^{comp}_{L} \in \mathbb{R}^6$ and $f^{comp}_{R}\in \mathbb{R}^6$ denote the compliant wrenches acting on the left and right foot, respectively. Assuming that the contact torques in  Eq.~\eqref{forceTorqueOn3DBentPlate} are expressed w.r.t. the feet central point, i.e. $ \bar{p} = p_M $, and that the feet can be approximated as two rectangles of the same dimension, one has
 \begin{IEEEeqnarray}{RCL}
 \label{fcompl}
 f_{comp} =
@@ -763,6 +788,7 @@ $z^{L}_M = e^\top_3 p^{L}_M$ and $z^{R}_M = e^\top_3 p^{R}_M$.
 \subsection{Control design}
 
 Recall that the control objective is the asymptotic stabilization of the robot momentum, the rate of change of which equals the net external wrench acting on the system. In the case the robot is balancing on the compliant carpet described in Section~\eqref{compliantCarpet3D}, one then has
+
 \begin{IEEEeqnarray}{RCL}
 	\label{centroidalMomentumDynComp}
 	\yesnumber
@@ -772,8 +798,8 @@ Recall that the control objective is the asymptotic stabilization of the robot m
 	\end{pmatrix}	
 	(\bar{H}^\top(q) f^{rigid} + f^{comp}),
 \end{IEEEeqnarray}
-where $f^{rigid}$, being dependent on the input torques $\tau$, can be assumed as a control input in the above dynamics. 
 
+where $f^{rigid}$, being dependent on the input torques $\tau$, can be assumed as a control input in the above dynamics. 
 In light of the above, the control problem~\eqref{optTorque} is modified as follows to deal with the compliant carpet.
 
 \begin{IEEEeqnarray}{RCL}
@@ -794,6 +820,7 @@ In light of the above, the control problem~\eqref{optTorque} is modified as foll
 \end{IEEEeqnarray}
 
 Analogously to what we discussed in Section~\ref{sec:firstSecondValid}, the above control problem is equivalent to:
+
 \begin{IEEEeqnarray}{RCL}
 	\label{optTorqueSoft}
 	\IEEEyesnumber
@@ -804,13 +831,13 @@ Analogously to what we discussed in Section~\ref{sec:firstSecondValid}, the abov
 		   &&\tau^*(f) = A(q,\nu)(\bar{H}^\top(q) f^{rigid} + f^{comp}) + b(q,\nu)  \label{optTorqueOne}  \IEEEyessubnumber
 		   \yesnumber
 \end{IEEEeqnarray}
-and once the optimal solution  $f^{rigid}_*$ is determined, we apply again Eq.~\eqref{optTorqueOne} to determine the input torques to the robot. 
 
+and once the optimal solution  $f^{rigid}_*$ is determined, we apply again Eq.~\eqref{optTorqueOne} to determine the input torques to the robot. 
 The above control algorithm will be implemented for the third year demo review meeting when the humanoid must balance on two feet and on a compliant carpet.
 
-\newpage
 
-\section{Control design for  humanoids balancing on seesaws} 
+
+\section{Control design for  humanoids balancing on dynamical contacts: the case of balancing on a seesaw} 
 \label{sec:controllerSeeSaw}
 
 \subsection{The equation of motion of the seesaw} 
@@ -943,7 +970,7 @@ In light of the above, the control problem~\eqref{optTorque} is modified as foll
 		   &&Cf < b \IEEEyessubnumber  \label{frictionConesSeesaw} \\
 		   && \dot{H}(f) = \dot{H}^* \IEEEyessubnumber \\
 		   && \dot{H}_s = \dot{H}_s(f,fc) \IEEEyessubnumber  \\
-		   &&^{\mathcal{I}} v_p =0.\IEEEyessubnumber  \\
+		   &&^{\mathcal{I}} v_p =0\IEEEyessubnumber  \\
  	       &&^{\mathcal{I}} \omega_s{^\top}  e_2 = 0  \IEEEyessubnumber \\
            &&^{\mathcal{I}} \omega_s{^\top}  e_3 = 0  \IEEEyessubnumber \\
 		   &&\tau^*(f) = \argmin_{\tau}  |\tau(f) - \tau_0(f)| 	\label{optPostSeesaw} 
@@ -963,6 +990,234 @@ This section discusses the estimation algorithms for both the floating base and 
 \subsection{Estimation of the floating base} 
 \label{sec:estimationFloatingBase}
 
+% Chapter 1
+% In this chapter I describe all the notation used to express orientation as well as all the theory behind
+
+% Define some commands to keep the formatting separated from the content
+\newcommand{\keyword}[1]{\textbf{#1}}
+\newcommand{\tabhead}[1]{\textbf{#1}}
+\newcommand{\code}[1]{\texttt{#1}}
+\newcommand{\file}[1]{\texttt{\bfseries#1}}
+\newcommand{\option}[1]{\texttt{\itshape#1}}
+
+
+\subsubsection{Quaternion-based Extended Kalman Filter}
+The goal of this Kalman Filter is to estimate the orientation of our previously defined world reference frame\footnote{Remember it was defined as a right-handed co-ordinate system with the positive $x$ axis pointing to the local magnetic North, positive $z$ pointing up and $y$ according to the right handed system} $w$ with respect to the sensor reference $\{s\}$ in the quaternion representation (radians), i.e.~$q^{s}_{w}$. We start with a simplified version of the filter where only a triad of gyroscopes and accelerometers will be used along with a simple model of the process representing solely the orientation to be estimated. In this way, the state of the Kalman Filter will be the quaternion-based orientation of the world $w$ in the sensor reference frame $\{s\}$, i.e.
+\begin{equation}
+  x = q^{s}_{w}
+\end{equation}
+Where $q = [q_1 \quad q_v]$, $q_1 \in \mathbb{R}$, $q_v \in \mathbb{R}^3$ and $||q|| = 1$. 
+
+\begin{figure}[ht!]
+ \centering
+ \includegraphics[width=0.7\textwidth]{images/MixCoordSys.png}
+ % MixCoordSys.png: 365x315 pixel, 90dpi, 10.30x8.89 cm, bb=0 0 292 252
+ \label{fig:coordsys}
+ \caption{Earth-fixed (world) reference frame $w$ and local sensor reference frame $\{s\}$. $R(q^{s}_{w})$ denotes the quaternion-based rotation matrix that rotates the world reference frame $w$ into $\{s\}$. }
+\end{figure}
+
+
+\subsubsection{{Discrete Time Process Model}}
+[$x_{k+1} = Ax_k + w_k$]. This model is obtained starting off the continuous time equations relating the quaternion orientation with its derivative resulting in the following differential equation:
+ \begin{equation}
+  \dot{q}^{s}_{w}(t) = \frac{1}{2}\Omega(\omega^{s}(t))q^{s}_{w}(t)
+  \label{Eq:diffEq}
+ \end{equation}
+ From now on, let us forget about the super and subscript identifying the reference frames for this quaternion for the sake of clarity, and let us work out Eq.~\ref{Eq:diffEq} in order to obtain the more cannonical equation of the process model. In the previous equation $\omega$ is the \textbf{actual} angular velocity in body coordinates. The relationship between this angular velocity and the one measured by a gyroscope $\omega^m$ with zero-mean normal additive noise $\epsilon_k$ at time $k$ is given by:
+  \begin{equation}
+   \omega^m_k = \omega_k + \epsilon_k
+  \end{equation}
+
+  Let us then call $\Omega(\omega)$ the ``derivative matrix'' which appears in the multiplication of a matrix by a quaternion and has the same structure:
+  \begin{equation}
+  \Omega(\omega)=
+     \left[\begin{array}{cc}
+         0      & -\omega^T  \\
+       \omega   & -S(\omega)
+    \end{array}  \right]
+  \end{equation}
+
+  The discrete-time solution to Eq.~\ref{Eq:diffEq} is known to be:
+ \begin{equation}
+  q_{k+1} = \Phi_k q_k
+  \label{Eq:transitionEq}
+ \end{equation}
+ Under the assumption that $\omega$ is constant over the integration time ($T_s$), thus making $\Omega$ independent of time, the differential equation becomes time-invariant and a closed form solution can be obtained resulting in the so-called ``zeroth order quaternion integrator" , thus:
+ \begin{equation}
+  \Phi_k = \text{exp}\left( \frac{1}{2}\Omega({\omega})T_s \right)
+ \end{equation}
+  Using the Taylor expansion of this matrix exponential along with the power properties of matrix $\Omega(\omega)$, you get the common Taylor series expansions of the $sine$ and $cos$ functions and taking the first order approximation (as $\omega \rightarrow 0$) we finally obtain:
+  \begin{equation}
+   \Phi_k = I_{4\times4} + \frac{T_s}{2}\Omega({\omega})
+  \end{equation}
+  In this simplified case of the filter, since we are not estimating $\omega$, but measuring it with the gyroscope which is subject to error and bias, the transition matrix that uses $\omega_m$ instead of $\omega$ will differ from $\Phi_k$ by $\Delta\Phi_k$, that is:
+
+  \begin{equation}
+   \Phi^m_k = \Phi_k + \Delta\Phi_k
+   \label{Eq:measuredPhi}
+  \end{equation}
+
+  $\Delta\Phi_k$ is called the Error Matrix which according to  can be expressed as its matrix power series first order term only, or from the first order approximations of $\Phi^m_k$ and $\Phi_k$, such that:
+  \begin{align}
+   \Phi^m_k - \Phi_k &= (I_{4\times4} + \frac{1}{2}\Omega(\omega^m_k)T_s) - (I_{4\times4} + \frac{1}{2}\Omega({\omega_k})T_s) \\
+                     &= \frac{1}{2}\Omega(\omega^m_k - \omega_k)T_s \\
+                     &= \frac{1}{2}\Omega(\epsilon_k)T_s = E_k T_s
+  \end{align}
+  Where $\epsilon_k$ is the gyro measurement noise vector, thus:
+  \begin{equation}
+   \Delta{\Phi_k} \simeq E_k T_s
+  \end{equation}
+
+  Where
+  \begin{equation}
+  E_k = \frac{1}{2}\left[ \begin{array}{cc}
+                           0      & -\epsilon^T_k  \\
+                           \epsilon_k & -S(\epsilon_k) \\
+                          \end{array}  \right]
+  \end{equation}
+
+  And $S(\epsilon_k)$ the skew-symmetric matrix:
+  \begin{equation}
+    S(\epsilon_k) = \left[ \begin{array}{ccc}
+                                0       &  -\epsilon_{k_3} & \epsilon_{k_2}  \\
+                          \epsilon_{k_3}  &        0       & -\epsilon_{k_1} \\
+                          -\epsilon_{k_2} &   \epsilon_{k_1} &       0
+                         \end{array} \right]
+  \end{equation}
+
+  Hence, from Eq.~\ref{Eq:measuredPhi}
+  \begin{align}
+   \Phi_k &= \Phi^m_k - \Delta \Phi_k \\
+   \Phi_k &= \Phi^m_k - E_k T_s
+  \end{align}
+  Substituting in Eq.~\ref{Eq:transitionEq}
+  \begin{align}
+   q_{k+1} &= \Phi_k q_k \\
+   q_{k+1} &= (\Phi^m_k - E_k T_s)q_k \\
+   q_{k+1} &= \Phi^m_k q_k - T_s E_k q_k \label{Eq:transitionEq2}
+  \end{align}
+The term $E_k q_k$ can be further expanded taking advantage of the properties of the matrix $E_k$, which when pre-multiplying a quaternion respects the following property ($\Omega(\omega)$ and $E_k$ have the same structure!):
+
+  Thus, Eq.~\ref{Eq:transitionEq2} can be further expressed as:
+  \begin{equation}
+   q_{k+1} = \Phi^m_k q_k - \frac{T_s}{2} \Xi(q_k)\epsilon_k
+  \end{equation}
+  Taking $x = \epsilon$ and $q=q_k$.
+  Finally, the \textbf{Process Model} is:
+  
+   \begin{equation}
+    x_{k+1} = q_{k+1} = \Phi^m_k q_k + w_k
+    \label{Eq:processModel}
+   \end{equation}
+   Where:
+   \begin{align}
+    \Phi^m_k &= I_{4\times4} + \frac{T_s}{2}\Omega(\omega^m_k) \\
+    w_k      &= -\frac{T_s}{2}\Xi(q_k)\epsilon_k \label{Eq:noiseVecEq}\\
+    \Xi(q_k) &= \left[\begin{array}{c}
+                -q^T_v \\
+                q_1 I_{3\times3} + S(q_v)
+               \end{array}\right]
+   \end{align}
+   The zero-mean gyro noise vector $\epsilon_k$ is normally distributed, i.e. $\epsilon \sim \mathcal{N}(0,\sigma_g)$
+   \begin{equation}
+    \Sigma^{g}_k = \sigma^2_{g} I_{3\times3}
+   \end{equation}
+   With process covariance matrix given by:
+     \begin{equation}
+      Q^w_k = E(w_k w^T_k) = \left(\frac{T_s}{2}\right)^2 \Xi_k \Sigma^{g}_k \Xi^T_k
+     \end{equation}
+
+  Remember that $T_s$ must be kept small, as well as $\epsilon_k$ since these assumptions allowed for the approximation of $\Delta \Phi_k$, the Error Transition Matrix first order approximation.
+  
+  \subsubsection{Measurement Model}
+  [$z_{k} = h(x_{k+1}) + v_{k}$]. This model is constituted by the accelerometer only, neglecting its bias and scaling factors or body acceleration. The latter assumption is also done in many commercial IMUs as the one used to compare our results. The measurement model in the body frame:
+
+  \begin{equation}
+   z_{k} = h(q^{s}_{w{k+1}}) + v_{k}
+  \end{equation}
+   \begin{equation}
+    z_{k} = R(q^{s}_{w{k+1}}) g^{w} + v_{k}
+   \end{equation}
+   \label{Eq:measEq}
+
+  Where $R(q^{s}_{w_{k+1}})$ is the rotation matrix representing the orientation of the sensor reference frame with respect to the world frame. This rotation matrix is a function of the quaternion orientation. $g^{w}$ is the gravity vector (as it would be measured by the accelerometer) in Earth coordinates and is considered constant and equal to $[0~0~9.8]^T$. The covariance matrix of the measurement model is assumed constant and equal to:
+  \begin{equation}
+   \Sigma^{a}_{k} = \sigma^2_a I_{3\times3}
+  \end{equation}
+
+  \subsubsection{Filter design}
+  The measurement model described by Eq.~\ref{Eq:measEq} is non-linear in $q$. To fully describe the filter we further need to linearize $h(q^{s}_{w_{k+1}})$. Notice that the process model given by Eq.~\ref{Eq:processModel} is already linear in $q$.
+
+  To linearize Eq.~\ref{Eq:measEq} we proceed to compute the Jacobian of $h(q)$, evaluated at the most recent estimate of $q$. Let us recall here that $R(q^{s}_{w})$ can be expressed in terms of the quaternion as:
+  \begin{equation}
+   R(q^{s}_{w}) = \left[\begin{array}{ccc}
+               2q^2_1-1+2q^2_2 & 2q_2q_3 - 2q_1q_4 & 2q_2q_4 + 2q_1q_3 \\
+               2q_2q_3+2q_1q_4 & 2q^2_1-1+2q^2_3 & 2q_3q_4-2q_1q_2 \\
+               2q_2q_4-2q_1q_3 & 2q_3q_4+2q_1q_2 & 2q^2_1-1+2q^2_4
+              \end{array}\right]
+  \end{equation}
+
+  The observation matrix is then defined by the following Jacobian:
+  \begin{align}
+   H_{k+1} &= \left.\frac{\partial h}{\partial q} \right|_{x_{k+1|k}} \\
+           &= \left.\frac{\partial}{\partial q} R(q^{s}_{w}) g^{w}\right|_{x_{k+1|k}}
+  \end{align}
+
+  Where
+  \begin{equation}
+  \frac{\partial}{\partial q} R(q^{s}_{w}) =\left[\begin{array}{cccc}
+                                                \frac{\partial}{\partial q_1} R(q) & \frac{\partial}{\partial q_2} R(q) & \frac{\partial}{\partial q_3} R(q) & \frac{\partial}{\partial q_4} R(q)
+                                               \end{array}\right]
+  \end{equation}
+
+  with
+  \begin{align}
+   \frac{\partial}{\partial q_1} R &= 2\left[ \begin{array}{ccc}
+                                               2q_1 & -q_4 &  q_3 \\
+                                               q_4  & 2q_1 & -q_2 \\
+                                               -q_3 & q_2  & 2q_1
+                                              \end{array}\right] \\
+   \frac{\partial}{\partial q_2} R &= 2\left[ \begin{array}{ccc}
+                                               2q_2 & q_3 & q_4 \\
+                                               q_3  & 0   & -q_1 \\
+                                               q_4  & q_1 & 0
+                                              \end{array}\right] \\
+   \frac{\partial}{\partial q_3} R &= 2\left[ \begin{array}{ccc}
+                                               0    & q_2  & q_1 \\
+                                               q_2  & 2q_3 & q_4 \\
+                                              -q_1  & q_4  & 0
+                                              \end{array}\right] \\
+   \frac{\partial}{\partial q_4} R &= 2\left[ \begin{array}{ccc}
+                                               0    & -q_1  & q_2 \\
+                                               q_1  &  0    & q_3 \\
+                                               q_2  & q_3   & 2q_4
+                                              \end{array}\right]
+  \end{align}
+
+  At this point we have all the elements necessary to implement an Extended Kalman Filter with linearized measurement equations.
+
+\subsubsection{Floating-base attitude estimation}
+In order to estimate the final attitude of the floating base, we proceed by composing the estimate given by the extended Kalman filter of the previous section with the kinematic information of the supporting leg. The floating base attitude will be expressed in $w$
+
+\begin{equation}
+    R_{\text{FB}}^{w} = (R_{s}^{\text{FB}} R_{w}^{s}(q))
+\end{equation}
+
+Where $q$ is the quaternion estimated as done in the previous section expressing the orientation of $w$ in ${s}$.
+
+\subsubsection{Implementation and experiments}
+\label{sec:implementation-wholebodyestimator}
+A YARP-based C++ module has been written within the CoDyCo software {CoDyCO software reference and link to wholeBodyEstimator}. The module is called \verb|wholeBodyEstimator|. A class diagram depicting the design principles behind it is shown in Figure~\ref{fig:wholebodyestimator-class-diagram}. The module allows the user to specify the estimators that will be run, in a factory design pattern manner. The list of estimators to be instantiated by the module can be specified via the module's configuration file. 
+
+\begin{figure}
+    \centering
+    \includegraphics[width=0.7\paperheight, angle=90]{images/wholebodyestimator-class-diagram.png}
+    \caption{Class diagram for the wholeBodyEstimator module.}
+    \label{fig:wholebodyestimator-class-diagram}
+\end{figure}
+
+% ALL PLOTS WITHOUT ESTIMATE with COP on foot
+
 \subsection{Estimation of the floor compliance} 
 \label{sec:estimationFloorCompliance}
 
@@ -976,12 +1231,12 @@ This section presents preliminary results on the estimation of the force distrib
     \label{fig:estimationSetup}
     }
 \end{figure}
-\subsection{The setup}
+\subsubsection{The setup}
 Figure~\ref{fig:estimationSetup} shows the experimental setup used for estimating the compliance $f(z)$ associated with the chosen soft carpet. 
 By means of a vise, we push a dynamometer that measures the force exerted from the compliant carpet to a flat plate attached to the  dynamometer's top.
 The measurement of the carpet's compression is taken by using a high-precision caliper whose resolution is $0.01 \ mm$.
 
-\subsection{Results}
+\subsubsection{Results}
 We carried on experiments with two rectangular contact surfaces of different size:
 \begin{description}
   \item[$S1:$] $l_1 = 5.01 \ cm$ and $d_1 = 2.01 \ cm$;
