@@ -60,9 +60,9 @@
  
 \deliverableWorkpackage{WP3}
 \deliverableEditors{Vincent Padois}
-\deliverableContributors{Morteza Azzad, Mingxing Liu, Mike Mistry, Francesco Nori, Vincent Padois, Daniele Pucci, Francesco Romano, Silvio Traversaro}
+\deliverableContributors{Morteza Azzad, Mingxing Liu, Michael Mistry, Francesco Nori, Vincent Padois, Daniele Pucci, Francesco Romano, Silvio Traversaro}
 
-\deliverableAbstract{This deliverable provides an overview of the whole-body control strategies proposed within the framework of the CoDyCo project for balancing by means of compliant contacts. We first recall the general structure of the whole-body controller used in the CoDyCo project. This controller is written as a quadratic multi-objective optimization problem under linear constraints and priorities between the objectives can be dealt with through strict of soft hierarchy. This controller has to be modified in order to deal with compliant cases and two cases are then distinguished. In the first one, a contact model is supposed to be known and using that knowledge a control strategy is derived. In the second case, no model of the environment is assumed to be known and an adaptive force regulation task is added in order to account for the compliance of the environment. This deliverable is strongly related to Deliverable~5.3 \cite{deliverable53} which discusses the technical details and choices for the implementation of the year-3 validation scenario.}
+\deliverableAbstract{This deliverable provides an overview of the whole-body control strategies proposed within the framework of the CoDyCo project for balancing by means of compliant contacts. We first recall the general structure of the whole-body controller used in the CoDyCo project. This controller is written as a quadratic multi-objective optimization problem under linear constraints and priorities between the objectives can be dealt with through strict of soft hierarchy. This controller has to be modified in order to deal with compliant cases and two cases are then distinguished. In the first one, no model of the environment is assumed to be known and an adaptive force regulation task is added in order to account for the compliance of the environment. In the second case, a contact model is supposed to be known and using that knowledge a control strategy is derived. This deliverable is strongly related to Deliverable~5.3 \cite{deliverable53} which discusses the technical details and choices for the implementation of the year-3 validation scenario.}
 \deliverableReviewers{}
 \deliverableKeywordList{Whole-body controllers, Non-rigid contacts, Multi-contacts}
 
@@ -139,7 +139,7 @@
 \textbf{Version}&\textbf{Date}&\textbf{Description}&\textbf{Author}\\\hline
 v.~0.1 & Jan.~19, 2016 & Initial creation of the file & Vincent Padois\\ \hline
 v.~0.9 & Feb.~25, 2016 & Final version & Vincent Padois \\ \hline
-v.~1.0 & Feb.~28, 2016 & Proofread version & Francesco Nori \\ \hline
+v.~1.0 & Feb.~27, 2016 & Proofread version & Vincent Padois \\ \hline
 \end{tabular}
 \end{center}
  
@@ -211,8 +211,8 @@ where:
 \item ${J}({q})= \left[{J}^\top _{\mathcal{C}_1}({q})~ \dots~ {J}^\top _{\mathcal{C}_k}({q}) \right]^\top$ is the contact Jacobian matrix for all $k$ contact points.
 \item $f= \left[ {f}^\top_{1}~ \dots~ {f}^\top_{k}~ \right]^\top $ is the vector of external contact wrenches applied by the environment on the links.
 \item $\mathbb{X} = \left(\dot{\nu}, \tau, f \right)$ gathers the dynamic variables of the multi-body system.
-\item ${M} \in \mathbb{R}^{n+6 \times n+6}$ is the mass matrix.
-\item ${C} \in \mathbb{R}^{n+6 \times n+6}$ is the Coriolis and centrifugal effects matrix.
+\item ${M} \in \mathbb{R}^{(n+6) \times (n+6)}$ is the mass matrix.
+\item ${C} \in \mathbb{R}^{(n+6) \times (n+6)}$ is the Coriolis and centrifugal effects matrix.
 \item ${G} \in \mathbb{R}^{n+6}$ is the gravity term.
 \item $B = (0_{n\times 6} , 1_n)^\top$ is a selection matrix.
 \item ${A}(q,\nu) \mathbb{X}   =  {b}(q,\nu)$ gathers kinematics constraints related to the velocity of the contact points.
@@ -221,7 +221,7 @@ where:
 
 \subsection{Dealing with multiple objectives}
 
-The control problem is often multi-objective and the tasks-related function $T(\mathbb(X))$ can actually be written
+The control problem is often multi-objective and the tasks-related function $T(\mathbb{X})$ can actually be written
 \begin{equation}\label{eq:multi task}
 T(\mathbb{X}) = T\left(\lambda_1, T_1(\mathbb{X}), \lambda_2, T_2(\mathbb{X}), \dots, \lambda_{n_t},T_{n_t}(\mathbb{X})\right)
 \end{equation}
@@ -246,18 +246,18 @@ $T_i$ usually appears in $T$ under the form of a weighted, euclidean norm thus l
 
 In CoDyCo, these three types of prioritization scheme coexist and are used indifferently as they allow to produce very similar types of behaviours\footnote{A formal comparison of their intrinsic properties is out of the scope of this deliverable but would constitute a work of interest for the community}. A distinction has still to be made between two ways to approach the whole-body control problem.\\
 
-The first, direct, approach does not separate the problem of computing the contact forces from the one of computing the joint torques. Given some task space desired acceleration (among which a center of mass one), the resolution of the control problem described by Equation~(\ref{eq:one task}) directly provides the optimal torques. The contact forces come as a by-product of the problem resolution. This approach has the very nice property of being able to account for the joint level constraints. Its drawback is that it hides some of the essence of the balance control problem and while it may be preferable to use such a solution for practical implementation, a two-stage solution may be preferred to ease the analysis of the system (for example in terms of its controllability).\\
+The first, direct, approach does not separate the problem of computing the contact forces from the one of computing the joint torques. Given some task space desired acceleration (among which a center of mass one), the resolution of the control problem described by Equation~(\ref{eq:one task}) directly provides the optimal torques. The contact forces come as a by-product of the problem resolution. This approach has the very nice property of being able to account for the all constraints in a straightforward way. Its drawback is that it hides some of the essence of the balance control problem and while it may be preferable to use such a solution for practical implementation, a two-stage solution may be preferred to ease the analysis of the system (for example in terms of its controllability).\\
 
 The second, two-stage approach, uses contact forces as intermediate controls and first compute the desired contact forces given the desired acceleration of the center of mass. This can be done using the Newton-Euler equation for the floating-base system, written at the center of mass of the system. It can be written
 \begin{equation}
 \label{equ:NE equation}
 \left( \begin{array}{c}
-m \ddot{x}\\ 
+m (\ddot{x}-g)\\ 
 \dot{H}_{\omega}
 \end{array}\right) =
-m g + \underbrace{\sum_k \left(\begin{array}{cc}
-S(p_{\mathcal{C}_k} - x) & 1_{3} \\
-1_{3} & 0_{3\times 3}
+\underbrace{\sum_{k=1}^{n_c} \left(\begin{array}{cc}
+1_{3} & 0_{3\times 3} \\
+S(p_{\mathcal{C}_k} - x) & 1_{3}
 \end{array}\right)  f_k}_{X_{\mathcal{C}} f}
 \end{equation}
 where $m$ is the total mass of the system, $x \in \mathbb{R}^3$ is the position of the center of mass expressed in the inertial frame, $\dot{H}_{\omega}$ is the derivative of the angular momentum, $g$ is the acceleration induced by gravity expressed in the inertial frame, $p_{\mathcal{C}_k}$ is the $k$-contact point and $S(u) \in \mathbb{R}^{3\times 3}$ is the skew-symmetric matrix such that $S(u)v = u \times v$, where $\times$ denotes the cross product operator in $\mathbb{R}^3$.\\
@@ -271,7 +271,7 @@ The next sections describe how this generic controller structure can be exploite
 When robots evolve in partially known environments, model-based control approaches requires to incrementally, through experience, modify existing models or build new ones (see Deliverable~4.2 \cite{deliverable42} for details on learning of tasks with multiple contacts by imitation and reinforcement learning). While models evolve, the robot still needs to be able to act accordingly, or at least without failure, in this, partially known, environment. Providing an adaptive control approach, not relying on a compliance model, in order to adapt the whole-body motions of humanoid robots to unknown rigidity properties of the environment is thus of interest.
 
 \subsection{Summary of the contribution}
-The work described hereafter was published in \cite{liu_IROS2015} and is dedicated to whole-body balancing, and more generally whole-body control, with non-rigid, unilateral, frictional support contacts, for example, standing on a soft ground, or pushing against a compliant support contact with one hand while reaching for an object far away with the other hand (see Fig.\ref{reaching}). The problems of the manipulation of compliant objects and the handling of unexpected disturbance forces are beyond the scope of this work. Moreover, the proposed control approach does not handle anticipatory aspects of balance, but it provides a reactive  mechanism to maintain balance while multiple motion and contact tasks are being performed in a compliant environment.
+The work described hereafter was published in \cite{liu_IROS2015} and is dedicated to whole-body balancing, and more generally whole-body control, with non-rigid, unilateral, frictional support contacts, for example, standing on a soft ground, or pushing against a compliant support contact with one hand while reaching for an object far away with the other hand (see Fig.\ref{reaching}). The problems of the manipulation of compliant objects and the handling of unexpected disturbance forces are beyond the scope of this work. Moreover, the proposed control approach does not handle anticipatory aspects of balance, but it provides a reactive  mechanism to maintain balance while multiple motion and contact tasks are being performed in a compliant environment.\\
 \begin{figure}[!t]
 \centering
 \vspace{5pt}
@@ -306,7 +306,7 @@ J_{rigid}(q) \dot\nu + \dot{J}_{rigid}(q) \nu & = & 0 \label{eq:kin constraints 
 J_{comp}(q) \dot\nu + \dot{J}_{comp}(q) \nu & = & \ddot{p}_{\mathcal{C}_{comp}}\label{eq:kin constraints comp},%(p_{\mathcal{C}_{comp}},R_{\mathcal{C}_{comp}},\dot{p}_{\mathcal{C}_{comp}},\omega_{\mathcal{C}_{comp}},\dot{f}_{comp}) \label{eq:kin constraints rigid},
 \end{eqnarray}               
 \end{subequations}
-where $J^\top_{rigid} (q)$, $f_{rigid}$, $J^\top_{comp} (q)$ and $f_{comp}$ respectively represent the contact Jacobian in the rigid contact directions, the associated rigid contact wrench, the contact Jacobian in the compliant contact directions and the associated compliant contact wrench. Without loss of generality, contacts are here supposed to be either strictly rigid or compliant\footnote{A given contact point can actually be rigid in some direction while compliant in other orthogonal ones.}. $\ddot{p}_{\mathcal{C}_{comp}}$ is the compliant contact points linear and angular acceleration which is assumed to be a function of the state of the contact points and of the derivative of the compliant contact wrench\footnote{As an intuition, consider the example of a mono-dimensional spring-damper system described by the scalar relation $ f = K (x-x_0) + b \dot{x} $, the contact point acceleration can be written $\ddot{x} = \frac{1}{b} ( \dot{f} - K \dot{x})$.} $\ddot{p}_{\mathcal{C}_{comp}} = z\left(p_{\mathcal{C}_{comp}},R_{\mathcal{C}_{comp}},\dot{p}_{\mathcal{C}_{comp}},\omega_{\mathcal{C}_{comp}},f_{comp}\right)$.
+where $J^\top_{rigid} (q)$, $f_{rigid}$, $J^\top_{comp} (q)$ and $f_{comp}$ respectively represent the contact Jacobian in the rigid contact directions, the associated rigid contact wrench, the contact Jacobian in the compliant contact directions and the associated compliant contact wrench. Without loss of generality, contacts are here supposed to be either strictly rigid or compliant\footnote{A given contact point can actually be rigid in some direction while compliant in other orthogonal ones.}. $\ddot{p}_{\mathcal{C}_{comp}}$ is the compliant contact points linear and angular acceleration which is assumed to be a function of the state of the contact points and of the derivative of the compliant contact wrench\footnote{As an intuition, consider the example of a mono-dimensional spring-damper system described by the scalar relation $ f = K (x-x_0) + b \dot{x} $, the contact point acceleration can be written $\ddot{x} = \frac{1}{b} ( \dot{f} - K \dot{x})$.} $\ddot{p}_{\mathcal{C}_{comp}} = z\left(p_{\mathcal{C}_{comp}},R_{\mathcal{C}_{comp}},\dot{p}_{\mathcal{C}_{comp}},\omega_{\mathcal{C}_{comp}},\dot{f}_{comp}\right)$.
 
  
 
@@ -323,7 +323,7 @@ Even if not formulated in this way, this is the approach retained in \cite{AzadI
 
 In practice, assuming that a good measurement of the compliant contact forces is available and that $z$ can be estimated with high bandwidth and precision through measurement is an illusion. Force measurements are subject to high-frequency noises which in practice limits the bandwidth of the available signal. Moreover, the estimation of the contact model $z$ is complex, and subject to many uncertainties.\\
 
-There are actually many type of soft terrains that exert forces and torques not only depending on their relative compression, but also on the robot’s joint torques. In these cases, the soft terrain is subject to some rigid constraints that may allow the control of the robot’s momentum through the external forces, which thus depend on the joint torques. This is the case of a thin, highly damped carpet, which can be modelled, in the first approximation, as a continuum of vertical springs. Each of these springs is assumed to compress vertically only, and the other degrees of freedom are rigidly constrained, thus creating the aforementioned relation between external forces and joint torques. This brings us back to the case of rigid contacts even though the compliant force component $f_comp$ in Equation~(\ref{eq:compliant dyn model}) still needs to be properly compensated for. This particular component cannot be measured separately from the rigid component and a contact model is still needed to estimate it. This approach is the one retained for the demonstration of Year 3 and it is described in details in Deliverale~5.3 \cite{deliverable53}. This deliverable also provides an extension towards balance in contact with rigid dynamical systems such as a seesaw.
+There are actually many type of soft terrains that exert forces and torques not only depending on their relative compression, but also on the robot’s joint torques. In these cases, the soft terrain is subject to some rigid constraints that may allow the control of the robot's momentum through the external forces, which thus depend on the joint torques. This is the case of a thin, highly damped carpet, which can be modelled, in the first approximation, as a continuum of vertical springs. Each of these springs is assumed to compress vertically only, and the other degrees of freedom are rigidly constrained, thus creating the aforementioned relation between external forces and joint torques. This brings us back to the case of rigid contacts even though the compliant force component $f_{comp}$ in Equation~(\ref{eq:compliant dyn model}) still needs to be properly compensated for. This particular component cannot be measured separately from the rigid component and a contact model is still needed to estimate it. This approach is the one retained for the demonstration of Year 3 and it is described in details in Deliverale~5.3 \cite{deliverable53}. This deliverable also provides an extension towards balance in contact with rigid dynamical systems such as a seesaw.
 
 \section{Conclusion}
 
@@ -331,7 +331,7 @@ In this deliverable, an overview of the work performed, within the framework of 
 
 The adaptive approach described in \cite{liu_IROS2015} has the advantage of providing a way to accommodate compliant contacts without the need for a model. Its major disadvantage lies in the fact that it aims at reaching a state where, after a transient period, compliant contacts are fully compressed and can be used as rigid ones. Unfortunately, in highly compliant environment this is never the case and one actually has to balance with contact points that remain compliant. A second disadvantage is that the proposed algorithm tends to require  more forces from the most compliant contact points. This may be critical if the corresponding contacts corresponds to fragile surfaces which may break under high contact forces.\\
 
-The two other proposed approaches \cite{AzadIROS2015}, \cite{deliverable53} assume that a model of the compliant contact is known. While the approach described in Deliverable~5.3 \cite{deliverable53} is less sensitive to the quality of the estimation of this model, the identification problem remains a complex one. At this stage estimation is performed off-line through a tedious procedure. In practical cases where the environment may not be known in advance, online estimation techniques would be needed. However, these methods are stil to be developed, in a context  where estimating dynamic quantities (for example the floating-base state) for rigid multi-body systems remains a recent research topic \cite{nori2015simultaneous}, \cite{rotella2015humanoid}.
+The two other proposed approaches \cite{AzadIROS2015}, \cite{deliverable53} assume that a model of the compliant contact is known. While the approach described in Deliverable~5.3 \cite{deliverable53} is less sensitive to the quality of the estimation of this model, the identification problem remains a complex one. At this stage estimation is performed off-line through a tedious procedure. In practical cases where the environment may not be known in advance, online estimation techniques would be needed. However, these methods are still to be developed, in a context  where estimating dynamic quantities (for example the floating-base state) for rigid multi-body systems remains a recent research topic \cite{nori2015simultaneous}, \cite{rotella2015humanoid}.
 
 %Balancing is possible only if rigid contacts are available. Non rigid contacts induce a motion of the contact point and cannot provide the support contact forces needed to compensate for the under-actuation of the floating base. The controller introduced in section~\ref{app:liu_IROS2015} actually aims at reaching rigid contact situations as fast as possible thus reducing the transient period during which the robot is actually ``sinking'' in the ground or contact surface. Then, assuming a contact state has been reached where some rigid contacts are available for support, one still needs to account for the compliant behaviour in some contact directions.  
 
