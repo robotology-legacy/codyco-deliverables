@@ -29,9 +29,8 @@
 
 \deliverableAuthor{Michael Mistry}
 \deliverableResponsiblePartner{UB}
-\deliverableAffiliation{% Insert here authors affiliations
- $^1$ UB
-}
+\deliverableAffiliation{$^1$ School of Computer Science, University of
+  Birmingham}
 
 \deliverableReviewer{Name of internal reviewer}
 \deliverableCoordinator{Francesco Nori}
@@ -40,7 +39,7 @@
 \deliverableDoctype{Deliverable} %% or Prototype
 \deliverableClassification{Public} % or Consortium
 \deliverableDistribution{Consortium} %
-\deliverableStatus{Draft} % Draft or Final
+\deliverableStatus{Final} % Draft or Final
 \deliverableDeliveryDate{29/2/2016}
 \deliverableFile{D1.2.pdf} % please do not use "-" in the name
 \deliverableVersion{1.0}
@@ -59,9 +58,10 @@
 \deliverableProjectUrl{www.codyco.eu}
 \deliverableFrameworkProgramme{FP7}
 
-\deliverableWorkpackage{deliv WP1}
+\deliverableWorkpackage{WP1}
 \deliverableEditors{Michael Mistry}
-\deliverableContributors{Morteza Azad, Elmar Rueckert}
+\deliverableContributors{Daniele Pucci, Silvio Traversaro,Jorhabib Eljaik,
+  Morteza Azad, Elmar Rueckert}
 \deliverableReviewers{}
 \deliverableAbstract{This deliverable references the open-source software
   repositories, and corresponding documentation, developed under the CoDyCo
@@ -98,7 +98,7 @@
 \begin{tabular}{|C{2cm}|C{3cm}|p{5cm}|C{4cm}|}
 \hline
 \textbf{Version}&\textbf{Date}&\textbf{Description}&\textbf{Author}\\\hline
-First draft & 29/2/2016 & initial release & Michael Mistry\\\hline
+Final & 29/2/2016 & final release & Michael Mistry\\\hline
 \end{tabular}
 \end{center}
  
@@ -121,23 +121,35 @@ control of balancing and reaching with multiple contacts, and also dealing
 with compliant contacts are available as open-source within the following
 repositories:
 \begin{itemize}
-\item \texttt{codyco-superbuild}: Main software repository.
-\item \texttt{idyntree}: Dynamics library designed for free floating robots.
+\item \texttt{codyco-superbuild}: Main software repository (available from
+  \url{https://github.com/robotology/codyco-superbuild}). 
+\item \texttt{idyntree}: Dynamics library designed for free floating robots
+  (available from \url{https://github.com/robotology/idyntree}).
 \item \texttt{wholebodyinterface}: C++ Interfaces to sensor measurements,
   state estimations, kinematic/dynamic model and actuators for a floating base
-  robot.
+  robot (available from
+  \url{https://github.com/robotology/wholebodyinterface}).
 \item \texttt{yarp-wholebodyinterface}: Implementation of the
-  wholeBodyInterface for YARP robots.
+  wholeBodyInterface for YARP robots (available from
+  \url{https://github.com/robotology/yarp-wholebodyinterface}).
 \item \texttt{WB-Toolbox}: Simulink Toolbox for rapid prototyping of Whole
-  Body Robot Controllers.
+  Body Robot Controllers (available from
+  \url{https://github.com/robotology/WB-Toolbox}).
 \item \texttt{codyco-modules}: Whole-body Compliant Dynamical Contacts in
-  Cognitive Humanoids.
+  Cognitive Humanoids (available from
+  \url{https://github.com/robotology/codyco-modules}).
 \item \texttt{mex-wholebodymodel}: Matlab MEX interface to the iWholeBodyModel
-  interface.
+  interface (available from
+  \url{https://github.com/robotology/mex-wholebodymodel}).
 \item \texttt{codyco-commons}: Miscellanous libraries developed in the CoDyCo
-  project.
+  project (available from
+  \url{https://github.com/robotology-playground/codyco-commons}).
 \item \texttt{WBI-Toolbox-controllers}: Controllers developed using the
-  WB-Toolbox.
+  WB-Toolbox (available from
+  \url{https://github.com/robotology-playground/WBI-Toolbox-controllers}).
+\item \texttt{wholeBodyEstimator}: Algorithm developed for floating base
+  estimation (available from
+  \url{https://github.com/robotology/codyco-modules/tree/master/src/modules/wholeBodyEstimator}).
 \item \texttt{LWR-ContactParams}: Locally Weighted Regression (LWR) algorithm
   for learning contact parameters of compliant contacts (this is available
   from \url{https://github.com/azadm/LWR_for_ContactParams.git}).
