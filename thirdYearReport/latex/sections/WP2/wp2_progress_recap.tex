@@ -3,21 +3,57 @@
 
 
 
-%!TEX root = ../../thirdYearReport.tex
+%!TEX root = ../../secondYearReport.tex
 
 
  
 \paragraph*{WP2: understanding and modelling human whole-body behaviours in physical interaction (JSI)}
-In T2.2, JSI \dots 
 
-In T2.2, JSI \dots 
+This deliverable summarizes the contribution of the CoDyCo consortium in tasks
+T2.2 and T2.3 at the end of the third year.  These tasks are \textit{design of
+	models for human whole body motion in contact}, and \textit{strategies of
+	dealing with uncertainties in contact}, respectively.  The results are
+briefly explained in four chapters.  In chapter 2, dynamic manipulability of
+the centre of mass (CoM) is introduced as a metric for measuring the balance
+ability of legged robots while they are in contact with their environment.
+Experiments on human subjects show the applicability of this theory in
+analysing balancing recovery motion in humans.  Chapter 3 investigates the use
+of supporting contact (and its relationship with task) while it is required
+for accomplishing a task.  In the experiments, human subjects are asked to
+reach a target by the motion of one arm while they has to maintain their
+postural balance with the other arm.  In a novel movement model, strong
+correlations between both arms are found which were used to predict the
+reaching motion solely from observing the motion related to keeping postural
+stability. This finding has the potential to impact pre-tests of central
+nervous system disorders that are less prone to factors like stress, sleep
+deprivation and age compared to the classical cognitive tests.  In robotics,
+the model can be exploited to overcome current limitations of autonomous
+robots in interacting with the environment through supportive contacts.  In
+chapter 4, the effects of using handles is studied for posture control of
+standing subjects while they are perturbed by external forces.  It is shown
+that the use of handles significantly reduces the displacement of the centre
+of pressure.  Also, it is observed that subjects clearly relied on using the
+handle for support, even though the perturbations did not pose a significant
+balance threat.  Chapter 5 is a report of pilot study on learning compliant
+contacts by human subjects.  Subjects are asked to push a complaint surface to
+a certain target in order to learn the parameters of the contact.  The
+compliant surface is realized by using a haptic device.  Then, in a trial
+experiment, the performance of the subjects is analysed in reaching a new
+target position in terms of the time needed to reach that target.
 
-In T2.3, JSI \dots 
 
-In T2.4, JSI \dots 
 
-In T2.4, JSI \dots 
 
-In T2.4, JSI \dots 
+In T2.2, JSI used the data collected from the biomechanical studies to form a human model for hand-contact assisted balance control in simulation environment. The model serve as platform for devising equivalent robot skills.
 
-Finally, JSI \dots 
+In T2.2, UB developed a metric for full-body stability in multiple contact condition. This metric is based on the manipulability of the centre of mass.
+
+In T2.3, JSI developed a novel method for studying human strategies of dealing with contacts with uncertain environment. Instead of performing the contacts with his/her own limbs, the human subject was included into the robot control loop and was asked to perform a task in contact with the environment through the robotic mechanism. To accommodate that, human-robot interfaces were developed. The main advantage of this method, compared to standard biomechanical studies, is that the human observation data can be directly used to build robot skills.
+
+In T2.4, Inria, TUD and UPMC participated in analysing the dataset of the EDHHI experiments where healthy subjects interacted physically with the iCub. The preliminary analysis shows that people, on average, learn quickly how to interact with the robot and move its arms: across three trials, the exchanged forces were smaller and the contacts more precise.
+
+In T2.4, JSI performed a study on multiple healthy subject and analysed the effects of additional supportive contact on full-body balance control. The subjects were continuously perturbed at the waist. In one instance, the subjects did not use any supportive hand contacts while in the other instance, the subject used an additional supportive hand contact. The comparative analysis between the two conditions revealed particular synergies between arm and body muscles which significantly contribute to the improved balance.
+
+In T2.4, TUD and JSI studied whether supporting contacts in human arm reaching tasks are planned or are an effect of a reactive controller. Experiment on multiple subject were performed, where the task was to reach to a target with one hand and use the other hand for additional support. During the experiment, the subject balance was perturbed by a displacement of the ground support.
+
+Finally, in T2.4, UPMC and JSI started an experimental study where the aim is to challenge two well-established but conceptually separated motor control phenomena. We obtained several very promising preliminary results indicating a general mechanism that points out a global trade-off arising from the interactions between movement time, cost and accuracy.
