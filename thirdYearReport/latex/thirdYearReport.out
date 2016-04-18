@@ -1,0 +1,87 @@
+\BOOKMARK [2][-]{subsection.3.2}{Project objectives for the period}{}% 1
+\BOOKMARK [3][-]{subsubsection.3.2.1}{Overview}{subsection.3.2}% 2
+\BOOKMARK [4][-]{paragraph.3.2.1.1}{WP1: toolbox for computing and controlling dynamics of whole-body movements with contacts \(UB\)}{subsubsection.3.2.1}% 3
+\BOOKMARK [4][-]{paragraph.3.2.1.2}{WP2: understanding and modelling human whole-body behaviours in physical interaction \(JSI\)}{subsubsection.3.2.1}% 4
+\BOOKMARK [4][-]{paragraph.3.2.1.3}{WP3: control and optimization of whole-body motion in contact \(UPMC\)}{subsubsection.3.2.1}% 5
+\BOOKMARK [4][-]{paragraph.3.2.1.4}{WP4: adaptation, Generalization and Improvement of Compliant Control and Tasks with Contacts \(TUD\)}{subsubsection.3.2.1}% 6
+\BOOKMARK [4][-]{paragraph.3.2.1.5}{WP5: systems integration, standardization and evaluation on the iCub robot \(IIT\)}{subsubsection.3.2.1}% 7
+\BOOKMARK [4][-]{paragraph.3.2.1.6}{WP6: management \(IIT\)}{subsubsection.3.2.1}% 8
+\BOOKMARK [4][-]{paragraph.3.2.1.7}{WP7: dissemination and Exploitation \(IIT\)}{subsubsection.3.2.1}% 9
+\BOOKMARK [2][-]{subsection.3.3}{Work progress and achievements during the period}{}% 10
+\BOOKMARK [3][-]{subsubsection.3.3.1}{Progress overview and contribution to the research field}{subsection.3.3}% 11
+\BOOKMARK [3][-]{subsubsection.3.3.2}{Work packages progress}{subsection.3.3}% 12
+\BOOKMARK [4][-]{paragraph.3.3.2.1}{Work package 1 progress}{subsubsection.3.3.2}% 13
+\BOOKMARK [5][-]{subparagraph.3.3.2.1.1}{Reults 1}{paragraph.3.3.2.1}% 14
+\BOOKMARK [5][-]{subparagraph.3.3.2.1.2}{Result 2}{paragraph.3.3.2.1}% 15
+\BOOKMARK [5][-]{subparagraph.3.3.2.1.3}{Resources}{paragraph.3.3.2.1}% 16
+\BOOKMARK [5][-]{subparagraph.3.3.2.1.4}{Deviations from workplan}{paragraph.3.3.2.1}% 17
+\BOOKMARK [4][-]{paragraph.3.3.2.2}{Work package 2 progress}{subsubsection.3.3.2}% 18
+\BOOKMARK [5][-]{subparagraph.3.3.2.2.1}{Shared control method in interaction with compliant environment}{paragraph.3.3.2.2}% 19
+\BOOKMARK [5][-]{subparagraph.3.3.2.2.2}{Human motor control learning during compliant interaction with environment}{paragraph.3.3.2.2}% 20
+\BOOKMARK [5][-]{subparagraph.3.3.2.2.3}{Experimental validation of CoM manipulability metric \(Task 2.2 \040Task 2.3\)}{paragraph.3.3.2.2}% 21
+\BOOKMARK [5][-]{subparagraph.3.3.2.2.4}{Resources}{paragraph.3.3.2.2}% 22
+\BOOKMARK [5][-]{subparagraph.3.3.2.2.5}{Deviations from workplan}{paragraph.3.3.2.2}% 23
+\BOOKMARK [4][-]{paragraph.3.3.2.3}{Work package 3 progress}{subsubsection.3.3.2}% 24
+\BOOKMARK [5][-]{subparagraph.3.3.2.3.1}{Result 1}{paragraph.3.3.2.3}% 25
+\BOOKMARK [5][-]{subparagraph.3.3.2.3.2}{Result 2}{paragraph.3.3.2.3}% 26
+\BOOKMARK [5][-]{subparagraph.3.3.2.3.3}{Resources}{paragraph.3.3.2.3}% 27
+\BOOKMARK [5][-]{subparagraph.3.3.2.3.4}{Deviations from workplan}{paragraph.3.3.2.3}% 28
+\BOOKMARK [4][-]{paragraph.3.3.2.4}{Work package 4 progress}{subsubsection.3.3.2}% 29
+\BOOKMARK [5][-]{subparagraph.3.3.2.4.1}{Result 1}{paragraph.3.3.2.4}% 30
+\BOOKMARK [5][-]{subparagraph.3.3.2.4.2}{Result 2}{paragraph.3.3.2.4}% 31
+\BOOKMARK [5][-]{subparagraph.3.3.2.4.3}{Resources}{paragraph.3.3.2.4}% 32
+\BOOKMARK [5][-]{subparagraph.3.3.2.4.4}{Deviations from workplan}{paragraph.3.3.2.4}% 33
+\BOOKMARK [4][-]{paragraph.3.3.2.5}{Work package 5 progress}{subsubsection.3.3.2}% 34
+\BOOKMARK [5][-]{subparagraph.3.3.2.5.1}{Result 1}{paragraph.3.3.2.5}% 35
+\BOOKMARK [5][-]{subparagraph.3.3.2.5.2}{Result 2}{paragraph.3.3.2.5}% 36
+\BOOKMARK [5][-]{subparagraph.3.3.2.5.3}{Resources}{paragraph.3.3.2.5}% 37
+\BOOKMARK [5][-]{subparagraph.3.3.2.5.4}{Deviations from workplan}{paragraph.3.3.2.5}% 38
+\BOOKMARK [4][-]{paragraph.3.3.2.6}{Work package 6 progress}{subsubsection.3.3.2}% 39
+\BOOKMARK [5][-]{subparagraph.3.3.2.6.1}{Administrative coordination \(T6.1\)}{paragraph.3.3.2.6}% 40
+\BOOKMARK [5][-]{subparagraph.3.3.2.6.2}{Software repository implementation \(T6.2\)}{paragraph.3.3.2.6}% 41
+\BOOKMARK [5][-]{subparagraph.3.3.2.6.3}{Resources}{paragraph.3.3.2.6}% 42
+\BOOKMARK [5][-]{subparagraph.3.3.2.6.4}{Deviations from workplan}{paragraph.3.3.2.6}% 43
+\BOOKMARK [4][-]{paragraph.3.3.2.7}{Work package 7 progress}{subsubsection.3.3.2}% 44
+\BOOKMARK [5][-]{subparagraph.3.3.2.7.1}{Dissemination activities towards academia, industry, and other users \(T7.1\)}{paragraph.3.3.2.7}% 45
+\BOOKMARK [5][-]{subparagraph.3.3.2.7.2}{Exploitation plan \(T7.2\)}{paragraph.3.3.2.7}% 46
+\BOOKMARK [5][-]{subparagraph.3.3.2.7.3}{Management of IPR \(T7.3\)}{paragraph.3.3.2.7}% 47
+\BOOKMARK [5][-]{subparagraph.3.3.2.7.4}{Dissemination of a database of human motion with contacts \(T7.4\)}{paragraph.3.3.2.7}% 48
+\BOOKMARK [5][-]{subparagraph.3.3.2.7.5}{Resources}{paragraph.3.3.2.7}% 49
+\BOOKMARK [5][-]{subparagraph.3.3.2.7.6}{Deviations from workplan}{paragraph.3.3.2.7}% 50
+\BOOKMARK [2][-]{subsection.3.4}{Deliverables and milestones tables}{}% 51
+\BOOKMARK [3][-]{subsubsection.3.4.1}{Deliverables \(excluding the periodic and final reports\)}{subsection.3.4}% 52
+\BOOKMARK [3][-]{subsubsection.3.4.2}{Milestones}{subsection.3.4}% 53
+\BOOKMARK [1][-]{appendix.A}{List of dissemination events}{}% 54
+\BOOKMARK [2][-]{subsection.A.1}{IIT contributions to dissemination}{appendix.A}% 55
+\BOOKMARK [3][-]{subsubsection.A.1.1}{Invited talks}{subsection.A.1}% 56
+\BOOKMARK [3][-]{subsubsection.A.1.2}{International events organisation}{subsection.A.1}% 57
+\BOOKMARK [3][-]{subsubsection.A.1.3}{Talks at international conferences}{subsection.A.1}% 58
+\BOOKMARK [3][-]{subsubsection.A.1.4}{Pubblications}{subsection.A.1}% 59
+\BOOKMARK [3][-]{subsubsection.A.1.5}{Media coverage}{subsection.A.1}% 60
+\BOOKMARK [3][-]{subsubsection.A.1.6}{iCub at international events}{subsection.A.1}% 61
+\BOOKMARK [2][-]{subsection.A.2}{TUD contributions to dissemination}{appendix.A}% 62
+\BOOKMARK [3][-]{subsubsection.A.2.1}{Invited talks}{subsection.A.2}% 63
+\BOOKMARK [3][-]{subsubsection.A.2.2}{Publications}{subsection.A.2}% 64
+\BOOKMARK [3][-]{subsubsection.A.2.3}{Media coverage}{subsection.A.2}% 65
+\BOOKMARK [3][-]{subsubsection.A.2.4}{MSc. and Ph.D. theses}{subsection.A.2}% 66
+\BOOKMARK [2][-]{subsection.A.3}{Student research stays}{appendix.A}% 67
+\BOOKMARK [2][-]{subsection.A.4}{Organised conference workshops}{appendix.A}% 68
+\BOOKMARK [2][-]{subsection.A.5}{Meetings with industrial partners}{appendix.A}% 69
+\BOOKMARK [2][-]{subsection.A.6}{Invited speakers}{appendix.A}% 70
+\BOOKMARK [2][-]{subsection.A.7}{Collaborations}{appendix.A}% 71
+\BOOKMARK [2][-]{subsection.A.8}{UPMC contributions to dissemination}{appendix.A}% 72
+\BOOKMARK [3][-]{subsubsection.A.8.1}{Invited talks}{subsection.A.8}% 73
+\BOOKMARK [3][-]{subsubsection.A.8.2}{Publications}{subsection.A.8}% 74
+\BOOKMARK [3][-]{subsubsection.A.8.3}{Media coverage}{subsection.A.8}% 75
+\BOOKMARK [2][-]{subsection.A.9}{UB contributions to dissemination}{appendix.A}% 76
+\BOOKMARK [3][-]{subsubsection.A.9.1}{Invited talks}{subsection.A.9}% 77
+\BOOKMARK [3][-]{subsubsection.A.9.2}{Publications}{subsection.A.9}% 78
+\BOOKMARK [2][-]{subsection.A.10}{JSI contributions to dissemination}{appendix.A}% 79
+\BOOKMARK [3][-]{subsubsection.A.10.1}{Invited talks}{subsection.A.10}% 80
+\BOOKMARK [3][-]{subsubsection.A.10.2}{Editorial work}{subsection.A.10}% 81
+\BOOKMARK [3][-]{subsubsection.A.10.3}{Publications}{subsection.A.10}% 82
+\BOOKMARK [2][-]{subsection.A.11}{INRIA contributions to dissemination}{appendix.A}% 83
+\BOOKMARK [3][-]{subsubsection.A.11.1}{Invited talks}{subsection.A.11}% 84
+\BOOKMARK [3][-]{subsubsection.A.11.2}{Organised workshop/special sessions}{subsection.A.11}% 85
+\BOOKMARK [3][-]{subsubsection.A.11.3}{Media coverage}{subsection.A.11}% 86
+\BOOKMARK [3][-]{subsubsection.A.11.4}{Publications}{subsection.A.11}% 87

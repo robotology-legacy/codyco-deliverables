@@ -3,13 +3,73 @@
 
 \paragraph{Work package 1 progress}
 
-\subparagraph{Reults 1} 
+\subparagraph{Software architecture design and evaluation of available
+  open-source software pertinent to the scope of the project. (T1.1)}
 
-Some description.
+The goal of T1.1 was to agree on a specific software architecture with
+associated software tools whose specifications, dependencies and
+interconnections meet the requirements and needs for achieving the goals of
+the project.  The software, which is called \texttt{codyco-superbuild}, is
+available via github on
+\texttt{https://github.com/robotology/codyco-superbuild}. The modules and
+specifications of the software are as follows:}
 
-\subparagraph{Result 2}
+  \begin{itemize}
+  \item \texttt{codyco-superbuild}: Main software repository (available from
+    \url{https://github.com/robotology/codyco-superbuild}).
+  \item \texttt{idyntree}: Dynamics library designed for free floating robots
+    (available from \url{https://github.com/robotology/idyntree}).
+  \item \texttt{wholebodyinterface}: C++ Interfaces to sensor measurements,
+    state estimations, kinematic/dynamic model and actuators for a floating base
+    robot (available from
+    \url{https://github.com/robotology/wholebodyinterface}).
+  \item \texttt{yarp-wholebodyinterface}: Implementation of the
+    wholeBodyInterface for YARP robots (available from
+    \url{https://github.com/robotology/yarp-wholebodyinterface}).
+  \item \texttt{WB-Toolbox}: Simulink Toolbox for rapid prototyping of Whole
+    Body Robot Controllers (available from
+    \url{https://github.com/robotology/WB-Toolbox}).
+  \item \texttt{codyco-modules}: Whole-body Compliant Dynamical Contacts in
+    Cognitive Humanoids (available from
+    \url{https://github.com/robotology/codyco-modules}).
+  \item \texttt{mex-wholebodymodel}: Matlab MEX interface to the iWholeBodyModel
+    interface (available from
+    \url{https://github.com/robotology/mex-wholebodymodel}).
+  \item \texttt{codyco-commons}: Miscellanous libraries developed in the CoDyCo
+    project (available from
+    \url{https://github.com/robotology-playground/codyco-commons}).
+  \item \texttt{WBI-Toolbox-controllers}: Controllers developed using the
+    WB-Toolbox (available from
+    \url{https://github.com/robotology-playground/WBI-Toolbox-controllers}).
+  \item \texttt{wholeBodyEstimator}: Algorithm developed for floating base
+    estimation (available from
+    \url{https://github.com/robotology/codyco-modules/tree/master/src/modules/wholeBodyEstimator}).
+  \item \texttt{LWR-ContactParams}: Locally Weighted Regression (LWR) algorithm
+    for learning contact parameters of compliant contacts (this is available
+    from \url{https://github.com/azadm/LWR_for_ContactParams.git}).
+  \end{itemize}
+  
 
-Some description.
+\subparagraph{Simulator for whole-body motion with contacts (T1.2)}
+
+The CoDyCo project requires a modular, component-based dynamics simulation
+software providing numerically stable, computationally efficient and
+physically consistent simulations of whole-body virtual human(oid) systems in
+contact with rigid or soft environments.  To this end, in year one, a new iCub
+simulator was released and documented as part of deliverable D1.1.
+
+
+\subparagraph{Control library for flexible specification of task space
+  dynamics of floating base manipulators. (T1.3)}
+
+
+
+\subparagraph{System dynamics estimation software. Extension to
+environmental compliance estimation (T1.4)}
+
+  
+\subparagraph{Extension and enhancement of the iDyn library. (T1.5)}
+\label{sec:T15}
 
 
 
