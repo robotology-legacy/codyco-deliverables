@@ -1,6 +1,38 @@
 %!TEX root = ../../thirdYearReport.tex
 
 
+\newcommand{\EQ}{\!\!\!=\!\!\!}
+
+\newcommand{\Bp}{\mathbf{p}}
+\newcommand{\Br}{\mathbf{r}}
+\newcommand{\Bf}{\mathbf{f}}
+\newcommand{\BJ}{\mathbf{J}}
+\newcommand{\Bv}{\mathbf{v}}
+\newcommand{\BI}{\mathbf{I}}
+\newcommand{\BR}{\mathbf{R}}
+\newcommand{\BK}{\mathbf{K}}
+\newcommand{\BD}{\mathbf{D}}
+\newcommand{\BA}{\mathbf{A}}
+\newcommand{\Bb}{\mathbf{b}}
+\newcommand{\BM}{\mathbf{M}}
+\newcommand{\BC}{\mathbf{C}}
+\newcommand{\Bg}{\mathbf{g}}
+\newcommand{\BS}{\mathbf{S}}
+\newcommand{\Bzero}{\mathbf{0}}
+\newcommand{\BN}{\mathbf{N}}
+\newcommand{\Bh}{\mathbf{h}}
+\newcommand{\BW}{\mathbf{W}}
+\newcommand{\Bq}{\mathbf{q}}
+\newcommand{\BF}{\mathbf{F}}
+\newcommand{\Bn}{\mathbf{n}}
+
+\newcommand{\Bomega}{\boldsymbol{\omega}}
+\newcommand{\Btau}{\boldsymbol{\tau}}
+\newcommand{\Balpha}{\boldsymbol{\alpha}}
+\newcommand{\Bbeta}{\boldsymbol{\beta}}
+
+
+
 \paragraph{Work package 1 progress}
 
 \subparagraph{Software architecture design and evaluation of available
@@ -31,6 +63,139 @@ simulator was released and documented as part of deliverable D1.1.
 
 \subparagraph{System dynamics estimation software. Extension to
 environmental compliance estimation (T1.4)}
+
+As a part of this task, UB and TUD developed a framework in order to estimate
+the parameters of compliant contacts between the robot and its environment.
+Using this framework allows us to predict contact forces in the next instant.
+Assume that the body which is in contact with a soft surface is labeled with
+$B_c$.  We characterize the contact surface of $B_c$ by $m$ fictitious contact
+points on this body.  Let $\Bp_i$ denote the position of the i$^{th}$ contact
+point ($i=1,2,\ldots,m$) in the world frame.  Therefore,
+%
+\begin{equation}
+  \Bp_i = \Bp + \BR \Br_i \, ,
+\end{equation}
+%
+where $\Bp$ is the position of the origin of the local frame of $B_c$ with
+respect to the world frame, $\BR$ is the rotation matrix of $B_c$ with respect
+to the world frame and $\Br_i$ is the position of i$^{th}$ contact point in
+the local frame of $B_c$.  So
+%
+\begin{equation}
+  \dot{\Bp}_i = \dot{\Bp} + \dot{\BR} \Br_i = \dot{\Bp} - (\BR\Br_i)^{\wedge}
+  \Bomega = [ \BI_{3 \times 3} \; \; {}-(\BR\Br_i)^{\wedge} ] \BJ_s \Bv \, ,
+  \label{pidot}
+\end{equation}
+%
+where $\Bomega$ is the angular velocity of $B_c$ and $()^{\wedge}$ represents
+the skew symmetric matrix.  We also have
+%
+\begin{equation}
+  \ddot{\Bp}_i = \ddot{\Bp} + \ddot{\BR} \Br_i = \ddot{\Bp} - (\BR
+  \Br_i)^{\wedge} \dot{\Bomega} + (\Bomega)^{\wedge} (\Bomega)^{\wedge} \BR
+  \Br_i = [ \BI_{3 \times 3} \; \; {}-(\BR \Br_i)^{\wedge}] (\dot{\BJ}_s \Bv +
+  \BJ_s \dot{\Bv}) + (\Bomega)^{\wedge} (\Bomega)^{\wedge} \BR \Br_i \, .
+  \label{piddot}
+\end{equation}
+%
+
+According to contact mechanics \cite{Johnson77} and its applications in
+robotics \cite{Azad&Featherstone10, Azad&Featherstone14a, Hunt&Crossley75,
+  Marhefka&Orin99}, there is a non-linear relationship between compliant
+contact force and deformation and the rate of the deformation of the surface.
+However, we can assume a locally linear relationship between the change of the
+contact force and the change of the deformation and its rate.  Therefore,
+according to this assumption, we can write
+%
+\begin{equation}
+  \delta \Bf_i = \BK \delta \Bp_i + \BD \delta \dot{\Bp}_i \, ,
+\end{equation}
+%
+where $\delta \Bf_i$ and $\delta \Bp_i$ are the changes of the contact force
+and the deformation at the i$^{th}$ contact point, respectively, and $\BK$ and
+$\BD$ are $3 \times 3$ matrices of the coefficients of stiffness and damping,
+respectively.  By using a linear integration method, we can estimate $\delta
+\Bp_i$ and $\delta \dot{\Bp}_i$ as
+%
+\begin{equation}
+  \delta \Bp_i = \dot{\Bp}_i \delta t + \frac{1}{2} \ddot{\Bp}_i \delta t^2 \,
+  ,
+  \label{deltapi}
+\end{equation}
+%
+and
+%
+\begin{equation}
+  \delta \dot{\Bp}_i = \ddot{\Bp}_i \delta t \, ,
+  \label{deltapidot}
+\end{equation}
+%
+where $\delta t$ is the sampling time.  Hence, by substituting (\ref{pidot})
+and (\ref{piddot}) into (\ref{deltapi}) and (\ref{deltapidot}), we will have
+%
+\begin{equation}
+  \delta \Bf_i = \BA_i \dot{\Bv} + \Bb_i \, ,
+\end{equation}
+%
+where
+%
+%
+\begin{equation}
+  \BA_i = \frac{1}{2} \delta t^2 [\BK \; \; -\BK(\BR \Br_i)^{\wedge}] \BJ_s +
+  \delta t [\BD \; \; - \BD(\BR \Br_i)^{\wedge}] \BJ_s \, ,
+\end{equation}
+%
+and
+%
+\begin{eqnarray}
+  \nonumber \Bb_i & \EQ & \delta t [\BK \; \; -\BK(\BR \Br_i)^{\wedge}] \BJ_s
+  \Bv + \frac{1}{2} \delta t^2 [\BK \; \; -\BK(\BR \Br_i)^{\wedge}]
+  \dot{\BJ}_s \Bv\\ & & + \frac{1}{2} \delta t^2 \BK (\Bomega)^{\wedge}
+  (\Bomega)^{\wedge} \BR \Br_i + \delta t [\BD \; \; -\BD(\BR \Br_i)^{\wedge}]
+  \dot{\BJ}_s \Bv + \delta t \BD (\Bomega)^{\wedge} (\Bomega)^{\wedge} \BR
+  \Br_i \, .
+\end{eqnarray}
+%
+Also for the moment of the contact forces we have
+%
+\begin{equation}
+  \delta \Bn_i = (\BR \Br_i)^{\wedge} \delta \Bf_i \, .
+\end{equation}
+%
+Therefore, total change of force vector for $B_c$ will be
+%
+\begin{equation}
+  \delta \Bf_s =
+  \begin{bmatrix}
+    \sum_{i=1}^m \BA_i \dot{\Bv} + \sum_{i=1}^m \Bb_i\\
+    \\
+    \sum_{i=1}^m (\BR \Br_i)^{\wedge} \BA_i \dot{\Bv} + \sum_{i=1}^m \Bb_i
+  \end{bmatrix}
+  =
+  \begin{bmatrix}
+    \BA_f \\
+    \\
+    \BA_n
+  \end{bmatrix}
+  \dot{\Bv} +
+  \begin{bmatrix}
+    \Bb_f \\
+    \\
+    \Bb_n
+  \end{bmatrix}
+  = \BA \dot{\Bv} + \Bb \, .
+\end{equation}
+%
+Hence, the estimated (for the next instant) 6D force-torque vector of the
+contact force of $B_c$ will be
+%
+\begin{equation}
+  \hat{\Bf}_s = \Bf_s + \delta \Bf_s = \BA \dot{\Bv} + \Bb + \Bf_s \, .
+\end{equation}
+%
+Note that for the constraints on the soft contact force (unilaterality and
+friction cone), $\hat{\Bf}_s$ has to be expressed in the local frame of $B_c$
+as $\hat{\BF}_s = \BR^T \hat{\Bf}_s$.
 
   
 \subparagraph{Extension and enhancement of the iDyn library. (T1.5)}
