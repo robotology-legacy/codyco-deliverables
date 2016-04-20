@@ -59,12 +59,12 @@ simulator was released and documented as part of deliverable D1.1.
 \subparagraph{Control library for flexible specification of task space
   dynamics of floating base manipulators. (T1.3)}
 
-UPMC has recently developed OCRA ``Optimization-based Control for Robotics
-Applications'' which is available from
-\url{https://github.com/ocra-recipes/ocra-recipes}.  This has been tested on
-the iCubParis02 and the KUKA LWR.
+%UPMC has recently developed OCRA ``Optimization-based Control for Robotics
+%Applications'' which is available from
+%\url{https://github.com/ocra-recipes/ocra-recipes}.  This has been tested on
+%the iCubParis02 and the KUKA LWR.
 
-\hl{UPMC to provide more details.}
+UPMC has developed OCRA which stands for Optimization-based Control for Robotics Applications. OCRA is a set of tools which facilitates the development of optimization-based controllers for robots. At its core there is \href{https://github.com/ocra-recipes/ocra-recipes}{ocra-recipes}, a group of platform independent libraries which can be used to quickly develop optimization based controllers for any robot. Hierarchical, weighted, and hybrid controller schemes can easily be implemented using the \href{https://github.com/ocra-recipes/ocra-recipes}{ocra-recipes} libraries. The generic interfaces provided by OCRA allow different robots to use the exact same controllers. Examples of such implementations can be found for the humanoid robot iCub (\href{https://github.com/ocra-recipes/ocra-wbi-plugins}{ocra-wbi-plugins}), and the 7 DoF Kuka LWR (\href{https://github.com/kuka-isir/ocra-kdl}{ocra-kdl}). OCRA. also allows users to specify high-level objectives via tasks. These tasks provide an intuitive way of generating complex behaviours and can be specified in XML format.
 
 %Tasks can be specified in XML, use hierarchical, weighted or hybrid QP control
 %and use QuadProg++ or qpOases as your solver. More to come soon.
