@@ -1,0 +1,48 @@
+%!TEX root = ../../thirdYearReport.tex
+
+% 2 man.months for IIT on T1.5
+
+\subsubsection{Self-calibration of joint offsets for humanoid robots using accelerometers.}
+
+Accurate sensing of joint angles is a crucial requirement for effective dynamic whole-body control of humanoid robots.
+While, for standard robot platforms, some kinematic parametric models (Denavit Hartenberg parameters) are typically extracted 
+from the CAD diagrams, joint encoders offsets are assembly dependent. Therefore, the accurate calibration of such parameters is 
+required after any repair task, and can be frequent. For that reason, a fast, accurate and automatic method for joint encoders offsets 
+was identified as a real necessity within the WP1 research scope.
+A method was proposed using multiple on-board inertial sensors, more precisely,
+the low-cost MEMS accelerometers integrated in iCub .The proposed method and initial results were compiled into a paper submitted to IEEE RSJ International Conference on Intelligent Robots and systems (IROS) and is currently under review.
+The problem is posed as an over-constrained nonlinear least squares
+minimization process under the following assumptions:
+(i) multiple calibrated accelerometers are present on the robot
+-- a sufficient but not necessary condition is that at least
+one accelerometer is present in each link. (ii) The relative
+pose of each accelerometer with respect to to its link frame
+is known accurately apriori. (iii) Static measurements are
+sufficient to tackle this problem, i.e. using slow moving
+limbs; consequently, accelerometers only measure the inverse
+of gravity acceleration. (iii) The base link of the robot
+can be fixed to be at rest -- alternatively the presence of
+an accelerometer in the base link is sufficient. (iv) Measured
+accelerations at all of the limb configurations are of
+equal time duration; this enables us to equally prioritize
+all configurations that a robot may be able to reach.
+
+Although prior methods have been proposed in the context of kinematic and dynamic parameters identification on humanoid robots,  these are dependent on specific recursive sequence of poses and movements, and the calibration can only be performed joint by joint. In contrast, the method we've proposed is novel in that, the input data is acquired in a single slow motion sequence, and the calibration is done in a single optimization process, in a chain-wise fashion (independent for each limb).
+
+\paragraph*{Implementation:}
+The minimization process is based on a cost function evaluating the gap between the gravity acceleration
+measured by the inertial sensors, and the proper accelerations of the robot links estimated from the joint
+measurements. The method was implemented on Matlab. Coupled with this development, a test plugin was 
+implemented for performing a diagnosis of the mounted inertial sensors. This test measures the standard deviation
+of the gravity acceleration measurements due to any sensor frame pose errors or joint encoder offsets, applying a tolerance 
+of around 20 percent. this plugin test is under validation and should be soon integrated to the iCub plugin tests open source 
+repository \url{https://github.com/robotology/icub-tests}.
+
+\paragraph*{Results:}
+For the offset calibration process, the input data was captured on the iCub robot (a total of 26 accelerometers on both legs), and
+tested using simulated joint offsets. For the first step in the validation, we successfully ran the optimization over 5 data buckets randomly selected 
+in the context of a static joint configuration, and obtained a standard deviation of very low magnitude. We are currently performing a 
+more thorough validation while running the optimization over several static joint poses, which should help finding a global minimum.
+The effectiveness of the method is being evaluated on the Gazebo simulator, on a pose control problem using proportional-derivative control with 
+gravity compensation under simulated joint offsets.
+
