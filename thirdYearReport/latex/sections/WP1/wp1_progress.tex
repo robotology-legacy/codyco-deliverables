@@ -66,7 +66,7 @@ environmental compliance estimation (T1.4)}
 
 As a part of this task, UB and TUD developed a framework in order to estimate
 the parameters of compliant contacts between the robot and its environment.
-Using this framework allows us to predict contact forces in the next instant.
+Using this framework, we can predict contact forces in the next instant.
 Assume that the body which is in contact with a soft surface is labeled with
 $B_c$.  We characterize the contact surface of $B_c$ by $m$ fictitious contact
 points on this body.  Let $\Bp_i$ denote the position of the i$^{th}$ contact
@@ -87,8 +87,9 @@ the local frame of $B_c$.  So
   \label{pidot}
 \end{equation}
 %
-where $\Bomega$ is the angular velocity of $B_c$ and $()^{\wedge}$ represents
-the skew symmetric matrix.  We also have
+where $\BJ_s$ is the Jacobian of the bodies in contact with soft surfaces,
+$\Bomega$ is the angular velocity of $B_c$ and $()^{\wedge}$ represents the
+skew symmetric matrix.  We also have
 %
 \begin{equation}
   \ddot{\Bp}_i = \ddot{\Bp} + \ddot{\BR} \Br_i = \ddot{\Bp} - (\BR
@@ -102,10 +103,10 @@ the skew symmetric matrix.  We also have
 According to contact mechanics \cite{Johnson77} and its applications in
 robotics \cite{Azad&Featherstone10, Azad&Featherstone14a, Hunt&Crossley75,
   Marhefka&Orin99}, there is a non-linear relationship between compliant
-contact force and deformation and the rate of the deformation of the surface.
-However, we can assume a locally linear relationship between the change of the
-contact force and the change of the deformation and its rate.  Therefore,
-according to this assumption, we can write
+contact force and the deformation and the rate of the deformation of the
+surface.  However, in order to simplify the model, we assume a locally linear
+relationship between the change of the contact force and the change of the
+deformation and its rate.  Based on this assumption, we can write
 %
 \begin{equation}
   \delta \Bf_i = \BK \delta \Bp_i + \BD \delta \dot{\Bp}_i \, ,
@@ -162,7 +163,7 @@ Also for the moment of the contact forces we have
   \delta \Bn_i = (\BR \Br_i)^{\wedge} \delta \Bf_i \, .
 \end{equation}
 %
-Therefore, total change of force vector for $B_c$ will be
+Therefore, total change of the force vector for $B_c$ will be
 %
 \begin{equation}
   \delta \Bf_s =
@@ -190,12 +191,20 @@ Hence, the estimated (for the next instant) 6D force-torque vector of the
 contact force of $B_c$ will be
 %
 \begin{equation}
-  \hat{\Bf}_s = \Bf_s + \delta \Bf_s = \BA \dot{\Bv} + \Bb + \Bf_s \, .
+  \hat{\Bf}_s = \Bf_s + \delta \Bf_s = \BA \dot{\Bv} + \Bb + \Bf_s \, ,
 \end{equation}
 %
-Note that for the constraints on the soft contact force (unilaterality and
-friction cone), $\hat{\Bf}_s$ has to be expressed in the local frame of $B_c$
-as $\hat{\BF}_s = \BR^T \hat{\Bf}_s$.
+which is a function of contact parameters ($\BK$ and $\BD$), current force
+(read from F/T sensors) and joint accelerations ($\dot{\Bv}$).  Note that for
+the constraints on the soft contact force (unilaterality and friction cone),
+$\hat{\Bf}_s$ has to be expressed in the local frame of $B_c$ as $\hat{\BF}_s
+= \BR^T \hat{\Bf}_s$.
+
+In order to estimate the contact parameters ($\BK$ and $\BD$), we use a
+locally weighted projection regression (LWPR) algorithm.  This algorithm gives
+us a locally linear model for a non-linear function which suits our
+application.  Implementation of this algorithm is available from
+\url{https://github. com/azadm/LWR_for_ContactParams.git}.
 
   
 \subparagraph{Extension and enhancement of the iDyn library. (T1.5)}
