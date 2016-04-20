@@ -59,6 +59,15 @@ simulator was released and documented as part of deliverable D1.1.
 \subparagraph{Control library for flexible specification of task space
   dynamics of floating base manipulators. (T1.3)}
 
+UPMC has recently developed OCRA ``Optimization-based Control for Robotics
+Applications'' which is available from
+\url{https://github.com/ocra-recipes/ocra-recipes}.  This has been tested on
+the iCubParis02 and the KUKA LWR.
+
+\hl{UPMC to provide more details.}
+
+%Tasks can be specified in XML, use hierarchical, weighted or hybrid QP control
+%and use QuadProg++ or qpOases as your solver. More to come soon.
 
 
 \subparagraph{System dynamics estimation software. Extension to
@@ -200,19 +209,40 @@ the constraints on the soft contact force (unilaterality and friction cone),
 $\hat{\Bf}_s$ has to be expressed in the local frame of $B_c$ as $\hat{\BF}_s
 = \BR^T \hat{\Bf}_s$.
 
-In order to estimate the contact parameters ($\BK$ and $\BD$), we use a
-locally weighted projection regression (LWPR) algorithm.  This algorithm gives
-us a locally linear model for a non-linear function which suits our
-application.  Implementation of this algorithm is available from
-\url{https://github. com/azadm/LWR_for_ContactParams.git}.
+In order to estimate the contact parameters ($\BK$ and $\BD$), we use locally
+weighted projection regression (LWPR) algorithm.  This algorithm gives us a
+locally linear model for a non-linear function which suits our application.
+The outcome of this algorithm will be $\BK$ and $\BD$ at each time instant
+based on the previous values of the contact force and the position and
+velocity of the contact point.  Therefore, we can compute the (estimation of
+the) contact force in the next instant.  Implementation of this algorithm is
+available from \url{https://github. com/azadm/LWR_for_ContactParams.git}.  To
+verify this algorithm, TUD performed a few experiments on iCub robot standing
+on soft surfaces.  During those experiments, the robot was standing on two
+different surfaces (transparent plastic and white foam) while balancing
+controller was running on the robot.  The upper body of the robot was
+perturbed and data from all sensors were collected in order to calculate the
+movements of the contact points and also the contact forces.  By feeding these
+values into our LWPR algorithm, we estimated the contact force and compared
+with the actual data from F/T sensors.  The results are acceptable and show
+the consistency of the LWPR estimation algorithm.  For example,
+Fig~\ref{force_estimate} shows the match between actual and estimated change
+of the contact force in the vertical direction while the robot's right foot is
+on a soft surface (i.e. white foam).
+%
+\begin{figure}
+  \centering
+  \includegraphics[scale=0.4]{images/force_estimate.pdf}
+  \caption{Change of contact force in the vertical direction.  The right foot
+    of the iCub is placed on a white foam.}
+  \label{force_estimate}
+\end{figure}
 
-  
+
 \subparagraph{Extension and enhancement of the iDyn library. (T1.5)}
 \label{sec:T15}
 
-
-
-
+\hl{IIT to provide input about floating base estimation.}
 
 
 
