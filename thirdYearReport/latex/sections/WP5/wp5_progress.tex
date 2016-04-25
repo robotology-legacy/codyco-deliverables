@@ -1,13 +1,39 @@
 %!TEX root = ../../thirdYearReport.tex
 
 \paragraph{Work package 5 progress}
+As previously mentioned, the activities for the Work-Package 5 have focused on the implementation of the third-year validation scenario. Let us recall that this  scenario aims at verifying the control performances in the case the humanoid robot iCub must balance by means of compliant or dynamical contacts (see  \url{https://github.com/robotology-playground/codyco-deliverables/blob/master/D5.3/pdf/D5.3.pdf}). 
 
-Summary.
+In particular, the validation scenario consists in two demonstrations carried out with the humanoid robot iCub: 
+balancing on a soft carpet and balancing on a seesaw. In both cases, the control objective is the regulation of the robot momentum. The main idea to control the robot momentum is that its rate-of-change equals the summation of the external wrenches acting on the system. So, controlling the external wrenches allows us to control the rate-of-change of the robot momentum and, as a consequence, the momentum itself.
+ \begin{figure}[t!]
+     \centering{
+     % \includsvg{imgs/model}
+         \def\svgwidth{0.7\columnwidth}         
+         \input{images/softFloor.eps_tex}
+     \caption{A compliant carpet subject to a uniform force distribution}
+     \label{fig:compliantCarpet}
+   }
+\end{figure}
+\subparagraph{Demonstration 1: iCub balancing on a compliant carpet}
+ One of the main difficulties when dealing with compliant  contacts  comes from the fact that the external wrenches acting on the robot may not be instantaneously related to the robot’s torques, i.e. the input to the system. As a consequence, the input does not influence instantaneously the rate-of-change of the robot's momentum, and this complexifies the robot's control. 
+This complexity arises,  for instance, when a humanoid is standing on two springs that exert forces on the robot’s feet depending on the relative compression only.
+There may be some particular compliant terrains, however, that exert forces and torques not only depending on the relative compression, but also on the robot’s joint torques. In these cases, the soft terrain is subject to some rigid constraints that may allow the control of the robot’s momentum through the external forces, which thus depend on the joint torques. This is the case of a thin, highly damped carpet, which can be modeled, in the first approximation, as a continuum of vertical springs (see Figure~\ref{fig:compliantCarpet}). Each of these springs is assumed to compress vertically only, and the other degrees of freedom are rigidly constrained, thus creating the aforementioned relation between external forces and joint torques. This relation allows us to control the robot's momentum through the joint torques when the robot stands on a compliant carpet.
 
-\subparagraph{Result 1}
+\subparagraph{Demonstration 2: iCub balancing on a seesaw}
+When the robot stands on a seesaw (see Figure~\ref{fig:RobotOnSeesaw}), the contacts between its feet and the environment (i.e. the seesaw) are subject to a non-trivial dynamics.
+ The difficulties when controlling the robot's momentum in this case are a higher than those when the robot stands on the compliant carpet. In fact, in addition to the fact that  the rate-of-change of the momentum may not be instantaneously affected by the system's input (torques), we have the dynamics of the seesaw to take into account. The constraints to take into account are thus: the robot's feet must be attached to the seesaw, the seesaw can roll on the floor. By combining these constraints with the robot and seesaw dynamics, it is possible to calculate the contact wrenches (between the robot and the seesaw) so as to control the robot's momentum.
+ 
+\begin{figure}[t!]
+    \centering{
+    % \includsvg{imgs/model}
+        \def\svgwidth{0.65\columnwidth}         
+        \input{images/seesawRobot.eps_tex}
+    \caption{The robot balancing on the semi-cylindrical seesaw}
+    \label{fig:RobotOnSeesaw}
+    }
+\end{figure}
 
-Some result.
+\subparagraph{Software}
+The controllers for both demonstrations have been developed in the MATLAB-SIMULINK environment thanks to the WB-Toolbox library (\url{https://github.com/robotology-playground/WBI-Toolbox}), a wrapper which allows us to use the high-level MATHWORKS tools. In particular, the controller for balancing on a compliant terrain is available at \url{https://github.com/robotology-playground/WBI-Toolbox-controllers/tree/master/controllers/torqueBalancing}, while that for balancing on a seesaw at 
+\url{https://github.com/robotology-playground/WBI-Toolbox-controllers/tree/master/controllers/torqueBalancingOnSeesaw}.
 
-\subparagraph{Result 2}
-
-Some result.
