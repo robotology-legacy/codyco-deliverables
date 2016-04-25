@@ -1,18 +1,20 @@
 %!TEX root = ../../thirdYearReport.tex
 
-
-Within T4.1 IIT developed a theoretical framework for estimating whole-body
-dynamics from distributed multimodal sensors \cite{Nori2015}. Considered sensors
+Within T4.1 IIT developed in the first and the second year of the 
+project a theoretical framework for estimating whole-body
+dynamics from distributed multimodal sensors \cite{nori2015}. Considered sensors
 include joint encoders, gyroscopes, accelerometers and force/torque sensors.
 Estimated quantities are position, velocity, acceleration and (internal and
 external) wrenches on all the rigid bodies composing the robot articulated
-chain. The estimation procedure consists of an extended Kalman filter (EKF)
-which gives the a-posteriori estimation given all the available measurements.
-Computational efficiency is obtained by formulating the Kalman filter
-update-step with a sparse Bayesian network. Experiments for validating the
-proposed theoretical framework have been conducted on a leg of the iCub humanoid
-robot. The iCub is an ideal platform for the proposed experiment given its
-distributed force, torque, linear acceleration and angular velocity sensors.
-Results have shown the accuracy and the computational efficiency of the proposed
-method. The theoretical framework has been implemented in an open source
-software (see also Section \ref{sec:T15}).
+chain. In the third year of the project, IIT investigated the integration
+of this estimation techniques with the classical identification techniques
+for inertial parameters that were implementer in software packages as part of T1.4 .
+
+In \cite{nori2015}, the estimation of dynamics quantities was performed by using 
+the uncertancy of each sensor  was learned using real data.
+In particular the Expectation-Maximization algorithm was used to estimate the covariance matrix of 
+each sensor. IIT focused on extending this EM algorithm to also learn the mass,
+center of mass and inertia matrix of each link of the robot.
+This extension was validated in simulation and submitted in \cite{traversaro2015parametersEM}. 
+ 
+
