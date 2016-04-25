@@ -211,7 +211,13 @@ which is a function of contact parameters ($\BK$ and $\BD$), current force
 the constraints on the soft contact force (unilaterality and friction cone),
 $\hat{\Bf}_s$ has to be expressed in the local frame of $B_c$ as $\hat{\BF}_s
 = \BR^T \hat{\Bf}_s$.
-
+\begin{figure}
+  \centering
+  \includegraphics[scale=0.4]{images/force_estimate.pdf}
+  \caption{Change of contact force in the vertical direction.  The right foot
+    of the iCub is placed on a white foam.}
+  \label{force_estimate}
+\end{figure}
 In order to estimate the contact parameters ($\BK$ and $\BD$), we use locally
 weighted projection regression (LWPR) algorithm.  This algorithm gives us a
 locally linear model for a non-linear function which suits our application.
@@ -233,19 +239,44 @@ Fig~\ref{force_estimate} shows the match between actual and estimated change
 of the contact force in the vertical direction while the robot's right foot is
 on a soft surface (i.e. white foam).
 %
-\begin{figure}
-  \centering
-  \includegraphics[scale=0.4]{images/force_estimate.pdf}
-  \caption{Change of contact force in the vertical direction.  The right foot
-    of the iCub is placed on a white foam.}
-  \label{force_estimate}
-\end{figure}
+
 
 
 \subparagraph{Extension and enhancement of the iDyn library. (T1.5)}
 \label{sec:T15}
 
-\emph{IIT to provide input about floating base estimation.}
+As part of this task, IIT has developed a YARP, C++ based  module in charge of implementing a Kalman filter to estimate the floating base position-and-orientation 
+(see \url{https://github.com/robotology/codyco-modules/tree/master/src/modules/wholeBodyEstimator}). 
+\begin{figure}[t!]
+ \centering
+ \includegraphics[width=0.4\textwidth]{images/MixCoordSys.png}
+ % MixCoordSys.png: 365x315 pixel, 90dpi, 10.30x8.89 cm, bb=0 0 292 252
+ \label{fig:coordsys}
+ \caption{World reference frame $w$ and local sensor reference frame $\{s\}$. $R(q^{s}_{w})$ denotes the quaternion-based rotation matrix that rotates the world reference frame $w$ into $\{s\}$. }
+\end{figure}
+
+In particular,
+the goal of this Kalman Filter is to estimate the orientation of a world reference frame $w$ with respect to the sensor reference $\{s\}$ in the quaternion representation (radians), i.e.~$q^{s}_{w}$.  The filter uses only a triad of gyroscopes and accelerometers  along with a simple model of the process representing solely the orientation to be estimated. In this way, the state of the Kalman Filter will be the quaternion-based orientation of the world $w$ in the sensor reference frame $\{s\}$, i.e.
+\begin{equation}
+  x = q^{s}_{w}
+\end{equation}
+Where $q = [q_1 \quad q_v]$, $q_1 \in \mathbb{R}$, $q_v \in \mathbb{R}^3$ and $||q|| = 1$. 
+
+The (discrete-time) \emph{process model} of the filter
+ is obtained starting off the continuous time equations relating the quaternion orientation with its derivative resulting in the following differential equation:
+ \begin{equation}
+  \dot{q}^{s}_{w}(t) = \frac{1}{2}\Omega(\omega^{s}(t))q^{s}_{w}(t)
+  \label{Eq:diffEq}
+ \end{equation}
+ Linear approximations of the above dynamics with a fixed-time step assumption leads us to the \emph{process model} of the filter of the form 
+ \[x_{k+1} = Ax_k + w_k\]
+The \emph{measurement model} of the filter is constituted by the accelerometer only, neglecting its bias and scaling factors or body acceleration. The latter assumption is also done in many commercial IMUs as the one used to compare our results. This leads us to a measurement model of the form
+\[z_{k} = h(x_{k+1}) + v_{k}\]
+ The measurement model described by the above equation is non-linear in $q$. To fully describe the filter we further need to linearize $h(\cdot)$. 
+  Then, we have all the elements necessary to implement an Extended Kalman Filter with linearized measurement equations.
+For further details see  \url{https://github.com/robotology-playground/codyco-deliverables/blob/master/D5.3/pdf/D5.3.pdf} Sec. 5.1.
+
+
 
 
 
