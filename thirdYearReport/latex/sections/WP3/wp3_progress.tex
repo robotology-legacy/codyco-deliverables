@@ -4,7 +4,7 @@
 
 The progress for each task in WP3 is described hereafter.
 
-\subparagraph{Formulating the control problem (T3.2) (UPMC: 5PM)}
+\subparagraph*{Formulating the control problem (T3.2) (UPMC: 5PM)}
 
 During year 2, a generalized projector has been developed by UPMC and used in \cite{liu-AutRob2015} for hierarchical control. The novelty of hierarchical control algorithms based on the use of this generalized projector is that they can handle not only a single standard lexicographic hierarchy as the HQP and weighting strategies do, but also a complex priority network of hierarchies with both strict and non-strict priorities. The priority between each pair of tasks can be handled separately. Only one swapping phase is needed to move an arbitrary number of tasks to their desired priority levels concurrently.  Moreover, this generalized projector improves the smoothness during hierarchy rearrangements, because it can regulate to what extent a lower-priority task is projected into the null-space of higher-priority tasks (e.g. completely, partially, or not at all). In \cite{liu-AutRob2015}, the generalized projector is implemented in an optimization based dynamic control framework, which is applied to control a KUKA LWR robot in \cite{liu_ICRA2015}. However, the application of this control framework in real-time control of humanoid robots is limited, because its computational cost is sensitive to the number of tasks and the number of DoF of the robot.
 
@@ -12,7 +12,7 @@ The aforementioned generalized projector has also been extended and applied in a
 
 UPMC also started a study in order to evaluate the role, with respect to balance robustness, of a task explicitly aiming at regulating angular momentum to zero in QP-based whole-body controllers. The obtained results are still preliminary but  tend to show, in simulation, that the explicit presence of such a task does not improve the robustness of balance. This work may be further explored during year four.
 
-\subparagraph{Solving the local control problem (T3.3) (UPMC: 2PM, UB: xPM)}
+\subparagraph*{Solving the local control problem (T3.3) (UPMC: 2PM, UB: xPM)}
 
 During year 3, UPMC, UB and IIT worked on solving the whole-body reactive control problem in the case of compliant contact points (see Deliverable~3.2 \cite{deliverable32} and Deliverable~5.3 \cite{deliverable53} for completeness).\\
 
@@ -70,7 +70,7 @@ The contribution of IIT on model-based approaches for dealing with compliant con
 There are actually many type of soft terrains that exert forces and torques not only depending on their relative compression, but also on the robot’s joint torques. In these cases, the soft terrain is subject to some rigid constraints that may allow the control of the robot's momentum through the external forces, which thus depend on the joint torques. This is the case of a thin, highly damped carpet, which can be modelled, in the first approximation, as a continuum of vertical springs. Each of these springs is assumed to compress vertically only, and the other degrees of freedom are rigidly constrained, thus creating the aforementioned relation between external forces and joint torques. This brings us back to the case of rigid contacts even though the compliant force component $f_{comp}$ in Equation~(\ref{eq:compliant dyn model}) still needs to be properly compensated for. This particular component cannot be measured separately from the rigid component and a contact model is still needed to estimate it. This approach is the one retained for the demonstration of Year 3 and it is described in details in Deliverable~5.3 \cite{deliverable53}.
 
  
-\subparagraph{Bootstrapping and validating the control approach in rigid world and compliant cases (T3.4) (UPMC: 1.79PM, TUD: 9.65PM)}
+\subparagraph*{Bootstrapping and validating the control approach in rigid world and compliant cases (T3.4) (UPMC: 1.79PM, TUD: 9.65PM)}
  
 In order to ease the deployment of QP-based whole-body controllers, UPMC has put together a set of software libraries named OCRA (Optimization-based Control for Robotics Applications). A short description and links to OCRA are provided in the section dedicated to WP1.
 
@@ -106,7 +106,7 @@ A paper was published in an international robotics conference~\cite{calandra2015
 
 In addition, TUD developed a low-cost sensor glove for tele-operating the iCub. The construction and first imitation learning results of object grasping and manipulation were presented in a workshop~\cite{RueckertICRAWS2015}. A description of an improved version of the glove with an in-built IMU and separate sensors for proximal and distal joints was submitted to an international robotics conference. 
 
-\subparagraph{Extra results in WP2/WP3: UPMC and JSI collaboration (JSI: 2PM, the number of PMs spent by UPMC on this work is counted in WP2)}
+\subparagraph*{Extra results in WP2/WP3: UPMC and JSI collaboration (JSI: 2PM, the number of PMs spent by UPMC on this work is counted in WP2)}
 
 UPMC and JSI have been collaborating in order to try to explain curved movement trajectories observed on diagonal reaching movement. This works originates from the study of JSI to elucidate the computational mechanisms of human motor control in situations when humans seek for a supportive hand contact. Within the framework of this study, researchers at JSI performed a series of human experiments where the subjects had to perform diagonal arm reaching to targets of different sizes. Human reaching studies often focus on reaching forward in the sagittal plane, which commonly results in straighttrajectories \cite{ThoroughmanNature2000}. However, slightly curved reaching trajectories were also observed \cite{IzawaJNeuro2008}, \cite{UnoBioCyber1989}. Reported curvatures were very small, possibly due to small movement amplitudes. JSI investigated whether large amplitude movements outside of the sagittal plane show larger deviations from straight line trajectories.
 
