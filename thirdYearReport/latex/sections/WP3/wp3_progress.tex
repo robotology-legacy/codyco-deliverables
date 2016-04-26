@@ -70,7 +70,7 @@ The contribution of IIT on model-based approaches for dealing with compliant con
 There are actually many type of soft terrains that exert forces and torques not only depending on their relative compression, but also on the robot’s joint torques. In these cases, the soft terrain is subject to some rigid constraints that may allow the control of the robot's momentum through the external forces, which thus depend on the joint torques. This is the case of a thin, highly damped carpet, which can be modelled, in the first approximation, as a continuum of vertical springs. Each of these springs is assumed to compress vertically only, and the other degrees of freedom are rigidly constrained, thus creating the aforementioned relation between external forces and joint torques. This brings us back to the case of rigid contacts even though the compliant force component $f_{comp}$ in Equation~(\ref{eq:compliant dyn model}) still needs to be properly compensated for. This particular component cannot be measured separately from the rigid component and a contact model is still needed to estimate it. This approach is the one retained for the demonstration of Year 3 and it is described in details in Deliverable~5.3 \cite{deliverable53}.
 
  
-\subparagraph*{Bootstrapping and validating the control approach in rigid world and compliant cases (T3.4) (UPMC: 1.79PM, TUD: 9.65PM)}
+\subparagraph*{Bootstrapping and validating the control approach in rigid world and compliant cases (T3.4) (UPMC: 1.79PM, TUD: 9.65PM, INRIA: xPM)}
  
 In order to ease the deployment of QP-based whole-body controllers, UPMC has put together a set of software libraries named OCRA (Optimization-based Control for Robotics Applications). A short description and links to OCRA are provided in the section dedicated to WP1.
 
@@ -105,6 +105,11 @@ A paper was published in an international robotics conference~\cite{calandra2015
 
 
 In addition, TUD developed a low-cost sensor glove for tele-operating the iCub. The construction and first imitation learning results of object grasping and manipulation were presented in a workshop~\cite{RueckertICRAWS2015}. A description of an improved version of the glove with an in-built IMU and separate sensors for proximal and distal joints was submitted to an international robotics conference. 
+
+INRIA, in collaboration with TUD, has been working on the problem of bootstrapping multi-task controllers with suitable task parametrization. 
+In \cite{Modugno2016}, INRIA proposed a simplified multi-task controller based on a linear combination of regularized elementary tasks, where the task weights profiles are parametrized functions that can be automatically optimized offline. The control framework has been applied to the real Jaco Kinova arm and to a simulated KUKA LWR arm.
+The description of the learning and optimisation process for the task priorities is postponed in WP4.
+
 
 \subparagraph*{Extra results in WP2/WP3: UPMC and JSI collaboration (JSI: 2PM, the number of PMs spent by UPMC on this work is counted in WP2)}
 

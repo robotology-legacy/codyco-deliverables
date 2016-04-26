@@ -139,3 +139,29 @@ task. This provided a reactive way to handle many common incompatibility
 scenarios. Currently, lately UPMC has been working on more computationally 
 efficient task compatibility optimization schemes which combine the previous two 
 works.   
+
+  INRIA, in collaboration with TUD, has been working on the problem of automatically optimizing the soft task priorities for multi-task controllers.
+      The goal of this work is to facilitate the automatic tuning of the task weights and task transitions when multiple elementary tasks are used to realize a more complex "global" task or movement.  When the number of tasks increases, for example in whole-body control of humanoid robots, it is generally difficult to define suitable task activations: the task weights/priorities and their transitions are manually tuned by expert users or defined before-hand. In \cite{Modugno2016}, INRIA proposed a framework to automatically optimise the soft task priorities by means of a stochastic optimization algorithm. In the framework, the temporal profiles of the task weights, approximated by a mixture of Gaussian, can be learned by optimizing a given fitness function used to evaluate the performance of the candidate task priorities.  Optimization was done by the state-of-the-art CMA-ES algorithm. The method has been evaluated on the redundant manipulator Jaco and a simulated KUKA LWR, showing that it improves the fitness of the gloabl movement and the smoothness of the joint trajectories (see Figure  \ref{fig:valerio:framework}). The work has been also presented in \cite{Modugno2015hfr}.
+Currently, INRIA is working towards two main improvements on this framework: 1) to scale-up the framework to the iCub, to study its performance in handling several DOF and several tasks; 2) to include the constraints evaluation in the optimization process, such that the optimization process always generates solutions that cannot violate constraints; this is done by guiding the exploration with both the fitness and the constraints violations functions: preliminary results indicate that a (1+1)-CMA-ES seems to be the best candidate algorithm to address this issue (see Figure  \ref{fig:valerio:constraints}). A paper is in preparation.
+
+\begin{figure*}[h!]
+    \centering
+    \begin{subfigure}[t]{0.9\textwidth}
+        \centering
+      \includegraphics[height=3cm]{images/v_alphas_hand}
+	\includegraphics[height=3cm]{images/v_alpha_combine}
+	\includegraphics[height=3cm]{images/v_fitness_comp_3task_kinova1}
+    \caption{Manually tuned vs optimized task weights (solid line: fixed init, dashed line: random init). The fitness for the optimizes weights is smaller (better). More in \cite{Modugno2016}.}
+        \label{fig:valerio:framework}
+    \end{subfigure}%
+    
+    \begin{subfigure}[t]{0.9\textwidth}
+        \centering
+        \includegraphics[height=4.5cm]{images/v_to_steady.png}
+        \includegraphics[height=4.5cm]{images/v_viol.png}
+        \caption{Comparison of three variants of constrained CMA-ES on benchmarks. (1+1)-CMA-ES never violates the constraints, despite requiring more time to converge to the optimal solution.}
+        \label{fig:valerio:constraints}
+    \end{subfigure}
+    \caption{}
+\end{figure*}
+
