@@ -72,6 +72,8 @@ UPMC has developed OCRA which stands for Optimization-based Control for Robotics
 %Tasks can be specified in XML, use hierarchical, weighted or hybrid QP control
 %and use QuadProg++ or qpOases as your solver. More to come soon.
 
+INRIA has developed a Matlab framework for dealing with the automatic learning and optimization of the soft task prioritization for multi-task controllers. The framework learnOptimWBC (\url{https://github.com/serena-ivaldi/learnOptimWBC}) supports any robot model with a URDF description. Available models include the Kinova Jaco, KUKA LWR and iCub.
+
 
 \subparagraph*{System dynamics estimation software. Extension to
 environmental compliance estimation (T1.4)}
@@ -276,6 +278,10 @@ The \emph{measurement model} of the filter is constituted by the accelerometer o
   Then, we have all the elements necessary to implement an Extended Kalman Filter with linearized measurement equations.
 For further details see  \url{https://github.com/robotology-playground/codyco-deliverables/blob/master/D5.3/pdf/D5.3.pdf} Sec. 5.1 \cite{deliverable53}.
 
+
+\subparagraph*{Extra: updated crawling module. }
+
+One exemplifying task for the humanoid robot to deal with multiple switching contacts is the crawling. A first crawling controller was created for  Robotcub project. At the VVV15 iCub summer school, INRIA developed a new code to make the crawling demo compatible with the new motor control architecture of the iCub, including the updated dynamics estimation (\url{https://github.com/serena-ivaldi/iCub_crawling}).
 
 
 

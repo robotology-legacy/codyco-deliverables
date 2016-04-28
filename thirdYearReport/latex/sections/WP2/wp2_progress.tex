@@ -340,3 +340,23 @@ The means of the normalized joint torques (per subjects) is shown in Fig.~\ref{j
 
 \textit{Conclusion:} A set of metrics are introduced in this chapter to study, analyse and measure the ability to balance for humans and robots. These metrics, which are called the manipulability of the center of mass, provide two types of ellipsoids which graphically show how the CoM can be accelerated in 3D space by a certain amount of change of motion (due to impulses) at the joint space. These ellipsoids can be used to measure torque efficiency and maneuverability of humans and robots. The proposed metrics are applicable to floating base robots with non-breakable contacts with the environment. Also, experiments on human subjects are performed to investigate the applicability of the proposed metrics for human studies. In the experiments, the standing subjects (in five different configurations) were perturbed by a controlled force acting on their CoM. Then, the selected configurations were ranked according to the average total torque that is applied by the subjects to recover their balance at each configuration. It is shown that the proposed metric for torque efficiency can successfully predict the same ranking between the configurations as the experimental results suggested. This agreement shows the applicability of the metrics for human studies as well. Therefore, manipulability of the center of mass provides greater insight into the posture controllability of humans and robots, in various configurations and contact conditions.
 
+
+\subparagraph*{Characterization of human-robot interaction during cooperative assembly}
+
+INRIA studied the characterization of human-robot interaction during a cooperative assembly task between the iCub and 56 healthy adults (36,95 $\pm$ 14,32 years old, 19 males, 37 females) without or with little prior expertise in robotics. The experiments were performed in UPMC. The dataset includes tactile data from the forearm of the iCub, estimated contact locations and forces, arm joint trajectories. 
+At first, INRIA conducted an analysis of the most remarkable signals for the social interaction, namely joint gaze and speech, to study if the dynamics of such signals is influenced by some individual factors, such as extroversion and negative attitude towards robots. In \cite{ivaldi2015towards}, we reported our results: we found that the more people are extrovert, the more and longer they tend to talk with the robot; and the more people have a negative attitude towards robots, the less they will look at the robot face and the more they will look at
+the robot hands where the assembly and the contacts occur. On the other hand, the analysis of the cumulated forces and moments exchanged by the humans reveals that the cumulated forces are very similar for all the participants regardless of their individual factors: we did not find a significant correlation between the cumulated contact forces and the extroversion, negative attitutde towards robots, nor with the expertise in robotics or the participant's age. More thorough analysis are ongoing, in preparation for an article.
+Interestingly, when we interviewed the participants after the experiment, we found out that they were generally not afraid to touch the robot, but only after a demonstration of contact shown by the experimenter: without this ``proof of feasibility'' most of them reported that they would have never dared to touch the robot for collaborating with it.
+
+\begin{figure}
+	\begin{center}
+	\includegraphics[height=3cm]{hri_contacts_guidance.png}
+	\includegraphics[height=3cm]{hri_manip3_left_5.jpg}
+	\includegraphics[height=3cm]{hri_manip3_right_5.jpg}
+	
+	\includegraphics[height=5cm]{hri_cartesian_hands.png}
+	\includegraphics[height=5cm]{hri_joint_torques.png}
+	\end{center}
+	\caption{Example of assembly with iCub. Top: the physical interaction for realizing the assembly and the heat-maps representing the intensity of the contacts in the forearms. Bottom: the trajectory of the hands during the assembly; the joint torques of the right arm. }
+	\label{fig:HRI}
+\end{figure}
