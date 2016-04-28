@@ -128,11 +128,9 @@
 
 \subsubsection{Overview}
 
-The specificity of CoDyCo relies on the fact that the progress beyond the state of the art is guided by the yearly
-implementation on the iCub humanoid. Within this context, CoDyCo third year specific objectives were to design and implement
-the control of whole-body posture on compliant (non-rigid) contacts. Beyond the activities to achieve this result,
-other long term activities have been conducted in preparation for the following years objectives. These activities involve
-human experiments, software infrastructure maintenance and the development of learning/control algorithms.
+The specificity of CoDyCo relies on the fact that the progress beyond the state of the art is guided by the yearly implementation on the iCub humanoid. Within this context, \textbf{CoDyCo third year specific objective was to design and implement the control of whole-body posture on compliant (non-rigid) contacts}. This objective poses specific challenges: (1) if all contacts are compliant, suitable posture (i.e. floating-base) estimation strategy is required; (2) if no model of the environment compliance is available, suitable on-line estimation algorithms are necessary; (3) finally, the control of compliant contact wrenches poses specific control challenges (the relative degree increases with respect to the rigid case). To address these challenges, a number of scientific sub-objectives have been defined and achieved during the CoDyCo third year. In work package 1, software tools for environmental compliance estimation and floating base estimation were developed and released with an open-source license. In work package 3, the theoretical control framework for balancing on compliant contacts was designed. In work package 4, models for real-time regression with latent contact type inference have been analysed. In work package 5, two demonstration scenarios have been implemented: balancing on a compliant carpet and balancing on a seesaw. 
+
+Beyond the activities to achieve this result, other long term activities have been conducted in preparation for the following years objectives. These activities involve human experiments, software infrastructure maintenance and the development of learning/control algorithms.
 
 \begin{longtable}{|C{1.5cm}|C{1.5cm}|C{1.5cm}|C{1.5cm}|C{1.5cm}|C{1.5cm}|C{1.5cm}|C{1.5cm}|}
 \cline{1-7}
@@ -146,6 +144,52 @@ human experiments, software infrastructure maintenance and the development of le
 \footnotesize WP7      &  -        &  -      &  0.11   &  -      &  -     &  -     &   0.11\\  \hline
 \multicolumn{1}{l|}{}  &  25.36    &  26.65  &  11.17  &  19.81  &  29.13 &  11.33 &  \textbf{124.45}     \\  \cline{2-8}
 \end{longtable}
+
+\subsubsection*{Measures to address reviewers' recommendations}
+
+\fbox{\begin{minipage}{\textwidth}
+\emph{The members of the consortium have to focus their efforts in integrating all developments achieved in WP2, WP3, and WP4 into the physical robot through WP5. Many control and learning methods have been considered during the last two years. These methods should converge, as much as possible, into a unified global control scheme, which can be shared and disseminated by the consortium.} \end{minipage}}
+
+\medskip
+\noindent 
+Integration and unification between different control and learning methods have been pursued with the following activities. 
+
+\begin{enumerate}
+\item UB and TUD implemented state of the art learning algorithms (WP4) for environmental compliance estimation (WP1). The associated learning strategy has been implemented in a learning algorithm which is distributed with an open source license (\url{https://github.com/azadm/LWR_for_ContactParams}). The estimated model is suitable for the control models proposed in WP3 and coincides with the one to be used in the third year validation scenario (WP5). 
+
+\item IIT, UB and UPMC contributed to D3.2 on ``Local solver in compliant-world cases''. The document presents two control algorithms, distinguishing between a model-free (UPMC) and a model-based (IIT, UB) approach. On the one hand, the document is an effort to converge to a common approach for mode-based approach. On the other hand, the deliverable underlines the necessity of investigating different approaches when they lead to viable alternatives (model-free versus model based). 
+
+\item IIT distributed among partners a document \url{https://it.sharelatex.com/project/564ddaaf9cec09503ca12023} to define a common notation suitable for the CoDyCo scope. The use of a common notation is a prerequisite for comparing different approaches and converging to into a unified global control scheme. 
+\end{enumerate}
+
+\begin{figure}[h]
+  \centering
+    \includegraphics[width=.4\textwidth]{images/yogaSim.jpg} \qquad
+	\includegraphics[width=.4\textwidth]{images/seesawSim.jpg}
+  \caption{Screen shots of the replicable simulations of the CoDyCo validation scenarios. These simulations can be replicated on Linux and   OsX, downloading and compiling the open-source software available on the CoDyCo software repository. (1) Instruction on how   the install the entire software framework can be found here: \protect\url{https://github.com/robotology/codyco-superbuild};   (2) instructions on how to run the specific demonstration can be found here: \protect\url{https://github.com/robotology-playground/WBI-Toolbox-controllers}; (3) the scientific paper describing the controller and the software architecture is openly available here:   \protect\url{http://journal.frontiersin.org/article/10.3389/frobt.2015.00006/full}.}
+  \label{fig:images_yogaSim}
+\end{figure}
+
+
+\noindent
+\fbox{\begin{minipage}{\textwidth}
+\emph{The simulation environment and experimental data are in open source, and this is commendable, but they should be made more easy to use.} \end{minipage}}
+
+\medskip
+\noindent 
+Dataset and software documentation has been improved. Simulations of the iCub first and second year validation scenarios can be performed on the iCub simulator and on the iCub robot following the given instructions. Experimental dataset are publicly available on \url{https://db.codyco.eu}.
+
+
+\begin{enumerate}
+\item Instructions for compiling the entire CoDyCo software have been improved. The installation procedure \url{https://github.com/robotology/codyco-superbuild} leverages the YCM \url{https://github.com/robotology/ycm} which guarantees the integration of multiple projects giving visibility to individual contributions while maintaining the structure of a single global project.  
+	
+\item The C++ torque balancing module (first and second year validation scenario) software has been documented and step-by-step instructions for replicating the demonstration in simulation and on the real robot have been optimised based on user feedback.
+
+\item The Simulink seesaw torque balancing module (third year demo) has been documented and it can replicated on simulation following the given instructions. 
+
+\item Exploiting the available tools for software testing (e.g. Travis \url{https://travis-ci.com} and RTF \url{https://github.com/robotology/robot-testing}) a set of routines for continuos installation and testing of the CoDyCo software have been implemented. Testing includes the codyco-superbuild, the OCRA framework and the iDynTree software. These automatic tests guarantee the code consistency and a continuous validation of the installation.
+
+\end{enumerate}
 
 \input{sections/WP1/wp1_objectives.tex}
 \input{sections/WP2/wp2_objectives.tex}
@@ -163,15 +207,17 @@ human experiments, software infrastructure maintenance and the development of le
 All the CoDyCo third year objectives have been attained. Here is a list of the CoDyCo third year
 achievements. \begin{itemize}
 
-\item 
+\item Release of an open-source software for contact compliance estimation.
 
-\item 
+\item Release of an open-source software for floating-base estimation.
 
-\item 
+\item Models of human interaction with compliant contacts.
 
-\item 
+\item Definition and solution of the theoretical framework for balancing on compliant contacts.
 
-\item 
+\item Learning models of simultaneous use of elementary tasks and co-articulation of multiple tasks.
+
+\item Implementation of the third validation scenario: balancing on compliant or dynamical contacts.
 
 \end{itemize}
 
