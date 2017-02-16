@@ -1,0 +1,102 @@
+%!TEX root = ../template.tex
+
+\section{Background}
+%
+The aim of this Section is to provide a rapid fast-forward of what is the current
+ direction of the scientific community on this topic.  Most of the
+  studies on the pHRI take inspiration from the intrinsic behaviour of the human nature:
+   the \emph{mutual adaptive nature} that automatically occurs when two
+    humans are cooperating together to accomplish a common task.  
+	\\
+	\indent
+To this purpose, the importance of understanding human dynamics goes without saying and it is 
+a crucial aspect of current state-of-the-art studies. Since humans
+ move by minimizing jerk trajectories \cite{Flash1985},
+ a method based on the minimum jerk model is used as a suitable approximation 
+ for estimating the human partner motions in \cite{Maeda2001}. Here the attempt is that of
+  incorporating human
+  characteristics in the control strategy of the robot. The weakness in  this type of approach,
+   however, lies in the pre-determination of the task and in the role that the robot has to
+    play in the task execution.
+   Furthermore, the minimum jerk model reliability decreases considerably if the human partner
+    decides to apply non-scheduled trajectory changes during the task \cite{Miossec2009}.
+	  Another route for pHRI is the \emph{imitation learning} approach, 
+	  where the movements of two 
+	 human actors are typically retrieved with motion capture techniques, clustered in motion
+	  database (\cite{Guerra2011}, \cite{Kuehne2011}, \cite{Wojtusch2015}) and then used to 
+	 learn the interaction skills (\cite{Amor2014}, \cite{Tamim2014}, \cite{Tamim2016}).
+%
+%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
+\subsection{Problem statement}
+Unlike the current leaning, we want to pay more attention on the key role that 
+a proper sensing technology for human beings together with dynamics estimation algorithms
+  may offer for retrieving whole-body motions and interaction forces. 
+ More in detail, our work will be based on the formalism adopted for humanoid robots by 
+ making the assumption of modelling the human body as a articulated rigid multi-body system. 
+The advantage of this choice is evident since it allows to handle both systems
+with the same mathematical tools. In this domain, the application of the Euler-Poincar\'{e} 
+formalism \cite{Marsden2010} leads to three sets of equations describing:
+    $i)$ the motion of the robot,
+	$ii)$ the motion characterizing the human,
+	$iii)$ the linking equations characterizing the contacts between human and robot. 
+%
+\begin{eqnarray*}
+\label{robot}
+i) \hspace{0.6cm} 
+\bm {\mathrm{M}}(\bm {{q}}) \dot{\bm{v}} + \bm {\mathrm{C}}(\bm {{q}},
+ \bm{v})
+\bm{v} + \bm {\mathrm{G}}(\bm {{q}}) = \begin{bmatrix} \bm 0 \\ {\bm \tau}
+ \end{bmatrix} + \bm {\mathrm{J}}^\top(\bm {{q}}) \bm{\mathrm{f}}
+\end{eqnarray*}
+%
+\begin{eqnarray*}
+\label{human}
+ii) \hspace{0.6cm}
+\mathbb{M}(\bar{\bm q}) \dot{\bar{\bm v}} + \mathbb{C}(\bar{\bm q}, \bar{\bm v})
+\bar{\bm v} + \mathbb{G}(\bar{\bm q}) = \begin{bmatrix} \bm 0 \\ {\bm \tau} \end{bmatrix}
++ \mathbb{J}^\top(\bar{\bm q}) \bm{\mathrm{f}}
+\end{eqnarray*}
+%
+\begin{eqnarray*}
+\label{linking}
+iii) \hspace{0.4cm}
+\begin{bmatrix} \bm {\mathrm{J}}(\bm {{q}}) & ~\mathbb{J}(\bar{\bm q}) \end{bmatrix}
+	\begin{bmatrix} \dot{\bm{v}} \\ \dot{\bar{\bm v}} \end{bmatrix} +
+		\begin{bmatrix} \bm {\dot{\mathrm{J}}}(\bm {{q}}) & 
+			~\dot{\mathbb{J}}(\bar{\bm q})
+		 \end{bmatrix}
+			\begin{bmatrix}{\bm{v}} \\ {\bar{\bm v}} \end{bmatrix} = \bm 0
+\end{eqnarray*}
+% \begin{eqnarray*}
+% \label{linking}
+% iii) \hspace{1.7cm} \mathbb{L}(
+% \bm{{q}},
+% \bar{\bm q},
+% \bm{\bm v},
+% \bar{\bm v},
+% \dot{\bm v},
+% \dot{\bar{\bm v}},
+%  ) = \bm 0.
+% \end{eqnarray*}
+%
+\indent
+Equations $i)$ and $ii)$ are floating base system representations of the
+dynamics of the robot and  human models, respectively. 
+Vectors $\bm {{q}}$ and $\bar{\bm q}$ represent the configuration space (i.e. the position and orientation of a chosen frame, called base frame, and the joints configuration) of the two systems. The velocity is represented by $\bm{v}$
+ and $\bar{\bm v}$ for robot and human systems, respectively.
+ The matrices $\mathrm{M}$,
+  $\mathrm{C}$, $\mathrm{G}$ and $\mathbb{M}$, $\mathbb{C}$, $\mathbb{G}$ denote the 
+  mass matrix, Coriolis matrix and the gravity bias term for the robot and the human 
+  systems, respectively.  
+   The forces the two systems
+  exchange are denoted by $\bm{\mathrm{f}}$, which owns a proper dimension depending on the
+  number of wrenches\footnote{As an abuse of notation, we define as wrench a quantity that is
+   not the dual of a twist but a vector $\in \mathbb R^{6}$ containing both the forces and 
+   the related moments.} exchanged during the interaction task\footnote{For the sake of simplicity,
+  we omitted the forces the two systems exchange with the external environment 
+  (i.e., the ground) from the 
+  formulation of $i)$ and $ii)$. As a straightforward consequence, the linking
+   equations between each system with the external environment are not considered.}. 
+  The Jacobians associated with the forces $\bm{\mathrm{f}}$ are denoted by
+   $\bm {\mathrm{J}}(\bm{\mathrm{q}}) $ and $\mathbb{J}(\bar{\bm q})$.  
+   In $iii)$ we make the assumption of rigid contacts between the two systems.

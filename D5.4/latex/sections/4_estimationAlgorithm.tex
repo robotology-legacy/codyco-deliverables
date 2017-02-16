@@ -1,0 +1,113 @@
+%!TEX root = ../template.tex
+
+\section{Probabilistic Sensor Fusion Algorithm}
+%
+In this Section we briefly recall the probabilistic method for estimating dynamic variables of
+ an articulated mechanical system by exploiting the so-called sensor fusion information,
+  already presented
+  in our previous work (the reader should refer to \cite{LatellaSensors2016} for a more thorough
+   presentation).
+\\
+\indent
+From a theoretical point of view, we describe our model
+ as a mechanical system represented by an oriented kinematic tree with $N_B$ moving links and
+  $n$-DoFs.  Note that $n=n_1+...+n_{N_B}$ is the total number of DoFs of the system.  The
+   generic $i$-th link  and its parent are coupled with a joint $i$ following 
+  the topological Denavit-Hartenberg convention for joint numbering \cite{Denavit1955}.
+We are interested in computing an estimation of a vector of \emph{dynamics variables} $\bm d$ defined as:
+%
+\begin{subequations} \label{eq:dynvec} 
+	\begin{eqnarray*} 
+    	\bm d &=& \begin{bmatrix} \bm d_{1}^\top & \bm
+    	d_{2}^\top & \hdots & \bm d_{N_B}^\top \end{bmatrix}^\top 
+    	\in \mathbb R^{24N_B+2n},\\
+    \bm d_i &=& \begin{bmatrix} \bm
+	a_{i}^\top &{\bm f_{i}^B}^\top & \bm f_{i}^\top & \bm \tau_{i} 
+	& {\bm f_{i}^x}^\top & \ddot {\bm{q}}_{i} \end{bmatrix}^\top \in
+	\mathbb R^{24+2n_i},
+	\end{eqnarray*} 
+\end{subequations}
+%
+where $\bm a_i$ is the $i$-th body spatial acceleration, $\bm {f_i}^B$ is the net
+ wrench, $\bm f_i$ is the internal wrench exchanged from the parent link to the $i$-th link, 
+ $\bm \tau_i \in \mathbb R^{n_i}$ is the torque at the joint, $\bm {f_i}^x$ is the external
+  wrench applied by the environment to the link and $ \ddot{\bm q}_i  \in \mathbb R^{n_i}$ is
+   the joint acceleration. The system can interact with the surrounding environment, and the
+    result of this interaction is reflected in the presence of the external wrenches 
+	$\bm {f_i}^x$.
+	\\
+	\indent
+The dynamics of the mechanical system\footnote{We consider here the fixed base system
+ configuration.} can be obtained from the application of the Newton-Euler
+ equations\footnote{It is worth to notice that here we prefer to adopt the Newton-Euler
+  formalism as an equivalent representation of the system dynamics. More details about 
+  this choice in Section 3.3 of \cite{LatellaSensors2016}.} \cite{Featherstone2008}.  
+  It is possible to rearrange these equations
+  into a matrix form thus obtaining the following linear system of equations in the variable
+    $\bm d$:
+%
+\begin{equation} \label{eq:matRNEA} 
+\bm D(\bm q, \dot {\bm q}) \bm d + \bm b_D 
+(\bm q,\bm {\dot q})= \bm 0,
+\end{equation}
+where the matrix $\bm D \in \mathbb R^{(18 N_B+n) \times \bm d}$  and the bias vector
+$\bm b_D \in \mathbb R^{18 N_B+n}$.  We now consider the presence of $N_S$ measurements of dynamic quantities coming from different
+ sensors (e.g. accelerometers, force/torque sensors) and we denote with $\bm y \in \mathbb
+  R^{N_S}$ the vector containing all the measurements.  The dynamic variables and the values
+   measured by the sensors can be related by the following set of equations:
+%
+\begin{equation} \label{eq:measRNEA} 
+\bm Y(\bm q, \dot {\bm q}) \bm d + \bm b_Y (\bm q,\bm {\dot q})= \bm y,
+\end{equation}
+where $\bm Y \in \mathbb R^{N_S \times \bm d}$ and $\bm b_Y \in \mathbb R^{N_S}$.  By stacking
+ together \eqref{eq:matRNEA} and \eqref{eq:measRNEA} we obtain a linear system of
+  equations in the variable $\bm d$:
+%
+\begin{eqnarray} \label{eq:systemEq} 
+\begin{bmatrix}
+\bm Y(\bm q,\dot {\bm q}) \\ \bm D(\bm q, \dot {\bm q}) \\
+ \end{bmatrix}\bm d + \begin{bmatrix} \bm b_Y(\bm q, \dot {\bm q})
+\\ \bm b_D(\bm q, \dot {\bm q}) \end{bmatrix} = \begin{bmatrix} \bm y\\
+ \bm 0 \end{bmatrix}. 
+\end{eqnarray}
+%
+\indent
+Equation \eqref{eq:systemEq} describes, in general, an overdetermined linear system of
+ equations.  The bottom part, corresponding to \eqref{eq:matRNEA} represents the
+  Newton-Euler equations, while the upper part contains the information coming from the,
+   possibly noisy or redundant, sensors.
+It is possible to compute the whole-body dynamics estimation
+by solving the system in \eqref{eq:systemEq} for $\bm d$.  One possible approach is to solve \eqref{eq:systemEq} in the
+ least-square sense, by using a Moore-Penrose pseudoinverse or a weighted pseudo-inverse.  
+ 
+ In the following we perform a different choice.  
+  We frame the estimation of $\bm d$ given the knowledge of $\bm y$ and prior information 
+  about the model and the sensors in a Gaussian domain by
+   means of a \emph{Maximum-a-Posteriori} (MAP) estimator\footnote{The benefits of the MAP
+    estimator choice are explained in Section 4 of \cite{LatellaSensors2016}.} such that
+%
+\begin{equation*} 
+\bm d_{\mbox\footnotesize{MAP}}=\arg \max_{\bm d} p(\bm d| \bm y) .
+\end{equation*}
+Since in this framework probability distributions are associated to both the measurements
+ and the model, it suffices to
+ compute the expected value and the covariance matrix of $\bm d$ given $\bm y$, i.e.
+%
+\begin{subequations}\label{eq:d_y} 
+	\begin{eqnarray}\label{eq:d_ySigma} 
+	 \bm {\Sigma}_{d|y}& = & \left(\bar{\bm {\Sigma}}_D^{-1}+ \bm Y^\top \bm 
+	 {\Sigma}_{y}^{-1} \bm Y \right)^{-1},\\ \label{eq:d_yMu} 
+	 \bm {\mu}_{d|y} &= & \bm {\Sigma}_{d|y} \left[ \bm Y ^\top \bm {\Sigma}_{y}^{-1} 
+	 (\bm y - \bm b_Y) + \bar{\bm {\Sigma}}_D^{-1} \bar {\bm {\mu}}_D \right],
+    \end{eqnarray} 
+\end{subequations}
+%
+where $\bar{\bm {\mu}}_D$ and $\bar{\bm {\Sigma}}_D$ are the mean and 
+covariance of the probability distribution 
+ $\small{p(\bm d) \sim \mathcal N \left(\bar  
+{\bm {\mu}}_D, \bar {\bm {\Sigma}}_D\right)}$ of the model, respectively;
+ $\bm {\Sigma}_{y}$ is the covariance 
+matrix of the distribution $\small{p(\bm y)\sim\mathcal N \left({\bm {\mu}}_y, {\bm {\Sigma}}_y\right)}$ related to the measurements.
+  In the Gaussian framework, \eqref{eq:d_yMu} 
+corresponds to the estimation of $\bm d_{\mbox\footnotesize{MAP}}$.  
+It is worth noting that the vector $\bm d$ contains, among the other dynamic variables, an estimate of the joint torque $\bm \tau$ for retrieving the inverse dynamics estimation.
