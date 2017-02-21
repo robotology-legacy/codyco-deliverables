@@ -82,7 +82,7 @@
  
  \deliverableWorkpackage{WP4}
  \deliverableEditors{Jan Peters and Elmar Rueckert}
- \deliverableContributors{Ryan Lober, Vincent Padois, Olivier Sigaud, Valerio Modugno, Gerhard Neumann, Elmar Rueckert, Giuseppe Oriolo, Jan Peters, Serena Ivaldi, Alex Paraschos}
+ \deliverableContributors{Ryan Lober, Vincent Padois, Olivier Sigaud, Valerio Modugno, Gerhard Neumann, Elmar Rueckert, Giuseppe Oriolo, Jan Peters, Serena Ivaldi, Alex Paraschos, Ugo Chervet}
  \deliverableReviewers{}
 \deliverableAbstract{The scope of the current deliverable is to present the results on the learning of the task prioritization policies. 
 }
@@ -137,7 +137,7 @@ v. 1.0 & Feb. 21 & Final & Elmar Rueckert\\\hline
 
 \chapter{Introduction}
 
-This deliverable presents results of task T4.4. In total three articles were presented at international robotics conferences (HUMANOIDS, ICRA and IROS) and one article is currently under review. Below, we discuss the achievements with respect to the task description from the Technical Annex.
+This deliverable presents results of task T4.4. In total four articles were presented at international robotics conferences (HUMANOIDS, ICRA and IROS) and one article is currently under review. Below, we discuss the achievements with respect to the task description from the Technical Annex.
 
 \section{Task description from the Technical Annex.} 
 The core element of WP3 is the intelligent combination of prioritized tasks, which allows covering a large
@@ -163,8 +163,9 @@ that can be trained through reinforcement learning from a general task objective
  \item To objective 1: At UPMC, efficient whole-body control strategies have been developed that 
 avoid interferences of multiple task objectives prior to a task execution. Two articles were published at international conferences and 
 are summarized in Chapter~\ref{sec:Ryan}. A detailed description can be found in \textit{Deliverable D3.3}. 
-\item To objective 2: In a collaboration, INRIA and TUDA studied the learning of task priority profiles for whole-body control. We optimized the parameters of priority profiles with respect to a general task objective through reinforcement learning~\cite{Modugno_PICRA_2016}. This work is presented in 
-Chapter~\ref{sec:Valerio}. 
+\item To objective 2: In a collaboration, INRIA and TUDA studied the learning of task priority profiles for whole-body control. We optimized the parameters of priority profiles with respect to a general task objective through reinforcement learning~\cite{Modugno_PICRA_2016}. This work is presented in Chapter~\ref{sec:Valerio}.
+\newline In a followup study, INRIA investigated different stochastic search implementations for reinforcement learning~\cite{modugno2016learning}. An article on the approach is listed in 
+Chapter~\ref{sec:Valerio2}. 
 \newline In another study, TUDA investigated how task such priority profiles can be obtained from imitation learning. 
 A research article of this study is currently under review~\cite{Paraschos_2017}. In Chapter~\ref{sec:Alex}, we present a draft of this contribution. 
 \end{itemize}
@@ -220,6 +221,10 @@ This work was presented at the international conference on intelligent robots an
 
 \chapter{Learning soft task priorities for control of redundant robots (INRIA \& TUDA)}\label{sec:Valerio}
 \includepdf[pages=2-7]{Modugno_ICRA_2016.pdf}
+
+\chapter{Learning soft task priorities for safe control of humanoid robots with
+constrained stochastic optimization (INRIA)}\label{sec:Valerio2}
+\includepdf[pages=-]{Modugno_HUMANOIDS_2016.pdf}
 
 \chapter{Probabilistic Prioritization of Movement Primitives (TUDA)}\label{sec:Alex}
 \includepdf[pages=-]{Paraschos_IROS_2017.pdf}
