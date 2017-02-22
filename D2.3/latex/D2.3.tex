@@ -1,6 +1,6 @@
 %% Template for EU deliverable, using the deliverable.sty style file
 
-\documentclass[12pt,a4paper,twoside]{article}
+\documentclass[12pt,a4paper,twoside]{report}
 
 %% common package
 \usepackage[headers]{deliverable}
@@ -18,6 +18,7 @@
 %%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
 %%% Misc. packages
 %%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
+\usepackage[]{nomencl}		% nomenclatures
 \graphicspath{{./figure/}}
 \usepackage{pdfpages}
 \usepackage{amsmath} % assumes amsmath package installed
@@ -111,7 +112,7 @@
 \deliverableFrameworkProgramme{FP7}
 
 \deliverableWorkpackage{WP2}
-\deliverableEditors{Jernej \v{C}amernik, Michael Mistry and Jan Babi\v{c}}
+\deliverableEditors{Jernej \v{C}amernik, and Jan Babi\v{c}}
 \deliverableContributors{Serena Ivaldi (INRIA), Chie Takahashi (UB), Zrinka Potocanac (JSI), Luka Peternel (JSI), Jan Babi\v{c} (JSI)}
 \deliverableReviewers{}
 \deliverableAbstract{The scope of the current deliverable is to present the
@@ -172,48 +173,41 @@ v. 1.0 & 28 Feb 2017 & Final Version & Jernej \v{C}amernik\\\hline
 
 %%%%%%%%%%%%%%%%%%%%%%%% Start deliverable content here.
 
-\section{Introduction}
-
-This deliverable reports on adaptive models describing changes in human whole body motion in contact with unpredictable support surfaces and humans. The goal of the work reported in this deliverable was to understand the factors involved in human choice of contact utilization and to investigate how interaction through contacts can contribute to learning of whole body motor control. There are numerous situations where humans utilize physical interaction with either the environment or another human to stabilise one’s own balance. These can be through light touch to gain additional haptic information from the environment; through weight-bearing support; through energy storage and recovery from a springy surface; and through assistive forces from other humans. In this regard we investigated how human physical interactions with rigid, compliant or spring-like contacts contribute to changes in whole body motion and to task-relevant parameters. The core question that we addressed is how a human can learn to predict the environmental properties by performing tasks with hand or body contacts and then generalize the learned predictive mechanisms to other tasks. For example, does interaction with the support surface during a supported reaching action allow effective choice of and use of the support? The findings reported in this deliverable are models that can be further used to enhance robot-learning capabilities by systematic application of physical interaction with the environment or humans.
-
-
-
-% In the section tapata we.....
-The major role of this work is to explore the mechanism which helps humans to learn the compliant force dynamics. This would enable us to get an in-depth understanding of how humans modulate their whole-body motion to reach anticipated goals ruled by the external force. Further, this would be beneficial to apply it for controlling the humanoid robot in order to keep a stable posture when interacting with multiple compliant surfaces. With reference to the results of the pilot experiment (see the D2.2), the experimental design has been developed and further human subject experiments were conducted to examine the human learnability factor in different force dynamics. Three different types of forces (simple linear and two non-linear forces) were generated and the human movements to reach the anticipated goal were measured against the compliant forces.
-
-% In the section tapata we.....
-Estimating the engagement is critical for human - robot interaction. Engagement measures typically rely on the dynamics of the social signals exchanged by the partners, especially speech and gaze. However, the dynamics of these signals is likely to be influenced by individual and social factors, such as personality traits, as it is well documented that they critically influence how two humans interact with each other. Here, we assess the influence of two factors, namely extroversion and negative attitude toward robots, on speech and gaze during a cooperative task, where a human must physically manipulate a robot to assemble an object. We evaluate if the score of extroversion and negative attitude towards robots co-variate with the duration and frequency of gaze and speech cues. The experiments were carried out with the humanoid robot iCub and N=56 adult participants. We found that the more people are extrovert, the more and longer they tend to talk with the robot; and the more people have a negative attitude towards robots, the less they will look at the robot face and the more they will look at the robot hands where the assembly and the contacts occur.
-Our results confirm and provide evidence that the engagement models classically used in human-robot interaction should take into account attitudes and personality traits.
-
-% In the section tapata we.....
-We propose a novel method that arbitrates the control between the human and the robot actors in a teaching-by-demonstration setting to form synergy between the two and facilitate effective skill synthesis on the robot. We employed the human-in-the-loop teaching paradigm to teleoperate and demonstrate a complex task execution to the robot in real-time. As the human guides the robot to perform the task, the robot obtains the skill online during the demonstration. To encode the robotic skill we employed Locally Weighted Regression that fits local models to specific state region of the task based on the human demonstration. If the robot is in the state region where no local models exist, the control over the robotic mechanism is given to the human to perform the teaching. When local models are gradually obtained in that region, the control is given to the robot so that the human can examine its performance already during the demonstration stage, and take actions accordingly. This enables a co-adaptation between the agents and contributes to a faster and more efficient teaching. As a proof-of-concept, we realised the proposed robot teaching system on a haptic robot with the task of generation of a desired vertical force on a horizontal plane with unknown stiffness properties.
-
-% In the section tapata we.....
-Summary of what Zrinka did. If there is an additional uncertainty in balance (for example by perturbing balance with an underlying Stewart platform), how does contact preference change? 
-These models will be further used to help the robot controller when the robot has joint torque limits, joint position limits, or narrow stability margins. In effect, the models will help the robot decide when to make or break the contacts.
-
-
-
+\chapter{Introduction}\label{sec:Intro}
 %Short summary of our collaborative contribution
+This deliverable reports on adaptive models describing changes in human whole body motion in contact with unpredictable support surfaces and humans. The goal of the work reported in this deliverable was to understand the factors involved in human choice of contact utilization and to investigate how interaction through contacts can contribute to learning of whole body motor control. There are numerous situations where humans utilize physical interaction with either the environment or another human to stabilise one’s own balance. These can be through light touch to gain additional haptic information from the environment; through weight-bearing support; through energy storage and recovery from a springy surface; and through assistive forces from other humans. In this regard we investigated how human physical interactions with rigid, compliant or spring-like contacts contribute to changes in whole body motion and to task-relevant parameters. The core question that we addressed is how a human can learn to predict the environmental properties by performing tasks with hand or body contacts and then generalize the learned predictive mechanisms to other tasks. For example, does interaction with the support surface during a supported reaching action allow effective choice of and use of the support? The findings reported in this deliverable are models that can be further used to enhance robot-learning capabilities by systematic application of physical interaction with the environment or humans.
+\bigskip
+
+In Chapter \ref{sec:Chie} we summarize the work of exploring the mechanism which helps humans to learn the compliant force dynamics. This mechanism enables us to get an in-depth understanding of how humans modulate whole-body motion to reach anticipated goals ruled by the external force. Further, this is beneficial to apply it for controlling the humanoid robot in order to keep a stable posture when interacting with multiple compliant surfaces. With reference to the results of the pilot experiment (see the D2.2), the experimental design has been developed and human subject experiments were conducted to examine the human learnability factor in different force dynamics. Three different types of forces (simple linear and two non-linear forces) were generated and the human movements to reach the anticipated goal were measured against the compliant forces.
+\bigskip
+
+In Chapter \ref{sec:Serena} we address the human - robot interaction as estimating the engagement is critical. Engagement measures typically rely on the dynamics of the social signals exchanged by the partners, especially speech and gaze. However, the dynamics of these signals is likely to be influenced by individual and social factors, such as personality traits, as it is well documented that they critically influence how two humans interact with each other. Here, we assess the influence of two factors, namely extroversion and negative attitude toward robots, on speech and gaze during a cooperative task, where a human must physically manipulate a robot to assemble an object. We evaluate if the score of extroversion and negative attitude towards robots co-variate with the duration and frequency of gaze and speech cues. The experiments were carried out with the humanoid robot iCub and N=56 adult participants. We found that the more people are extrovert, the more and longer they tend to talk with the robot; and the more people have a negative attitude towards robots, the less they will look at the robot face and the more they will look at the robot hands where the assembly and the contacts occur. Our results confirm and provide evidence that the engagement models classically used in human-robot interaction should take into account attitudes and personality traits.
+\bigskip
+
+In Chapter \ref{sec:Luka} we propose a novel method that arbitrates the control between the human and the robot actors in a teaching-by-demonstration setting to form synergy between the two and facilitate effective skill synthesis on the robot. We employed the human-in-the-loop teaching paradigm to teleoperate and demonstrate a complex task execution to the robot in real-time. As the human guides the robot to perform the task, the robot obtains the skill online during the demonstration. To encode the robotic skill we employed Locally Weighted Regression that fits local models to specific state region of the task based on the human demonstration. If the robot is in the state region where no local models exist, the control over the robotic mechanism is given to the human to perform the teaching. When local models are gradually obtained in that region, the control is given to the robot so that the human can examine its performance already during the demonstration stage, and take actions accordingly. This enables a co-adaptation between the agents and contributes to a faster and more efficient teaching. As a proof-of-concept, we realised the proposed robot teaching system on a haptic robot with the task of generation of a desired vertical force on a horizontal plane with unknown stiffness properties.
+\bigskip
+
+In Chapter \ref{sec:Zrinka} we present preliminary results from a study which is a follow-up of the previous work (presented in D2.2) which showed how contacts are established to facilitate goal directed movements. Here we ask an inverse question: how would a contact be released? Furthermore, if there is an uncertainty of balance (in our case elicited by perturbing balance with an underlying Stewart platform), how does this contact preference change? As a model for this behavior we used stepping to a target from quiet stance. In this case, in order to execute a goal directed movement (step onto the target), one first has to break a stabilizing contact of the foot with the ground. We found that manipulating balance by systematic platform movements delayed step onsets, i.e., prolonged the time needed before the supporting contact was broken. We also investigated the effect of balance uncertainty and task difficulty on feed-forward and feedback control of stepping by analyzing stepping  accuracy. Together with the pending analysis of how such behaviors develop and adapt to environmental demands, these findings will be further used to help the robot controller when the robot has joint torque limits, joint position limits, or narrow stability margins. In effect, these models will help the robot decide when to make or break the contacts.
 
 % \chapter{Executive Summary}
+
 \newpage{}
-\section{Compliant-contact force perception study}\label{sec:Chie}
+\chapter{Compliant-contact force perception study}\label{sec:Chie}
 \setcounter{figure}{0}
 \input{Chie/ChieD2.3}
 \clearpage{}
 
-\section{Towards engagement models that consider individual factors in HRI: on the relation of extroversion and negative attitude towards robot to gaze and speech during a human-robot assembly task}\label{sec:Serena}
+\chapter{Towards engagement models that consider individual factors in HRI: on the relation of extroversion and negative attitude towards robot to gaze and speech during a human-robot assembly task}\label{sec:Serena}
 \setcounter{figure}{0}
 \input{Serena/IJSR_edhhi}
 \clearpage{}
 
-\section{A Shared Control Method for Online Human-in-the-Loop Robot Learning Based on Locally Weighted Regression}\label{sec:Luka}
+\chapter{A Shared Control Method for Online Human-in-the-Loop Robot Learning Based on Locally Weighted Regression}\label{sec:Luka}
 \setcounter{figure}{0}
 \input{Luka/IROS2016}
 \clearpage
 
-\section{Stepping in a novel balance environment}\label{sec:Zrinka}
+\chapter{Stepping in a novel balance environment}\label{sec:Zrinka}
 \setcounter{figure}{0}
 \input{Zrinka/platform}
 \clearpage{}
