@@ -1,0 +1,63 @@
+\BOOKMARK [1][-]{section.1}{Introduction}{}% 1
+\BOOKMARK [1][-]{section.2}{Compliant-contact force perception study}{}% 2
+\BOOKMARK [2][-]{subsection.2.1}{Introduction}{section.2}% 3
+\BOOKMARK [2][-]{subsection.2.2}{Pilot Experiments}{section.2}% 4
+\BOOKMARK [3][-]{subsubsection.2.2.1}{Influence of Time}{subsection.2.2}% 5
+\BOOKMARK [3][-]{subsubsection.2.2.2}{Position Accuracy vs Velocity}{subsection.2.2}% 6
+\BOOKMARK [3][-]{subsubsection.2.2.3}{Force dynamics evaluation}{subsection.2.2}% 7
+\BOOKMARK [3][-]{subsubsection.2.2.4}{Learning model}{subsection.2.2}% 8
+\BOOKMARK [2][-]{subsection.2.3}{Learning Analyses}{section.2}% 9
+\BOOKMARK [2][-]{subsection.2.4}{Methods}{section.2}% 10
+\BOOKMARK [3][-]{subsubsection.2.4.1}{Apparatus and stimuli}{subsection.2.4}% 11
+\BOOKMARK [3][-]{subsubsection.2.4.2}{Experimental Design}{subsection.2.4}% 12
+\BOOKMARK [3][-]{subsubsection.2.4.3}{Experimental Protocol/Procedure}{subsection.2.4}% 13
+\BOOKMARK [2][-]{subsection.2.5}{Results and Discussion}{section.2}% 14
+\BOOKMARK [3][-]{subsubsection.2.5.1}{Participants}{subsection.2.5}% 15
+\BOOKMARK [3][-]{subsubsection.2.5.2}{Responses to the three different force dynamics in the test trials}{subsection.2.5}% 16
+\BOOKMARK [3][-]{subsubsection.2.5.3}{Dynamic learning evaluation}{subsection.2.5}% 17
+\BOOKMARK [3][-]{subsubsection.2.5.4}{Questionnaires}{subsection.2.5}% 18
+\BOOKMARK [1][-]{section.3}{Towards engagement models that consider individual factors in HRI: on the relation of extroversion and negative attitude towards robot to gaze and speech during a human-robot assembly task}{}% 19
+\BOOKMARK [2][-]{subsection.3.1}{Introduction}{section.3}% 20
+\BOOKMARK [2][-]{subsection.3.2}{Background}{section.3}% 21
+\BOOKMARK [3][-]{subsubsection.3.2.1}{Social signals: the building blocks for assessing engagement}{subsection.3.2}% 22
+\BOOKMARK [3][-]{subsubsection.3.2.2}{Personality traits and attitudes}{subsection.3.2}% 23
+\BOOKMARK [2][-]{subsection.3.3}{The study}{section.3}% 24
+\BOOKMARK [3][-]{subsubsection.3.3.1}{Rationale}{subsection.3.3}% 25
+\BOOKMARK [3][-]{subsubsection.3.3.2}{Research hypotheses}{subsection.3.3}% 26
+\BOOKMARK [2][-]{subsection.3.4}{Materials and methods}{section.3}% 27
+\BOOKMARK [3][-]{subsubsection.3.4.1}{Questionnaires}{subsection.3.4}% 28
+\BOOKMARK [3][-]{subsubsection.3.4.2}{Experimental setup}{subsection.3.4}% 29
+\BOOKMARK [3][-]{subsubsection.3.4.3}{Participants}{subsection.3.4}% 30
+\BOOKMARK [3][-]{subsubsection.3.4.4}{Experimental procedure}{subsection.3.4}% 31
+\BOOKMARK [3][-]{subsubsection.3.4.5}{Data analysis}{subsection.3.4}% 32
+\BOOKMARK [2][-]{subsection.3.5}{Results}{section.3}% 33
+\BOOKMARK [3][-]{subsubsection.3.5.1}{On the individual factors}{subsection.3.5}% 34
+\BOOKMARK [3][-]{subsubsection.3.5.2}{Relation of extroversion to gaze and speech}{subsection.3.5}% 35
+\BOOKMARK [3][-]{subsubsection.3.5.3}{Relation of negative attitude towards robots to gaze and speech}{subsection.3.5}% 36
+\BOOKMARK [3][-]{subsubsection.3.5.4}{Post-experiment evaluation}{subsection.3.5}% 37
+\BOOKMARK [2][-]{subsection.3.6}{Discussion}{section.3}% 38
+\BOOKMARK [3][-]{subsubsection.3.6.1}{Extroversion \046 social signals}{subsection.3.6}% 39
+\BOOKMARK [3][-]{subsubsection.3.6.2}{Negative attitude towards robots \046 social signals}{subsection.3.6}% 40
+\BOOKMARK [3][-]{subsubsection.3.6.3}{Subjective impressions}{subsection.3.6}% 41
+\BOOKMARK [3][-]{subsubsection.3.6.4}{Implications for automatic personality assessment}{subsection.3.6}% 42
+\BOOKMARK [3][-]{subsubsection.3.6.5}{Implications for measuring engagement}{subsection.3.6}% 43
+\BOOKMARK [3][-]{subsubsection.3.6.6}{Implications for human-robot physical interaction}{subsection.3.6}% 44
+\BOOKMARK [3][-]{subsubsection.3.6.7}{Limits of the study}{subsection.3.6}% 45
+\BOOKMARK [2][-]{subsection.3.7}{Conclusions}{section.3}% 46
+\BOOKMARK [2][-]{subsection.3.8}{Questionnaire for negative attitude towards robots \(NARS\)}{section.3}% 47
+\BOOKMARK [2][-]{subsection.3.9}{Questionnaire for post-experimental evaluation of the assembly task}{section.3}% 48
+\BOOKMARK [2][-]{subsection.3.10}{Software for operating the robot}{section.3}% 49
+\BOOKMARK [1][-]{section.4}{A Shared Control Method for Online Human-in-the-Loop Robot Learning Based on Locally Weighted Regression}{}% 50
+\BOOKMARK [2][-]{subsection.4.1}{Introduction}{section.4}% 51
+\BOOKMARK [2][-]{subsection.4.2}{Related Work}{section.4}% 52
+\BOOKMARK [2][-]{subsection.4.3}{Methods}{section.4}% 53
+\BOOKMARK [3][-]{subsubsection.4.3.1}{Locally Weighted Regression}{subsection.4.3}% 54
+\BOOKMARK [3][-]{subsubsection.4.3.2}{Shared-Control Approach}{subsection.4.3}% 55
+\BOOKMARK [2][-]{subsection.4.4}{Experimental Setup}{section.4}% 56
+\BOOKMARK [2][-]{subsection.4.5}{Results}{section.4}% 57
+\BOOKMARK [2][-]{subsection.4.6}{Discussion}{section.4}% 58
+\BOOKMARK [1][-]{section.5}{Stepping in a novel balance environment}{}% 59
+\BOOKMARK [2][-]{subsection.5.1}{Introduction}{section.5}% 60
+\BOOKMARK [2][-]{subsection.5.2}{Methods}{section.5}% 61
+\BOOKMARK [2][-]{subsection.5.3}{Results}{section.5}% 62
+\BOOKMARK [2][-]{subsection.5.4}{Conclusions}{section.5}% 63

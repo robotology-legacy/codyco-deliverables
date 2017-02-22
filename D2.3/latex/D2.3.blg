@@ -1,0 +1,61 @@
+This is BibTeX, Version 0.99d (TeX Live 2016/W32TeX)
+Capacity: max_strings=100000, hash_size=100000, hash_prime=85009
+The top-level auxiliary file: D2.3.aux
+The style file: plain.bst
+Database file #1: platform.bib
+Database file #2: IROS2016.bib
+Database file #3: edhhi.bib
+Repeated entry---line 306 of file edhhi.bib
+ : @article{IIzuka1992
+ :                    ,
+I'm skipping whatever remains of this entry
+Database file #4: ChieBib.bib
+Repeated entry---line 523 of file ChieBib.bib
+ : @article{Wolpert2011
+ :                     ,
+I'm skipping whatever remains of this entry
+Warning--empty chapter and pages in Argyle1976
+Warning--there's a number but no volume in idyn2012
+Warning--empty chapter and pages in icub2013
+You've used 98 entries,
+            2118 wiz_defined-function locations,
+            1156 strings with 23914 characters,
+and the built_in function-call counts, 38631 in all, are:
+= -- 3686
+> -- 1970
+< -- 34
++ -- 781
+- -- 670
+* -- 2920
+:= -- 6216
+add.period$ -- 297
+call.type$ -- 98
+change.case$ -- 618
+chr.to.int$ -- 0
+cite$ -- 101
+duplicate$ -- 1431
+empty$ -- 2979
+format.name$ -- 670
+if$ -- 8193
+int.to.chr$ -- 0
+int.to.str$ -- 98
+missing$ -- 106
+newline$ -- 493
+num.names$ -- 200
+pop$ -- 648
+preamble$ -- 1
+purify$ -- 528
+quote$ -- 0
+skip$ -- 1053
+stack$ -- 0
+substring$ -- 2532
+swap$ -- 375
+text.length$ -- 34
+text.prefix$ -- 0
+top$ -- 0
+type$ -- 376
+warning$ -- 3
+while$ -- 345
+width$ -- 100
+write$ -- 1075
+(There were 2 error messages)
