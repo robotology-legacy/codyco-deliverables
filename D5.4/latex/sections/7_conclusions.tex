@@ -1,49 +1,23 @@
-%!TEX root = ../template.tex
+%!TEX root = ../D5.4.tex
 
 \section{Conclusions and Future Works}
 %
-One of the aim of the presented framework is the estimation of dynamic variables of 
-a human being while is physically interacting with a robot.
- This paper is the extended version of the probabilistic framework explored in
-  \cite{LatellaSensors2016} but we introduced here a more complex model ($23$ vs $3$
-   links and $22$ vs $2$ joints) and we found that our framework is able to estimate
-    human dynamics variables even in presence of a multi-DoFs model.  We performed
-	 also a comparison with the well-established biomechanical software OpenSim:
-	  the results were promising depicting a good bent of our framework in
- modelling possible inaccuracies in the model.
-\\
-\indent
-In this paper the endeavour was to retrieve an estimation of the human dynamics by means of
- the MAP algorithm and to this purpose the robot was considered as a \emph{passive} forces
-  measurer.  But since the human dynamics is of pivotal importance
-   for a control design aimed at considering the \emph{human in the loop}, the forthcoming
-    idea will be to provide in real-time the robot with the human force feedback
+This report presents the progresses towards the implementation of 
+learning how to stand up with the help of a human caregiver.
+Presented results focus on: (1) human dynamics estimation while is physically 
+interacting with a robot; (2) robot motion control for unassisted standing up 
+motions. 
+
+Human dynamics estimation is of pivotal importance
+for a control design aimed at considering the \emph{human in the loop}
+during physical human robot interaction. 
+It provides in real-time the robot with the human force feedback
 that could be used either as a tool for \emph{reactive} human-robot collaboration
 (implying a robot reactive control) and, in a long-term perspective,
 for \emph{predictive} collaboration, for enhancing remarkably the interaction naturalness.
-Thus, in the near future a new robot controller has to be 
-designed in order that the robot can adapt and adjust the interaction strategy accordingly.
- \\
- \indent
- In this work we applied the proposed approach to human models composed of 1-DoF revolute joints, 
- by using the classical formalism widespread in robotics \cite{Featherstone2008}.
- In particular we combined this type of joints to obtain a series of joints with a 
- high number of DoFs, that however are only a rough approximation of the complexity 
- exhibited by real-life biomechanical joints.
- While we chose this joint model for an initial exploration of the method, the proposed
-  algorithm is not limited to this particular choice.
- In particular the properties of any joint (with an arbitrary number of DoFs) can be 
- encapsulated in an interface where the relative position, velocity and acceleration of 
- the two bodies connected by it are described by arbitrary functions of joint coordinates
-  variables and their derivatives that can then be directly inserted in
-   \eqref{eq:matRNEA} and \eqref{eq:measRNEA}. 
- In this way, any kind of joint modelling can be described under this formalism 
- (e.g., complex non-linear models, models of biomechanical joints based on tabulated data 
- obtained from human experiments \cite{delp1990interactive}). 
- A possible implementation is presented in
-  \cite{seth2010minimal}, where it is used in the context of biomechanical simulations. 
- In the future we plan to translate this type of results in our framework, 
- to generalize our method to arbitrarily complex musculoskeletal models.
+Thus, the next step consists in developing a controller to endow the 
+robot with the ability to adapt and adjust the interaction strategy.
+
  
  
  

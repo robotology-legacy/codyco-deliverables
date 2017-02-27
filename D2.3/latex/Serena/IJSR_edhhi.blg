@@ -1,0 +1,54 @@
+This is BibTeX, Version 0.99d (TeX Live 2016/W32TeX)
+Capacity: max_strings=100000, hash_size=100000, hash_prime=85009
+The top-level auxiliary file: IJSR_edhhi.aux
+The style file: spmpsci.bst
+Database file #1: edhhi.bib
+Repeated entry---line 306 of file edhhi.bib
+ : @article{IIzuka1992
+ :                    ,
+I'm skipping whatever remains of this entry
+Warning--empty chapter and pages in Argyle1976
+Warning--there's a number but no volume in idyn2012
+Warning--empty chapter and pages in icub2013
+You've used 57 entries,
+            2946 wiz_defined-function locations,
+            971 strings with 15990 characters,
+and the built_in function-call counts, 47383 in all, are:
+= -- 5511
+> -- 1077
+< -- 20
++ -- 683
+- -- 384
+* -- 2121
+:= -- 4601
+add.period$ -- 59
+call.type$ -- 57
+change.case$ -- 391
+chr.to.int$ -- 0
+cite$ -- 60
+duplicate$ -- 5275
+empty$ -- 3025
+format.name$ -- 436
+if$ -- 9913
+int.to.chr$ -- 0
+int.to.str$ -- 57
+missing$ -- 614
+newline$ -- 236
+num.names$ -- 116
+pop$ -- 2026
+preamble$ -- 1
+purify$ -- 304
+quote$ -- 0
+skip$ -- 2766
+stack$ -- 0
+substring$ -- 2155
+swap$ -- 4399
+text.length$ -- 20
+text.prefix$ -- 0
+top$ -- 0
+type$ -- 212
+warning$ -- 3
+while$ -- 232
+width$ -- 59
+write$ -- 570
+(There was 1 error message)

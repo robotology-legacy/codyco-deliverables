@@ -1,0 +1,326 @@
+\begin{thebibliography}{10}
+\providecommand{\url}[1]{{#1}}
+\providecommand{\urlprefix}{URL }
+\expandafter\ifx\csname urlstyle\endcsname\relax
+  \providecommand{\doi}[1]{DOI~\discretionary{}{}{}#1}\else
+  \providecommand{\doi}{DOI~\discretionary{}{}{}\begingroup
+  \urlstyle{rm}\Url}\fi
+
+\bibitem{Aly2013personality}
+Aly, A., Tapus, A.: A model for synthesizing a combined verbal and nonverbal
+  behavior based on personality traits in human-robot interaction.
+\newblock In: Proc. ACM/IEEE Int. Conf. on Human-robot Interaction, pp.
+  325--332 (2013)
+
+\bibitem{Anzalone2012profile}
+Anzalone, S., Yoshikawa, Y., Ishiguro, H., Menegatti, E., Pagello, E.,
+  Sorbello, R.: Towards partners profiling in human robot interaction contexts.
+\newblock In: I.~Noda, N.~Ando, D.~Brugali, J.~Kuffner (eds.) Simulation,
+  Modeling, and Programming for Autonomous Robots, \emph{Lecture Notes in
+  Computer Science}, vol. 7628, pp. 4--15. Springer Berlin Heidelberg (2012)
+
+\bibitem{Anzalone2015engagement}
+Anzalone, S.M., Boucenna, S., Ivaldi, S., Chetouani, M.: Evaluating the
+  engagement with social robots.
+\newblock International Journal of Social Robotics pp. 1--14 (2015)
+
+\bibitem{Argyle1976}
+Argyle, M.: Personality and social behaviour.
+\newblock Oxford: Blackwell (1976)
+
+\bibitem{Ba2009}
+Ba, S., Odobez, J.M.: Recognizing visual focus of attention from head pose in
+  natural meetings.
+\newblock Systems, Man, and Cybernetics, Part B: Cybernetics, IEEE Transactions
+  on \textbf{39}(1), 16--33 (2009)
+
+\bibitem{Beatty2001}
+Beatty, M., McCroskey, J., Valencic, K.: The biology of communication: A
+  communibiological perspective.
+\newblock Hampton Pr. (2001)
+
+\bibitem{Berry2000}
+Berry, D., Hansen, J.: Personality, nonverbal behavior, and interaction quality
+  in female dyads.
+\newblock Personality and Social Psychology Bulletin \textbf{26}(3), 278--292
+  (2000)
+
+\bibitem{Boucenna2014}
+Boucenna, S., Anzalone, S., Tilmont, E., Cohen, D., Chetouani, M.: Learning of
+  social signatures through imitation game between a robot and a human partner.
+\newblock IEEE Transactions on Autonomous Mental Development \textbf{6}(3),
+  213--225 (2014)
+
+\bibitem{Castellano2009}
+Castellano, G., Pereira, A., Leite, I., Paiva, A., McOwan, P.W.: Detecting user
+  engagement with a robot companion using task and social interaction-based
+  features.
+\newblock In: Proceedings of the 2009 International Conference on Multimodal
+  Interfaces, pp. 119--126 (2009)
+
+\bibitem{Chen2014NARStouch}
+Chen, T., King, C.H., Thomaz, A., Kemp, C.: An investigation of responses to
+  robot-initiated touch in a nursing context.
+\newblock International Journal of Social Robotics \textbf{6}(1), 141--161
+  (2014)
+
+\bibitem{NEOPIR1992}
+Costa, P., McCrae, R.: Revised NEO Personality Inventory (NEO-PI-R) and NEO
+  Five-Factor Inventory (NEO-FFI) professional manual.
+\newblock Odessa, FL: Psychological Assessment Resources (1992)
+
+\bibitem{NEOPIR1998}
+Costa, P., McCrae, R., Rolland, J.: NEO-PI--R. Inventaire de Personnalit{\'e}
+  r{\'e}vis{\'e}.
+\newblock Editions du Centre de Psychologie Appliqu{\'e}e, Paris (1998)
+
+\bibitem{Dang2014personality}
+Dang, T.H., Tapus, A.: Towards personality-based assistance in human-machine
+  interaction.
+\newblock In: Proc. IEEE Int. Symp. on Robot and Human Interactive
+  Communication (RO-MAN) (2014)
+
+\bibitem{Dewaele00}
+Dewaele, J.M., Furnham, A.: Personality and speech production: a pilot study of
+  second language learners.
+\newblock Personality and Individual Differences \textbf{28}(2), 355--365
+  (2000)
+
+\bibitem{NARSfrench}
+Dinet, J., Vivian, R.: Perception and attitudes towards anthropomorphic robots
+  in france: Validation of an assessment scale.
+\newblock Psychologie francaise \textbf{60}(1), 173–189 (2015)
+
+\bibitem{Eysenck1981}
+Eysenck, H.J.: A model for personality, chap. General features of the model,
+  pp. 1--37.
+\newblock ew York: Springer-Verlag (1981)
+
+\bibitem{LaFrance2004}
+France, B.H.L., Heisel, A.D., Beatty, M.J.: Is there empirical evidence for a
+  nonverbal profile of extraversion?: a meta-analysis and critique of the
+  literature.
+\newblock Communication Monographs \textbf{71}(1), 28--48 (2004)
+
+\bibitem{idyn2012}
+Fumagalli, M., Ivaldi, S., Randazzo, M., Natale, L., Metta, G., Sandini, G.,
+  Nori, F.: Force feedback exploiting tactile and proximal force/torque
+  sensing. theory and implementation on the humanoid robot icub.
+\newblock Autonomous Robots (4), 381--398 (2012)
+
+\bibitem{Goffman1967}
+Goffman, E.: Interaction ritual: essays on face-to-face behavior.
+\newblock New York Doubleday, Anchor Books (1967)
+
+\bibitem{BIGFIVE}
+Goldberg, L.: An alternative description of personality: the big-five factor
+  structure.
+\newblock Journal of Personality and Social Psychology \textbf{59}, 1216--1229
+  (1990)
+
+\bibitem{Gray2012}
+Gray, K., Wegner, D.: Feeling robots and human zombies: mind perception and the
+  uncanny valley.
+\newblock Cognition \textbf{125}(1), 125--130 (2012)
+
+\bibitem{CowLog2009}
+Hanninen, L., Pastell, M.: Cowlog: Open-source software for coding behaviors
+  from digital video.
+\newblock Behavior Research Methods \textbf{41}(2), 472--476 (2009)
+
+\bibitem{Huang2011}
+Huang, C.M., Thomaz, A.: Effects of responding to, initiating and ensuring
+  joint attention in human-robot interaction.
+\newblock In: IEEE RO-MAN, pp. 65--71 (2011)
+
+\bibitem{Ajzen1986}
+Icek~Ajzen, I., Madden, T.J.: Prediction of goal-directed behavior: Attitudes,
+  intentions, and perceived behavioral control.
+\newblock Journal of Experimental Social Psychology \textbf{22}(5), 453–474
+  (1986)
+
+\bibitem{Iishi2011}
+Iishi, R., Shinohara, Y., Nakano, T., Nishida, T.: Combining multiple types of
+  eye-gaze information to predict user's conversatinal engagement.
+\newblock In: 2nd Workshop on Eye Gaze in Intelligent Human Machine
+  Interaction, pp. 1--8 (2011)
+
+\bibitem{ivaldi2014frontiers}
+Ivaldi, S., Anzalone, S., Rousseau, W., Sigaud, O., Chetouani, M.: Robot
+  initiative in a team learning task increases the rhythm of interaction but
+  not the perceived engagement.
+\newblock Frontiers in Neurorobotics \textbf{8}(5) (2014)
+
+\bibitem{Ivaldi2014tamd}
+Ivaldi, S., Nguyen, S.M., Lyubova, N., Droniou, A., Padois, V., Filliat, D.,
+  Oudeyer, P.Y., Sigaud, O.: Object learning through active exploration.
+\newblock IEEE Transactions on Autonomous Mental Development \textbf{6}(1),
+  56--72 (2014)
+
+\bibitem{Lemaitre2013}
+Le~Maitre, J., Chetouani, M.: Self-talk discrimination in human-robot
+  interaction situations for supporting social awareness.
+\newblock International Journal of Social Robotics \textbf{5}(2), 277--289
+  (2013)
+
+\bibitem{Lepri2010}
+Lepri, B., Subramanian, R., Kalimeri, K., Staiano, J., Pianesi, F., Sebe, N.:
+  Employing social gaze and speaking activity for automatic determination of
+  the extraversion trait.
+\newblock In: International Conference on Multimodal Interfaces and the
+  Workshop on Machine Learning for Multimodal Interaction, pp. 1--7 (2010)
+
+\bibitem{Mara2015}
+Mara, M., Appel, M.: Science fiction reduces the eeriness of android robots: A
+  field experiment.
+\newblock Computers in Human Behavior \textbf{48}(1), 156 -- 162 (2015)
+
+\bibitem{mohammadi2012automatic}
+Mohammadi, G., Vinciarelli, A.: Automatic personality perception: Prediction of
+  trait attribution based on prosodic features.
+\newblock IEEE Transactions on Affective Computing \textbf{3}(3), 273--284
+  (2012)
+
+\bibitem{UncannyRAM2012}
+Mori, M., MacDorman, K., Kageki, N.: The uncanny valley [from the field].
+\newblock Robotics Automation Magazine, IEEE \textbf{19}(2), 98--100 (2012)
+
+\bibitem{icub2013}
+Natale, L., Nori, F., Metta, G., Fumagalli, M., Ivaldi, S., Pattacini, U.,
+  Randazzo, M., Schmitz, A., G.~Sandini, G.: The iCub platform: a tool for
+  studying intrinsically motivated learning.
+\newblock Springer-Verlag (2013)
+
+\bibitem{NARS2006}
+Nomura, T., Kanda, T., Suzuki, T.: Experimental investigation into influence of
+  negative attitudes toward robots on human-robot interaction.
+\newblock AI $\&$ SOCIETY \textbf{20}(2), 138--150 (2006)
+
+\bibitem{Nomura2006nars}
+Nomura, T., Kanda, T., Suzuki, T., Kato, K.: Exploratory investigation into
+  influence of negative attitudes toward robots on human-robot interaction.
+\newblock In: Mobile Robots: towards New Applications, Aleksandar Lazinica
+  (Ed.) (2006)
+
+\bibitem{Nomura2008}
+Nomura, T., Kanda, T., Suzuki, T., Kato, K.: Prediction of human behavior in
+  human--robot interaction using psychological scales for anxiety and negative
+  attitudes toward robots.
+\newblock IEEE Transactions on Robotics \textbf{24}(2), 442--451 (2008)
+
+\bibitem{Pianesi08}
+Pianesi, F., Mana, N., Cappelletti, A., Lepri, B., Zancanaro, M.: Multimodal
+  recognition of personality traits in social interactions.
+\newblock In: Proceedings of the 10th International Conference on Multimodal
+  Interfaces, ICMI '08, pp. 53--60. ACM (2008)
+
+\bibitem{Poggi2012}
+Poggi, I., D'Errico, F.: Social signals: a framework in terms of goals and
+  beliefs.
+\newblock Cognitive Processing \textbf{13}(2), 427--445 (2012)
+
+\bibitem{ICSR2015}
+Rahbar, F., Anzalone, S., Varni, G., Zibetti, E., Ivaldi, S., Chetouani, M.:
+  Predicting extraversion from non-verbal features during a face-to-face
+  human-robot interaction.
+\newblock In: International Conference on Social Robotics, pp. 1--10 (2015)
+
+\bibitem{Rauthmann2012}
+Rauthmann, J., Seubert, C., Sachse, P., Furtner, M.: Eyes as windows to the
+  soul: Gazing behavior is related to personality.
+\newblock Journal of Research in Personality \textbf{46}(2), 147--156 (2012)
+
+\bibitem{rich2010recognizing}
+Rich, C., Ponsler, B., Holroyd, A., Sidner, C.L.: Recognizing engagement in
+  human-robot interaction.
+\newblock In: Proc. ACM/IEEE Int. Conf. Human-Robot Interaction (HRI), pp.
+  375--382 (2010)
+
+\bibitem{Sanghvi2011}
+Sanghvi, J., Castellano, G., Leite, I., Pereira, A., McOwan, P.W., Paiva, A.:
+  Automatic analysis of affective postures and body motion to detect engagement
+  with a game companion.
+\newblock In: Human-Robot Interaction (HRI), 2011 6th ACM/IEEE International
+  Conference on, pp. 305--311 (2011)
+
+\bibitem{Saygin2012}
+Saygin, A., Chaminade, T., Ishiguro, H., Driver, J., Frith, C.: The thing that
+  should not be: predictive coding and the uncanny valley in perceiving human
+  and humanoid robot actions.
+\newblock Soc Cogn Affect Neurosci \textbf{7}(4), 413--422 (2012)
+
+\bibitem{Scherer1981}
+Scherer, K., Scherer, U.: Speech evaluation in psychiatry, chap. Speech
+  behavior and personality.
+\newblock Grune and Stratton (1981)
+
+\bibitem{sidner2004}
+Sidner, C., Kidd, C., Lee, C., Lesh, N.: Where to look: a study of human-robot
+  engagement.
+\newblock In: Proc. 9th Int. Conf. Intelligent User Interfaces, pp. 78--84
+  (2004)
+
+\bibitem{sidner2005}
+Sidner, C., Lee, C., Kidd, C., Lesh, N.: Explorations in engagement for humans
+  and robots.
+\newblock Artificial Intelligence \textbf{1}(166), 140--164 (2005)
+
+\bibitem{Sidner2006}
+Sidner, C.L., Lee, C., Morency, L.P., Forlines, C.: The effect of head-nod
+  recognition in human-robot conversation.
+\newblock In: Proc. 1st ACM SIGCHI/SIGART Conf. on Human-robot Interaction, pp.
+  290--296 (2006)
+
+\bibitem{Stefanov2009}
+Stefanov, N., Peer, A., Buss, M.: Role determination in human-human
+  interaction.
+\newblock In: 3rd Joint EuroHaptics Conf. and World Haptics, pp. 51--56 (2009)
+
+\bibitem{Takayama2009proxemics}
+Takayama, L., Pantofaru, C.: Influences on proxemic behaviors in human-robot
+  interaction.
+\newblock In: Proc. IEEE-RAS Int. Conf. on Intelligent Robots and Systems
+  (2009)
+
+\bibitem{Tapus08}
+Tapus, A., \c{T}\v{a}pu\c{s}, C., Matari\'{c}, M.J.: User-robot personality
+  matching and assistive robot behavior adaptation for post-stroke
+  rehabilitation therapy.
+\newblock Intelligent Service Robotics \textbf{1}(2), 169--183 (2008)
+
+\bibitem{Tapus08b}
+Tapus, A., Matari\'{c}, M.J.: Socially assistive robots: The link between
+  personality, empathy, physiological signals, and task performance.
+\newblock In: AAAI Spring Symposium on Emotion, Personality, and Social
+  Behavior, pp. 133--140 (2008)
+
+\bibitem{Vinciarelli14}
+Vinciarelli, A., Mohammadi, G.: A survey of personality computing.
+\newblock IEEE Transactions on Affective Computing \textbf{5}(3), 273--291
+  (2014)
+
+\bibitem{Wilcox2012}
+Wilcox, R., Nikolaidis, S., Shah, J.A.: Optimization of temporal dynamics for
+  adaptive human-robot interaction in assembly manufacturing.
+\newblock In: Robotics: Science and Systems (2012)
+
+\bibitem{Wood2000}
+Wood, W.: Attitude change: Persuasion and social influence.
+\newblock Annual Review of Psychology \textbf{51}, 539–570 (2000)
+
+\bibitem{Wu2014}
+Wu, D., Bischof, W., Anderson, N., Jakobsen, T., Kingstone, A.: The influence
+  of personality on social attention.
+\newblock Personality and Individual Differences \textbf{60}, 25--29 (2014)
+
+\bibitem{Iizuka1992}
+Y., I.: Extraversion, introversion, and visual interaction.
+\newblock Percept Mot Skills \textbf{74}(1), 43--50 (1992)
+
+\bibitem{Zen2010}
+Zen, G., Lepri, B., Ricci, E., Lanz, O.: Space speaks: towards socially and
+  personality aware visual surveillance.
+\newblock In: Proceedings of the 1st ACM international workshop on Multimodal
+  pervasive video analysis, pp. 37--42 (2010)
+
+\end{thebibliography}
