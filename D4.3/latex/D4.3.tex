@@ -137,7 +137,7 @@ v. 1.0 & Feb. 21 & Final & Elmar Rueckert\\\hline
 
 \chapter{Introduction}
 
-This deliverable presents results of task T4.4. In total four articles were presented at international robotics conferences (HUMANOIDS, ICRA and IROS) and one article is currently under review. Below, we discuss the achievements with respect to the task description from the Technical Annex.
+This deliverable presents results of task T4.4. In total four articles were presented at international robotics conferences (HUMANOIDS, ICRA and IROS) and two articles are currently under review. Below, we discuss the achievements with respect to the task description from the Technical Annex.
 
 \section{Task description from the Technical Annex.} 
 The core element of WP3 is the intelligent combination of prioritized tasks, which allows covering a large
@@ -173,7 +173,7 @@ A research article of this study is currently under review~\cite{Paraschos_2017}
 
 \chapter{Multiple Task Learning for Whole-Body Reactive Control (UPMC)}\label{sec:Ryan}
 
-In the following two paragraphs, we summarize the work of Ryan Lober, Vincent Padois and Olivier Sigaud on 
+In the following three paragraphs, we summarize the work of Ryan Lober, Vincent Padois and Olivier Sigaud on 
 learning the task prioritization of multiple tasks. For a detailed report on these two articles we refer to 
 \textit{Deliverable D3.3}.
 
@@ -218,6 +218,12 @@ from task variance to priorities reactively solves a number of
 task incompatibilities.
 
 This work was presented at the international conference on intelligent robots and systems~\cite{lober_IROS2015}.
+
+\paragraph*{Task compatibility optimization.}
+
+Highly redundant robots, such as humanoids, can execute multiple simultaneous tasks allowing them to perform complex whole-body behaviors. Unfortunately, tasks are generally planned without close consideration for the underlying controller being used, or the other tasks being executed. Because of this, tasks are often incompatible with one another and/or the system constraints, and cannot always be accomplished simultaneously. These incompatibilities can be managed using prioritization and gains, but tuning them is tedious. In this work, we take an alternative approach and develop a task compatibility optimization loop which automatically improves task compatibility by modifying their trajectories using reinforcement learning. To do so, the tasks are iteratively optimized by minimizing a compatibility cost, which measures the compatibility between one or more tasks, and the system constraints. Using two common scenarios, we show that task compatibility optimization results in whole-body behaviors which better match the original intent of the task combination without the need for manual tuning of task/controller parameters, heuristics, or re-planning.
+
+This work was submitted for presentation at a robotics journal~\cite{lober2017RAL-IROS}.
 
 \chapter{Learning soft task priorities for control of redundant robots (INRIA \& TUDA)}\label{sec:Valerio}
 \includepdf[pages=2-7]{Modugno_ICRA_2016.pdf}
