@@ -150,18 +150,18 @@ Let $F_{ext} \in \mathbb{R}^{n+6}$ denote the torques produced by the external f
 	f + f_{ext}, \IEEEyessubnumber \label{centroidal1}  \\
  	 		\dot{\nu} &=& M^{-1}(S\tau+J^\top(q) f - h(q,\nu)+F_{ext}) \IEEEyessubnumber \label{acceleration1}, 
 \end{IEEEeqnarray}
-respectively. In the above equation, $f_{ext}\in \mathbb{R}^6$ is the effect of the external wrenches on the centroidal dynamic $\dot{H}$. One of the main problems due to the above approach is that the external wrenches applied on the robot would be completely canceled by the pure feedback linearisation controller associated with this strategy. The macroscopic effect of this cancellation is that if a user would like to \emph{help the robot stand up}, the robot motion would be invariant with respect to the help provided by the user since the effects of the external wrenches are canceled out: in fact, the closed loop dynamics does not depend upon it. So the main question now is:
+respectively. In the above equation, $f_{ext}\in \mathbb{R}^6$ is the effect of the external wrenches on the centroidal dynamic $\dot{H}$. One of the main problems due to the above approach is that the external wrenches applied on the robot would be completely canceled by the pure feedback linearisation controller associated with this strategy. The macroscopic effect of this cancellation is that if a user would like to \emph{help the robot stand up}, the robot motion would be invariant with respect to the help provided by the user since the effects of the external wrenches are canceled out. So the main question now is:
 
 \vspace{0.5cm}
 \noindent
 \emph{How can we synthesize a controller that implements the possibility for a user to help the robot lift up during the standing up motion?}
 \vspace{0.5cm}
 
-To answer this question, we have to focus on Eq.~\eqref{centroidal1}, and on the role of the fictitious control input $f$ to obtaining $\dot{H}(f) = \dot{H}^*$. First, recall that  $\dot{H}^*$, i.e.
+To answer this question, we have to focus on Eq.~\eqref{centroidal1}, and on the role of the fictitious control input $f$ to obtain $\dot{H}(f) = \dot{H}^*$. First, recall that  $\dot{H}^*$, i.e.
 \begin{IEEEeqnarray}{RCL}
 	\dot{H}^* &=& \dot{H}_d - k_d\tilde{H} -k_p \int_0^t\tilde{H} ds \nonumber
 \end{IEEEeqnarray}
-renders the Lyapunov function 
+renders the energy-based Lyapunov function 
 \begin{IEEEeqnarray}{RCL}
 	V &=& \frac{1}{2}|\tilde{H}|^2 + \frac{ k_p}{2} \left| \int_0^t\tilde{H} ds  \right | ^2 \label{eq:Lyapuv}
 \end{IEEEeqnarray}
@@ -169,7 +169,7 @@ negative semi-definite, i.e.
 \begin{IEEEeqnarray}{RCL}
 	\dot{V} &=& -k_d|\tilde{H}|^2 \label{eq:LyapuvDer}.
 \end{IEEEeqnarray}
-The equation~\eqref{eq:LyapuvDer} stresses that  that an eventual help from a user to lift the robot up is useless: the rate of change of $V$ does not depend upon the external forces, so the standing up motion is invariant to the user interactions. The modification we propose here is based on a decomposition of the external force $f_{ext}$ that highlights the component of this external force that helps decrease the function $V$. More precisely, decompose the external force as follows:
+The equation~\eqref{eq:LyapuvDer} stresses the fact  that an eventual help from a user to lift the robot up is useless: the rate of change of $V$ does not depend upon the external forces, so the standing up motion is invariant to the user interactions. The modification we propose here is based on a decomposition of the external force $f_{ext}$ that highlights the component of this external force that helps decrease the function $V$. More precisely, decompose the external force as follows:
 \begin{IEEEeqnarray}{RCL}
 	\label{forcedec}
 	f_{ext} &=& \alpha\tilde{H}^\parallel + \beta \tilde{H}^\perp \IEEEyessubnumber \label{forcedec1} \\
@@ -191,7 +191,7 @@ and choose the control input $f$ such that
 \[ \dot{H}(f) = \dot{H}^*. \]
 By computing the time derivative of~\eqref{eq:Lyapuv} along the system evolution~\eqref{centroidal1}-\eqref{forcedec}, one easily verifies that:
 \begin{equation}
-\label{eq:newHStarDot}
+\label{eq:newVDot}
  \dot{V} =-k_d|\tilde{H}|^2 +
   \begin{cases}
    0 & \text{if }\quad  \alpha > 0
@@ -199,4 +199,4 @@ By computing the time derivative of~\eqref{eq:Lyapuv} along the system evolution
    \alpha|\tilde{H}| & \text{if }\quad  \alpha \leq 0
   \end{cases}
 \end{equation}
-The fact that when the external forces \emph{help} the robot stand up is encompassed in the right hand side of the above equation:  a negative $\alpha$, i.e. the external forces are in the direction of motion, make the Lyapunov function decrease faster.
+The fact that when the external forces \emph{help} the robot stand up is encompassed in the right hand side of the above equation:  a negative $\alpha$, i.e. the external forces are in the direction of motion, make the Lyapunov function decrease faster. Hence, we solve the problem~\eqref{optTorque} with~\eqref{eq:newHStarDot} in order to give the possibility of providing help to the robot during standing up motions.

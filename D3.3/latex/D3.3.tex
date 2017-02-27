@@ -12,6 +12,8 @@
 \usepackage[pdftex,dvips]{graphicx}
 \usepackage{url}
 \usepackage{array}
+
+\usepackage{IEEEtrantools}
 %%
 
 %%insert here other packages needed by sections
@@ -208,7 +210,7 @@ Based on this formulation choice, the reactive control problem aims at finding a
 where:
 \begin{itemize}
 \item $\tau \in \mathbb{R}^n$ is the internal actuation torque with $n + 1$ the number of rigid bodies -- called links -- connected by $n$ actuated joints with one degree of freedom each.
-\item ${q} \in \mathbb{R}^3 \times SO(3)\times \mathbb{R}^n$ is the generalized coordinates that parametrizes the configuration of the free-floating system. $q$ is a triplet composed of the origin and orientation of the base frame expressed in the inertial frame $\left(\prescript{\mathcal{I}}{}p_{\mathcal{B}},\prescript{\mathcal{I}}{}R_{\mathcal{B}}\right)$ and the $n$ joint angles $q_j$.
+\item ${q} \in \mathbb{R}^3 \times SO(3)\times \mathbb{R}^n$ is the configuration of the free-floating system. $q$ is a triplet composed of the origin and orientation of the base frame expressed in the inertial frame $\left(\prescript{\mathcal{I}}{}p_{\mathcal{B}},\prescript{\mathcal{I}}{}R_{\mathcal{B}}\right)$ and the $n$ joint angles $q_j$.
 \item ${\nu} \in \mathbb{R}^{n+6}$ is the system velocity, a triplet concatenating the floating-base twist $\left (^\mathcal{I}\dot{ p}_{\mathcal{B}},^\mathcal{I}\omega_{\mathcal{B}}\right)$ and the joint velocities ${\dot{q}}_j$.
 \item ${J}({q})= \left[{J}^\top _{\mathcal{C}_1}({q})~ \dots~ {J}^\top _{\mathcal{C}_k}({q}) \right]^\top$ is the contact Jacobian matrix for all $k$ contact points.
 \item $f= \left[ {f}^\top_{1}~ \dots~ {f}^\top_{k}~ \right]^\top $ is the vector of external contact wrenches applied by the environment on the links.
@@ -268,8 +270,9 @@ Equation~(\ref{equ:NE equation}) plainly displays the relation between contact w
 
 The next sections describe how this generic controller structure can be exploited and adapted to deal with compliant contacts.
 
-\section{Balancing on compliant contacts: model-free control approach}
+\section{Balancing with unforeseen cases: human-robot interaction}
 
+\input{contributions/recallsAndPassivityBased.tex}
 
 
 \section{Conclusion}
