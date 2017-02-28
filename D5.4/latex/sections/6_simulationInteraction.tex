@@ -10,7 +10,7 @@ The setup consists of:
 \begin{itemize}
 \item the iCub simulation in Gazebo, complete of the dynamics information provided by \textit{wholeBodyDynamicsTree} (\url{https://github.com/robotology/codyco-modules/tree/master/src/modules/wholeBodyDynamicsTree} developed by IIT in WP1) and the Cartesian information provided by \textit{iKinCartesianController};
 \item the Geomagic Touch, installed following the instructions in \url{https://github.com/inria-larsen/icub-manual/wiki/Installation-with-the-Geomagic-Touch}, which not only install the SDK and drivers of the GeoMagic but also point to how to create the yarp drivers for the Geomagic;
-\item a C++ module (\url{https://github.com/inria-larsen/icub-learning-trajectories}) that connects the output command from the Geomagic to the iCub in Gazebo, and eventually enables recording the trajectories on a file.
+\item a C++ module (\url{https://github.com/inria-larsen/icubLearningTrajectories}) that connects the output command from the Geomagic to the iCub in Gazebo, and eventually enables recording the trajectories on a file.
 \end{itemize}
 
 The interconnection among the different modules is sketched in Figure~\ref{fig:systemHaptic}.
@@ -57,7 +57,7 @@ Demonstrated trajectories and their corresponding forces can be recorded directl
 \subsection{Learning a proMP of the lifting movement}
 
 Once we record a set of trajectories, we can learn the distribution of these demonstration in the form of a probabilistic movement primitive (proMP) \cite{Paraschos_NIPS_2013a}.
-Our toolbox for generating the proMP is currently written in Matlab, and available at \url{https://github.com/inria-larsen/icub-learning-trajectories}.
+Our toolbox for generating the proMP is currently written in Matlab, and available at \url{https://github.com/inria-larsen/icubLearningTrajectories}.
 
 Let us consider the $n$ recorded trajectories \textcircled{$ \tau$} $= \{\tau_1,..., \tau_n \}$, where  the $i$-th trajectory is $\tau_i = \{y(t_1), ..., y(t_{f_i})\}$. 
 $y(t)$ is the vector containing all the variables used to learn the proMP, the simplest case being the mono-dimensional proMP. If we want to learn the proMP of the lifting motion (see Figure \ref{fig:trajectories}), the simplest case is $y(t) =\begin{bmatrix} z\end{bmatrix}^{\top}$, that is the $z$-axis Cartesian coordinate of the end-effector. You may notice that the duration of all the trajectories can be different, i.e.,  $t_{f_i}$ may be variable across demonstrations. 
