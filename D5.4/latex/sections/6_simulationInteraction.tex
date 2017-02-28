@@ -54,16 +54,16 @@ Demonstrated trajectories and their corresponding forces can be recorded directl
 %%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
 
 
-\subsection{Learning a proMP of the lifting movement}
+\subsection{Learning a ProMP of the lifting movement}
 
-Once we record a set of trajectories, we can learn the distribution of these demonstration in the form of a probabilistic movement primitive (proMP) \cite{Paraschos_NIPS_2013a}.
+Once we record a set of trajectories, we can learn the distribution of these demonstration in the form of a probabilistic movement primitive (ProMP) \cite{Paraschos_NIPS_2013a}.
 Our toolbox for generating the proMP is currently written in Matlab, and available at \url{https://github.com/inria-larsen/icubLearningTrajectories}.
 
 Let us consider the $n$ recorded trajectories \textcircled{$ \tau$} $= \{\tau_1,..., \tau_n \}$, where  the $i$-th trajectory is $\tau_i = \{y(t_1), ..., y(t_{f_i})\}$. 
-$y(t)$ is the vector containing all the variables used to learn the proMP, the simplest case being the mono-dimensional proMP. If we want to learn the proMP of the lifting motion (see Figure \ref{fig:trajectories}), the simplest case is $y(t) =\begin{bmatrix} z\end{bmatrix}^{\top}$, that is the $z$-axis Cartesian coordinate of the end-effector. You may notice that the duration of all the trajectories can be different, i.e.,  $t_{f_i}$ may be variable across demonstrations. 
+$y(t)$ is the vector containing all the variables used to learn the ProMP, the simplest case being the mono-dimensional ProMP. If we want to learn the ProMP of the lifting motion (see Figure \ref{fig:trajectories}), the simplest case is $y(t) =\begin{bmatrix} z\end{bmatrix}^{\top}$, that is the $z$-axis Cartesian coordinate of the end-effector. You may notice that the duration of all the trajectories can be different, i.e.,  $t_{f_i}$ may be variable across demonstrations. 
 To be able to find a common representation in term of primitive, a temporal modulation of the trajectories is applied, such that they all have the same number of samples $\bar{s}$. 
 
-The proMP is a Bayesian parametric model of the demonstrated trajectories in the form: 
+The ProMP is a Bayesian parametric model of the demonstrated trajectories in the form: 
 $$y(t) = \Phi(t)^\top \omega + \epsilon_y$$ 
 where $\Phi$ are $m$ radial basis functions scattered across time, scaled by the parameters vector $\omega \in R^m$. 
 $\epsilon_y \sim \mathcal{N}(0, \beta) $ is the trajectory noise. 
@@ -73,9 +73,9 @@ $$y_i(t) = \Phi(t)^\top \omega_i + \epsilon_y$$
 by minimizing the error between the observed trajectory $y_i(t)$ and its model $\Phi(t)^\top \omega_i + \epsilon_y$. This is done using the Least Mean Square algorithm, i.e.:
 $$ \omega_i = (\Phi(t)^\top\Phi(t))^{-1}\Phi(t)^\top y_i(t).$$
 
-Then, using the aggregated $[\omega_1,..., \omega_n]$ parameters, we can compute the distribution over these parameters $\omega \sim \mathcal{N}(\mu_\omega, \Sigma_w)$, and from this distribution, compute the distribution of the observed trajectories, which is the proMP.
+Then, using the aggregated $[\omega_1,..., \omega_n]$ parameters, we can compute the distribution over these parameters $\omega \sim \mathcal{N}(\mu_\omega, \Sigma_w)$, and from this distribution, compute the distribution of the observed trajectories, which is the ProMP.
 
-Figure \ref{fig:proMPlifting} shows the proMP for the lifting motion, computed with the number of reference samples $\bar{s}=100$, number of basis functions $m=5$; the center of each RBF is equally distributed between 1 and $\bar{s}$.
+Figure \ref{fig:proMPlifting} shows the ProMP for the lifting motion, computed with the number of reference samples $\bar{s}=100$, number of basis functions $m=5$; the center of each RBF is equally distributed between 1 and $\bar{s}$.
 
 
 \begin{figure}[h]
@@ -92,16 +92,16 @@ Figure \ref{fig:proMPlifting} shows the proMP for the lifting motion, computed w
 %%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
 \subsection{Predicting the movement from initial observations}
 
-Once the proMP of a certain gesture has been learned (i.e., we have computed $\omega$ from $\omega_1, \ldots, \omega_n$), we can use it to predict the evolution of a movement just after few observations. Of course, the underlying hypothesis is that the movement that is observed ``belongs" to the distribution of demonstrated trajectories.
+Once the ProMP of a certain gesture has been learned (i.e., we have computed $\omega$ from $\omega_1, \ldots, \omega_n$), we can use it to predict the evolution of a movement just after few observations. Of course, the underlying hypothesis is that the movement that is observed ``belongs" to the distribution of demonstrated trajectories.
 
-Let us consider the proMP with the parameters distribution $\omega \sim \mathcal{N}(\mu_\omega, \Sigma_\omega)$.  
+Let us consider the ProMP with the parameters distribution $\omega \sim \mathcal{N}(\mu_\omega, \Sigma_\omega)$.  
 
 Suppose that we have $n_o$ observations of the trajectory to predict (e.g., lifting the arm), called 
 $$D=[y^o(t_1),\ldots, y^o(t_{n_o})].$$
 
 Our goal is to predict the evolution of the trajectory after $t_{n_o}$, i.e., find $\hat{y}(t_{n_o+1}),\ldots,\hat{y}(\hat{t}_f)$, where $\hat{t}_f$ is the estimate of the trajectory duration (by default the mean of all the $t_{f_1}, \ldots, t_{f_n}$). 
 This is equivalent to predicting the entire trajectory $\hat{\tau}$ where the first $n_o$ samples are known and equal to the observations: $\hat{\tau} = \{y^o(t_{1}), ..., y^o(t_{n_o}), \hat{y}(t_{n_o+1}), ..., \hat{y}(t_{\hat{t}_f})\}$.
-Therefore, our prediction problem consists in predicting $\hat{\tau}$ given the $D$ observations. Since $\hat{\tau}$ is computed by a proMP, finding $\hat{\tau}$ means finding the $\hat{\omega}$ generating the  $\hat{\tau}$, by:
+Therefore, our prediction problem consists in predicting $\hat{\tau}$ given the $D$ observations. Since $\hat{\tau}$ is computed by a ProMP, finding $\hat{\tau}$ means finding the $\hat{\omega}$ generating the  $\hat{\tau}$, by:
 $$\left\{
 \begin{array}{rl}
 \hat{\mu}_\omega &= \mu_\omega + K(D - \Phi_t^\top \mu_\omega) \\ 
