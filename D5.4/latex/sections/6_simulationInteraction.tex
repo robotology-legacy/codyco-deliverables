@@ -48,7 +48,8 @@ The graph in Figure~\ref{fig:trajectories} shows some trajectories recorded from
 
 Demonstrated trajectories and their corresponding forces can be recorded directly from the robot, by accessing the Cartesian interface and the Cartesian end-effector wrench computed by \textit{wholeBodyDynamicsTree}.
 
-
+To enable a quicker visualization of the torques and forces in action on the robot during physical interaction (in both simulation and on the real robot) we developed some visualization GUI tools \url{https://github.com/inria-larsen/icub-wholebody-visualization}.
+A major aim is to alert users, in real-time, when excessive torques are applied in one or more joints. This is especially needed when complex interactions take place between the robot, users and the environment, such as in the case of the robot being lifted from the chair.
 
  
 %%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
@@ -111,6 +112,8 @@ K&= \Sigma_\omega\Phi_t^\top(\Sigma_D + \Phi_t^\top\Sigma_\omega \Phi_t)^{-1}
 \right.$$
 
 Figure \ref{fig:predictionLifting15} shows the predicted trajectory for the lifting motion of the left arm of iCub after $n_{o}=15$. An example of the predicted trajectory for lifting the arm in Gazebo can be seen here: \url{https://www.youtube.com/watch?v=0i5O4Lsf7Jc&feature=youtu.be}.
+
+
 
 
 \begin{figure}[h]
