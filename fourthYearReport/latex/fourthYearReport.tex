@@ -1,0 +1,240 @@
+%% Template for EU report, using the report.sty style file
+
+\documentclass[12pt,a4paper,twoside]{article}
+%% common package
+\usepackage[headers]{report}
+\usepackage{xspace}
+\usepackage{verbatim}
+\usepackage[usenames]{color}
+\usepackage[usenames,dvipsnames,table]{xcolor}
+\usepackage[pdftex,dvips]{graphicx}
+\usepackage{url}
+\usepackage{array}
+\usepackage{color}
+\usepackage{longtable}
+%%
+
+%%insert here other packages needed by sections
+
+%%
+
+%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
+%%% Titlepage
+%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
+
+% declaration of variables used in style
+\reportDocnumber{Year 4}
+\reportTitle{Fourth year project objectives report}
+
+\reportAuthor{CoDyCo Consortium}
+\reportResponsiblePartner{IIT}
+\reportAffiliation{% Insert here authors affiliations
+ IIT, TUD, UPMC, UB, JSI.
+}
+
+\reportReviewer{}
+\reportCoordinator{Francesco Nori}
+\reportActivityNumber{1} %% n=1,..,10
+\reportActivity{RTD}
+\reportDoctype{Periodic report} %% or Prototype
+\reportClassification{Public} % or Consortium
+\reportDistribution{Consortium} %
+\reportStatus{Draft} % Draft or Final
+\reportDeliveryDate{28/04/2017}
+\reportVersion{1.0}
+\reportDate{Apr.~28, 2017}
+\reportYear{2017}
+\reportPages{\pageref{LastPage}}
+\reportChangelog{v.1.0 & Feb 13, 2017 & First draft %%\\\hline
+%%              v.2.0 & Feb 20, 2007 & Final version
+}
+\reportProjectStartingDate{1st March 2017}
+\reportProjectEndDate{28th March 2017}
+\reportProjectAcronym{CoDyCo}
+\reportProjectTitle{Whole-Body Compliant Dynamical Contacts in Cognitive Humanoids}
+ \reportContractNumber{600716}
+ \reportProjectCoordinator{Istituto Italiano di Tecnologia}
+ \reportProjectUrl{www.codyco.eu}
+ \reportFrameworkProgramme{FP7}
+ 
+ \reportWorkpackage{All work packages}
+ \reportEditors{Francesco Nori, Vincent Padois, Jan Peters, Jan Babic, Michael Mistry}
+ \reportContributors{Entire CoDyCo consortium}
+ \reportReviewers{-}
+\reportAbstract{The scope of the current report is to present the results ...}
+\reportReviewers{reviewers}
+\reportKeywordList{kw, list, etc, }
+
+%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
+%%% Sections
+%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
+
+%% constants{}
+
+%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
+%%% Misc. by Vincent
+%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
+\usepackage{titlesec}
+\newcommand{\sectionbreak}{}
+\graphicspath{{./images/}}
+\usepackage{pdfpages}
+\usepackage{caption}
+\usepackage{subcaption}
+\usepackage{multirow}
+\usepackage{appendix}
+\usepackage{hyperref}
+\hypersetup{
+    bookmarks=true,         % show bookmarks bar?
+    unicode=false,          % non-Latin characters in Acrobat’s bookmarks
+    pdftoolbar=true,        % show Acrobat’s toolbar?
+    pdfmenubar=true,        % show Acrobat’s menu?
+    pdffitwindow=false,     % window fit to page when opened
+    pdfstartview={FitH},    % fits the width of the page to the window
+    pdftitle={yearReport.pdf},    % title
+    pdfauthor={Francesco Nori},     % author
+    pdfsubject={Year 4 report for the CODYCO project},   % subject of the document
+    pdfcreator={Francesco Nori},   % creator of the document
+    pdfproducer={Francesco Nori}, % producer of the document
+    pdfkeywords= {}, % list of keywords
+    pdfnewwindow=true,      % links in new window
+    colorlinks=true,       % false: boxed links; true: colored links
+    linkcolor=black,          % color of internal links (change box color with linkbordercolor)
+    citecolor=black,        % color of links to bibliography
+    filecolor=black,      % color of file links
+    urlcolor=black           % color of external links
+}
+
+%%
+%%%%%%%%%%%%%%%%%%%%%%%%%%%%%% BEGIN DOCUMENT
+\begin{document}
+
+\reportMaketitle
+
+
+%%TODO move to style
+\newcolumntype{L}[1]{>{\raggedright\let\newline\\\arraybackslash\hspace{0pt}}m{#1}}
+\newcolumntype{C}[1]{>{\centering\let\newline\\\arraybackslash\hspace{0pt}}m{#1}}
+\newcolumntype{R}[1]{>{\raggedleft\let\newline\\\arraybackslash\hspace{0pt}}m{#1}}
+ 
+ \clearpage
+
+\setcounter{tocdepth}{5}
+
+\newpage
+\renewcommand*\contentsname{Table of Contents}
+\renewcommand*\listfigurename{Index of Figures}
+\tableofcontents
+\newpage
+\listoffigures
+\newpage
+
+%%%%%%%%%%%%%%%%%%%%%%%% Start report content here.
+
+\setcounter{section}{3}
+\setcounter{subsection}{1}
+\setcounter{secnumdepth}{5}
+
+\subsection{Project objectives for the period}
+
+\subsubsection{Overview}
+
+The specificity of CoDyCo relies on the fact that the progress beyond the state of the art is guided by the yearly implementation on the iCub humanoid. Within this context, iCub is a peculiar platform being the only humanoid integrating whole-body distributed force and tactile sensors. In this sense CoDyCo fourth year specific objectives were to design and implement the control of whole-body posture during physical human robot interaction. Other long term objectives involve setting up the necessary infrastructure (human experimental protocols, software infrastructure, learning and control specifications) for leveraging the activities in previous years. 
+
+\begin{longtable}{|C{1.5cm}|C{1.5cm}|C{1.5cm}|C{1.5cm}|C{1.5cm}|C{1.5cm}|C{1.5cm}|C{1.5cm}|}
+\cline{1-7}
+\footnotesize \textbf{Task}& \footnotesize \textbf{IIT}&\footnotesize \textbf{TUD}&\footnotesize \textbf{UPMC}& \footnotesize \textbf{UB} &\footnotesize \textbf{JSI} &\footnotesize \textbf{INRIA} & \multicolumn{1}{l}{} \\ \hline
+\footnotesize WP1      &  0.00     &  1.00   &  -      &  2.18   &  2.00  &  2.96  &  8.14 \\  \hline
+\footnotesize WP2      &  -        &  1      &  1.20   &  13.88  &  21.69 &  0.52  &  38.29\\  \hline
+\footnotesize WP3      &  -        &  9.65   &  8.79   &  1.63   &  2.00  &  4.03  &  26.10\\  \hline
+\footnotesize WP4      &  9.79     &  12     &  0.74   &  1.68   &  3.00  &  3.30  &  30.51\\  \hline
+\footnotesize WP5      &  13.06    &  2      &  0.14   &  1.44   &  -     &  0.52  &  17.16\\  \hline
+\footnotesize WP6      &  1.51     &  1      &  0.19   &  -      &  0.44  &  -     &   3.14\\  \hline
+\footnotesize WP7      &  1.00     &  -      &  0.11   &  -      &  -     &  -     &   1.11\\  \hline
+\multicolumn{1}{l|}{}  &  25.36    &  26.65  &  11.17  &  20.81  &  29.13 &  11.33 &  \textbf{123.45}     \\  \cline{2-8}
+\end{longtable}
+
+
+\input{sections/WP1/wp1_objectives.tex}
+\input{sections/WP2/wp2_objectives.tex}
+\input{sections/WP3/wp3_objectives.tex}
+\input{sections/WP4/wp4_objectives.tex}
+\input{sections/WP5/wp5_objectives.tex}
+\input{sections/WP6/wp6_objectives.tex}
+\input{sections/WP7/wp7_objectives.tex}
+
+
+\subsection{Work progress and achievements during the period}
+
+\subsubsection{Progress overview and contribution to the research field}
+
+All the CoDyCo fourth year objectives have been attained. Here is a list of the CoDyCo fourth year achievements. 
+\begin{itemize}
+
+\item 
+
+\item 
+
+\item 
+
+\end{itemize}
+
+\subsubsection{Work packages progress}
+
+\input{sections/WP1/wp1_progress_recap.tex}
+\input{sections/WP2/wp2_progress_recap.tex}
+\input{sections/WP3/wp3_progress_recap.tex}
+\input{sections/WP4/wp4_progress_recap.tex}
+\input{sections/WP5/wp5_progress_recap.tex}
+\input{sections/WP6/wp6_progress_recap.tex}
+\input{sections/WP7/wp7_progress_recap.tex}
+
+\input{sections/WP1/wp1_progress.tex}
+\input{sections/WP1/wp1_resources.tex}
+
+\input{sections/WP2/wp2_progress.tex}
+\input{sections/WP2/wp2_resources.tex}
+
+\input{sections/WP3/wp3_progress.tex}
+\input{sections/WP3/wp3_resources.tex}
+
+\input{sections/WP4/wp4_progress.tex}
+\input{sections/WP4/wp4_resources.tex}
+
+\input{sections/WP5/wp5_progress.tex}
+\input{sections/WP5/wp5_resources.tex}
+
+\input{sections/WP6/wp6_progress.tex}
+\input{sections/WP6/wp6_resources.tex}
+
+\input{sections/WP7/wp7_progress.tex}
+\input{sections/WP7/wp7_resources.tex}
+
+\subsection{Deliverables and milestones tables}
+
+\subsubsection{Deliverables (excluding the periodic and final reports)}
+
+\begin{figure*}[ht!]
+\centering
+\includegraphics[width=0.6\textwidth]{./images/deliverables.pdf}
+\end{figure*}
+
+\subsubsection{Milestones}
+
+\begin{figure*}[ht!]
+\centering
+\includegraphics[width=\textwidth]{./images/milestones.pdf}
+\end{figure*}
+
+\newpage
+
+\bibliographystyle{IEEEtran}
+% \bibliography{IEEEabrv,yearReport_WP3,all-ias-publications}
+\bibliography{fourthYearReport_WP5,fourthYearReport_WP4,fourthYearReport_WP3,fourthYearReport_WP2,fourthYearReport_WP1}
+
+\end{document}
+
+%%% Local Variables:
+%%% mode: latex
+%%% TeX-master: t
+%%% save-place: t
+%%% End:
