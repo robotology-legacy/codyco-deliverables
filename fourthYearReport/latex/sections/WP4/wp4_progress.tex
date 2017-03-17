@@ -5,8 +5,10 @@
 
 The progress for each task are described hereafter.
 
-\subparagraph{Generalizing and Improving Elementary Tasks with Contacts (T4.x)}
+\subparagraph{Learning the Prioritization of Tasks (T4.4) (TUD: 4PM)}
 
-The explicit goal of T4.x for the fourth year was to $\dots$
+TUD continued its research on learning task prioritizations from human demonstrations using probabilistic models. This work is currently under review and 
+a draft of the paper was added to Deliverable D4.3 in Section 5.  Here is a short summary of the approach. 
 
-We achieved the following results $\dots$
+Movement prioritization is a common approachto combine controllers of different tasks for redundant robots.Each task is assigned a priority, where either strict or 'soft'priorities can be used. While movement prioritization is animportant concept in the control of whole body movements, ithas been less considered in learning-based approaches, whereprioritization allows us to learn different tasks for differentend-effectors, and subsequently reproduce an arbitrary, unseencombination of these tasks. This paper combines Bayesian taskprioritization, a 'soft' prioritization technique, with probabilisticmovement primitives to prioritize full motion sequences.Probabilistic movement primitives can encode distributions ofmovements over full motion sequences and provide controllaws to exactly follow these distributions. The probabilisticformulation allows for a natural application of Bayesian taskprioritization. We demonstrate how the 'soft' priorities canbe obtained from imitation learning and that our prioritizedlearning architecture can reproduce unseen task-combinations.Moreover, we require less data to learn a combination of tasksthan the traditional approach that directly models each task injoint space. We evaluate our approach on reaching movementsunder constraints with a redundant bi-manual planar robotand the humanoid robot iCub. 
+
