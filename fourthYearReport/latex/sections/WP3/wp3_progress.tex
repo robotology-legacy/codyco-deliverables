@@ -6,20 +6,11 @@
 
 The progress for each task are described hereafter.
 
-\subparagraph{Reproducing existing control results in a simple case (T3.1)}
+\subparagraph{Solving the local control problem (T3.3) (UPMC: 1PM, IIT: xxPM)}
 
-The explicit goal of T3.1 for the fourth year was to $\dots$
-
-We achieved the following results $\dots$
-
-\subparagraph{Formulating the control problem (T3.2)}
-
-The explicit goal of T3.2 for the fourth year was to $\dots$
-
-We achieved the following results $\dots$
-
-\subparagraph{Solving the local control problem (T3.3)}
-
+\begin{itemize}
+\item {Joint limit avoidance using an exogenous state description}
+\end{itemize}
 During year 4, IIT proposed a control laws ensuring the stabilization of a time-varying desired joint trajectory and joint limit avoidance (see Fig.~\ref{fig:icub leg limits} for an illustration of the limits on the leg) in the case of fully-actuated manipulators. The key idea is to perform a parametrization of the feasible joint motion space in terms of exogenous states $\xi$, in the form of $q(\xi) := \delta \tanh(\xi) + q_0$, where $q$ is the joint position, $\delta$ the range of feasible motion and $q_0$ its middle value. It follows that the control of the exogenous states allows for joint limit avoidance. One of the main outcomes of this work is that position terms in control laws are replaced by parametrized terms. Stability and convergence of time-varying reference trajectories obtained with the proposed method were demonstrated to be in the sense of Lyapunov. The introduced control laws were verified by carrying out experiments on two degrees-of-freedom of the torque-controlled iCub. This work led to a publication in Humanoid s 2016 \cite{charbonneau2016Humanoids}.
 
 \begin{figure*}
@@ -28,13 +19,87 @@ During year 4, IIT proposed a control laws ensuring the stabilization of a time-
     \caption{iCub leg setup used for the experiments. The red circles identify the hip and knee joints, while the white marks indicate joint limits. The green arrow shows the external force applied during experiments.}
     \label{fig:icub leg limits}
     \end{center}
-\end{figure*}    
+\end{figure*}
 
-\subparagraph{Bootstrapping and validating the control approach in rigid world and compliant cases (T3.4)}
 
-TUD and Inria, in collaboration with WP4, continued the collaboration on the topic of learning torque control in presence of multiple contacts, exploiting the force/torque and tactile sensors of iCub. Machine learning techniques were used to directly learn the mapping from both skin and the joint state to torques, using mixtures of contact models. Recently, the model was improved for torque control by addressing critical issues in learning from high-dimensional inputs, such as the artificial skin. It was demonstrated that it is possible to considerably reduce the dimensionality of the skin data preserving the information content of the contact position by using stacked auto encoders. A journal paper is currently in preparation. This technique will allow improving torque control in presence of multiple contacts (rigid and/or soft). This work is part of the PhD thesis work of Roberto Calandra on ``Bayesian Modeling for Optimization and Control in Robotics'' \cite{calandra2016PhD}.\\
+\begin{itemize}
+\item {Whole-body controller implementation}
+\end{itemize}
+As part of both WP1 and WP3, UPMC has pursued the generic implementation of an optimisation based whole-body controller named OCRA. See section~\ref{sec:OCRA}) for more details and \url{https://github.com/ocra-recipes} and \url{https://ocra-recipes.github.io/web} for online resources.
 
-Inria also designed a multi-task prioritized controller with soft task priorities. The controller was first designed in \cite{modugno2016ICRA} and applied to classical manipulators. In \cite{modugno2016Humanoids} it was extended for whole-body movements. In the latter work, it was used to generate safe whole-body behaviors for iCub, reaching multiple goals and avoiding obstacles, with the guarantee that the generated behaviors were not violating the constraints of the platform. A software controller for iCub has been prototyped in Matlab then in C++.
+\subparagraph{Bootstrapping and validating the control approach in rigid world and compliant cases (T3.4) (JSI: 1 PM, INRIA: 1.98PM , TUD: 3.6 PM)}
+
+\begin{itemize}
+\item \textbf{Learning torque control}
+\end{itemize}
+TUD and INRIA, in collaboration with WP4, continued the collaboration on the topic of learning torque control in presence of multiple contacts, exploiting the force/torque and tactile sensors of iCub. Machine learning techniques were used to directly learn the mapping from both skin and the joint state to torques, using mixtures of contact models. Recently, the model was improved for torque control by addressing critical issues in learning from high-dimensional inputs, such as the artificial skin. It was demonstrated that it is possible to considerably reduce the dimensionality of the skin data preserving the information content of the contact position by using stacked auto encoders. A journal paper is currently in preparation. This technique will allow improving torque control in presence of multiple contacts (rigid and/or soft). This work is part of the PhD thesis work of Roberto Calandra on ``Bayesian Modeling for Optimization and Control in Robotics'' \cite{calandra2016PhD}.\\
+
+\begin{itemize}
+\item \textbf{Learning soft priorities}
+\end{itemize}
+INRIA also designed a multi-task prioritized controller with soft task priorities. The controller was first designed in \cite{modugno2016ICRA} and applied to classical manipulators. In \cite{modugno2016Humanoids} it was extended for whole-body movements. In the latter work, it was used to generate safe whole-body behaviors for iCub, reaching multiple goals and avoiding obstacles, with the guarantee that the generated behaviors were not violating the constraints of the platform. A software controller for iCub has been prototyped in Matlab then in C++.
+
+\begin{itemize}
+\item \textbf{Task compatibility optimization}
+\end{itemize}
+As part of both WP4 and WP3, UPMC has worked on improving its approach for task compatibility optimization. Modern control architectures employ multiple levels of control in order to decouple complex behaviors into manageable control problems. At the lowest level is reactive whole-body control, where joints torques are calculated at high frequency ($\sim1$kHz) given one or more tasks \cite{Khatib2004}. As presented in Deliverable~3.2~\cite{deliverable32}, the control problem can be written as a constrained convex optimization, where the objective function is a combination of task errors, and the constraints are the equations of motion, articulation and actuation limits, and contacts \cite{Salini2011, Saab2013, Bouyarmane2011}. Task errors are calculated as the difference between the current task state and its reference value. This reference value comes from the next level of task servoing. At this level, closed loop controllers are used to servo task trajectories using state feedback (PID) or Model Predictive Control (MPC) schemes at frequencies between $100$Hz and $10$Hz \underline{\bf \cite{Ibanez2014}}, \cite{Koenemann2015}, \underline{\bf \cite{Perrin2015}}. These task trajectories are provided by higher-level open-loop planning which takes seconds to minutes, and generally combines operator expertise and automated planning algorithms \cite{Bouyarmane2012, Pham2014}. This control hierarchy of planning, servoing, and whole-body control is presented in Fig.~\ref{fig:control_diagram}.\\
+
+Because each level in the control hierarchy is agnostic of the others by design, there is no guarantee that the planned task trajectories will be executed properly by the lower control layers~\underline{\bf \cite{padois-HDR2016,ibanez_humanoidhandbook2016}}. Furthermore, even though specific contexts such as non rigid contacts may be accounted for as described in Deliverable~3.2~\cite{deliverable32}, tasks may conflict with one another or be infeasible with the system constraints \cite{Bouyarmane2015, Wieber2017}. The end result is typically unstable or undesirable whole-body behaviors, and these tasks can be qualified as \textit{incompatible}. Prioritization techniques presented in Deliverable~3.2~\cite{deliverable32} use weighted sums\cite{Salini2011, Bouyarmane2011}, hierarchies~\cite{Saab2013,Escande2014, Dietrich2015} or a mix of both~\cite{liu-AutRob2015,liu-AutRobSI2015} to manage task incompatibilities at the whole-body control level, but are difficult to tune and only hide the problem. Moreover, tasks incompatibilities may be temporal and change over the course of the movement so applying static priorities may be overly restrictive. While the works presented in Deliverable~4.3~\cite{deliverable43} provide very powerful tools to reactively adapt priorities~\underline{\bf \cite{Lober2015}}, learn proper prioritizations~\underline{\bf \cite{Modugno2016,modugno2016learning}} or derive them from demonstrations~\underline{\bf \cite{Paraschos_2017}}, it seems obvious that well designed tasks should not need to be prioritized.\\
+
+ Given that it is the task reference values which generate the incompatible control optima, an alternative to prioritization tuning is to modify the task trajectories supplied by planning and make them compatible as initially suggested in~\underline{\bf \cite{Lober2014}}. To do so, a feedback loop must be implemented, which measures the errors induced by incompatibilities and changes the task trajectories to reduce them. It should also take into account the servoing and whole-body control levels with all of their parameters, as well as the robot's dynamics and environment. Given the complexity of the proposed feedback loop, one solution is to use model-free Reinforcement Learning (RL) techniques to modify the trajectories through trial and error by minimizing some cost function using Black-Box Optimization (BBO) solvers \cite{Kober2013}.\\
+
+\begin{figure}[!h]
+	\begin{minipage}[c]{0.5\textwidth}
+	\centering
+    \begin{tikzpicture}[node distance=1cm, auto,]
+
+        \definecolor{planning_color}{RGB}{227,74,51}
+        \definecolor{servoing_color}{RGB}{253,187,132}
+        \definecolor{wbc_color}{RGB}{254,232,200}
+
+        \node[punkt]                             (planning)  {Task Trajectory Planning};
+        \node[punkt, below=1.0cm of planning]       (servoing)  {Servoing/MPC};
+        \node[punkt, below=1.0cm of servoing]    (wbc)       {Reactive\\Whole-Body Control};
+        \node[punkt, below=1.0cm of wbc]         (robot)     {Robot};
+
+        \node[right=1.0cm of planning] (planning_freq) {\rotatebox{90}{$<0.1$Hz}};
+        \node[right=1.0cm of servoing] (servoing_freq) {\rotatebox{90}{$\sim100$Hz}};
+        \node[right=1.0cm of wbc] (wbc_freq) {\rotatebox{90}{$\sim1$kHz}};
+
+        \path[pil]
+            (planning) edge node [midway, right] {$\x^{\text{des}}$} coordinate [pos=0.5] (top) (servoing)
+            (servoing) edge node [midway, right] {$\x^{\text{ref}}$} (wbc)
+            (wbc) edge node [midway, right] {$\bs{\tau}$} coordinate [pos=0.5] (bottom) (robot);
+
+        \draw[pil](robot.east) -- ++(20pt,0pt) |- node [midway, right, yshift=-4cm] {$\begin{bmatrix}\q \\ \qd\end{bmatrix}$} (servoing.east) ;
+        \draw[pil](robot.east) -- ++(20pt,0pt) |- (wbc.east);
+
+        \node[optim_box, left=1.0cm of servoing, rotate=90, xshift=0.1cm]    (optim)     {Task Compatibility Optimization};
+
+        \draw[optim_pil] (robot.west) -| (optim.west);
+        \draw[optim_pil] (optim.east) |- (top);
+
+        \begin{pgfonlayer}{background}
+            \node[fill=planning_color!25, rounded corners, inner sep=2pt, fit=(planning)(planning_freq)] {};
+            \node[fill=servoing_color!30, rounded corners, inner sep=2pt, fit=(servoing)(servoing_freq)] {};
+            \node[fill=wbc_color!50, rounded corners, inner sep=2pt, fit=(wbc)(wbc_freq)] {};
+        \end{pgfonlayer}
+
+    \end{tikzpicture}
+  	\end{minipage}\hfill
+  \begin{minipage}[c]{0.47\textwidth}
+      \setlength{\belowcaptionskip}{-12pt}
+    \caption{A modern control hierarchy for highly redundant robotic systems, e.g. humanoid robots. At the lowest level is whole-body control, which determines the torques needed to accomplish a set of tasks. At the intermediate level, these tasks are controlled by the servoing/MPC level where task trajectory errors are compensated using state feedback. Finally the task trajectories are provided by high-level planning, which is usually a combination of operator expertise and automated planning. Each of these levels operates independently from one another and a feedback mechanism is needed to measure and compensate for tasks which are not executed as planned. This is the role of the Task Compatibility Optimization loop proposed in this work.}
+\label{fig:control_diagram}
+  \end{minipage}
+\end{figure}
+
+The objective of the proposed approach is to establish the task compatibility optimization loop, shown on the left in Fig.~\ref{fig:control_diagram}, by iteratively improving task trajectories using RL. To do so, tasks trajectories are parameterized providing variables with which they can be modified. A generic task compatibility cost has been developed from simple principles which measures the incompatibility between one or more tasks and the robot's constraints. Using two common BBO solvers, this compatibility cost can be minimized by optimizing the task trajectory parameters. This task compatibility optimization has then tested on two typical muti-task scenarios. In the first scenario the relatively banal chore of reaching while balancing has be studied. While seemingly simple, reaching is a key ingredient in robot autonomy, which often requires parameter and gain tuning before done reliably. A performance comparison of two BBO solvers for this experiment has been performed to illustrate the generality of the framework. The second experiment explores the dynamically complex activity of moving from sitting to standing. This motion requires contact breaking and potentially unstable dynamic equilibrium to succeed. In both experiments a Center of Mass (CoM) task is used to maintain balance, and its trajectory is optimized to minimize the task compatibility cost. Through these two completely different motion scenarios, the proposed generic task compatibility optimization loop has shown to dramatically improve task achievement, without ever touching the low-level control parameters. These results extend the contributions \cite{lober-HUMANOIDS2014} and \cite{lober_IROS2015} both in terms of achieved performances and computational efficiency. This work is described in \cite{deliverable33} and was submitted for presentation at a robotics journal~\cite{lober2017RAL-IROS}.
+
+\begin{itemize}
+\item \textbf{Speed-Accuracy trade-off}
+\end{itemize}
+As part of both WP2 and WP3, JSI, together with UPMC, continued the computational study where they try to describe the trade-off between the speed of motion, its accuracy and the muscular cost associated with the motion. They implemented a state-of-the-art deep reinforcement learning algorithm (DDPG) that is based on a deterministic policy gradient approach. DDPG allows more sample efficient learning, but is hard to tune in the context of a simulated reaching controller. They implemented the computations on the JSI cluster in Slovenia. Computations are currently running and the analyses remain to be performed.
     
 \subparagraph{Deviations from workplan}  
 
