@@ -1,4 +1,4 @@
-This is pdfTeX, Version 3.14159265-2.6-1.40.15 (TeX Live 2014) (preloaded format=pdflatex 2014.11.24)  23 MAR 2017 15:26
+This is pdfTeX, Version 3.14159265-2.6-1.40.15 (TeX Live 2014) (preloaded format=pdflatex 2014.11.24)  23 MAR 2017 15:35
 entering extended mode
  restricted \write18 enabled.
  %&-line parsing enabled.
@@ -602,21 +602,26 @@ Underfull \vbox (badness 10000) has occurred while \output is active []
 
  [11 <./images/WBI_diagram.pdf>]) (./sections/WP2/wp2_progress.tex [12 <./image
 s/suit.jpg>]
-Underfull \hbox (badness 10000) in paragraph at lines 43--45
+Underfull \hbox (badness 10000) in paragraph at lines 39--41
+
+ []
+
+
+Underfull \hbox (badness 10000) in paragraph at lines 42--43
 
  []
 
 <./images/all.pdf, id=538, 803.0pt x 803.0pt>
 File: ./images/all.pdf Graphic file (type pdf)
  <use ./images/all.pdf>
-Package pdftex.def Info: ./images/all.pdf used on input line 72.
+Package pdftex.def Info: ./images/all.pdf used on input line 68.
 (pdftex.def)             Requested size: 227.62204pt x 227.61984pt.
 
 <./images/friction_cone.pdf, id=545, 401.5pt x 401.5pt>
 File: ./images/friction_cone.pdf Graphic file (type pdf)
 
 <use ./images/friction_cone.pdf>
-Package pdftex.def Info: ./images/friction_cone.pdf used on input line 118.
+Package pdftex.def Info: ./images/friction_cone.pdf used on input line 114.
 (pdftex.def)             Requested size: 227.62204pt x 227.62596pt.
  [13]
 Underfull \vbox (badness 1748) has occurred while \output is active []
@@ -625,24 +630,28 @@ Underfull \vbox (badness 1748) has occurred while \output is active []
 File: ./images/unilateral.pdf Graphic file (type pdf)
 
 <use ./images/unilateral.pdf>
-Package pdftex.def Info: ./images/unilateral.pdf used on input line 166.
+Package pdftex.def Info: ./images/unilateral.pdf used on input line 162.
 (pdftex.def)             Requested size: 227.62204pt x 227.61984pt.
  [15 <./images/friction_cone.pdf>]
-Underfull \hbox (badness 10000) in paragraph at lines 211--224
+Underfull \hbox (badness 10000) in paragraph at lines 207--220
 
  []
 
 [16 <./images/unilateral.pdf>]
+Underfull \hbox (badness 10000) in paragraph at lines 222--223
+
+ []
+
 <./images/twoellipses.pdf, id=609, 401.5pt x 803.0pt>
 File: ./images/twoellipses.pdf Graphic file (type pdf)
 
 <use ./images/twoellipses.pdf>
-Package pdftex.def Info: ./images/twoellipses.pdf used on input line 300.
+Package pdftex.def Info: ./images/twoellipses.pdf used on input line 296.
 (pdftex.def)             Requested size: 136.5746pt x 273.15117pt.
  [17]
 
 LaTeX Font Warning: Font shape `OT1/cmss/m/it' in size <12> not available
-(Font)              Font shape `OT1/cmss/m/sl' tried instead on input line 330.
+(Font)              Font shape `OT1/cmss/m/sl' tried instead on input line 326.
 
 
 [18 <./images/twoellipses.pdf>]
@@ -659,11 +668,11 @@ Missing character: There is no ‚ in font cmss12!
 Missing character: There is no Ä in font cmss12!
 Missing character: There is no ù in font cmss12!
 
-<./images/UB-Figure1.png, id=632, 372.79276pt x 256.5585pt>
+<./images/UB-Figure1.png, id=633, 372.79276pt x 256.5585pt>
 File: ./images/UB-Figure1.png Graphic file (type png)
 
 <use ./images/UB-Figure1.png>
-Package pdftex.def Info: ./images/UB-Figure1.png used on input line 352.
+Package pdftex.def Info: ./images/UB-Figure1.png used on input line 348.
 (pdftex.def)             Requested size: 318.66946pt x 219.31282pt.
 
 
@@ -673,7 +682,7 @@ LaTeX Warning: `!h' float specifier changed to `!ht'.
 File: ./images/UB-Figure2.png Graphic file (type png)
 
 <use ./images/UB-Figure2.png>
-Package pdftex.def Info: ./images/UB-Figure2.png used on input line 363.
+Package pdftex.def Info: ./images/UB-Figure2.png used on input line 359.
 (pdftex.def)             Requested size: 409.71689pt x 146.25157pt.
 Missing character: There is no ‚ in font cmss12!
 Missing character: There is no Ä in font cmss12!
@@ -710,7 +719,7 @@ png, id=647, 1799.72375pt x 486.81876pt>
 File: ./images/UB-Figure3.png Graphic file (type png)
 
 <use ./images/UB-Figure3.png>
-Package pdftex.def Info: ./images/UB-Figure3.png used on input line 374.
+Package pdftex.def Info: ./images/UB-Figure3.png used on input line 370.
 (pdftex.def)             Requested size: 409.71689pt x 110.822pt.
 Missing character: There is no ‚ in font cmss12!
 Missing character: There is no Ä in font cmss12!
@@ -732,14 +741,14 @@ Missing character: There is no ù in font cmss12!
 File: ./images/UB-r-Figure1.png Graphic file (type png)
 
 <use ./images/UB-r-Figure1.png>
-Package pdftex.def Info: ./images/UB-r-Figure1.png used on input line 388.
+Package pdftex.def Info: ./images/UB-r-Figure1.png used on input line 384.
 (pdftex.def)             Requested size: 318.66946pt x 354.35197pt.
 
 <./images/UB-r-Figure2.jpg, id=660, 216.81pt x 87.0525pt>
 File: ./images/UB-r-Figure2.jpg Graphic file (type jpg)
 
 <use ./images/UB-r-Figure2.jpg>
-Package pdftex.def Info: ./images/UB-r-Figure2.jpg used on input line 399.
+Package pdftex.def Info: ./images/UB-r-Figure2.jpg used on input line 395.
 (pdftex.def)             Requested size: 318.66946pt x 127.96696pt.
 Missing character: There is no ‚ in font cmss12!
 Missing character: There is no Ä in font cmss12!
@@ -752,15 +761,15 @@ Missing character: There is no ô in font cmss12!
 File: ./images/UB-r-Figure3.jpg Graphic file (type jpg)
 
 <use ./images/UB-r-Figure3.jpg>
-Package pdftex.def Info: ./images/UB-r-Figure3.jpg used on input line 409.
+Package pdftex.def Info: ./images/UB-r-Figure3.jpg used on input line 405.
 (pdftex.def)             Requested size: 364.19664pt x 204.8551pt.
 
-Underfull \hbox (badness 10000) in paragraph at lines 417--418
+Underfull \hbox (badness 10000) in paragraph at lines 413--414
 
  []
 
 
-Underfull \hbox (badness 10000) in paragraph at lines 419--420
+Underfull \hbox (badness 10000) in paragraph at lines 415--416
 
  []
 
@@ -769,7 +778,7 @@ Underfull \hbox (badness 10000) in paragraph at lines 419--420
 File: ./images/S2S.png Graphic file (type png)
 
 <use ./images/S2S.png>
-Package pdftex.def Info: ./images/S2S.png used on input line 436.
+Package pdftex.def Info: ./images/S2S.png used on input line 432.
 (pdftex.def)             Requested size: 227.62204pt x 191.02052pt.
 
 
@@ -778,13 +787,13 @@ LaTeX Warning: `!h' float specifier changed to `!ht'.
 <./images/fext.png, id=694, 298.2342pt x 150.8034pt>
 File: ./images/fext.png Graphic file (type png)
  <use ./images/fext.png>
-Package pdftex.def Info: ./images/fext.png used on input line 451.
+Package pdftex.def Info: ./images/fext.png used on input line 447.
 (pdftex.def)             Requested size: 318.66946pt x 161.14403pt.
 
 [25] <./images/tau.png, id=705, 299.6796pt x 151.767pt>
 File: ./images/tau.png Graphic file (type png)
  <use ./images/tau.png>
-Package pdftex.def Info: ./images/tau.png used on input line 459.
+Package pdftex.def Info: ./images/tau.png used on input line 455.
 (pdftex.def)             Requested size: 318.66946pt x 161.3956pt.
 
 [26 <./images/S2S.png> <./images/fext.png>]
@@ -862,10 +871,10 @@ LaTeX Warning: There were undefined references.
 Package atveryend Info: Empty hook `AtVeryVeryEnd' on input line 245.
  ) 
 Here is how much of TeX's memory you used:
- 9236 strings out of 493117
- 140039 string characters out of 6135432
- 274381 words of memory out of 5000000
- 12320 multiletter control sequences out of 15000+600000
+ 9234 strings out of 493117
+ 140003 string characters out of 6135432
+ 274311 words of memory out of 5000000
+ 12318 multiletter control sequences out of 15000+600000
  14307 words of font info for 50 fonts, out of 8000000 for 9000
  1141 hyphenation exceptions out of 8191
  41i,12n,45p,1753b,472s stack positions out of 5000i,500n,10000p,200000b,80000s
@@ -883,7 +892,7 @@ l/texlive/2014/texmf-dist/fonts/type1/public/amsfonts/cm/cmssi12.pfb></usr/loca
 l/texlive/2014/texmf-dist/fonts/type1/public/amsfonts/cm/cmsy10.pfb></usr/local
 /texlive/2014/texmf-dist/fonts/type1/public/amsfonts/cm/cmsy8.pfb></usr/local/t
 exlive/2014/texmf-dist/fonts/type1/public/amsfonts/cm/cmtt12.pfb>
-Output written on fourthYearReport.pdf (37 pages, 2966392 bytes).
+Output written on fourthYearReport.pdf (37 pages, 2966183 bytes).
 PDF statistics:
  934 PDF objects out of 1000 (max. 8388607)
  785 compressed objects within 8 object streams
