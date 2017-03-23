@@ -24,7 +24,7 @@ contact with rigid or soft environments.  During year four the iCub simulator
 was further developed, keeping it aligned with the robot development.
 
 
-\subparagraph{Control library for flexible specification of task space
+\subparagraph*{Control library for flexible specification of task space
   dynamics of floating base manipulators. (T1.3)} 
 
 UPMC has kept developing OCRA over the 4th year of CoDyCo.  OCRA stands for
@@ -52,9 +52,36 @@ determination over a preview horizon, of the optimal changes in the base of
 support of the robot with compatible CoM behaviour, subject to multiple
 constraints, while maximising balance and performance of a walking activity.
 
+During the fourth year, IIT completely refactored the Matlab Simulink Toolbox
+for whole-body control (WB-Toolbox).  WB-Toolbox is a Simulink wrapper to the
+wholebodyinterface, a C++ library for abstracting the design and synthesis of
+whole-body controllers without making any preliminary assumptions on the
+control laws to be implemented.  The main advantage of the whole-body
+interface library with respect to existing control libraries is the decoupling
+of the control software from implementation details, which are related to the
+robotic platform.  Furthermore, the resulting code is more clean and concise
+than ad-hoc code, as it focuses only on the implementation of the control law.
+In this context, the WB-Toolbox Simulink libraries provides support to
+Model-Driven based development.  During the last year, particular effort has
+been put in improving the robustness, scalability and extendability of the
+library.  Furthermore the library has been rewritten so as to simplify the
+support to different simulation engines other than Simulink.
+%
+\begin{figure}[h]
+    \centering
+    \includegraphics[width=.9\textwidth]{images/WBI_diagram.pdf}
+  \caption{Whole-body Interface software architecture}
+  \label{fig:images_WBI_diagram}
+\end{figure}
+%
+
+%% \paragraph{Related Publications:}
+%% \begin{itemize}
+%%     \item \bibentry{romano2017whole}
+%% \end{itemize}
 
 
-\subparagraph{System dynamics estimation software. Extension to
+\subparagraph*{System dynamics estimation software. Extension to
 environmental compliance estimation (T1.4)}
 
 The goal of T1.4 was to include compliant contact estimation to the software.
@@ -62,7 +89,7 @@ This is part of \texttt{codyco-superbuild} software which its details are
 reported in deliverables D1.1, D1.2 and D1.3.
 
 
-\subparagraph{Extension and enhancement of the iDyn library. (T1.5)}
+\subparagraph*{Extension and enhancement of the iDyn library. (T1.5)}
 
 As part of this task, INRIA developed several software modules which are all
 available on github.  These modules which have been used as a support for the
@@ -80,3 +107,37 @@ research in the other WPs are:
     trajectories acquired by demonstrations on iCub:
     \url{https://github.com/inria-larsen/icubLearningTrajectories}
 \end{itemize}
+
+
+During the fourth year, IIT extended the iDynTree library, i.e. the new
+version of the iDyn library, to support a new probabilistic based estimation
+algorithm with redundant measurements, called Bayesian Estimation for Robot
+Dynamics, (BERDY).  BERDY algorithm can be used to estimate the dynamics of
+any mechanical system by adopting a sensor fusion approach.  Indeed,
+information coming from multiple sensors such as IMUs, force/torque sensors,
+etc, can be integrated together with their corresponding variance so as to
+obtain the probability density function of the estimate of the whole-body
+dynamics of the considered system.  When the Gaussian hypothesis is used, the
+dynamics estimation can be obtained by solving a linear system of equations,
+which are intrinsically sparse.  This led to the implementation in iDynTree of
+a compressed row storage (CRS) scheme for sparse matrices.  Preliminary
+results seems to report an increment in the computational performance of about
+$40\%$with respect to the dense implementation.  To ease the development of
+algorithms and batch data processing, the iDynTree library has been extended
+to provide support to Matlab scripting.  It is now possible to call iDynTree
+functions directly from Matlab scripts.
+%
+\begin{figure}[h]
+  \centering
+    \includegraphics[width=.9\textwidth]{images/suit.jpg}
+  \caption{Human interacting with the iCub Robot. The BERDY algorithm can be used to estimate online both the dynamics of the robot and of a human.}
+  \label{fig:images_suit}
+\end{figure}
+%
+
+%% \paragraph{Related Publications:}
+%% \begin{itemize}
+%%     \item \bibentry{latella2016whole}
+%%     \item \bibentry{nori2015simultaneous}
+%% \end{itemize}
+
