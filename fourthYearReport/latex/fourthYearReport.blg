@@ -1,4 +1,4 @@
-This is BibTeX, Version 0.99d (TeX Live 2014)
+This is BibTeX, Version 0.99d (TeX Live 2013/Debian)
 Capacity: max_strings=35307, hash_size=35307, hash_prime=30011
 The top-level auxiliary file: fourthYearReport.aux
 The style file: IEEEtran.bst
@@ -10,57 +10,64 @@ Reallocated singl_function (elt_size=4) to 100 items from 50.
 Database file #1: fourthYearReport_WP5.bib
 Database file #2: fourthYearReport_WP4.bib
 Database file #3: fourthYearReport_WP3.bib
+Repeated entry---line 9010 of file fourthYearReport_WP3.bib
+ : @inproceedings{Modugno2016
+ :                           ,
+I'm skipping whatever remains of this entry
+Repeated entry---line 9018 of file fourthYearReport_WP3.bib
+ : @inproceedings{modugno2016learning
+ :                                   ,
+I'm skipping whatever remains of this entry
 Database file #4: fourthYearReport_WP2.bib
 Database file #5: fourthYearReport_WP1.bib
 Repeated entry---line 37 of file fourthYearReport_WP1.bib
  : @article{latella2016whole
  :                          ,
 I'm skipping whatever remains of this entry
-Warning--I didn't find a database entry for "modugno2016ICRA"
 -- IEEEtran.bst version 1.13 (2008/09/30) by Michael Shell.
 -- http://www.michaelshell.org/tex/ieeetran/bibtex/
 -- See the "IEEEtran_bst_HOWTO.pdf" manual for usage information.
 
 Done.
-You've used 20 entries,
+You've used 43 entries,
             4039 wiz_defined-function locations,
-            956 strings with 11951 characters,
-and the built_in function-call counts, 16054 in all, are:
-= -- 1309
-> -- 441
-< -- 120
-+ -- 240
-- -- 83
-* -- 786
-:= -- 2388
-add.period$ -- 41
-call.type$ -- 20
-change.case$ -- 21
-chr.to.int$ -- 276
-cite$ -- 20
-duplicate$ -- 1154
-empty$ -- 1240
-format.name$ -- 100
-if$ -- 3704
+            1095 strings with 17229 characters,
+and the built_in function-call counts, 34892 in all, are:
+= -- 2813
+> -- 939
+< -- 281
++ -- 519
+- -- 170
+* -- 1695
+:= -- 5110
+add.period$ -- 89
+call.type$ -- 43
+change.case$ -- 48
+chr.to.int$ -- 660
+cite$ -- 43
+duplicate$ -- 2497
+empty$ -- 2743
+format.name$ -- 209
+if$ -- 8091
 int.to.chr$ -- 0
-int.to.str$ -- 20
-missing$ -- 212
-newline$ -- 91
-num.names$ -- 20
-pop$ -- 492
+int.to.str$ -- 43
+missing$ -- 459
+newline$ -- 162
+num.names$ -- 45
+pop$ -- 1065
 preamble$ -- 1
 purify$ -- 0
 quote$ -- 2
-skip$ -- 1244
+skip$ -- 2697
 stack$ -- 0
-substring$ -- 704
-swap$ -- 961
-text.length$ -- 28
+substring$ -- 1627
+swap$ -- 2098
+text.length$ -- 61
 text.prefix$ -- 0
 top$ -- 5
-type$ -- 20
+type$ -- 43
 warning$ -- 0
-while$ -- 62
-width$ -- 22
-write$ -- 227
-(There was 1 error message)
+while$ -- 136
+width$ -- 45
+write$ -- 453
+(There were 3 error messages)

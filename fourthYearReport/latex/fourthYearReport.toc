@@ -12,28 +12,26 @@
 \contentsline {subsubsection}{\numberline {3.3.2}Work packages progress}{7}{subsubsection.3.3.2}
 \contentsline {paragraph}{\numberline {3.3.2.1}Work package 1 progress}{9}{paragraph.3.3.2.1}
 \contentsline {paragraph}{\numberline {3.3.2.2}Work package 2 progress}{12}{paragraph.3.3.2.2}
-\contentsline {paragraph}{\numberline {3.3.2.3}Work package 3 progress}{28}{paragraph.3.3.2.3}
-\contentsline {subparagraph}{\numberline {3.3.2.3.1}Reproducing existing control results in a simple case (T3.1)}{28}{subparagraph.3.3.2.3.1}
-\contentsline {subparagraph}{\numberline {3.3.2.3.2}Formulating the control problem (T3.2)}{28}{subparagraph.3.3.2.3.2}
-\contentsline {subparagraph}{\numberline {3.3.2.3.3}Solving the local control problem (T3.3)}{28}{subparagraph.3.3.2.3.3}
-\contentsline {subparagraph}{\numberline {3.3.2.3.4}Bootstrapping and validating the control approach in rigid world and compliant cases (T3.4)}{28}{subparagraph.3.3.2.3.4}
-\contentsline {subparagraph}{\numberline {3.3.2.3.5}Deviations from workplan}{29}{subparagraph.3.3.2.3.5}
-\contentsline {subparagraph}{\numberline {3.3.2.3.6}Resources}{29}{subparagraph.3.3.2.3.6}
-\contentsline {paragraph}{\numberline {3.3.2.4}Work package 4 progress}{30}{paragraph.3.3.2.4}
-\contentsline {subparagraph}{\numberline {3.3.2.4.1}Learning the Prioritization of Tasks (T4.4) (TUD: 4PM)}{30}{subparagraph.3.3.2.4.1}
-\contentsline {subparagraph}{\numberline {3.3.2.4.2}Learning the Prioritization of Tasks (T4.4) (INRIA: 4.02PM)}{30}{subparagraph.3.3.2.4.2}
-\contentsline {subparagraph}{\numberline {3.3.2.4.3}Task compatibility optimization (T4.4) (UPMC: 1.87PM)}{31}{subparagraph.3.3.2.4.3}
-\contentsline {paragraph}{\numberline {3.3.2.5}Work package 5 progress}{31}{paragraph.3.3.2.5}
-\contentsline {subparagraph}{\numberline {3.3.2.5.1}Scenario 4: learning how to stand up with the help of a human caregiver (T5.4)}{32}{subparagraph.3.3.2.5.1}
-\contentsline {subparagraph}{\numberline {3.3.2.5.2}Deviations from workplan}{32}{subparagraph.3.3.2.5.2}
-\contentsline {paragraph}{\numberline {3.3.2.6}Work package 6 progress}{32}{paragraph.3.3.2.6}
-\contentsline {subparagraph}{\numberline {3.3.2.6.1}Administrative coordination (T6.1)}{32}{subparagraph.3.3.2.6.1}
-\contentsline {subparagraph}{\numberline {3.3.2.6.2}Software repository implementation (T6.2)}{33}{subparagraph.3.3.2.6.2}
-\contentsline {paragraph}{\numberline {3.3.2.7}Work package 7 progress}{33}{paragraph.3.3.2.7}
-\contentsline {subparagraph}{\numberline {3.3.2.7.1}Dissemination activities towards academia, industry, and other users (T7.1)}{33}{subparagraph.3.3.2.7.1}
-\contentsline {subparagraph}{\numberline {3.3.2.7.2}Exploitation plan (T7.2)}{33}{subparagraph.3.3.2.7.2}
-\contentsline {subparagraph}{\numberline {3.3.2.7.3}Management of IPR (T7.3)}{33}{subparagraph.3.3.2.7.3}
-\contentsline {subparagraph}{\numberline {3.3.2.7.4}Dissemination of a database of human motion with contacts (T7.4)}{33}{subparagraph.3.3.2.7.4}
-\contentsline {subsection}{\numberline {3.4}Deliverables and milestones tables}{34}{subsection.3.4}
-\contentsline {subsubsection}{\numberline {3.4.1}Deliverables (excluding the periodic and final reports)}{34}{subsubsection.3.4.1}
-\contentsline {subsubsection}{\numberline {3.4.2}Milestones}{34}{subsubsection.3.4.2}
+\contentsline {paragraph}{\numberline {3.3.2.3}Work package 3 progress}{29}{paragraph.3.3.2.3}
+\contentsline {subparagraph}{\numberline {3.3.2.3.1}Solving the local control problem (T3.3) (UPMC: 1PM, IIT: xxPM)}{29}{subparagraph.3.3.2.3.1}
+\contentsline {subparagraph}{\numberline {3.3.2.3.2}Bootstrapping and validating the control approach in rigid world and compliant cases (T3.4) (JSI: 1 PM, INRIA: 1.98PM , TUD: 3.6 PM)}{29}{subparagraph.3.3.2.3.2}
+\contentsline {subparagraph}{\numberline {3.3.2.3.3}Deviations from workplan}{33}{subparagraph.3.3.2.3.3}
+\contentsline {subparagraph}{\numberline {3.3.2.3.4}Resources}{33}{subparagraph.3.3.2.3.4}
+\contentsline {paragraph}{\numberline {3.3.2.4}Work package 4 progress}{33}{paragraph.3.3.2.4}
+\contentsline {subparagraph}{\numberline {3.3.2.4.1}Learning the Prioritization of Tasks (T4.4) (TUD: 4PM)}{33}{subparagraph.3.3.2.4.1}
+\contentsline {subparagraph}{\numberline {3.3.2.4.2}Learning the Prioritization of Tasks (T4.4) (INRIA: 4.02PM)}{33}{subparagraph.3.3.2.4.2}
+\contentsline {subparagraph}{\numberline {3.3.2.4.3}Task compatibility optimization (T4.4) (UPMC: 1.87PM)}{34}{subparagraph.3.3.2.4.3}
+\contentsline {paragraph}{\numberline {3.3.2.5}Work package 5 progress}{35}{paragraph.3.3.2.5}
+\contentsline {subparagraph}{\numberline {3.3.2.5.1}Scenario 4: learning how to stand up with the help of a human caregiver (T5.4)}{35}{subparagraph.3.3.2.5.1}
+\contentsline {subparagraph}{\numberline {3.3.2.5.2}Deviations from workplan}{35}{subparagraph.3.3.2.5.2}
+\contentsline {paragraph}{\numberline {3.3.2.6}Work package 6 progress}{36}{paragraph.3.3.2.6}
+\contentsline {subparagraph}{\numberline {3.3.2.6.1}Administrative coordination (T6.1)}{36}{subparagraph.3.3.2.6.1}
+\contentsline {subparagraph}{\numberline {3.3.2.6.2}Software repository implementation (T6.2)}{36}{subparagraph.3.3.2.6.2}
+\contentsline {paragraph}{\numberline {3.3.2.7}Work package 7 progress}{36}{paragraph.3.3.2.7}
+\contentsline {subparagraph}{\numberline {3.3.2.7.1}Dissemination activities towards academia, industry, and other users (T7.1)}{36}{subparagraph.3.3.2.7.1}
+\contentsline {subparagraph}{\numberline {3.3.2.7.2}Exploitation plan (T7.2)}{36}{subparagraph.3.3.2.7.2}
+\contentsline {subparagraph}{\numberline {3.3.2.7.3}Management of IPR (T7.3)}{36}{subparagraph.3.3.2.7.3}
+\contentsline {subparagraph}{\numberline {3.3.2.7.4}Dissemination of a database of human motion with contacts (T7.4)}{37}{subparagraph.3.3.2.7.4}
+\contentsline {subsection}{\numberline {3.4}Deliverables and milestones tables}{37}{subsection.3.4}
+\contentsline {subsubsection}{\numberline {3.4.1}Deliverables (excluding the periodic and final reports)}{37}{subsubsection.3.4.1}
+\contentsline {subsubsection}{\numberline {3.4.2}Milestones}{37}{subsubsection.3.4.2}
