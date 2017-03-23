@@ -5,8 +5,41 @@
 
 The progress for each task are described hereafter.
 
-\subparagraph{Generalizing and Improving Elementary Tasks with Contacts (T4.x)}
+\subparagraph{Learning the Prioritization of Tasks (T4.4) (TUD: 4PM)}
 
-The explicit goal of T4.x for the fourth year was to $\dots$
+TUD continued its research on learning task prioritizations from human demonstrations using probabilistic models. This work is currently under review and 
+a draft of the paper was added to Deliverable D4.3 in Section 5.  Here is a short summary of the approach. 
 
-We achieved the following results $\dots$
+Movement prioritization is a common approach
+to combine controllers of different tasks for redundant robots.
+Each task is assigned a priority, where either strict or 'soft'
+priorities can be used. While movement prioritization is an
+important concept in the control of whole body movements, it
+has been less considered in learning-based approaches, where
+prioritization allows us to learn different tasks for different
+end-effectors, and subsequently reproduce an arbitrary, unseen
+combination of these tasks. This paper combines Bayesian task
+prioritization, a 'soft' prioritization technique, with probabilistic
+movement primitives to prioritize full motion sequences.
+Probabilistic movement primitives can encode distributions of
+movements over full motion sequences and provide control
+laws to exactly follow these distributions. The probabilistic
+formulation allows for a natural application of Bayesian task
+prioritization. We demonstrate how the 'soft' priorities can
+be obtained from imitation learning and that our prioritized
+learning architecture can reproduce unseen task-combinations.
+Moreover, we require less data to learn a combination of tasks
+than the traditional approach that directly models each task in
+joint space. We evaluate our approach on reaching movements
+under constraints with a redundant bi-manual planar robot
+and the humanoid robot iCub. 
+
+\subparagraph{Learning the Prioritization of Tasks (T4.4) (INRIA: 4.02PM)}
+
+INRIA continued its research on automatically learning soft task priorities (or task weights) using stochastic optimization algorithms. The research is presented in Deliverable D4.3. 
+
+The motivation for the work was to provide an automatic way of determining the temporal profile of the soft task priorities, that are classically manually tuned by experts. When done manually, the critical issue is to define the task transitions, i.e., to define when a task becomes ``less important'' and its weight diminishes, and viceversa.
+
+In a first paper \cite{Modugno_PICRA_2016}, in collaboration with TUD, we investigated how to learn the temporal profile of the soft task priorities (or task weights) in a reinforcement learning scenario. We represented the soft task priorities with parametrized weight functions, and used CMA-ES (Covariance Matrux Adaptation Evolution Strategy, a state-of-the-art blakc-box stochastic optimization algorithm) to optimize their parameters. We showed on a simulated and real robot manipulators that our method was able to obtain better performing solutions that the classic hand-tuned Generalized Hierarchical Controller (developed in WP3).
+
+In a second paper \cite{modugno2016learning} we focused on learning soft task priorities while guaranteeing that the generated behaviors are ``safe'', i.e., that they never violate any of the constraints of the robot and of the system. Indeed, CMA-ES was chosen because of its good exploration properties and ease of use (very few parameters to tune), however it does not take into account constraints violations during the exploration. In \cite{Modugno_PICRA_2016}, the solutions that were not feasible were simply discarded. In \cite{modugno2016learning} we investigated constrained stochastic optimization algorithms, focusing on three variants of CMA-ES: CMA-ES with vanilla constraints, CMA-ES with adaptive constraints and (1+1)-CMA-ES with covariance constrained adaptation. We compared the three algorithms on different benchmarks: classical constrained optimization problems with known solutions and two constrained robotics problems of our design. We found that the third method satisfies our requirements, specifically it always leads to solutions that never violate constraints. We showed the effectiveness of the approach by generating safe whole-body behaviors of iCubNancy01.
