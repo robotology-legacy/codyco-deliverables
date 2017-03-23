@@ -6,7 +6,9 @@
 
 The progress for each task are described hereafter.
 
-\subparagraph{Solving the local control problem (T3.3) (UPMC: 1PM, IIT: xxPM)}
+\subparagraph{Solving the local control problem (T3.3) (IIT: xxPM, UPMC: 3PM)}
+
+During the fourth year, some improvements both in terms of parametrization and in terms of generic implementation have been brought to the whole-body control problem solving methods developed in CoDyCo.
 
 \begin{itemize}
 \item {Joint limit avoidance using an exogenous state description}
@@ -27,12 +29,43 @@ During year 4, IIT proposed a control laws ensuring the stabilization of a time-
 \end{itemize}
 As part of both WP1 and WP3, UPMC has pursued the generic implementation of an optimisation based whole-body controller named OCRA. See section~\ref{sec:OCRA}) for more details and \url{https://github.com/ocra-recipes} and \url{https://ocra-recipes.github.io/web} for online resources.
 
-\subparagraph{Bootstrapping and validating the control approach in rigid world and compliant cases (T3.4) (JSI: 1 PM, INRIA: 1.98PM , TUD: 3.6 PM)}
+\subparagraph{Bootstrapping and validating the control approach in rigid world and compliant cases (T3.4) (TUD: 3.6PM, UPMC: 5.51PM, UB: xxPM, JSI: 1 PM, INRIA: 1.98PM)}
+
+Over the fourth year, the bootstrapping of the whole-body control approach developed in CoDyCo has mostly been pursued in two directions. The first one is related to the learning of the dynamics of physical interactions. The second one is related to the adaptation of tasks and their proper activation for successful whole-body motions in contact.
 
 \begin{itemize}
 \item \textbf{Learning torque control}
 \end{itemize}
 TUD and INRIA, in collaboration with WP4, continued the collaboration on the topic of learning torque control in presence of multiple contacts, exploiting the force/torque and tactile sensors of iCub. Machine learning techniques were used to directly learn the mapping from both skin and the joint state to torques, using mixtures of contact models. Recently, the model was improved for torque control by addressing critical issues in learning from high-dimensional inputs, such as the artificial skin. It was demonstrated that it is possible to considerably reduce the dimensionality of the skin data preserving the information content of the contact position by using stacked auto encoders. A journal paper is currently in preparation. This technique will allow improving torque control in presence of multiple contacts (rigid and/or soft). This work is part of the PhD thesis work of Roberto Calandra on ``Bayesian Modeling for Optimization and Control in Robotics'' \cite{calandra2016PhD}.\\
+
+\begin{itemize}
+\item \textbf{Learning compliant contact models for interaction with non rigid environment}
+\end{itemize}
+As a part of T3.4, UB and TUD worked on developing a method to realize desired
+contact normal forces between a robot's end-effector and its complaint
+environment.  By using contact models, desired contact forces are converted to
+desired deformations of compliant surfaces.  Therefore, the problem of
+controlling compliant contact normal forces becomes the problem of controlling
+surface deformations.  To study the performance of the proposed method in
+practice, a series of experiments, including identification and control
+experiments, were performed with a LWR KUKA manipulator.  During the
+identification experiments, we estimated the contact models between the
+robot's end-effector and two soft surfaces using least-squared linear
+regression algorithm.  In control experiments, by using the estimated models,
+we controlled the robot's motion in order to achieve various desired contact
+normal forces for each surface.  We also studied the effects of updating model
+parameters during control experiments using an online estimation method.  The
+experiment results showed that desired forces can be achieved with some errors
+while using the estimated model from identification experiments.  These errors
+are decreased substantially by online adaptation of the contact model
+parameters during control experiments.
+%
+\begin{figure}
+  \centering
+  \includegraphics[scale=0.1]{images/Boris.jpg}
+  \caption{KUKA LWR IV arms with two soft surfaces used in our experiments.}
+  \label{Boris}
+\end{figure}
 
 \begin{itemize}
 \item \textbf{Learning soft priorities}
@@ -55,16 +88,22 @@ Because each level in the control hierarchy is agnostic of the others by design,
 \label{fig:control_diagram}
 \end{figure}
 
-The objective of the proposed approach is to establish the task compatibility optimization loop, shown on the left in Fig.~\ref{fig:control_diagram}, by iteratively improving task trajectories using RL. To do so, tasks trajectories are parameterized providing variables with which they can be modified. A generic task compatibility cost has been developed from simple principles which measures the incompatibility between one or more tasks and the robot's constraints. Using two common BBO solvers, this compatibility cost can be minimized by optimizing the task trajectory parameters. This task compatibility optimization has then tested on two typical muti-task scenarios. In the first scenario the relatively banal chore of reaching while balancing has be studied. While seemingly simple, reaching is a key ingredient in robot autonomy, which often requires parameter and gain tuning before done reliably. A performance comparison of two BBO solvers for this experiment has been performed to illustrate the generality of the framework. The second experiment explores the dynamically complex activity of moving from sitting to standing. This motion requires contact breaking and potentially unstable dynamic equilibrium to succeed. In both experiments a Center of Mass (CoM) task is used to maintain balance, and its trajectory is optimized to minimize the task compatibility cost. Through these two completely different motion scenarios, the proposed generic task compatibility optimization loop has shown to dramatically improve task achievement, without ever touching the low-level control parameters. These results extend the contributions \cite{lober-HUMANOIDS2014} and \cite{lober_IROS2015} both in terms of achieved performances and computational efficiency. This work is described in \cite{deliverable33} and was submitted for presentation at a robotics journal~\cite{lober2017RAL-IROS}.
+The objective of the proposed approach is to establish the task compatibility optimization loop, shown on the left in Fig.~\ref{fig:control_diagram}, by iteratively improving task trajectories using RL. To do so, tasks trajectories are parameterized providing variables with which they can be modified. A generic task compatibility cost has been developed from simple principles which measures the incompatibility between one or more tasks and the robot's constraints. Using two common BBO solvers, this compatibility cost can be minimized by optimizing the task trajectory parameters. This task compatibility optimization has then tested on two typical muti-task scenarios. In the first scenario the relatively banal chore of reaching while balancing has be studied. While seemingly simple, reaching is a key ingredient in robot autonomy, which often requires parameter and gain tuning before done reliably. A performance comparison of two BBO solvers for this experiment has been performed to illustrate the generality of the framework. The second experiment explores the dynamically complex activity of moving from sitting to standing. This motion requires contact breaking and potentially unstable dynamic equilibrium to succeed. In both experiments a Center of Mass (CoM) task is used to maintain balance, and its trajectory is optimized to minimize the task compatibility cost. Through these two completely different motion scenarios, the proposed generic task compatibility optimization loop has shown to dramatically improve task achievement, without ever touching the low-level control parameters. These results extend the contributions \cite{lober-HUMANOIDS2014} and \cite{lober_IROS2015} both in terms of achieved performances and computational efficiency. This work and its potential use for the final demonstration are described with details in \cite{deliverable33} and was submitted for presentation at a robotics journal~\cite{lober2017RAL-IROS}.
 
 \begin{itemize}
-\item \textbf{Speed-Accuracy trade-off}
+\item \textbf{Model Predicitive stepping for robust balance}
+\end{itemize}
+
+As a part of both WP1 (see section~~\ref{sec:OCRA} for a list of associated software resources) and WP3, the predictive approach initially developed by A. Ibanez~\cite{ibanez2015Emergence} to preview the duration and placement of coplanar contacts has been implemented in the form of a client for OCRA using the iCub humanoid robot. Within a model-predictive control framework, the problem is formulated as a linearly constrained mixed-integer quadratic program (MIQP) which allows the determination over a preview horizon, of the optimal changes in the base of support of the robot with compatible CoM behaviour, subject to multiple constraints, while maximising balance and performance of a walking activity.
+
+\begin{itemize}
+\item \textbf{Adapting a reaching controller using the Speed-Accuracy trade-off}
 \end{itemize}
 As part of both WP2 and WP3, JSI, together with UPMC, continued the computational study where they try to describe the trade-off between the speed of motion, its accuracy and the muscular cost associated with the motion. They implemented a state-of-the-art deep reinforcement learning algorithm (DDPG) that is based on a deterministic policy gradient approach. DDPG allows more sample efficient learning, but is hard to tune in the context of a simulated reaching controller. They implemented the computations on the JSI cluster in Slovenia. Computations are currently running and the analyses remain to be performed.
     
 \subparagraph{Deviations from workplan}  
 
-The PM expenses for WP3 after one year of project are globally conform to the planned one. The observed deviations are related to the fact that tasks 3.3 and 3.4 spans the overall duration of the project and the contribution of some of the partners are expected in the 2nd, 3rd and 4th year.
+The PM expenses for WP3 after one year of project are globally conform to the planned one.
 
 %\emph{\color{red}[For work package 3 (UPMC) provide the following information:]}
 %\begin{itemize}

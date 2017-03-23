@@ -10,14 +10,6 @@ Reallocated singl_function (elt_size=4) to 100 items from 50.
 Database file #1: fourthYearReport_WP5.bib
 Database file #2: fourthYearReport_WP4.bib
 Database file #3: fourthYearReport_WP3.bib
-Repeated entry---line 9010 of file fourthYearReport_WP3.bib
- : @inproceedings{Modugno2016
- :                           ,
-I'm skipping whatever remains of this entry
-Repeated entry---line 9018 of file fourthYearReport_WP3.bib
- : @inproceedings{modugno2016learning
- :                                   ,
-I'm skipping whatever remains of this entry
 Database file #4: fourthYearReport_WP2.bib
 Database file #5: fourthYearReport_WP1.bib
 Repeated entry---line 37 of file fourthYearReport_WP1.bib
@@ -70,4 +62,4 @@ warning$ -- 0
 while$ -- 136
 width$ -- 45
 write$ -- 453
-(There were 3 error messages)
+(There was 1 error message)

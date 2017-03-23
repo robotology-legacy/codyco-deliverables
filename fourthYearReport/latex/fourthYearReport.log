@@ -1,4 +1,4 @@
-This is pdfTeX, Version 3.1415926-2.5-1.40.14 (TeX Live 2013/Debian) (format=pdflatex 2015.12.3)  23 MAR 2017 17:47
+This is pdfTeX, Version 3.1415926-2.5-1.40.14 (TeX Live 2013/Debian) (format=pdflatex 2015.12.3)  23 MAR 2017 23:37
 entering extended mode
  restricted \write18 enabled.
  %&-line parsing enabled.
@@ -592,7 +592,7 @@ Overfull \hbox (20.38051pt too wide) in paragraph at lines 74--75
 Nf5uJA-[]3fUTzILFZ9t7rFlfmP$[][] 
  []
 
-<images/WBI_diagram.pdf, id=391, 3513.125pt x 2007.5pt>
+<images/WBI_diagram.pdf, id=394, 3513.125pt x 2007.5pt>
 File: images/WBI_diagram.pdf Graphic file (type pdf)
 
 <use images/WBI_diagram.pdf>
@@ -610,7 +610,7 @@ Underfull \hbox (badness 10000) in paragraph at lines 129--132
 s : / / github . com / inria-[]larsen /
  []
 
-<images/suit.jpg, id=539, 2569.6pt x 1927.2pt>
+<images/suit.jpg, id=542, 2569.6pt x 1927.2pt>
 File: images/suit.jpg Graphic file (type jpg)
  <use images/suit.jpg>
 Package pdftex.def Info: images/suit.jpg used on input line 155.
@@ -629,13 +629,13 @@ Underfull \hbox (badness 10000) in paragraph at lines 42--43
 
  []
 
-[13 <./images/suit.jpg>] <./images/all.pdf, id=562, 803.0pt x 803.0pt>
+[13 <./images/suit.jpg>] <./images/all.pdf, id=565, 803.0pt x 803.0pt>
 File: ./images/all.pdf Graphic file (type pdf)
 
 <use ./images/all.pdf>
 Package pdftex.def Info: ./images/all.pdf used on input line 68.
 (pdftex.def)             Requested size: 227.62204pt x 227.61984pt.
- <./images/friction_cone.pdf, id=569, 401.5pt x 401.5pt>
+ <./images/friction_cone.pdf, id=572, 401.5pt x 401.5pt>
 File: ./images/friction_cone.pdf Graphic file (type pdf)
 
 <use ./images/friction_cone.pdf>
@@ -644,7 +644,7 @@ Package pdftex.def Info: ./images/friction_cone.pdf used on input line 114.
  [14 <./images/all.pdf>]
 Underfull \vbox (badness 1742) has occurred while \output is active []
 
- [15 <./images/friction_cone.pdf>] <./images/unilateral.pdf, id=597, 803.0pt x 
+ [15 <./images/friction_cone.pdf>] <./images/unilateral.pdf, id=600, 803.0pt x 
 803.0pt>
 File: ./images/unilateral.pdf Graphic file (type pdf)
 
@@ -665,7 +665,7 @@ Underfull \hbox (badness 10000) in paragraph at lines 222--223
 Underfull \vbox (badness 5105) has occurred while \output is active []
 
  [17]
-<./images/twoellipses.pdf, id=628, 401.5pt x 803.0pt>
+<./images/twoellipses.pdf, id=631, 401.5pt x 803.0pt>
 File: ./images/twoellipses.pdf Graphic file (type pdf)
 
 <use ./images/twoellipses.pdf>
@@ -691,7 +691,7 @@ Missing character: There is no ‚ in font cmss12!
 Missing character: There is no Ä in font cmss12!
 Missing character: There is no ù in font cmss12!
 
-<./images/UB-Figure1.png, id=650, 372.79276pt x 256.5585pt>
+<./images/UB-Figure1.png, id=653, 372.79276pt x 256.5585pt>
 File: ./images/UB-Figure1.png Graphic file (type png)
 
 <use ./images/UB-Figure1.png>
@@ -701,7 +701,7 @@ Package pdftex.def Info: ./images/UB-Figure1.png used on input line 348.
 
 LaTeX Warning: `!h' float specifier changed to `!ht'.
 
-[20] <./images/UB-Figure2.png, id=658, 1599.9775pt x 571.13374pt>
+[20] <./images/UB-Figure2.png, id=661, 1599.9775pt x 571.13374pt>
 File: ./images/UB-Figure2.png Graphic file (type png)
 
 <use ./images/UB-Figure2.png>
@@ -738,7 +738,7 @@ Missing character: There is no ‚ in font cmss12!
 Missing character: There is no Ä in font cmss12!
 Missing character: There is no ù in font cmss12!
  [21 <./images/UB-Figure1.png> <./images/UB-Figure2.png>] <./images/UB-Figure3.
-png, id=665, 1799.72375pt x 486.81876pt>
+png, id=668, 1799.72375pt x 486.81876pt>
 File: ./images/UB-Figure3.png Graphic file (type png)
 
 <use ./images/UB-Figure3.png>
@@ -760,14 +760,14 @@ Missing character: There is no ‚ in font cmss12!
 Missing character: There is no Ä in font cmss12!
 Missing character: There is no ù in font cmss12!
  [22 <./images/UB-Figure3.png>]
-<./images/UB-r-Figure1.png, id=675, 189.3474pt x 210.5466pt>
+<./images/UB-r-Figure1.png, id=678, 189.3474pt x 210.5466pt>
 File: ./images/UB-r-Figure1.png Graphic file (type png)
 
 <use ./images/UB-r-Figure1.png>
 Package pdftex.def Info: ./images/UB-r-Figure1.png used on input line 384.
 (pdftex.def)             Requested size: 318.66946pt x 354.35197pt.
 
-<./images/UB-r-Figure2.jpg, id=678, 216.81pt x 87.0525pt>
+<./images/UB-r-Figure2.jpg, id=681, 216.81pt x 87.0525pt>
 File: ./images/UB-r-Figure2.jpg Graphic file (type jpg)
 
 <use ./images/UB-r-Figure2.jpg>
@@ -780,7 +780,7 @@ Missing character: There is no ‚ in font cmss12!
 Missing character: There is no Ä in font cmss12!
 Missing character: There is no ô in font cmss12!
 
-<./images/UB-r-Figure3.jpg, id=680, 963.6pt x 542.025pt>
+<./images/UB-r-Figure3.jpg, id=683, 963.6pt x 542.025pt>
 File: ./images/UB-r-Figure3.jpg Graphic file (type jpg)
 
 <use ./images/UB-r-Figure3.jpg>
@@ -797,7 +797,7 @@ Underfull \hbox (badness 10000) in paragraph at lines 415--416
  []
 
 [23] [24 <./images/UB-r-Figure1.png>] [25 <./images/UB-r-Figure2.jpg> <./images
-/UB-r-Figure3.jpg>] <./images/S2S.png, id=710, 172.2435pt x 144.54pt>
+/UB-r-Figure3.jpg>] <./images/S2S.png, id=713, 172.2435pt x 144.54pt>
 File: ./images/S2S.png Graphic file (type png)
 
 <use ./images/S2S.png>
@@ -807,13 +807,13 @@ Package pdftex.def Info: ./images/S2S.png used on input line 432.
 
 LaTeX Warning: `!h' float specifier changed to `!ht'.
 
-<./images/fext.png, id=713, 298.2342pt x 150.8034pt>
+<./images/fext.png, id=716, 298.2342pt x 150.8034pt>
 File: ./images/fext.png Graphic file (type png)
  <use ./images/fext.png>
 Package pdftex.def Info: ./images/fext.png used on input line 447.
 (pdftex.def)             Requested size: 318.66946pt x 161.14403pt.
 
-[26] <./images/tau.png, id=723, 299.6796pt x 151.767pt>
+[26] <./images/tau.png, id=726, 299.6796pt x 151.767pt>
 File: ./images/tau.png Graphic file (type png)
  <use ./images/tau.png>
 Package pdftex.def Info: ./images/tau.png used on input line 455.
@@ -828,78 +828,84 @@ Missing character: There is no Ä in font cmss12!
 Missing character: There is no ô in font cmss12!
 ) (./sections/WP2/wp2_resources.tex
 [28 <./images/tau.png>]) (./sections/WP3/wp3_progress.tex
-<images/iCub_joint_limits_leg.pdf, id=738, 3011.25pt x 4015.0pt>
+<images/iCub_joint_limits_leg.pdf, id=741, 3011.25pt x 4015.0pt>
 File: images/iCub_joint_limits_leg.pdf Graphic file (type pdf)
 
 <use images/iCub_joint_limits_leg.pdf>
-Package pdftex.def Info: images/iCub_joint_limits_leg.pdf used on input line 18
+Package pdftex.def Info: images/iCub_joint_limits_leg.pdf used on input line 20
 .
 (pdftex.def)             Requested size: 182.09485pt x 242.78879pt.
 
-Underfull \hbox (badness 10000) in paragraph at lines 35--36
+Underfull \hbox (badness 10000) in paragraph at lines 39--40
 
  []
 
-[29]
-Underfull \hbox (badness 10000) in paragraph at lines 45--46
-
- []
+[29] <images/Boris.jpg, id=752, 4015.0pt x 2673.99pt>
+File: images/Boris.jpg Graphic file (type jpg)
+ <use images/Boris.jpg>
+Package pdftex.def Info: images/Boris.jpg used on input line 65.
+(pdftex.def)             Requested size: 401.52353pt x 267.41466pt.
 
 [30 <./images/iCub_joint_limits_leg.pdf>]
-Underfull \hbox (badness 10000) in paragraph at lines 47--48
+Underfull \hbox (badness 10000) in paragraph at lines 78--79
+
+ []
+
+[31 <./images/Boris.jpg>]
+Underfull \hbox (badness 10000) in paragraph at lines 80--81
 
  []
 
 
-Underfull \hbox (badness 10000) in paragraph at lines 49--50
+Underfull \hbox (badness 10000) in paragraph at lines 82--83
 
  []
 
-<images/control_pyramid.png, id=797, 924.45375pt x 878.28125pt>
+<images/control_pyramid.png, id=806, 924.45375pt x 878.28125pt>
 File: images/control_pyramid.png Graphic file (type png)
 
 <use images/control_pyramid.png>
-Package pdftex.def Info: images/control_pyramid.png used on input line 53.
+Package pdftex.def Info: images/control_pyramid.png used on input line 86.
 (pdftex.def)             Requested size: 182.09485pt x 172.99965pt.
 
 
 LaTeX Warning: `!h' float specifier changed to `!ht'.
 
-[31] [32 <./images/control_pyramid.png>]) (./sections/WP3/wp3_resources.tex)
-(./sections/WP4/wp4_progress.tex [33]) (./sections/WP4/wp4_resources.tex
-[34]) (./sections/WP5/wp5_progress.tex) (./sections/WP5/wp5_resources.tex)
-(./sections/WP6/wp6_progress.tex [35]) (./sections/WP6/wp6_resources.tex)
-(./sections/WP7/wp7_progress.tex [36]) (./sections/WP7/wp7_resources.tex)
-<./images/deliverables.pdf, id=879, 464.04921pt x 573.8521pt>
+[32] [33 <./images/control_pyramid.png>]) (./sections/WP3/wp3_resources.tex)
+(./sections/WP4/wp4_progress.tex [34] [35]) (./sections/WP4/wp4_resources.tex)
+(./sections/WP5/wp5_progress.tex) (./sections/WP5/wp5_resources.tex [36])
+(./sections/WP6/wp6_progress.tex) (./sections/WP6/wp6_resources.tex)
+(./sections/WP7/wp7_progress.tex [37]) (./sections/WP7/wp7_resources.tex)
+<./images/deliverables.pdf, id=890, 464.04921pt x 573.8521pt>
 File: ./images/deliverables.pdf Graphic file (type pdf)
 
 <use ./images/deliverables.pdf>
 Package pdftex.def Info: ./images/deliverables.pdf used on input line 229.
 (pdftex.def)             Requested size: 273.14922pt x 337.7905pt.
 
-<./images/milestones.pdf, id=880, 502.59828pt x 236.9652pt>
+<./images/milestones.pdf, id=891, 502.59828pt x 236.9652pt>
 File: ./images/milestones.pdf Graphic file (type pdf)
 
 <use ./images/milestones.pdf>
 Package pdftex.def Info: ./images/milestones.pdf used on input line 236.
 (pdftex.def)             Requested size: 455.24408pt x 214.63707pt.
- [37] (./fourthYearReport.bbl [38 <./images/deliverables.pdf> <./images/milesto
-nes.pdf>] [39]
+ [38] (./fourthYearReport.bbl [39 <./images/deliverables.pdf> <./images/milesto
+nes.pdf>] [40]
 Missing character: There is no √ in font cmss12!
 Missing character: There is no † in font cmss12!
 Missing character: There is no √ in font cmss12!
 Missing character: There is no © in font cmss12!
- [40] [41])
+ [41] [42])
 
 AED: lastpage setting LastPage
-[42]
+[43]
 Package atveryend Info: Empty hook `BeforeClearDocument' on input line 245.
 Package atveryend Info: Empty hook `AfterLastShipout' on input line 245.
  (./fourthYearReport.aux)
 Package atveryend Info: Executing hook `AtVeryEndDocument' on input line 245.
 Package atveryend Info: Executing hook `AtEndAfterFileList' on input line 245.
 Package rerunfilecheck Info: File `fourthYearReport.out' has not changed.
-(rerunfilecheck)             Checksum: 693FC0C8015966CC6D7912B2B69A5E44;4013.
+(rerunfilecheck)             Checksum: 1AEF4A062C46B5067C0D615B84B3B034;4035.
 
 
 LaTeX Font Warning: Some font shapes were not available, defaults substituted.
@@ -907,13 +913,13 @@ LaTeX Font Warning: Some font shapes were not available, defaults substituted.
 Package atveryend Info: Empty hook `AtVeryVeryEnd' on input line 245.
  ) 
 Here is how much of TeX's memory you used:
- 9294 strings out of 494958
- 140279 string characters out of 6179213
- 273193 words of memory out of 5000000
- 12112 multiletter control sequences out of 15000+600000
+ 9302 strings out of 494958
+ 140402 string characters out of 6179213
+ 273347 words of memory out of 5000000
+ 12117 multiletter control sequences out of 15000+600000
  14307 words of font info for 50 fonts, out of 8000000 for 9000
  36 hyphenation exceptions out of 8191
- 41i,12n,45p,1980b,470s stack positions out of 5000i,500n,10000p,200000b,80000s
+ 41i,12n,45p,2044b,470s stack positions out of 5000i,500n,10000p,200000b,80000s
 </usr/share/texlive/texmf-dist/fonts/type1/public/amsfonts/cm/cmbx12.pfb></us
 r/share/texlive/texmf-dist/fonts/type1/public/amsfonts/cm/cmmi12.pfb></usr/shar
 e/texlive/texmf-dist/fonts/type1/public/amsfonts/cm/cmmi6.pfb></usr/share/texli
@@ -927,10 +933,10 @@ ts/cm/cmssbx10.pfb></usr/share/texlive/texmf-dist/fonts/type1/public/amsfonts/c
 m/cmssi12.pfb></usr/share/texlive/texmf-dist/fonts/type1/public/amsfonts/cm/cms
 y10.pfb></usr/share/texlive/texmf-dist/fonts/type1/public/amsfonts/cm/cmsy8.pfb
 ></usr/share/texlive/texmf-dist/fonts/type1/public/amsfonts/cm/cmtt12.pfb>
-Output written on fourthYearReport.pdf (43 pages, 38592846 bytes).
+Output written on fourthYearReport.pdf (44 pages, 40387901 bytes).
 PDF statistics:
- 1089 PDF objects out of 1200 (max. 8388607)
- 928 compressed objects within 10 object streams
- 154 named destinations out of 1000 (max. 500000)
- 402 words of extra memory for PDF output out of 10000 (max. 10000000)
+ 1100 PDF objects out of 1200 (max. 8388607)
+ 937 compressed objects within 10 object streams
+ 156 named destinations out of 1000 (max. 500000)
+ 407 words of extra memory for PDF output out of 10000 (max. 10000000)
 
