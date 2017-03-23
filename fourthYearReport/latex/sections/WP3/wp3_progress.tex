@@ -20,16 +20,21 @@ We achieved the following results $\dots$
 
 \subparagraph{Solving the local control problem (T3.3)}
 
-The explicit goal of T3.3 for the fourth year was to $\dots$
+During year 4, IIT proposed a control laws ensuring the stabilization of a time-varying desired joint trajectory and joint limit avoidance (see Fig.~\ref{fig:icub leg limits} for an illustration of the limits on the leg) in the case of fully-actuated manipulators. The key idea is to perform a parametrization of the feasible joint motion space in terms of exogenous states $\xi$, in the form of $q(\xi) := \delta \tanh(\xi) + q_0$, where $q$ is the joint position, $\delta$ the range of feasible motion and $q_0$ its middle value. It follows that the control of the exogenous states allows for joint limit avoidance. One of the main outcomes of this work is that position terms in control laws are replaced by parametrized terms. Stability and convergence of time-varying reference trajectories obtained with the proposed method were demonstrated to be in the sense of Lyapunov. The introduced control laws were verified by carrying out experiments on two degrees-of-freedom of the torque-controlled iCub. This work led to a publication in Humanoid s 2016 \cite{charbonneau2016Humanoids}.
 
-We achieved the following results $\dots$
-    
+\begin{figure*}
+   \begin{center}
+    \includegraphics[width=0.4\textwidth]{iCub_joint_limits_leg.pdf}
+    \caption{iCub leg setup used for the experiments. The red circles identify the hip and knee joints, while the white marks indicate joint limits. The green arrow shows the external force applied during experiments.}
+    \label{fig:icub leg limits}
+    \end{center}
+\end{figure*}    
 
 \subparagraph{Bootstrapping and validating the control approach in rigid world and compliant cases (T3.4)}
 
-The explicit goal of T3.4 for the fourth year was to $\dots$
+TUD and Inria, in collaboration with WP4, continued the collaboration on the topic of learning torque control in presence of multiple contacts, exploiting the force/torque and tactile sensors of iCub. Machine learning techniques were used to directly learn the mapping from both skin and the joint state to torques, using mixtures of contact models. Recently, the model was improved for torque control by addressing critical issues in learning from high-dimensional inputs, such as the artificial skin. It was demonstrated that it is possible to considerably reduce the dimensionality of the skin data preserving the information content of the contact position by using stacked auto encoders. A journal paper is currently in preparation. This technique will allow improving torque control in presence of multiple contacts (rigid and/or soft). This work is part of the PhD thesis work of Roberto Calandra on ``Bayesian Modeling for Optimization and Control in Robotics'' \cite{calandra2016PhD}.\\
 
-We achieved the following results $\dots$
+Inria also designed a multi-task prioritized controller with soft task priorities. The controller was first designed in \cite{modugno2016ICRA} and applied to classical manipulators. In \cite{modugno2016Humanoids} it was extended for whole-body movements. In the latter work, it was used to generate safe whole-body behaviors for iCub, reaching multiple goals and avoiding obstacles, with the guarantee that the generated behaviors were not violating the constraints of the platform. A software controller for iCub has been prototyped in Matlab then in C++.
     
 \subparagraph{Deviations from workplan}  
 
