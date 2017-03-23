@@ -1,0 +1,70 @@
+This is BibTeX, Version 0.99d (TeX Live 2014)
+Capacity: max_strings=35307, hash_size=35307, hash_prime=30011
+The top-level auxiliary file: thirdYearReport.aux
+The style file: IEEEtran.bst
+Reallocated singl_function (elt_size=4) to 100 items from 50.
+Reallocated singl_function (elt_size=4) to 100 items from 50.
+Reallocated singl_function (elt_size=4) to 100 items from 50.
+Reallocated wiz_functions (elt_size=4) to 6000 items from 3000.
+Reallocated singl_function (elt_size=4) to 100 items from 50.
+Database file #1: thirdYearReport_WP4.bib
+Database file #2: thirdYearReport_WP3.bib
+Database file #3: thirdYearReport_WP2.bib
+Database file #4: thirdYearReport_WP1.bib
+Repeated entry---line 58 of file thirdYearReport_WP1.bib
+ : @inproceedings{Nori2015
+ :                        ,
+I'm skipping whatever remains of this entry
+-- IEEEtran.bst version 1.11 (2003/04/02) by Michael Shell.
+-- http://www.ctan.org/tex-archive/macros/latex/contrib/supported/IEEEtran/
+-- See the "IEEEtran_bst_HOWTO.pdf" manual for usage information.
+Warning--empty journal in Rueckert_SR_2016
+Warning--empty booktitle in Azad&Featherstone10
+Warning--empty booktitle in Dallalietal13
+Warning--empty journal in traversaro2015parametersEM
+Warning--empty year in traversaro2015parametersEM
+Warning--empty journal in Peters_AR_2008
+
+Done.
+You've used 63 entries,
+            3975 wiz_defined-function locations,
+            1205 strings with 20512 characters,
+and the built_in function-call counts, 47808 in all, are:
+= -- 3829
+> -- 1234
+< -- 390
++ -- 667
+- -- 221
+* -- 2326
+:= -- 7183
+add.period$ -- 131
+call.type$ -- 63
+change.case$ -- 64
+chr.to.int$ -- 876
+cite$ -- 69
+duplicate$ -- 3480
+empty$ -- 3820
+format.name$ -- 279
+if$ -- 10998
+int.to.chr$ -- 0
+int.to.str$ -- 63
+missing$ -- 634
+newline$ -- 223
+num.names$ -- 65
+pop$ -- 1455
+preamble$ -- 1
+purify$ -- 0
+quote$ -- 2
+skip$ -- 3716
+stack$ -- 0
+substring$ -- 2129
+swap$ -- 2867
+text.length$ -- 98
+text.prefix$ -- 0
+top$ -- 5
+type$ -- 0
+warning$ -- 6
+while$ -- 207
+width$ -- 65
+write$ -- 642
+(There was 1 error message)
