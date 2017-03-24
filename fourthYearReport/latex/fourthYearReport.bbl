@@ -82,6 +82,64 @@ K.~P. Tee, E.~Burdet, C.-M. Chew, and T.~E. Milner, ``A model of force and
   impedance in human arm movements,'' \emph{Biological cybernetics}, vol.~90,
   no.~5, pp. 368--375, 2004.
 
+\bibitem{ivaldi2016}
+S.~Ivaldi, S.~Lefort, J.~Peters, M.~Chetouani, J.~Provasi, and E.~Zibetti,
+  ``Towards engagement models that consider individual factors in hri: On the
+  relation of extroversion and negative attitude towards robots to gaze and
+  speech during a human--robot assembly task,'' \emph{International Journal of
+  Social Robotics}, vol.~9, p. 63–86, 2017.
+
+\bibitem{Anzalone2017}
+S.~M. Anzalone, G.~Varni, S.~Ivaldi, and M.~Chetouani, ``Automated prediction
+  of extraversion during human--humanoid interaction,'' \emph{International
+  Journal of Social Robotics}, pp. 1--15, 2017.
+
+\bibitem{Lord2001}
+\BIBentryALTinterwordspacing
+S.~R. Lord and R.~C. Fitzpatrick, ``{Choice stepping reaction time: a composite
+  measure of falls risk in older people.}'' \emph{The journals of gerontology.
+  Series A, Biological sciences and medical sciences}, vol.~56, no.~10, pp.
+  M627--32, oct 2001. [Online]. Available:
+  \url{http://www.ncbi.nlm.nih.gov/pubmed/11584035}
+\BIBentrySTDinterwordspacing
+
+\bibitem{Cohen2011}
+\BIBentryALTinterwordspacing
+R.~G. Cohen, J.~G. Nutt, and F.~B. Horak, ``{Errors in postural preparation
+  lead to increased choice reaction times for step initiation in older
+  adults.}'' \emph{The journals of gerontology. Series A, Biological sciences
+  and medical sciences}, vol.~66, no.~6, pp. 705--13, jun 2011. [Online].
+  Available: \url{http://www.ncbi.nlm.nih.gov/pubmed/21498431
+  http://www.pubmedcentral.nih.gov/articlerender.fcgi?artid=PMC3110912}
+\BIBentrySTDinterwordspacing
+
+\bibitem{Sparto2013}
+\BIBentryALTinterwordspacing
+P.~J. Sparto, S.~I. Fuhrman, M.~S. Redfern, J.~R. Jennings, S.~Perera, R.~D.
+  Nebes, and J.~M. Furman, ``{Postural adjustment errors reveal deficits in
+  inhibition during lateral step initiation in older adults.}'' \emph{Journal
+  of neurophysiology}, vol. 109, no.~2, pp. 415--28, jan 2013. [Online].
+  Available:
+  \url{http://www.pubmedcentral.nih.gov/articlerender.fcgi?artid=3545456{\&}tool=pmcentrez{\&}rendertype=abstract}
+\BIBentrySTDinterwordspacing
+
+\bibitem{Mille2014}
+\BIBentryALTinterwordspacing
+M.~L. Mille, M.~Simoneau, and M.~W. Rogers, ``{Postural dependence of human
+  locomotion during gait initiation.}'' \emph{Journal of neurophysiology}, vol.
+  112, no.~12, pp. 3095--103, 2014. [Online]. Available:
+  \url{http://www.ncbi.nlm.nih.gov/pubmed/25231611}
+\BIBentrySTDinterwordspacing
+
+\bibitem{Robinovitch2013}
+\BIBentryALTinterwordspacing
+S.~N. Robinovitch, F.~Feldman, Y.~Yang, R.~Schonnop, P.~M. Leung, T.~Sarraf,
+  J.~Sims-Gould, and M.~Loughin, ``{Video capture of the circumstances of falls
+  in elderly people residing in long-term care: an observational study.}''
+  \emph{Lancet}, vol. 381, no. 9860, pp. 47--54, jan 2013. [Online]. Available:
+  \url{http://www.pubmedcentral.nih.gov/articlerender.fcgi?artid=3540102{\&}tool=pmcentrez{\&}rendertype=abstract}
+\BIBentrySTDinterwordspacing
+
 \bibitem{charbonneau2016Humanoids}
 M.~Charbonneau, F.~Nori, and D.~Pucci, ``On-line joint limit avoidance for
   torque controlled robots by joint space parametrization,'' in
