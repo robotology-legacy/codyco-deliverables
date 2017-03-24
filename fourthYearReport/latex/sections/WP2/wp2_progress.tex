@@ -4,12 +4,8 @@
 
 % Morteza
 \subparagraph*{CoM dynamic manipulability as a tool to study, analyze and measure physical abilities of humans and robots}
-As part of T2.2 and also T2.3, UB continued on improving CoM dynamic manipulability as a tool to study, analyze and measure physical abilities of humans and robots.  First, the equation for the CoM manipulability ellipsoid was modified to decompose the effect of velocity and gravity related accelerations from the configuration dependent parts.  Then, two different
-choices for the weighting matrix were introduced in order to evaluate the physical ability to accelerate the CoM with certain limits at the joint torques or joint accelerations.
-\bigskip
-
-\textbf{Progress}\\
-Assuming unit weighted norm of actuated joint torques as
+First, the equation for the CoM manipulability ellipsoid was modified to decompose the effect of velocity and gravity related accelerations from the configuration dependent parts.  Then, two different
+choices for the weighting matrix were introduced in order to evaluate the physical ability to accelerate the CoM with certain limits at the joint torques or joint accelerations.  Assuming unit weighted norm of actuated joint torques as
 %
 \begin{equation}
 \Btau^T \BW_\tau \Btau = 1 \, ,
@@ -44,7 +40,7 @@ Different choices can be used for $\BW_\tau$ based on the application.  Here,
 we discuss two reasonable choices that can be used for general purposes.\\
 
 \textbf{First Choice: Torque Limits}\\
-\label{subsec:1stchoice}
+
 Our first proposed reasonable choice for $\BW_\tau$ is
 %
 \begin{equation}
@@ -224,7 +220,7 @@ limited by friction cone constraints of individual contact forces.\\
 
 
 \textbf{Second Choice: Joint Accelerations}\\
-\label{subsec:2ndchoice}
+
 Other than joint torques, joint accelerations are also important factors in
 studying a robot's physical ability.  Obviously, producing less accelerations
 at the joints, with same amount of joint torques and same CoM acceleration, is
