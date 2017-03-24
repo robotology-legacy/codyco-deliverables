@@ -465,5 +465,78 @@ The observed torque behaviour in all the three joints of the planar model are pr
 \subparagraph*{Analysis of social and physical signals in human-robot interaction during assembly task}
 
 We analyzed the social and physical signals exchanged by 56 human participants and the iCub during a collaborative assembly task. The experiments, performed by Serena Ivaldi at UPMC, were later analyzed during her time in TUD and INRIA.
-First, we focused on social signals. In [Ivaldi et al., Int. Journal of Social Robotics 2016], we reported the analysis of results concerning the influence of individual factors in gaze and speech. We found that the more an individual is extrovert, the more he/she will tend to talk to the robot; the more an individual has a negative attitude towards robot, the less he/she will gaze at the robot’s face and the more he/she will tend to look at the robot’s hands, where the physical interaction occurs. In [Anzalone et al, Int. Journal of Social Robotics 2017] we also showed that it is possible to predict the extroversion of an individual from a thin slice of face to face interaction between the human and the robot, by taking into account several movement metrics.
+First, we focused on social signals. In Ivaldi et al. \cite{ivaldi2016}, we reported the analysis of results concerning the influence of individual factors in gaze and speech. We found that the more an individual is extrovert, the more he/she will tend to talk to the robot; the more an individual has a negative attitude towards robot, the less he/she will gaze at the robot’s face and the more he/she will tend to look at the robot’s hands, where the physical interaction occurs. In Anzalone et al. \cite{Anzalone2017} we also showed that it is possible to predict the extroversion of an individual from a thin slice of face to face interaction between the human and the robot, by taking into account several movement metrics.
 We later started to analyze the physical signals, in particular the forces at the end-effectors of the robot (hands) where people were grasping the robot to drive and show the movement. We observed many interesting facts: the variance of median contact forces tis smaller in men than women; older people apply smaller forces; extroverts also apply small forces; by contrast, people with negative attitude towards interactions with robots (a subscale of NARS) apply bigger forces. We observed a visible difference between the demonstrations by the expert and the demonstrations provided by the participants, that were not robotics experts: the difference is highly visible, especially in terms of the variability of trajectories and different strategies adopted by the participants when moving the robot arms. Nevertheless, we observed a learning effect in the trajectories demonstrated by the participants: the smoothness of the movement, measured by the log-dimensionless jerk computed on the trajectories, increases across 3 trials in a significant way. A paper summarizing these results is currently in preparation.
+
+% Zrinka
+\subparagraph*{Stepping in a novel balance environment}
+High stepping reaction time is a predictor of future falling \cite{Lord2001}, possibly due to inadequate weight shifts preceding foot lift-off \cite{Cohen2011}\cite{Sparto2013}. These can occur due to external balance perturbations \cite{Mille2014} or incorrect planning \cite{Cohen2011}\cite{Sparto2013}. Thus, incorrect weight shift planning might be linked to falls \cite{Robinovitch2013}. To investigate the effect of incorrectly scaled weight shifts on stepping, we developed a novel robotic platform able to amplify subjects’ weight shifts in real-time.
+
+\textbf{Methods}\\
+Eleven young adults (23.7$\pm$4.6 years) stepped as fast and accurate as possible to a target suddenly illuminated in front of one of their legs. On 1/3 of the steps the target jumped shortly before foot liftoff, forcing quick and potentially destabilizing adjustments. This task was performed on a moveable platform in three conditions: platform still (baseline, 60 steps and post-adaptation, 30 steps) or moving (adaptation, 90 steps). When moving, the platform doubled subjects’ mediolateral center of mass movement (COM) in real time. Thus, subjects had to plan a smaller COM movement to generate a weight shift appropriate for stepping to targets.
+We calculated stepping errors (distance between the target and the foot at landing), step onset time (time between target onset and foot liftoff) and step execution time (time between liftoff and landing). Overall performance was analyzed using rANOVA (target jump x condition) and differences between the first and last five steps of each condition using paired samples t-tests.
+
+\begin{figure*}[!ht]
+	\centering
+	\includegraphics[width=0.6\linewidth]{"methods"}
+	\caption{Experimental setup. The subject is standing on a movable platform and a lighted area appears on the floor in front of his leg, serving as a stepping cue and target.}
+	\label{fig:expSetup}
+	\vspace{-4 mm}
+\end{figure*}
+
+\textbf{Results}\\
+Target jumps increased step execution times and stepping errors (by 50 ms and 49.5 mm, both p $<$ .01).  Step onsets were delayed in adaptation (by 7 ms), but faster in post-adaptation (by 24 ms). Target jumps delayed step onset by 10 ms in baseline and adaptation (condition x jump interaction, p = .03). Step onsets were faster in the first 5 steps of post- adaptation, compared to last adaptation steps (by 37 ms, p = .01, jump). Stepping errors increased at the start of adaptation (by 19.5 mm, p = .02, no jump), but decreased over time, within adaptation (by 21.8 mm, p = .03, target jump) and post- adaptation (by 7.5 mm, p = .047, no jump).
+
+\begin{figure*}[!ht]
+	\centering
+	\includegraphics[width=0.6\textwidth]{"step error-all steps"}
+	\caption{Stepping errors. Error bars indicate standard deviation. Statistics are given in the text.}
+	\label{fig:stepErrorAll}
+\end{figure*}
+
+\begin{figure*}[!ht]
+	\centering
+	\includegraphics[width=0.6\textwidth]{"step onset time-all steps"}
+	\caption{Step onset time (time from the cue to step to foot lift-off). Error bars indicate standard deviation. Statistics are given in the text.}
+	\label{fig:stepOnsetTimeAll}
+\end{figure*}
+
+\begin{figure*}[!ht]
+	\centering
+	\includegraphics[width=0.6\textwidth]{"step exec time-all steps"}
+	\caption{Step execution time (time from step onset to landing). Error bars indicate standard deviation. Statistics are given in the text.}
+	\label{fig:stepExecTimeAll}
+\end{figure*}
+
+\textbf{Conclusions}\\
+When targets jumped, stepping errors increased, but manipulating balance by platform movements had no effect on stepping accuracy. However, manipulating balance delayed step onsets, in line with the need to adjust weight shifts prior to foot liftoff in this novel environment, and was accompanied by increased stepping errors in the first five steps. Although initially significantly perturbed, subjects quickly adapted to stepping in a novel balance environment. Analyses of weight shifting and adaptation rates of weight shifting and stepping to clarify the underlying mechanisms are pending.
+
+% Dasa
+\subparagraph*{Investigating balance in quiet standing on a real-time movable platform system}
+We investigated the effect of our newly developed real-time platform perturbation system on postural sway.
+
+Fourteen healthy young adults stood quietly on top of a movable platform in four conditions: with their eyes open (EO), eyes closed (EC), with their eyes open and performing a memory task (memory), with their eyes open and performing an inhibitory Stroop task (Stroop). Each condition lasted for 4 minutes and we discarded the first and last 25 seconds in the data analysis. The inhibitory Stroop task required subjects to respond to the words 'high' or 'low' (in Slovenian language) delivered trough headphones with an interstimulus delay of 2s. The subjects had to respond by verbalizing the pitch (and not the word) they heard. The stimuli were delivered and recorded trough headphones and a microphone, which subjects wore in all conditions. The memory task required the subjects to look at a computer screen on which words appeared with an interstimulus delay of 4s. Subjects were to remember as many words as possible and their memory was checked after the condition was completed.
+Each of the experimental conditions was performed twice: with the platform off or with the platform moving in line with the subjects center of mass (COM) movements. The COM movements were measured using a 3x1 Optotrak camera array (Northern Digital Inc., Waterloo, Ont., Canada), fed into a real-time computer. The real-time computer copied the COM displacements in real time into platform perturbations.
+
+Kinematics of the COM position were high pass filtered using a second-order zero-lag Butterworth filter with a cutoff frequency of 0.1 Hz and then low pass filtered using a second-order zero-lag Butterworth filter with a cutoff frequency of 5 Hz. Outcome measures include standard deviation of the COM displacement (SD) and the range of COM displacement calculated as the difference between the 95th and 5th percentile of COM displacement, both relative to the platform movement (i.e., reflecting postural sway).
+Data processing was performed using MATLAB 2015b (Mathworks, Natick, MA, USA). A two-way repeated measures ANOVA with condition (EO, EC, memory, Stroop) and platform (on, off) was performed using SPSS Statistics 20 (IBM, Chicago, IL, USA), with a level of statistical significance set to α = 0.05. Range data were log-transformed to conform to normality.
+
+\begin{figure*}[!ht]
+	\centering
+	\includegraphics[width=0.7\textwidth]{"SD1"}
+	\caption{SD of the COM displacement (mm).}
+	\label{fig:COMsd}
+\end{figure*}
+
+SD of COM displacement (mean $\pm$ std. error of the mean) was smaller when the platform was off (0.47$\pm$0.05 EO, 0.58$\pm$0.07 EC, 1.00$\pm$0.19 memory, 1.28$\pm$0.38 Stroop), compared to on (0.97$\pm$0.16 EO, 2.05$\pm$0.68 EC, 2.22$\pm$0.52 memory, 2.57$\pm$0.91 Stroop). We found a statistically significant effect of platform ($p = 0.009$) on the COM range (Figure \ref{fig:COMsd}).
+
+\begin{figure*}[!ht]
+	\centering
+	\includegraphics[width=0.7\textwidth]{"range1"}
+	\caption{Range of the COM displacement (mm).}
+	\label{fig:COMrange}
+\end{figure*}
+
+Range of COM displacement (mean $\pm$ std. error of the mean) was smaller when the platform was off (1.35$\pm$0.14 EO, 1.57$\pm$0.17 'EC, 2.64$\pm$0.53 memory, 2.22$\pm$0.34 Stroop), compared to on (2.71$\pm$0.24 EO, 4.57$\pm$0.59 EC, 6.92$\pm$1.65 memory, 6.13$\pm$1.55 Stroop). We found a statistically significant effect of condition ($p = 0.011$) and platform ($p < 0.001$) on the COM range (Figure \ref{fig:COMrange}).
+
+These data are being analyzed further and we expect them to result in at least one journal publication and a BSc thesis.
