@@ -17,77 +17,10 @@ The training data acquisition, the calibration procedure and the diagnosis/plott
 The application was tested on an iCub v2.5 fully equiped with the skin inertial sensors. The legs, torso and head inertial sensors and joint encoders were successfuly calibrated. The computed joint offsets were compared against the offsets measured manually, showing a gap always below 2 degrees. Furthermore, the angle error between the measured and the estimated gravity vector across all the inertial sensors is within 3 degrees, as we can see in figure \ref{fig:T4.2-selfCalibration-Diagnosis.png}, this error has been overall reduced by an average factor of 3. This performance should be improved in a future work by fine tuning the sensors orientation frames.
 Furthermore, a formal analysis of the accuracy and observability will be performed in the next steps. The proposed method and initial results have been published as a paper \cite{GuedelhaSelfCalibJointOffsets2016} through the 2016 IEEE-RAS International Conference on Humanoid Robots. The application is being released on the github repository \url{https://github.com/robotology-playground/joint-offset-calib-inertial}.
 
-
-
 \begin{figure}[hb!]
   \centering
     \includegraphics[width=0.8\textwidth]{images/T4.2-selfCalibration-Diagnosis.png}
     \caption{Diagnosis before and after calibration of the left leg joint encoders (angle of accelerometers measurements vs predictions)}
     \label{fig:T4.2-selfCalibration-Diagnosis}
 \end{figure}
-
-
-
-@inproceedings{GuedelhaSelfCalibJointOffsets2016,
-	Author = {Guedelha, Nuno and Kuppuswamy, Naveen and Traversaro, Silvio and Nori, Francesco},
-	Booktitle = {Humanoid Robots (Humanoids), 16th IEEE-RAS International Conference on},
-	Owner = {nunoguedelha},
-	Timestamp = {2016.08.1},
-	Title = {Self-calibration of Joint Offsets for Humanoid Robots Using Accelerometer Measurements},
-	Year = {2016}}
-
-
-@incollection{Hollerbach2008,
-	Author = {Hollerbach, John and Khalil, Wisama and Gautier, Maxime},
-	Booktitle = {Springer Handbook of Robotics},
-	Owner = {naveenoid},
-	Pages = {321--344},
-	Publisher = {Springer},
-	Timestamp = {2016.02.18},
-	Title = {Model identification},
-	Year = {2008}}
-
-@inproceedings{Liu2009,
-	Author = {Liu, Yong and Xi, Ning and Zhang, George and Li, Xiongzi and Chen, Heping and Zhang, Chi and Jeffery, Michael J and Fuhlbrigge, Thomas A},
-	Booktitle = {Intelligent Robots and Systems, 2009. IROS 2009. IEEE/RSJ International Conference on},
-	Organization = {IEEE},
-	Owner = {naveenoid},
-	Pages = {715--720},
-	Timestamp = {2016.02.19},
-	Title = {An automated method to calibrate industrial robot joint offset using virtual line-based single-point constraint approach},
-	Year = {2009}}
-
-
-@inproceedings{Wieser2011,
-	Author = {Wieser, Erhard and Mittendorfer, Philipp and Cheng, Gordon},
-	Booktitle = {Humanoid Robots (Humanoids), 2011 11th IEEE-RAS International Conference on},
-	Organization = {IEEE},
-	Owner = {naveenoid},
-	Timestamp = {2016.02.17},
-	Title = {Accelerometer based robotic joint orientation estimation},
-	Year = {2011}}
-
-
-@inproceedings{Mittendorfer2012,
-	Author = {Mittendorfer, Philipp and Cheng, Gordon},
-	Booktitle = {Robotics and Automation (ICRA), IEEE International Conference on},
-	Organization = {IEEE},
-	Owner = {naveenoid},
-	Pages = {4539--4545},
-	Timestamp = {2016.02.17},
-	Title = {Open-loop self-calibration of articulated robots with artificial skins},
-	Year = {2012}}
-
-
-@inproceedings{Mittendorfer2014,
-	Author = {Mittendorfer, Philipp and Dean, Emmanuel and Cheng, Gordon},
-	Booktitle = {Humanoid Robots (Humanoids), 14th IEEE-RAS International Conference on},
-	Organization = {IEEE},
-	Owner = {naveenoid},
-	Timestamp = {2016.02.17},
-	Title = {Automatic robot kinematic modeling with a modular artificial skin},
-	Year = {2014}}
-
-
-\end{document}
 
