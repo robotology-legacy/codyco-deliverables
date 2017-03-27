@@ -31,7 +31,7 @@ As part of both WP1 and WP3, UPMC has pursued the generic implementation of an o
 
 \subparagraph{Bootstrapping and validating the control approach in rigid world and compliant cases (T3.4) (TUD: 3.6PM, UPMC: 5.51PM, UB: xxPM, JSI: 1 PM, INRIA: 1.98PM)}
 
-Over the fourth year, the bootstrapping of the whole-body control approach developed in CoDyCo has mostly been pursued in two directions. The first one is related to the learning of the dynamics of physical interactions. The second one is related to the adaptation of tasks and their proper activation for successful whole-body motions in contact.
+Over the fourth year, the bootstrapping of the whole-body control approach developed in CoDyCo has mostly been pursued in two directions. The first one is related to the learning of the dynamics for physical interactions. The second one is related to the adaptation of tasks and their proper activation for successful whole-body motions in contact.
 
 \begin{itemize}
 \item \textbf{Learning torque control}
@@ -42,7 +42,7 @@ TUD and INRIA, in collaboration with WP4, continued the collaboration on the top
 \item \textbf{Learning compliant contact models for interaction with non rigid environment}
 \end{itemize}
 As a part of T3.4, UB and TUD worked on developing a method to realize desired
-contact normal forces between a robot's end-effector and its complaint
+contact normal forces between a robot's end-effector and its compliant
 environment.  By using contact models, desired contact forces are converted to
 desired deformations of compliant surfaces.  Therefore, the problem of
 controlling compliant contact normal forces becomes the problem of controlling
@@ -91,10 +91,12 @@ Because each level in the control hierarchy is agnostic of the others by design,
 The objective of the proposed approach is to establish the task compatibility optimization loop, shown on the left in Fig.~\ref{fig:control_diagram}, by iteratively improving task trajectories using RL. To do so, tasks trajectories are parameterized providing variables with which they can be modified. A generic task compatibility cost has been developed from simple principles which measures the incompatibility between one or more tasks and the robot's constraints. Using two common BBO solvers, this compatibility cost can be minimized by optimizing the task trajectory parameters. This task compatibility optimization has then tested on two typical muti-task scenarios. In the first scenario the relatively banal chore of reaching while balancing has be studied. While seemingly simple, reaching is a key ingredient in robot autonomy, which often requires parameter and gain tuning before done reliably. A performance comparison of two BBO solvers for this experiment has been performed to illustrate the generality of the framework. The second experiment explores the dynamically complex activity of moving from sitting to standing. This motion requires contact breaking and potentially unstable dynamic equilibrium to succeed. In both experiments a Center of Mass (CoM) task is used to maintain balance, and its trajectory is optimized to minimize the task compatibility cost. Through these two completely different motion scenarios, the proposed generic task compatibility optimization loop has shown to dramatically improve task achievement, without ever touching the low-level control parameters. These results extend the contributions \cite{lober-HUMANOIDS2014} and \cite{lober_IROS2015} both in terms of achieved performances and computational efficiency. This work and its potential use for the final demonstration are described with details in \cite{deliverable33} and was submitted for presentation at a robotics journal~\cite{lober2017RAL-IROS}.
 
 \begin{itemize}
-\item \textbf{Model Predicitive stepping for robust balance}
+\item \textbf{Model Predictive stepping for robust balance}
 \end{itemize}
 
 As a part of both WP1 (see section~~\ref{sec:OCRA} for a list of associated software resources) and WP3, the predictive approach initially developed by A. Ibanez~\cite{ibanez2015Emergence} to preview the duration and placement of coplanar contacts has been implemented in the form of a client for OCRA using the iCub humanoid robot. Within a model-predictive control framework, the problem is formulated as a linearly constrained mixed-integer quadratic program (MIQP) which allows the determination over a preview horizon, of the optimal changes in the base of support of the robot with compatible CoM behaviour, subject to multiple constraints, while maximising balance and performance of a walking activity.
+
+\subparagraph{Extra results in WP2/WP3: UPMC and JSI collaboration}
 
 \begin{itemize}
 \item \textbf{Adapting a reaching controller using the Speed-Accuracy trade-off}
