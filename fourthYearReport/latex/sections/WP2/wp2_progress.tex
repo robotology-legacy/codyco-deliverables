@@ -293,7 +293,8 @@ areas) are also considered.
 %
 \begin{figure}
 	\centering
-	\includegraphics[width=.3\textwidth]{twoellipses.pdf}
+	\includegraphics[width=.3\textwidth]{twoellipses1.pdf}
+ 	\includegraphics[width=.315\textwidth]{twoellipses2.pdf}
 	\caption{CoM dynamic manipulability ellipses with different weighting
 		matrices for a planar five-link robot in two configurations.  Green areas
 		show feasible CoM accelerations due to torque limits.  Blue and red areas
@@ -343,7 +344,7 @@ To explore the mechanism of human force perception has a key role in the CoDyCo 
 
 The study about human force perception and learning through compliant contact dynamics helps to design and develop a more natural and dynamical contact to humanoid robots. To explore the human learning compliant force dynamics through physical interactions, we generated four different compliant forces (two linear and two non-linear cases) by changing the stiffness values (See Figure \ref{fig:forcedyn}).
 
-\begin{figure}[h!]
+\begin{figure} 
 	\centering
 	\includegraphics[width=.7\textwidth]{UB-Figure1.png}
 	\caption{Four different force dynamics are applied. [1] Linear, [2] Non-linear (quadratic), [3] Non-linear (concave), and [4] Half-linear. The [1],[2],[3] are the same force at the end position (e.g., z=-0.12), and [2] and [4] are the same force at the half position  (e.g., z=-0.06).}
@@ -354,7 +355,7 @@ The study about human force perception and learning through compliant contact dy
 
 The stiffness values were calibrated depending on the goal position and the maximum force to be applied at this set position. The participants were asked to set the half-position and half-force after a certain repetition in order to be probed their responses whether or not they properly perceived the force dynamics. Figure \ref{fig:testrial} shows that although the performance tended to overshoot at both test trial due to the deprivation of the visual information of the target, the participants set the half-position in the similar manner regardless of the force dynamics. Conversely, there were significant differences between the three conditions at the half-force test trials.
 
-\begin{figure}[h!]
+\begin{figure} 
 	\centering
 	\includegraphics[width=.9\textwidth]{UB-Figure2.png}
 	\caption{The test trial performances averaged across 18 participants.(a) the end-effector position at the test “half-position” trial and (b) the applied force at the test “half-force” trial. The red lines indicate the ideal values based on the dynamics (see Figure 1).}
@@ -365,7 +366,7 @@ The stiffness values were calibrated depending on the goal position and the maxi
 \bigbreak
 The dynamic learning evaluation revealed that there were significant differences between three forces in the learning performance averaged across 18 participants (see Figure \ref{fig:learnerror}). The concave force was not natural, and it was needed several repetitions to understand the dynamics and also to learn how to maintain the accuracy in reaching a target. In contrast, the linear force had less efforts but the learning model maintained a stable conditions after the repetitions. The quadratic force seemed to be a “well known or natural” force among the three,but still the performance gradually improved over the course of trials. These results suggest that the force model helps the user to achieve more precise and accurate movements.
 
-\begin{figure}[h!]
+\begin{figure} 
 	\centering
 	\includegraphics[width=.9\textwidth]{UB-Figure3.png}
 	\caption{(a) Learning performance of the 18 participants along with the standard error. A big variation in the learning performance of the three different forces is observed within the initial 10 trials. 
@@ -427,7 +428,7 @@ $ F_{ext}$ is the external force received from the Haptic Master input and $F_{c
 \end{equation}
 with $\tau$ being the joint torque to be applied in the hip, knee and ankle joints of the robot model. $F_{ext}$ corresponds to the force applied by the human and measured through the Haptic master device.\\
 To maintain the initial sitting position of the joints the model needs to be equipped with a PID controller or a COM based balancing controller which will further act depending on the force applied by the human through the Haptic Master.  
-\begin{figure}[h!]
+\begin{figure} 
 \centering
 \includegraphics[width=.5\textwidth]{S2S.png}
 \caption{ The spring model in the Haptic API is used to emulate the performance of a robot model (mass) and the human applies the force along the x and z directions similar to a planar movement which is visualized using the model in real time.}
@@ -442,7 +443,7 @@ Figure {\ref{Humanarmimpedance}} presents the experimental set-up used in this a
 
 \textbf{Preliminary Results}\\
 A preliminary study was conducted to evaluate the objective of combining the dynamical task along with restricted human arm movement. This analysis help to understand the behaviour of the low level controller used in the model and influence of the human applied forces. Figure {\ref{externalforce}} illustrates the external force observed as a result of the applied forces along the x and z axis. The participant was performing a planar motion by applying force along the x and z axis within a given free space. The forces observed to be varying continuously which signifies the dynamically exploration of the user whilst maintining a higher forces. The real time visualization of the model helped the user to increase or decrease the forces along x and z directions such as to control the movement of the planar robot model.
-\begin{figure}[h!]
+\begin{figure} 
 \centering
 \includegraphics[width=.7\textwidth]{fext.png}
 \caption{ External forces applied by the participant along the x and z axis are measured using the Haptic Master device.}
@@ -450,7 +451,7 @@ A preliminary study was conducted to evaluate the objective of combining the dyn
 \end{figure}
 
 The observed torque behaviour in all the three joints of the planar model are presented in fig {\ref{torque}}. The initial joint torques are applied based on the input from the controller which later on combines with the output from the haptic master. The torque performance explains the movement followed in the planar model, with respect to the user applied forces. The torques profile stabilises at the end of 30seconds time window which is also in relation to the stabilised forces observed in fig. {\ref{externalforce}}.  
-\begin{figure}[h!]
+\begin{figure} 
 \centering
 \includegraphics[width=.7\textwidth]{tau.png}
 \caption{Resulting torque applied to the planar robot model, The torque performance varied depending on the External force applied by the user and the controller output.}
@@ -472,9 +473,9 @@ High stepping reaction time is a predictor of future falling \cite{Lord2001}, po
 Eleven young adults (23.7$\pm$4.6 years) stepped as fast and accurate as possible to a target suddenly illuminated in front of one of their legs. On 1/3 of the steps the target jumped shortly before foot liftoff, forcing quick and potentially destabilizing adjustments. This task was performed on a moveable platform in three conditions: platform still (baseline, 60 steps and post-adaptation, 30 steps) or moving (adaptation, 90 steps). When moving, the platform doubled subjects’ mediolateral center of mass movement (COM) in real time. Thus, subjects had to plan a smaller COM movement to generate a weight shift appropriate for stepping to targets.
 We calculated stepping errors (distance between the target and the foot at landing), step onset time (time between target onset and foot liftoff) and step execution time (time between liftoff and landing). Overall performance was analyzed using rANOVA (target jump x condition) and differences between the first and last five steps of each condition using paired samples t-tests.
 
-\begin{figure*}[!ht]
+\begin{figure*}
 	\centering
-	\includegraphics[width=0.6\linewidth]{"methods"}
+	\includegraphics[width=0.4\linewidth]{"methods"}
 	\caption{Experimental setup. The subject is standing on a movable platform and a lighted area appears on the floor in front of his leg, serving as a stepping cue and target.}
 	\label{fig:expSetup}
 	\vspace{-4 mm}
@@ -483,23 +484,23 @@ We calculated stepping errors (distance between the target and the foot at landi
 \textbf{Results}\\
 Target jumps increased step execution times and stepping errors (by 50 ms and 49.5 mm, both p $<$ .01).  Step onsets were delayed in adaptation (by 7 ms), but faster in post-adaptation (by 24 ms). Target jumps delayed step onset by 10 ms in baseline and adaptation (condition x jump interaction, p = .03). Step onsets were faster in the first 5 steps of post- adaptation, compared to last adaptation steps (by 37 ms, p = .01, jump). Stepping errors increased at the start of adaptation (by 19.5 mm, p = .02, no jump), but decreased over time, within adaptation (by 21.8 mm, p = .03, target jump) and post- adaptation (by 7.5 mm, p = .047, no jump).
 
-\begin{figure*}[!ht]
+\begin{figure*}
 	\centering
-	\includegraphics[width=0.6\textwidth]{"step error-all steps"}
+	\includegraphics[width=0.4\textwidth]{"step error-all steps"}
 	\caption{Stepping errors. Error bars indicate standard deviation. Statistics are given in the text.}
 	\label{fig:stepErrorAll}
 \end{figure*}
 
-\begin{figure*}[!ht]
+\begin{figure*}
 	\centering
-	\includegraphics[width=0.6\textwidth]{"step onset time-all steps"}
+	\includegraphics[width=0.4\textwidth]{"step onset time-all steps"}
 	\caption{Step onset time (time from the cue to step to foot lift-off). Error bars indicate standard deviation. Statistics are given in the text.}
 	\label{fig:stepOnsetTimeAll}
 \end{figure*}
 
-\begin{figure*}[!ht]
+\begin{figure*}
 	\centering
-	\includegraphics[width=0.6\textwidth]{"step exec time-all steps"}
+	\includegraphics[width=0.4\textwidth]{"step exec time-all steps"}
 	\caption{Step execution time (time from step onset to landing). Error bars indicate standard deviation. Statistics are given in the text.}
 	\label{fig:stepExecTimeAll}
 \end{figure*}
@@ -517,18 +518,18 @@ Each of the experimental conditions was performed twice: with the platform off o
 Kinematics of the COM position were high pass filtered using a second-order zero-lag Butterworth filter with a cutoff frequency of 0.1 Hz and then low pass filtered using a second-order zero-lag Butterworth filter with a cutoff frequency of 5 Hz. Outcome measures include standard deviation of the COM displacement (SD) and the range of COM displacement calculated as the difference between the 95th and 5th percentile of COM displacement, both relative to the platform movement (i.e., reflecting postural sway).
 Data processing was performed using MATLAB 2015b (Mathworks, Natick, MA, USA). A two-way repeated measures ANOVA with condition (EO, EC, memory, Stroop) and platform (on, off) was performed using SPSS Statistics 20 (IBM, Chicago, IL, USA), with a level of statistical significance set to α = 0.05. Range data were log-transformed to conform to normality.
 
-\begin{figure*}[!ht]
+\begin{figure*}
 	\centering
-	\includegraphics[width=0.7\textwidth]{"SD1"}
+	\includegraphics[width=0.4\textwidth]{"SD1"}
 	\caption{SD of the COM displacement (mm).}
 	\label{fig:COMsd}
 \end{figure*}
 
 SD of COM displacement (mean $\pm$ std. error of the mean) was smaller when the platform was off (0.47$\pm$0.05 EO, 0.58$\pm$0.07 EC, 1.00$\pm$0.19 memory, 1.28$\pm$0.38 Stroop), compared to on (0.97$\pm$0.16 EO, 2.05$\pm$0.68 EC, 2.22$\pm$0.52 memory, 2.57$\pm$0.91 Stroop). We found a statistically significant effect of platform ($p = 0.009$) on the COM range (Figure \ref{fig:COMsd}).
 
-\begin{figure*}[!ht]
+\begin{figure*}
 	\centering
-	\includegraphics[width=0.7\textwidth]{"range1"}
+	\includegraphics[width=0.4\textwidth]{"range1"}
 	\caption{Range of the COM displacement (mm).}
 	\label{fig:COMrange}
 \end{figure*}

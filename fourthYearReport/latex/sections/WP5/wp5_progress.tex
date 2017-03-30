@@ -20,7 +20,7 @@ desired direction.  The desired direction of the CoM movement in the beginning
 of the motion is horizontal.  The maximum joint torques are assumed to be
 $40$N.m. for the legs and $20$N.m. for the arms.
 %
-\begin{table}[h]
+\begin{table} 
   \centering
   \caption{iCub joint angles in a sitting configuration.  Angles are in
     degrees.}
@@ -85,11 +85,61 @@ decreased by $\%3$.
 \end{figure}
 %
 
+\emph{Contribution:} Real-time human inverse dynamics computation and visualisation.
+
+\emph{Abstract:} The understanding of the human dynamics and the way in which its contribute can 
+be applied to enhance a physical human-robot interaction (pHRI) are two of the 
+most promising challenges for the scientific community due mainly to their 
+enormous and to-be-developed potential in industrial scenarios, ergonomics 
+context, as well as in assistive and rehabilitation fields. 
+Classical robots are built to act \emph{for} humans, but in order to adapt 
+their functionality to the current technological progress, the new generation 
+of robots will have to collaborate \emph{with} humans.  This implies that the 
+robots will be endowed with the capability to control physical collaboration 
+through intentional interaction with humans.
+To achieve this condition, robots have to know mandatorily the dynamics 
+(contact forces, internal forces, joint torques) of the human agent who 
+they are interacting with.  However the current state of the robot knowledge 
+in observing human whole-body dynamics  yields to non-proficient and unadaptive 
+interactions.
 
 
-\subparagraph{Deviations from workplan}  
+\emph{4yr Achievements}:
+During year four,  IIT investigated a physical-human a pHRI by starting to retrieve the real-time human inverse dynamics estimation during a pHRI (Achievement A1) and the visualisation of the interaction scenario (Achievement A2).
 
-No deviations.
+\begin{itemize}
+\item[A1] Real-time human inverse dynamics estimation
+
+The core of the analysis consists in the real-time estimation of a dynamic variable $\bm d$ that contains all the information of the kinematics and dynamics of each link (and the related coupled joint) in the human model. 
+IIT investigated also the advantage in using this estimation algorithm  by adding progressively  the different sensors data at each computation and the result was that the variance associated to the estimated dynamic variables consequently decreases, making each time the estimation more reliable.
+
+\begin{figure}
+  \centering
+    \includegraphics[width=1\columnwidth]{images/full_A1}
+  \caption{From left to right: \emph{i)} Overview of the estimation algorithm. \emph{ii)} Sketch of a pHRI experiment where a subject graps and pushes down the robot. \emph{iii)} Top view of the experiment position layout. \emph{iiii)} Sequence of the experimental pHRI.}
+ \label{fig:schemeAlgorithm1}
+\end{figure}
+
+\begin{figure}
+  \centering
+    \includegraphics[width=1\columnwidth]{images/sensorFusion_results}
+  \caption{From left to right:  \emph{i)} DEscription of three cases for progressive addition of sensors. \emph{ii)} Mean variance of the torque at the left and right ankle in the three sensor cases. }
+ \label{fig:schemeAlgorithm2}
+\end{figure}
+
+
+\item[A2] ROS-based visualizer
+
+IIT developed a software component to provide to Rviz (ROS-based visualizer) information about kinematics and dynamics of human subjects while physically interacting with robots.
+
+\begin{figure}
+  \centering
+    \includegraphics[width=0.8\columnwidth]{images/Rviz_pHRI}
+  \caption{Visualizer of pHRI scenario: real interaction (on the left side), viasualization on Rviz for both human and robot models.  }
+ \label{fig:schemeAlgorithm3}
+\end{figure}
+
+\end{itemize}
 
 %\begin{itemize}
 %\item[-] \emph{\color{red}[A summary of progress towards objectives and details for each task;]}
