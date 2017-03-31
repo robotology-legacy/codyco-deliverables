@@ -13,7 +13,9 @@ The progress for each task are described hereafter.
 
 \input{sections/WP4/wp4_progress_T42_IIT}
 
-\subparagraph{Learning the Prioritization of Tasks (T4.4) (TUD: 4PM)}
+TUD extended its work on movement planning using recurrent neural networks. A novel factorized population code representation was developed that can plan complex movement plans in humanoid robots in less then 200 milliseconds and adapts to dynamically changing constraints in real-time. The factorized representation was presented at a international robotics conference~\cite{tanneberg2016deep}. A paper on the closed loop control and real-time planning is currently in progress of writing. 
+
+\subparagraph{Learning the Prioritization of Tasks (T4.4)}
 
 TUD continued its research on learning task prioritizations from human demonstrations using probabilistic models. This work is currently under review and 
 a draft of the paper was added to Deliverable D4.3 in Section 5.  Here is a short summary of the approach. 
@@ -42,7 +44,7 @@ joint space. We evaluate our approach on reaching movements
 under constraints with a redundant bi-manual planar robot
 and the humanoid robot iCub. 
 
-\subparagraph{Learning the Prioritization of Tasks (T4.4) (INRIA: 4.02PM)}
+\subparagraph{Learning the Prioritization of Tasks (T4.4)}
 
 INRIA continued its research on automatically learning soft task priorities (or task weights) using stochastic optimization algorithms. The research is presented in Deliverable D4.3. 
 
@@ -52,7 +54,7 @@ In a first paper \cite{Modugno_PICRA_2016}, in collaboration with TUD, we invest
 
 In a second paper \cite{modugno2016learning} we focused on learning soft task priorities while guaranteeing that the generated behaviors are ``safe'', i.e., that they never violate any of the constraints of the robot and of the system. Indeed, CMA-ES was chosen because of its good exploration properties and ease of use (very few parameters to tune), however it does not take into account constraints violations during the exploration. In \cite{Modugno_PICRA_2016}, the solutions that were not feasible were simply discarded. In \cite{modugno2016learning} we investigated constrained stochastic optimization algorithms, focusing on three variants of CMA-ES: CMA-ES with vanilla constraints, CMA-ES with adaptive constraints and (1+1)-CMA-ES with covariance constrained adaptation. We compared the three algorithms on different benchmarks: classical constrained optimization problems with known solutions and two constrained robotics problems of our design. We found that the third method satisfies our requirements, specifically it always leads to solutions that never violate constraints. We showed the effectiveness of the approach by generating safe whole-body behaviors of iCubNancy01.
 
-\subparagraph{Task compatibility optimization (T4.4) (UPMC: 1.87PM)}
+\subparagraph{Task compatibility optimization (T4.4)}
 
 As part of WP4 and WP3, UPMC has worked on improving its approach for task compatibility optimization. Indeed, highly redundant robots, such as humanoids, can execute multiple simultaneous tasks allowing them to perform complex whole-body behaviors. Unfortunately, tasks are generally planned without close consideration for the underlying controller being used, or the other tasks being executed. Because of this, tasks are often incompatible with one another and/or the system constraints, and cannot always be accomplished simultaneously. These incompatibilities can be managed using prioritization and gains, but tuning them is tedious. In this work, an alternative approach is taken and a task compatibility optimization loop which automatically improves task compatibility by modifying their trajectories using reinforcement learning is developed. To do so, the tasks are iteratively optimized by minimizing a compatibility cost, which measures the compatibility between one or more tasks, and the system constraints. Using two common scenarios, It is shown that task compatibility optimization results in whole-body behaviors which better match the original intent of the task combination without the need for manual tuning of task/controller parameters, heuristics, or re-planning. These results extend the contributions \cite{lober-HUMANOIDS2014} and \cite{lober_IROS2015} both in terms of achieved performances and computational efficiency. This work is described in \cite{deliverable33} and was submitted for presentation at a robotics journal~\cite{lober2017RAL-IROS}.
 
