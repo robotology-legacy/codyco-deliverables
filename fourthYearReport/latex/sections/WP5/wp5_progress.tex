@@ -25,7 +25,7 @@ $40$N.m. for the legs and $20$N.m. for the arms.
   \caption{iCub joint angles in a sitting configuration.  Angles are in
     degrees.}
   \begin{tabular}{|c|c||c|c||c|c|}
-    \hline hip pitch   & $91$   & shoulder roll & $12$ & torso pitch & $-5$ \\
+    \hline hip pitch   & $91$   & shoulder roll & $12$ & torso pitch & $18$ \\
     \hline hip roll    & $12$   & shoulder yaw  & $80$ & torso roll  & $0$   \\
     \hline hip yaw     & $0$    & wrist pronos  & $0$  & torso yaw   & $0$   \\
     \hline knee        & $-104$ & wrist pitch   & $0$  & neck pitch  & $0$ \\
@@ -44,19 +44,13 @@ $40$N.m. for the legs and $20$N.m. for the arms.
 \end{figure}
 %
 
-
 The CoM dynamic manipulability for different arm configurations
 (i.e. different $\alpha$ and $\beta$) is shown in Figure \ref{3Dfig}.  The
-maximum manipulability is at $\alpha = -29^\circ$ and $\beta = 32^\circ$.
+maximum manipulability is at $\alpha = -33^\circ$ and $\beta = 30^\circ$.
 Figures \ref{2Dfig_shoulder} and \ref{2Dfig_elbow} show CoM manipulability
-with respect to the shoulder angle and the elbow angle, respectively.  As it
-can be seen in these figures, in case the optimum values are not feasible,
-best values for the shoulder angle value is between $-20^\circ$ to $-40^\circ$
-and for the elbow angle is about $30^\circ$.  Figures \ref{icub_optimum} shows
-the iCub's configurations when the arms angles are in their optimum values.
-Figrue \ref{icub_suboptimum} shows the iCub's configuration when $\alpha =
--40^\circ$ and $\beta = 32^\circ$.  In this case, the manipulability is
-decreased by $\%3$.
+with respect to the shoulder angle and the elbow angle, respectively.  Figure
+\ref{icub_optimum} show the iCub's configuration when the arms angles are in
+their optimum values.
 %
 \begin{figure}
   \centering \includegraphics[scale=0.4]{2DfigureShoulder.pdf}
@@ -76,14 +70,14 @@ decreased by $\%3$.
   \caption{iCub in optimum sitting configuration.}
   \label{icub_optimum}
 \end{figure}
-%
-\begin{figure}
-  \centering
-  \includegraphics[scale=0.4]{icub_suboptimum}
-  \caption{iCub in near-optimum sitting configuration.}
-  \label{icub_suboptimum}
-\end{figure}
-%
+%% %
+%% \begin{figure}
+%%   \centering
+%%   \includegraphics[scale=0.4]{icub_suboptimum}
+%%   \caption{iCub in near-optimum sitting configuration.}
+%%   \label{icub_suboptimum}
+%% \end{figure}
+%% %
 
 \emph{Contribution:} Real-time human inverse dynamics computation and visualisation.
 
