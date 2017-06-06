@@ -1,0 +1,289 @@
+
+%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
+%%% Simple style file for EU report Documents
+%%% Created by: Matteo Moci (matteo.moci@gmail.com), modified by Michele Minno (minno@cybion.it) adapting a template by 
+%%% Domenico Lembo (lembo@dis.uniroma1.it) adapting a similar template
+%%%             by Diego Calvanese, calvanese@inf.unibz.it
+%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
+
+%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
+%%% NOTE: uses packages: lastpage, fancyhdr
+%%% If package lastpage is not available simply delete the line in this file
+%%% where it is imported. In this case you will have to provide manually the
+%%% number of the last page.
+%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
+
+%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
+%%% USAGE:
+%%%
+%%% \usepackage[options]{report}
+%%%
+%%% Available options are:
+%%%
+%%% - headers     : headers and footers in report format (default)
+%%% - noheaders   : plain headers style
+%%%
+%%% NOTE: package fancyhdr is required if option headers is used
+%%%
+%%% Available commands are
+%%%
+%%%   \reportMaketitle : generates titlepage in collective format
+%%%   \reportChangelog : generates changelog page
+%%%
+%%%
+%%% The following commands can be used to define the values in the titlepage
+%%% (the default values are the ones used below):
+%%%
+%%%   \reportDocnumber{D??}
+%%%   \reportTitle{}
+%%%   \reportAuthor{}
+%%%   \reportAffiliation{}
+%%%   \reportReviewer{}
+%%%   \reportCoordinator{}
+%%%   \reportActivityNumber{Activity?}
+%%%   \reportActivity{}
+%%%   \reportDoctype{report}
+%%%   \reportClassification{Confidential}
+%%%   \reportDistribution{collective.IT Consortium}
+%%%   \reportStatus{Draft}
+%%%   \reportFile{}
+%%%   \reportVersion{}
+%%%   \reportDate{\today}
+%%%   \reportPages{\pageref{LastPage}}
+%%%   \reportYear{\the\year}  % the value used in the copyright notice
+%%%
+%%%   \reportChangelog{~ & ~ &}
+%%%       % entry for tabbing environment with three columns
+%%%       % use \\\hline to separate lines
+%%%
+%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
+
+\def\filename{report.sty}
+\def\fileversion{1.1}
+\def\filedate{2013/03/04}
+\NeedsTeXFormat{LaTeX2e}
+\ProvidesPackage{report}[\filedate\space\fileversion\space LaTeX2e package]
+\typeout{Package: `\filename' (Style file for official report documents)
+ \fileversion\space <\filedate> }
+\newif\if@reportHeaders
+\DeclareOption{headers}{\@reportHeaderstrue}
+\DeclareOption{noheaders}{\@reportHeadersfalse}
+\ExecuteOptions{headers}
+\ProcessOptions*
+\if@reportHeaders
+  \RequirePackage{fancyhdr}
+\fi
+\RequirePackage{lastpage}
+\AtBeginDocument{\reportHeaders}
+
+%\RequirePackage{xcolor}
+%\RequirePackage{color}
+
+\headheight 22pt
+\topmargin -1cm
+\textheight 23cm
+\footskip 40pt
+\oddsidemargin -0.6mm
+\evensidemargin -0.6mm
+\textwidth 16cm
+
+\sloppy
+
+%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
+%%% Options
+%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
+
+\newcommand{\reportDocnumber}[1]{\def\@reportDocnumber{#1}}
+\newcommand{\reportTitle}[1]{\def\@reportTitle{#1}}
+\newcommand{\reportAuthor}[1]{\def\@reportAuthor{#1}}
+\newcommand{\reportResponsibleAuthor}[1]{\def\@reportResponsibleAuthor{#1}}
+\newcommand{\reportResponsiblePartner}[1] {\def\@reportResponsiblePartner{#1}}
+\newcommand{\reportAffiliation}[1]{\def\@reportAffiliation{#1}}
+\newcommand{\reportReviewer}[1]{\def\@reportReviewer{#1}}
+\newcommand{\reportCoordinator}[1]{\def\@reportCoordinator{#1}}
+\newcommand{\reportDeliveryDate}[1]{\def\@reportDeliveryDate{#1}}
+\newcommand{\reportActivityNumber}[1]{\def\@reportActivityNumber{#1}}
+\newcommand{\reportActivity}[1]{\def\@reportActivity{#1}}
+\newcommand{\reportDoctype}[1]{\def\@reportDoctype{#1}}
+\newcommand{\reportClassification}[1]{\def\@reportClassification{#1}}
+\newcommand{\reportDistribution}[1]{\def\@reportDistribution{#1}}
+\newcommand{\reportStatus}[1]{\def\@reportStatus{#1}}
+\newcommand{\reportFile}[1]{\def\@reportFile{#1}}
+\newcommand{\reportVersion}[1]{\def\@reportVersion{#1}}
+\newcommand{\reportDate}[1]{\def\@reportDate{#1}\date{#1}}
+\newcommand{\reportYear}[1]{\def\@reportYear{#1}}
+\newcommand{\reportPages}[1]{\def\@reportPages{#1}}
+\newcommand{\reportChangelog}[1]{\def\@reportChangelog{#1}}
+\newcommand{\reportProjectStartingDate}[1]{\def\@reportProjectStartingDate{#1}}
+\newcommand{\reportProjectEndDate}[1]{\def\@reportProjectEndDate{#1}}
+\newcommand{\reportProjectAcronym}[1]{\def\@reportProjectAcronym{#1}}
+\newcommand{\reportProjectTitle}[1]{\def\@reportProjectTitle{#1}}
+\newcommand{\reportContractNumber}[1]{\def\@reportContractNumber{#1}}
+\newcommand{\reportProjectCoordinator}[1]{\def\@reportProjectCoordinator{#1}}
+\newcommand{\reportProjectUrl}[1]{\def\@reportProjectUrl{#1}}
+\newcommand{\reportFrameworkProgramme}[1]{\def\@reportFrameworkProgramme{#1}}
+
+
+\newcommand{\reportWorkpackage}[1]{\def\@reportWorkpackage{#1}}
+\newcommand{\reportEditors}[1]{\def\@reportEditors{#1}}
+\newcommand{\reportContributors}[1]{\def\@reportContributors{#1}}
+\newcommand{\reportReviewers}[1]{\def\@reportReviewers{#1}}
+\newcommand{\reportAbstract}[1]{\def\@reportAbstract{#1}}
+\newcommand{\reportKeywordList}[1]{\def\@reportKeywordList{#1}}
+
+
+
+%% between c-storey braces a default choice:
+%% it appears in the document if the corresponding
+%% command is missing in the latex source.
+
+%%%%%%%%%%%%%%%
+% font setup
+%\usepackage[T1]{fontenc}
+%\RequirePackage{graphicx}
+%\usepackage{graphicx}
+%\usepackage[scaled]{berasans}
+%% To set the base font of the document to be sans serif
+\renewcommand*\familydefault{\sfdefault}  
+%%%%%%%%%%%%%%%
+
+\reportDocnumber{D?.? - default number}
+\reportTitle{default report title}
+\reportAuthor{Some report authors}
+\reportResponsibleAuthor{some responsible}
+\reportAffiliation{default affiliation}
+\reportReviewer{default reviewer}
+\reportCoordinator{default coordinator}
+\reportActivityNumber{default activity number}
+\reportActivity{default activity}
+\reportDoctype{default document type} %% report or Prototype
+\reportClassification{default classification} %% Public or Confidential
+\reportDistribution{default distribution}
+\reportStatus{default draft} %%Draft of Final
+\reportFile{default file}
+\reportVersion{default version 1.0}
+\reportDate{\today}
+\reportYear{\the\year}
+\reportPages{\pageref{LastPage}}
+\reportChangelog{&&}
+\reportProjectStartingDate{default 1st January 1970}
+\reportProjectEndDate{default 2nd January 1970}
+\reportProjectTitle{default a slightly longer description of project title}
+\reportProjectAcronym{default project acronym}
+\reportContractNumber{111111}
+\reportProjectCoordinator{default project coordinator}
+\reportFrameworkProgramme{framework programme}
+
+%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
+%%% Here it is
+%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
+
+\newcommand{\reportHeaders}{
+ \if@reportHeaders
+   %headers
+   %\lhead{\@reportProjectAcronym}
+   \lhead{\reportDocnumber - \reportTitle}
+   \rhead{Version \@reportVersion, \@reportDate}
+   %
+   %footers
+   %\lfoot{\copyright \@reportYear/\@reportProjectAcronym -- \@reportDate}
+   \lfoot{Project Title: \@reportProjectAcronym \\ 
+   Project Coordinator: \@reportProjectCoordinator}
+   \cfoot{\thepage/\pageref{LastPage}}
+   %\rfoot{\@reportDocnumber -- v.\@reportVersion}
+   \rfoot{Contract No. \@reportFrameworkProgramme-\@reportContractNumber \\ \bf{\@reportProjectUrl}}
+   %footers   
+   \renewcommand{\headrulewidth}{0.4pt}
+   \renewcommand{\footrulewidth}{0.4pt}
+   \pagestyle{fancy}
+   \thispagestyle{fancy}
+ \else
+   \pagestyle{plain}
+ \fi
+ }
+
+\newcommand{\reportMaketitle}{
+
+\begin{center} 
+\thispagestyle{empty}
+\setcounter{page}{0}
+
+\includegraphics[]{images/seventh.png}
+\includegraphics[]{images/codycoLogo.png}
+%\vspace*{1em}
+
+\vspace{0.5em}
+{\LARGE\bf FP7-\@reportContractNumber}   
+
+\vspace{0.5em}
+ \begin{tabular}{c}
+ \large\it\bf\@reportProjectTitle
+ \end{tabular} 
+  
+\vspace{0.5em}
+ \framebox{
+ \begin{minipage}{0.8\textwidth}
+ \begin{center}
+\Large\bf \@reportDocnumber \\ \@reportTitle
+ \end{center}
+ \end{minipage}
+ } 
+ 
+%% editor, responsible partner, status-version, date, ec distribution
+\vspace{1em}
+    \begin{tabular}{ | p{5cm} | p{9cm} | }
+    \hline
+    \textbf{Editor(s)} & \@reportAuthor \\ \hline
+    \textbf{Responsible Partner} & \@reportResponsiblePartner \\ \hline
+    \textbf{Affiliations} & \@reportAffiliation \\ \hline
+    \textbf{Status-Version}: & \@reportStatus-\@reportVersion \\ \hline
+    \textbf{Date}: & \@reportDate \\ \hline
+    \textbf{EC Distribution}: & \@reportDistribution \\ \hline
+    \textbf{Project Number}: & \@reportContractNumber \\ \hline
+    \textbf{Project Title}: & \@reportProjectTitle \\ \hline
+    \end{tabular}
+    
+       \vspace{0.3em}
+    \begin{tabular}{ | p{5cm} | p{9cm} | }
+    \hline
+    \textbf{Title of Report}: & \@reportTitle \\ \hline
+    \textbf{Date of delivery to the EC}: & \@reportDeliveryDate \\ \hline
+    \end{tabular}
+
+       \vspace{0.3em}
+    \begin{tabular}{ | p{5cm} | p{9cm} | }
+    \hline
+    \textbf{Workpackage responsible for the Report} & \@reportWorkpackage \\ \hline
+    \textbf{Editor(s)}: & \@reportEditors \\ \hline
+    \textbf{Contributor(s)}: & \@reportContributors \\ \hline
+    \textbf{Reviewer(s)}: & \@reportReviewers \\ \hline
+    \textbf{Approved by}: & All Partners \\ \hline
+    \end{tabular}
+%    
+%       \vspace{0.3em}
+%\begin{tabular}{ | p{5cm} | p{9cm} | }
+%    \hline
+%    \textbf{Abstract} & \@reportAbstract \\ \hline
+%    \textbf{Keyword List}: & \@reportKeywordList \\ \hline
+%    \end{tabular}
+    
+
+\end{center}
+
+%\vskip 2em
+  \vspace{0.3em}
+  
+\par
+\noindent
+{\renewcommand{\arraystretch}{1.1}}
+
+\clearpage
+\ifx\@empty\@reportAbstract{}
+\else
+ \fi
+}
+
+%%% Local Variables:
+%%% mode: latex
+%%% TeX-master: t
+%%% End:

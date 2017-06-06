@@ -1,0 +1,231 @@
+%% Template for EU report, using the report.sty style file
+
+\documentclass[12pt,a4paper,twoside]{article}
+%% common package
+\usepackage[headers]{report}
+\usepackage{xspace}
+\usepackage{verbatim}
+\usepackage[usenames]{color}
+\usepackage[usenames,dvipsnames,table]{xcolor}
+\usepackage[pdftex,dvips]{graphicx}
+\usepackage{url}
+\usepackage{array}
+\usepackage{color}
+\usepackage{longtable}
+\usepackage{amsmath}
+\usepackage{bm}
+\usepackage[T1]{fontenc}
+\usepackage{lmodern}
+\usepackage{textcomp}
+
+\renewcommand{\labelenumii}{\theenumii}
+\renewcommand{\theenumii}{\theenumi.\arabic{enumii}.}
+
+%%
+
+%%insert here other packages needed by sections
+
+%%
+
+%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
+%%% Titlepage
+%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
+
+% declaration of variables used in style
+\reportDocnumber{Final report}
+\reportTitle{Final project objectives report}
+
+\reportAuthor{CoDyCo Consortium}
+\reportResponsiblePartner{IIT}
+\reportAffiliation{% Insert here authors affiliations
+ IIT, TUD, UPMC, UB, JSI.
+}
+
+\reportReviewer{}
+\reportCoordinator{Francesco Nori}
+\reportActivityNumber{1} %% n=1,..,10
+\reportActivity{RTD}
+\reportDoctype{Periodic report} %% or Prototype
+\reportClassification{Public} % or Consortium
+\reportDistribution{Consortium} %
+\reportStatus{Draft} % Draft or Final
+\reportDeliveryDate{28/04/2017}
+\reportVersion{1.0}
+\reportDate{Apr.~28, 2017}
+\reportYear{2017}
+\reportPages{\pageref{LastPage}}
+\reportChangelog{v.1.0 & Feb 13, 2017 & First draft %%\\\hline
+%%              v.2.0 & Feb 20, 2007 & Final version
+}
+\reportProjectStartingDate{1st March 2017}
+\reportProjectEndDate{28th March 2017}
+\reportProjectAcronym{CoDyCo}
+\reportProjectTitle{Whole-Body Compliant Dynamical Contacts in Cognitive Humanoids}
+ \reportContractNumber{600716}
+ \reportProjectCoordinator{Istituto Italiano di Tecnologia}
+ \reportProjectUrl{www.codyco.eu}
+ \reportFrameworkProgramme{FP7}
+ 
+ \reportWorkpackage{All work packages}
+ \reportEditors{Francesco Nori, Vincent Padois, Jan Peters, Jan Babic, Michael Mistry, Serena Ivaldi, Elmar Rueckert}
+ \reportContributors{Entire CoDyCo consortium}
+ \reportReviewers{-}
+\reportAbstract{The scope of the current report is to present the results ...}
+\reportReviewers{reviewers}
+\reportKeywordList{kw, list, etc, }
+
+%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
+%%% Sections
+%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
+
+%% constants{}
+
+%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
+%%% Misc. by Vincent
+%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
+\usepackage{titlesec}
+\newcommand{\sectionbreak}{}
+\graphicspath{{./images/}}
+\usepackage{pdfpages}
+\usepackage{caption}
+\usepackage{subcaption}
+\usepackage{multirow}
+\usepackage{appendix}
+\usepackage{hyperref}
+\hypersetup{
+    bookmarks=true,         % show bookmarks bar?
+    unicode=false,          % non-Latin characters in Acrobat’s bookmarks
+    pdftoolbar=true,        % show Acrobat’s toolbar?
+    pdfmenubar=true,        % show Acrobat’s menu?
+    pdffitwindow=false,     % window fit to page when opened
+    pdfstartview={FitH},    % fits the width of the page to the window
+    pdftitle={yearReport.pdf},    % title
+    pdfauthor={Francesco Nori},     % author
+    pdfsubject={Year 4 report for the CODYCO project},   % subject of the document
+    pdfcreator={Francesco Nori},   % creator of the document
+    pdfproducer={Francesco Nori}, % producer of the document
+    pdfkeywords= {}, % list of keywords
+    pdfnewwindow=true,      % links in new window
+    colorlinks=true,       % false: boxed links; true: colored links
+    linkcolor=black,          % color of internal links (change box color with linkbordercolor)
+    citecolor=black,        % color of links to bibliography
+    filecolor=black,      % color of file links
+    urlcolor=black           % color of external links
+}
+
+%%
+
+%% Morteza's math
+\newcommand{\Bc}{\mathbf{c}}
+\newcommand{\BJ}{\mathbf{J}}
+\newcommand{\BW}{\mathbf{W}}
+\newcommand{\Bq}{\mathbf{q}}
+\newcommand{\R}{\mathcal{R}}
+\newcommand{\Btau}{\boldsymbol{\tau}}
+
+
+%%%%%%%%%%%%%%%%%%%%%%%%%%%%%% BEGIN DOCUMENT
+\begin{document}
+
+\reportMaketitle
+
+
+%%TODO move to style
+\newcolumntype{L}[1]{>{\raggedright\let\newline\\\arraybackslash\hspace{0pt}}m{#1}}
+\newcolumntype{C}[1]{>{\centering\let\newline\\\arraybackslash\hspace{0pt}}m{#1}}
+\newcolumntype{R}[1]{>{\raggedleft\let\newline\\\arraybackslash\hspace{0pt}}m{#1}}
+
+\clearpage
+
+\setcounter{tocdepth}{5}
+
+\newpage
+\renewcommand*\contentsname{Table of Contents}
+\renewcommand*\listfigurename{Index of Figures}
+\tableofcontents
+\newpage
+\listoffigures
+\newpage
+
+%%%%%%%%%%%%%%%%%%%%%%%% Start report content here.
+
+\section{Project objectives}
+
+\subsection{Overview}
+
+The specificity of CoDyCo relies on the fact that the progress beyond the state of the art is guided by the yearly implementation on the iCub humanoid. Within this context, iCub is a peculiar platform being the only humanoid integrating whole-body distributed force and tactile sensors. In this sense CoDyCo specific objectives were to design and implement the control of whole-body posture during physical human robot interaction. Other long term objectives involve setting up the necessary infrastructure (human experimental protocols, software infrastructure, learning and control specifications) for leveraging the activities in previous years. 
+
+
+\subsection{Work progress and achievements during the period}
+
+\subsubsection{Progress overview and contribution to the research field}
+
+All the CoDyCo objectives have been attained. Here is a list of the CoDyCo achievements. 
+\begin{enumerate}
+ 
+\item First year achievements:
+\begin{enumerate}
+\item Design and implementation of an open-source simulator environment for the iCub and digital human whole-body motion simulation. After a consortium shared effort, it was decided to adopt Gazebo \url{http://gazebosim.org} as a basis for the simulator. Gazebo offers a structured software interface (plugins) which was used to export a YARP interface to simulated robots. The Gazebo-YARP plugin source code is available on github, at the address \url{https://github.com/robotology/gazebo_yarp_plugins}. The use of Gazebo was chosen on the basis of a public survey \url{http://arxiv.org/abs/1402.7050} and on the results of a discussion conducted in Paris during a workshop organized at ISIR.
+
+\item Design and implementation of a whole-body software abstraction layer \url{https://github.com/robotology/codyco/tree/master/src/libraries/wholeBodyInterface} which represents the backbone of the CoDyCo software architecture, interface and module structure.
+
+\item Design and definition of human experimental protocols and simplified models for whole-body motion with multiple contacts. After an extensive literature review (D2.1), JSI conducted preliminary studies on examining functional role of supportive hand contact while balancing.
+
+\item Design and test of state of the art control strategies for whole-body motion with multiple contacts. Realization of a solver for the whole-body reactive control that provides an expressive and rich description of the control problem as well as an efficient way of solving it. Implementation of the results in a whole-body control validation scenario in presence of multiple contacts. 
+
+\item Preliminary studies on learning methods suitable for tasks that involve many uncertain contacts. Design of fast regression methods that can deal with well structured input noise. Methods for learning how to combine elementary control tasks.
+\end{enumerate}
+
+\item Second year achievements: 
+
+\begin{enumerate}
+
+\item Design, implementation and maintenance of the whole-body control software infrastructure. The infrastructure consists of several modules which significantly improved the controller accuracy and robustness thanks to: a module for whole-body torques estimation, a module for force/torque sensors calibration, a module for whole-body dynamics identification and a module for dynamics estimation. 
+
+\item Design of experimental protocols and data collection of experiments for studying humans in multi-contact interaction with the environment. This includes an experiment on hand-contact assisted balancing, a metric for whole-body stability characterisation, an experiment of human robot physical interaction and a study on collaborative human-robot physical interaction.
+
+\item Design and simulation of whole-body control strategies in presence of non-rigid contacts. Experiments on postural control under multiple environmental contacts while controlling the operational space dynamics. 
+
+\item Development of a theoretical framework for representing movement primitives within probabilistic contexts. Design of a model-free probabilistic representation for simultaneous representation of kinematic and force trajectories. Preliminary studies on the problem of learning strategies to adapt temporal activation of low-level primitives and to deal with interferences in combining multiple whole-body tasks. 
+
+\item Implementation of the second year validation scenario consisting in whole-body motion control subject to postural, contact and goal-directed (Cartesian) constraints.
+
+\end{enumerate}
+
+\item Third year achievements:
+
+\begin{enumerate}
+
+\item Release of an open-source software for contact compliance estimation.
+
+\item Release of an open-source software for floating-base estimation.
+
+\item Models of human interaction with compliant contacts.
+
+\item Definition and solution of the theoretical framework for balancing on compliant contacts.
+
+\item Learning models of simultaneous use of elementary tasks and co-articulation of multiple tasks.
+
+\item Implementation of the third validation scenario: balancing on compliant or dynamical contacts.
+
+\end{enumerate}
+
+\item Fourth year achievements:
+\begin{enumerate}
+\item Real-time estimation of human and robot kinematics and dynamics during physical human-robot interaction. 
+
+\item Experiments of human whole-body dynamics during goal-directed tasks with contacts. A memory task and an inhibitory Stroop task were performed to explore cognitive control over balance in novel challenging conditions.
+
+\item Control algorithm based on incremental task compatibility optimization to allow incremental adaptation of operational tasks during whole-body control. 
+
+\item Probabilistic movement representation of skills to learn task prioritization from human demonstrations. 
+\end{enumerate}
+\end{enumerate}
+
+\end{document}
+
+%%% Local Variables:
+%%% mode: latex
+%%% TeX-master: t
+%%% save-place: t
+%%% End:
