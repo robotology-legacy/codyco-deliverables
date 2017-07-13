@@ -149,10 +149,41 @@
 
 The specificity of CoDyCo relies on the fact that the progress beyond the state of the art is guided by the yearly implementation on the iCub humanoid. Within this context, iCub is a peculiar platform being the only humanoid integrating whole-body distributed force and tactile sensors. In this sense CoDyCo specific objectives were to design and implement the control of whole-body posture during physical human robot interaction. Other long term objectives involve setting up the necessary infrastructure (human experimental protocols, software infrastructure, learning and control specifications) for leveraging the activities in previous years. 
 
+The aim of CoDyCo was to advance the control and cognitive understanding about robust, goal- directed whole-body motion interaction with multiple contacts. When the CoDyCo consortium wrote the project milestones, our goal was to go beyond traditional approaches. First, we wanted to propose methodologies for performing coordinated interaction tasks with complex systems. Second, to combine planning and compliance to deal with predictable and unpredictable events and contacts. Finally, we wanted to do something to validate theoretical advances in real-world interaction scenarios.
 
-\subsection{Work progress and achievements during the period}
+\subsection{Overview WP2: what we learn from humans }
 
-\subsubsection{Progress overview and contribution to the research field}
+To guide robotic developments within Codyco, we performed a series of human behavioural experiments. We recorded human subjects undergoing a set of whole body motions involving contacts with different types of environment. The set included balancing with multiple rigid contacts, goal directed actions involving supportive hand contacts while balancing on surfaces of different stability, learning to use non-rigid contacts and human assistive contact. These experiments, and the resulting data were essential for the robotic developments and provided the consortium with the guiding principles for designing robot control policies and principles for physical interaction between the robots, humans, and the environment.
+
+To guide robotic developments within Codyco, we performed a series of human behavioural experiments. 
+We recorded human subjects undergoing a set of whole body motions involving contacts with different types of environment. The set included balancing with multiple rigid contacts, 
+goal directed actions involving supportive hand contacts while balancing on surfaces of different stability, learning to use non-rigid contacts and human assistive contact. These experiments, and the resulting data were essential for the robotic developments 
+and provided the consortium with the guiding principles for designing robot control policies 
+and principles for physical interaction between the robots, humans, and the environment. 
+
+
+\subsection{Overview WP1: tools for describing the motion}
+To facilitate collaboration between CoDyCo partners, we set out from the very beginning of the project, to develop a common set of software tools shared amongst all members.  The tools we developed include methods for modelling, simulating and calibrating whole body robot behaviours with contact interactions, but importantly also for modeling human motion with contact interaction. We believe that there are underlying principles that may be applied to understanding both human and robot motion, and having a common set of tools to work with helps us draw those connections.   
+
+\subsection{Overview WP5: porting the results on the iCub}
+
+The project achievements were validated on the iCub. iCub is a humanoid robot with the size of a 4 years old child. The robot is equipped with numerous sensors that makes it unique: it has inertial sensing in the head, which acts like our vestibular system; then force/torque sensing in the arms, legs and feet, and an artificial skin consisting of distributed tactile sensors. Thanks to all these sensors, we can compute in real-time the forces that the robot exchange with the human or the environment when there is a contact on its body.
+
+The experimental validation of the controllers developed during the CoDyCo journey has required not only a deep understanding of the theoretical framework, but also a clear insight into the iCub software infrastructure and into the so called low-level. In fact, controllers usually provide the robot with high-level objectives such as balancing and compliance during user interaction. These high level objectives must be translated into nested, consequent objectives until the commands we send to the robot motors. Hence, actuation modelling, tuning, efficient controller implementation, and iterative optimization of the obtained performances have been key ingredients for the success of the CoDyCo demos. More importantly, the implementation of control algorithms on the iCub platform has served as a tool for the theoretical investigations that we had to pursue. For example, after implementing state -of-the art control algorithms we observed that some of these were simply unstable. We then focused on how to modify these algorithms to obtain stability, a fundamental property for whole body controllers.
+
+\subsection{Overview WP3: the controller that we use}
+
+Controlling humanoids in situations where multiple contacts have to be made with the environment in order to maintain or improve balance is a complex problem. This complexity is mostly due to two factors. The first one relates to the complexity of the system and of its interaction with the environment. Indeed the problem has to be looked at from a dynamics point of view where interaction forces can be accounted for. This requires an accurate knowledge of the robot model,  the fine-tuning of low-level control loops, a correct estimation of interaction forces with the environment and more generally of the system's state as well as the capability to strictly respect constraints acting on the system while achieving several tasks at the same time. The second factor is related to the hybrid nature of humanoids. Humanoids are intrinsically underactuated systems which can compensate for underactuation through unilateral physical interactions with their environment. Unilaterality means that contacts can be made and broken. Deciding when and where to break/make contact is a complex problem as it involves a preview of the effect of this discrete decision over a time horizon. In CoDyCo we  provide robust and generic control approaches to tackle the complexity of this control problem.
+
+\subsection{Overview WP4: why and where we use learning}
+
+Autonomous robots that can assist humans in situations of daily life have been a long standing vision of robotics, artificial intelligence, and cognitive sciences. A first step towards this goal is to create robots that can learn tasks triggered by visual stimuli from higher level instruction. However, learning techniques have yet to live up to this promise as only few methods manage to scale to high-dimensional manipulator or humanoid robots.We investigate the key ingredients for learning motor skills in robotics including both manipulation of static and dynamic objects that are perceived using vision or tactile sensing. The resulting approach relies on a representation of motor skills by parameterized motor primitive policies acting as building blocks of movement generation, and a learned task execution module that transforms these movements into motor commands. We discuss task-appropriate learning approaches for imitation learning, model learning and reinforcement learning for robots with many degrees of freedom that perceive the manipulated objects using robot vision or tactile sensing. Empirical evaluations on our iCub  illustrate the effectiveness and applicability to learning control when making and breaking contact with the environment.
+
+\subsection{Overview: conclusion}
+
+After four years of intensive activities, the CoDyCo consortium achieved an outstanding number of advances in the field of controlling and cognitive understanding about robust, goal-directed whole-body motion interaction with multiple contacts. Thanks to experiments with humans coordinated by Jan Babic at JSI and modeled by Mike Mistry at UB, we were able to develop novel metrics to understand when humans proficiently exploit whole-body distributed contacts. Theoretical advances in the field of control achieved by Vincent Padois at UPMC, gave robots the ability to control their whole-body posture by means of contact force regulation. Learning strategies have been coordinated by Jan Peters at TUD and gave robots the ability to adapt their control actions on the basis of human requirements. Implementation on the iCub humanoid have validated the utility of the conducted research on real-world scenarios.
+
+\section{Progress overview and contribution to the research field}
 
 All the CoDyCo objectives have been attained. Here is a list of the CoDyCo achievements. 
 \begin{enumerate}
@@ -216,9 +247,259 @@ All the CoDyCo objectives have been attained. Here is a list of the CoDyCo achie
 \end{enumerate}
 \end{enumerate}
 
-\subsection{Management}
+\section{Management}
 
 The CoDyCo project was managed successfully. Management activities included three amendments, smoothly organized by the consortium and the project officer. Specifically, an amendment was necessary to include INRIA among the partners. Finances were smoothly organized with no significant modifications with respect to the original plan. Several scientific publications have been achieved within the project. Dissemination events included summer schools, TV shows participations and invited talks at scientific events.
+
+\subsection{WP1 effort summary}
+Planned. the use of resources within WP1 was in accordance to the plans. 
+
+\begin{center}
+  \begin{tabular}{|C{1.5cm}|C{1.5cm}|C{1.5cm}|C{2cm}|C{2cm}|C{2cm}|C{2cm}|}
+    \hline \footnotesize \textbf{WP1 person months}& \footnotesize
+    \textbf{IIT}&\footnotesize \textbf{TUD}&\footnotesize \textbf{UPMC}&
+    \footnotesize \textbf{UB} &\footnotesize \textbf{JSI} & \footnotesize \textbf{INRIA}\\
+    \hline \footnotesize Year 1  & 8.67  & 1.00 & 3.29 & 0.51 & 2.00 & -\\
+    \hline \footnotesize Year 2  & 3.00  & 3.00 & 0.47 & 2.29 & -    & - \\
+    \hline \footnotesize Year 3  & -     & 1.00 & -    & 2.18 & 2.00 & 2.96 \\
+    \hline \footnotesize Year 4  & -     &  1.00 &  1.44 &  2.45  &  2.00  &  2.06 \\ \hline 
+    \footnotesize Total & 11.67 &  6.00 &  5.20 &  7.43 &  6.00 &  5.02    \\  \hline
+    \hline \footnotesize Planned & 12.00 & 9.00 & 6.00 & 15.00 & 6.00 & 5.00 \\
+    \hline
+  \end{tabular}
+\end{center}
+
+\subsection{WP2 effort summary}
+Planned, the use of resources within WP2 was in accordance to the plans. There was an increase in the amount of PM for JSI due to the fact that we hired PhD students instead of a more efficient post-doc.
+\begin{center}
+\begin{tabular}{|C{1.5cm}|C{1.5cm}|C{1.5cm}|C{2cm}|C{2cm}|C{2cm}|C{2cm}|}
+\hline
+\footnotesize \textbf{WP2 person months}& \footnotesize \textbf{IIT}&\footnotesize \textbf{TUD}&\footnotesize \textbf{UPMC}& \footnotesize \textbf{UB} &\footnotesize \textbf{JSI} & \footnotesize \textbf{INRIA} \\ \hline
+\footnotesize Year 1  &  -     & -    & 0.28 & 2.64  & 18.80  & -     \\  \hline
+\footnotesize Year 2  &  -     & 3.00 & 0.48 & 7.67  & 21.85  & -     \\  \hline
+\footnotesize Year 3  &  -     & 1.00 & 1.20 & 13.88 & 21.69  & 0.52  \\  \hline
+\footnotesize Year 4  &  0.00  &  3.00 &  0.75 &  25.43 &  21.62 &  1.00  \\  \hline 
+\footnotesize Total & 0.00 &  7.00 &  2.71 &  49.62 &  83.96 &  1.52     \\
+\hline \hline
+\footnotesize Planned & -      & 4.00 & 1.00 & 45.00  & 55.00 & 1.00  \\  \hline
+\end{tabular}
+\end{center}
+
+\subsection{WP3 effort summary}
+\begin{center}
+\begin{tabular}{|C{1.5cm}|C{1.5cm}|C{1.5cm}|C{2cm}|C{2cm}|C{2cm}|C{2cm}|}
+\hline
+\footnotesize \textbf{WP3 person months} & \footnotesize \textbf{IIT}&\footnotesize \textbf{TUD}&\footnotesize \textbf{UPMC}& \footnotesize \textbf{UB} &\footnotesize \textbf{JSI} &\footnotesize \textbf{INRIA} \\ \hline
+\footnotesize Year 1  &  9.90 & 4.60  & 15.15 & -    & -    &  -   \\  \hline
+\footnotesize Year 2  &  -    & 10.5  & 14.67 & 1.85 & 1.00 & 4.14  \\  \hline
+\footnotesize Year 3  &  -    & 9.65  & 8.79  & 1.63 & 2.00 & 4.03 \\  \hline
+\footnotesize Year 4  & -     &  5.60 &  8.51 &  7.15  &  1.00  &  1.98    \\    \hline
+\footnotesize Planned & 9.90 &  30.35 &  47.12 &  10.63 &  4.00 &  10.15    \\
+\hline \hline
+\footnotesize Planned &  9.00 & 24.00 & 43.5 & 10.00 & 4.00 & 10.50 \\ \hline
+\end{tabular}
+\end{center}
+
+
+\subsection{WP4 effort summary}
+\begin{center}
+\begin{tabular}{|C{1.5cm}|C{1.5cm}|C{1.5cm}|C{2cm}|C{2cm}|C{2cm}|C{2cm}|}
+\hline
+\footnotesize \textbf{WP4 person months}& \footnotesize \textbf{IIT}&\footnotesize \textbf{TUD}&\footnotesize \textbf{UPMC}& \footnotesize \textbf{UB} &\footnotesize \textbf{JSI} &\footnotesize \textbf{INRIA}\\ \hline
+\footnotesize Year 1  &  -        & 8.00   & 2.22 & -       & -        & -     \\  \hline
+\footnotesize Year 2  &  6.04  & 21.70 & 1.69 & 2.15 & 3.00   & 2.01     \\  \hline
+\footnotesize Year 3  &  9.79  & 12.00 & 0.74 & 1.68 & 3.00   & 3.30 \\  \hline
+\footnotesize Year 4  & 15.80 &  9.50 &  1.87 &  1.59  &  4.00  &  4.02    \\  \hline
+\footnotesize Total  & 31.63 &  51.20 &  6.52 &  5.42 &  10.00 &  9.33    \\
+\hline \hline
+\footnotesize Planned & 30.00 & 38.00 & 9.00 & 12.00&10.00 & 9.00 \\ \hline
+\end{tabular}
+\end{center}
+
+\subsection{WP5 effort summary}
+\begin{center}
+\begin{tabular}{|C{1.5cm}|C{1.5cm}|C{1.5cm}|C{2cm}|C{2cm}|C{2cm}|C{2cm}|}
+\hline
+\footnotesize \textbf{WP5 person months}& \footnotesize \textbf{IIT}&\footnotesize \textbf{TUD}&\footnotesize \textbf{UPMC}& \footnotesize \textbf{UB} &\footnotesize \textbf{JSI} & \footnotesize \textbf{INRIA} \\ \hline
+\footnotesize Year 1  &  2.00  & -    & 0.31 & -    & - & -     \\  \hline
+\footnotesize Year 2  &  12.00 & 0.85 & 0.05 & -    & - & -     \\  \hline
+\footnotesize Year 3  &  13.06 & 2.00 & 0.14 & 1.44 & - & 0.52 \\ \hline
+\footnotesize Year 4  & 16.86 &  2.00 &  1.55 &  -     &  -     &  0.99 \\   \hline
+\footnotesize Total & 43.92 &  4.85 &  2.05 &  1.44 &  0.00 &  1.51    \\
+\hline \hline
+\footnotesize Planned &  48.00 & 5.00 & 2.50 & - & - & 1.50 \\ \hline
+\end{tabular}
+\end{center}
+
+\subsection{WP6 effort summary}
+Resources were used as follows.
+
+\begin{center}
+\begin{tabular}{|C{1.5cm}|C{1.5cm}|C{1.5cm}|C{2cm}|C{2cm}|C{2cm}|C{2cm}|}
+\hline
+\footnotesize \textbf{WP6 person months}& \footnotesize \textbf{IIT}&\footnotesize \textbf{TUD}&\footnotesize \textbf{UPMC}& \footnotesize \textbf{UB} &\footnotesize \textbf{JSI} & \footnotesize \textbf{INRIA} \\ \hline
+\footnotesize Year 1 &  1.46 & - & 0.25 & - & - & -    \\  \hline
+\footnotesize Year 2 &  1.50 & - & 0.31 & - & - & -     \\  \hline
+\footnotesize Year 3 &  1.51 & 1.00 & 0.19 & - & 0.44 & - \\ \hline
+\footnotesize Year 4  & 1.72  &  -    &  0.19 &  -     &  2.02  &  -  \\   \hline
+\footnotesize Total & 6.19  &  1.00 &  0.94 &  0.00  &  2.46 &  0.00    \\
+\hline \hline
+\footnotesize Planned &  5.00 & 1.00 & 1.00 & 0.60 & 1.00 & - \\ \hline
+\end{tabular}
+\end{center}
+
+\subsection{WP7 effort summary}
+Resources were used as follows.
+
+\begin{center}
+\begin{tabular}{|C{1.5cm}|C{1.5cm}|C{1.5cm}|C{2cm}|C{2cm}|C{2cm}|C{2cm}|}
+\hline
+\footnotesize \textbf{WP7 person months}& \footnotesize \textbf{IIT}&\footnotesize \textbf{TUD}&\footnotesize \textbf{UPMC}& \footnotesize \textbf{UB} &\footnotesize \textbf{JSI} & \footnotesize \textbf{INRIA} \\ \hline
+\footnotesize Year 1 &  1.00 & -    & 0.40 & -    & -    & - \\  \hline
+\footnotesize Year 2 &  -    & -    & 0.13 & -    & -    & 0.91 \\  \hline
+\footnotesize Year 3 &  1.00 & - & 0.11 & - & - & - \\ \hline
+\footnotesize Year 4  & 0.50  &  1.00 &  -    &  -     &  1.00  &  1.07    \\  \hline
+\footnotesize Total & 2.50 &  1.00 &  0.64 &  0.00 &  1.00 &  1.98    \\
+\hline \hline
+\footnotesize Planned & 3.00 & 1.00 & 1.00 & 1.00 & 1.00 & 1.00 \\ \hline
+\end{tabular}
+\end{center}
+
+\section{Dissemination}
+
+\begin{figure}
+  \centering
+    \includegraphics[height=.25\textwidth]{images/tg24}
+    \hspace{1cm}
+    \includegraphics[height=.25\textwidth]{images/vvv}
+  \caption{Dissemination of the CoDyCo project was conducted through several events. The left image refers to the
+  live event on October 17th, 2016. TgCom24, live tv show on the Italian national channel. The right image refers to one of the organised summer schools (vvv14, vvv15, vvv16, vvv17). }
+\end{figure}
+
+\begin{figure}
+  \centering
+    \includegraphics[height=.2\textwidth]{images/icub_igt_stats}
+    \hspace{1cm}
+    \includegraphics[height=.2\textwidth]{images/icub_igt}
+  \caption{Right: an image of the most popular CoDyCo video, which reached
+  almost two million views on youTube (statistics on the left).}
+\end{figure}
+
+Among the invitations as a speaker at international events it is worth citing the following:
+
+\begin{enumerate}
+
+\item Francesco Nori invited talk at the dissemination event Creative mornings. Talk: Interacting with Humans with iCub-humanoid. Dates: Location: May 22nd 2015. Milano, Italy.
+
+\item Francesco Nori invited talk at Convegno NanoItaly, Roma, 21-24 settembre 2015. Talk: Force and motion capture system
+based on distributed micro-accelerometers, gyros, force and tactile sensing. Date: 21 settembre 2015.
+
+\item Talk by Elmar Rueckert, 02/2015 Probabilistic Inference and Modeling of Human Motor Skill Learning. Invited Talk. Workshop with Marc Toussaint’s group, Wolfram Burgard's group and Oliver Brock's group, Manigod, France.
+
+\item  V. Padois. Robotique industrielle: \'evolution, enjeux et perspectives, January 2016. Invited talk at CNER/SERECT.
+
+\item  Ivaldi, S. (12/2015) Human-robot interaction with iCub. Invited talk at University of Plymouth, by Samantha Adams and Angelo Cangelosi.
+
+\item Babic, Jan. Human-in-the-loop control of robots for industrial assembly tasks : invited talk, Omron Keihanna Technology Innovation Center, 7th September 2015, Kyoto, Japan.
+
+\end{enumerate} 
+
+Live demonstration of the iCub have been performed at several international events.  Some of these events were sponsored by CoDyCo and the following is a non exhaustive list:
+
+\begin{enumerate}
+
+\item 12$^{th}$-14$^{th}$ March 2014. EU Robotics Forum Rovereto. \url{http://www.erf2014.eu/erf_home.jsp}.
+\item 3$^{rd}$-6$^{th}$ June 2014. Automatica 2014, Munich, Germany. \url{http://www.nfm-automatica.de/2014/en/home.php}.
+\item 3$^{rd}$-5$^{th}$ October 2014. European Maker Faire, Roma, Italy. \url{http://www.makerfairerome.eu/en/agenda2014/}. 
+\item 18$^{th}$-20$^{th}$ November 2014. 2014 IEEE-RAS International Conference on Humanoid Robots (Humanoids 2014), Madrid, Spain. \url{http://www.humanoids2014.com}.
+
+\end{enumerate} 
+
+Among the invitations as a speaker at international events it is worth citing the following:
+
+\begin{enumerate}
+
+\item Francesco Nori: invited speaker at the Journées Nationales du GdR Robotique 2014, held at Grand amphith\'e\^atre du Centre Arts et M\`etiers ParisTech, 151-155 boulevard de l'Hôpital, 75013 Paris. 30 October 2014. \url{http://www.gdr-rob2014.org}.
+
+\item Serena Ivaldi: invited speaker French-German-Japan Workshop on Humanoid and Legged robots. Social learning and engagement in human-humanoid interactions. \url{http://orb.iwr.uni-heidelberg.de/hlr2014/HLR14}.
+
+\item Jan Babic: invited talk in Paris at the Université Pierre et Marie Curie. Synthesis of skilled robotic behaviour through human sensorimotor adaptation:  12$^th$ November 2014.
+
+\item Jan Peters: keynote for the Learning by Demonstration Session Topic at the IEEE/RSJ International Conference on Intelligent Robots and Systems (IROS), Chicago, USA.
+
+\item Jan Peters: invited plenary talk speaker at the 13th International Conference on Intelligent Autonomous Systems (IAS-13), Padua, Italy.
+
+\item Vincent Padois: invited talk at the Cap Digital/Innorobo day about Robotics et Innovations. ``Issues and challenges of interactive robotics in complex industrial contexts''. Lyon, France - March 2014.
+
+\item Michael Mistry: invited Lecturer at European Computational Motor Control Summer School. June 15$^th$-21$^st$, 2014.
+
+\end{enumerate} 
+
+Also, during the fourth year the CoDyCo consortium conducted the following 
+ wide audience dissemination activities:
+ 
+ \begin{enumerate}
+ \item ``Technologies: les robots envahissent notre quotidien''
+ May 26th, 2016: Reportage the for the daily evening news show ``Le Grand Soir 3'' on the national channel France 3. URL : \url{http://www.francetvinfo.fr/internet/technologies-les-robots-envahissent-notre-quotidien_1470757.html}.
+ 
+ \item ``iCub on TgCom24''. October 17th, 2016. Live event with the iCub showing his balancing capabilities during
+ a event connected to the Festival della Scienza.
+ 
+ \item The iCub advanced balancing capabilities were on IEEE Spectrum Video Friday twice during 2016. 
+ See the yoga++ video  
+\url{https://goo.gl/2V3Uzn} and the footstep recovery  \url{https://goo.gl/b2sZmE}.
+
+\item The iCub and CoDyco were on an Italian newspaper. \url{https://goo.gl/xJCrMG}.
+
+ \end{enumerate}
+
+\section{Impact and collaborations}
+
+\begin{figure}
+  \centering
+    \includegraphics[height=.25\textwidth]{images/AnDy-IIT}
+    \hspace{1cm}
+    \includegraphics[height=.25\textwidth]{images/AnDy-XSENS}
+  \caption{The figure shows the technology that resulted from the
+  combination of a CoDyCo technology (tactile foot soles and real-time
+  inverse dynamics computations) and a commercial technology
+  (XSENS-MVN wearable motion capture system). The resulting technology
+  is a fully wearable force and motion tracking system.}
+ \label{fig:XSENS_IIT}
+\end{figure}
+
+
+The CoDyCo project is the prerequisite for impacting on industrial applications.
+Its results and in particular those related to physical human-robot collaboration
+fostered a number of applications related in the field of healthcare, rehabilitation
+and safety at work (i.e. ergonomy). These ideas will be further investigated in 
+the project An.Dy - Advancing Anticipatory Behaviors in Dyadic Human-Robot Collaboration,
+which has received funding from the European Union's Horizon 2020 Research and Innovation Programme under Grant Agreement No. 731540.
+
+Moreover, an industrial collaboration between IIT and XSENS started at the end of 
+2015. This collaboration (see Figure \ref{fig:XSENS_IIT}) combines technologies
+developed by IIT (the inverse dynamics algorithm and the tactile sensor) 
+with commercial technologies (XSENS - MVN wearable motion capture system)
+to obtain a new real-time system for simultaneous force and motion tracking.
+
+\subsubsection{Stakeholders involvement}
+
+Within the scope of the new funded EU project, a number of stakeholders were
+involved through the creation of the end-users advisory board. Involved companies 
+include representatives from all possible applications of the developed technology:
+
+\begin{itemize}
+\item \textbf{ABB} (manufacturing, safety in pHRI, standardization): Hao Ding (Senior Scientist at ABB Corporate Research).
+\item \textbf{AC Milan} (sport analysis): Luca Gatti (Business Development MilanLab at AC Milan) and Daniele Tognaccini (project leader milanlab at AC Milan).
+\item \textbf{INRS} (safety at work): Didier Baptiste (Scientific Director), Jean Theurel, Laurent Claudon.
+\item \textbf{TECNALIA} (wearable sensing): Jan Veneman.
+\item \textbf{CEA} (collaborative robotics, exoskeletons): Yvan Measson.
+\item \textbf{FCA Group} (automotive, previously known as FIAT): Fabrizio Cencetti (Head of Environment, Health and Safety)
+\item \textbf{Sapienza University of Rome}, Department of Medical and Surgical Sciences and Biotecnologies, Polo Pontino, Latina, Italy. Dr. Maria Serrao. 
+\item \textbf{Daimler AG} (automotive, confirmed, terms under negotiation): Dr. Martin Manns (Integrated Production Validation).
+\item \textbf{Fraunhofer FKIE} (security/ergonomics, confirmed, terms under negotiation): Dr. Thomas Alexander (Head of Human Factors Department).
+\end{itemize}
+
 
 \end{document}
 
